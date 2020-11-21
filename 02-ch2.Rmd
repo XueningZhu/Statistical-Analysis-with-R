@@ -1,7 +1,7 @@
 # 第2章：R语言中的数据管理与预处理 {#ch2}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 ```
 
 ```{r}
