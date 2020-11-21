@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 第4章：描述分析 | 统计分析与R语言（辅助材料）</title>
+  <meta name="description" content="4 第4章：描述分析 | 统计分析与R语言（辅助材料）" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 第4章：描述分析 | 统计分析与R语言（辅助材料）" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 第4章：描述分析 | 统计分析与R语言（辅助材料）" />
+  
+  
+  
+
+<meta name="author" content="朱雪宁 &amp; 任怡萌" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch3.html"/>
+
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> 第1章：统计分析与R语言</a></li>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> 第2章：R语言中的数据管理与预处理</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#基本数据类型"><i class="fa fa-check"></i><b>2.1</b> 基本数据类型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#数值型"><i class="fa fa-check"></i><b>2.1.1</b> 数值型</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#字符"><i class="fa fa-check"></i><b>2.1.2</b> 字符</a></li>
+<li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#逻辑型"><i class="fa fa-check"></i><b>2.1.3</b> 逻辑型</a></li>
+<li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#因子型数据"><i class="fa fa-check"></i><b>2.1.4</b> 因子型数据</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#数据结构"><i class="fa fa-check"></i><b>2.2</b> 数据结构</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#向量"><i class="fa fa-check"></i><b>2.2.1</b> 向量</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#矩阵"><i class="fa fa-check"></i><b>2.2.2</b> 矩阵</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#数组"><i class="fa fa-check"></i><b>2.2.3</b> 数组</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#数据框"><i class="fa fa-check"></i><b>2.2.4</b> 数据框</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#数据的读入"><i class="fa fa-check"></i><b>2.3</b> 数据的读入</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#使用键盘输入数据"><i class="fa fa-check"></i><b>2.3.1</b> 使用键盘输入数据</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#从带分隔符的文本文件导入数据"><i class="fa fa-check"></i><b>2.3.2</b> 从带分隔符的文本文件导入数据</a></li>
+<li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#导入excel数据"><i class="fa fa-check"></i><b>2.3.3</b> 导入Excel数据</a></li>
+<li class="chapter" data-level="2.3.4" data-path="ch2.html"><a href="ch2.html#逐行读入数据"><i class="fa fa-check"></i><b>2.3.4</b> 逐行读入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#数据集管理及预处理"><i class="fa fa-check"></i><b>2.4</b> 数据集管理及预处理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="ch2.html"><a href="ch2.html#了解数据概况"><i class="fa fa-check"></i><b>2.4.1</b> 了解数据概况</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch2.html"><a href="ch2.html#变量类型转换"><i class="fa fa-check"></i><b>2.4.2</b> 变量类型转换</a></li>
+<li class="chapter" data-level="2.4.3" data-path="ch2.html"><a href="ch2.html#时间型数据的操作"><i class="fa fa-check"></i><b>2.4.3</b> 时间型数据的操作</a></li>
+<li class="chapter" data-level="2.4.4" data-path="ch2.html"><a href="ch2.html#数据集合并"><i class="fa fa-check"></i><b>2.4.4</b> 数据集合并</a></li>
+<li class="chapter" data-level="2.4.5" data-path="ch2.html"><a href="ch2.html#数据缺失异常"><i class="fa fa-check"></i><b>2.4.5</b> 数据缺失、异常</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> 第3章：基本统计分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#基本描述统计量"><i class="fa fa-check"></i><b>3.1</b> 基本描述统计量</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ch3.html"><a href="ch3.html#频数统计"><i class="fa fa-check"></i><b>3.1.1</b> 频数统计</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ch3.html"><a href="ch3.html#均值"><i class="fa fa-check"></i><b>3.1.2</b> 均值</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ch3.html"><a href="ch3.html#分位数"><i class="fa fa-check"></i><b>3.1.3</b> 分位数</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ch3.html"><a href="ch3.html#方差和标准差"><i class="fa fa-check"></i><b>3.1.4</b> 方差和标准差</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ch3.html"><a href="ch3.html#最大值最小值"><i class="fa fa-check"></i><b>3.1.5</b> 最大值、最小值</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ch3.html"><a href="ch3.html#峰度和偏度"><i class="fa fa-check"></i><b>3.1.6</b> 峰度和偏度</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#交叉分组下的频数分析"><i class="fa fa-check"></i><b>3.2</b> 交叉分组下的频数分析</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ch3.html"><a href="ch3.html#交叉列联表"><i class="fa fa-check"></i><b>3.2.1</b> 交叉列联表</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch3.html"><a href="ch3.html#描述统计量的分组统计"><i class="fa fa-check"></i><b>3.2.2</b> 描述统计量的分组统计</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> 第4章：描述分析</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#柱状图直方图饼图"><i class="fa fa-check"></i><b>4.1</b> 柱状图、直方图、饼图</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch4.html"><a href="ch4.html#柱状图"><i class="fa fa-check"></i><b>4.1.1</b> 柱状图</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch4.html"><a href="ch4.html#饼图"><i class="fa fa-check"></i><b>4.1.2</b> 饼图</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ch4.html"><a href="ch4.html#直方图"><i class="fa fa-check"></i><b>4.1.3</b> 直方图</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#箱线图饼图散点图"><i class="fa fa-check"></i><b>4.2</b> 箱线图、饼图、散点图</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#折线图"><i class="fa fa-check"></i><b>4.2.1</b> 折线图</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#箱线图"><i class="fa fa-check"></i><b>4.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch4.html"><a href="ch4.html#散点图"><i class="fa fa-check"></i><b>4.2.3</b> 散点图</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计分析与R语言（辅助材料）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch4" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 第4章：描述分析</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch4.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 数据准备 </span><span class="al">###</span></span>
+<span id="cb1-2"><a href="ch4.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空工作空间</span></span>
+<span id="cb1-3"><a href="ch4.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-4"><a href="ch4.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 载入相关包及设定路径</span></span>
+<span id="cb1-5"><a href="ch4.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb1-6"><a href="ch4.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="ch4.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-8"><a href="ch4.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-9"><a href="ch4.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-10"><a href="ch4.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-11"><a href="ch4.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb1-12"><a href="ch4.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb1-13"><a href="ch4.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-14"><a href="ch4.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="st">&quot;zh_cn.utf-8&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;zh_cn.utf-8/zh_cn.utf-8/zh_cn.utf-8/C/zh_cn.utf-8/en_US.UTF-8&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch4.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读入数据</span></span>
+<span id="cb3-2"><a href="ch4.html#cb3-2" aria-hidden="true" tabindex="-1"></a>novel <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&#39;./data/novel.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb3-3"><a href="ch4.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据查看与异常处理</span></span>
+<span id="cb3-4"><a href="ch4.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(novel)</span></code></pre></div>
+<pre><code>##   人气排序 小说名称     作者 小说类型 总点击数 会员周点击数  总字数 评论数 评分
+## 1        1 一念永恒     耳根 仙侠小说  4383898        10691 1155534 435429  9.8
+## 2        2 斗战狂潮 骷髅精灵 仙侠小说  1678379        36587  422116  23159 10.0
+## 3        3     天影     萧鼎 仙侠小说  1248708        32019  373763  25253  9.8
+## 4        4 不朽凡人 鹅是老五 仙侠小说  2457382         9610  995669 146715  9.9
+## 5        5 玄界之门     忘语 仙侠小说  3736897         6709 1784999 238113  9.8
+## 6        6 龙王传说 唐家三少 玄幻小说  2968846         3080 1552654 293934  9.8
+##   小说性质 写作进程 授权状态         更新时间
+## 1 公众作品   连载中 Ａ级签约 2016/10/23 11:50
+## 2 公众作品   连载中 Ａ级签约 2016/10/22 17:05
+## 3 公众作品   连载中 Ａ级签约 2016/10/23 10:40
+## 4 公众作品   连载中 Ａ级签约 2016/10/22 20:50
+## 5 公众作品 新书上传 Ａ级签约 2016/10/23 10:15
+## 6 公众作品 新书上传 Ａ级签约  2016/10/23 7:00
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                     内容简介
+## 1                                                                                                                                                                                                                                                                                                               　　一念成沧海，一念化桑田。一念斩千魔，一念诛万仙。???     唯我念……永恒???     这是耳根继《仙逆》《求魔》《我欲封天》后，创作的第四部长篇小说《一念永恒》
+## 2 　　双月当空，无限可能的英魂世界 \n???     孤寂黑暗，神秘古怪的嬉命小丑 \n???     百城联邦，三大帝国，异族横行，魂兽霸幽 \n???     这是一个英雄辈出的年代，人类卧薪尝胆重掌地球主权，孕育着进军高纬度的野望！ \n???     重点是……二年级的废柴学长王同学，如何使用嬉命轮盘，撬动整个世界，学妹们，请注意，学长来了！！！ \n???     斗战一群：21222419（两千人战力群）\n???     斗战二群：12962047 \n???     骷髅的微信公共号：kuloujingling00 \n???     新浪微博：骷髅精灵
+## 3                                                                         　　阴阳分天地，五行定乾坤。\n???     天穹之下岁月沧桑的中土神州，正是仙道昌盛的时代，亿万生灵欣欣向荣。\n???     纵横千万里间，总有人间一幕幕悲欢离合，在恢弘长生的仙道中上演着。\n???     有光便有暗，天穹之下光辉之中，仍有沉默的影子悄然前行着……\n???     新书上线！精彩万分！请各位书友多多投票支持！另外，大家可以添加微信公众号zhuxianxiaoding（诛仙萧鼎），QQ官方群 176378308 进行交流。
+## 4                                                                                                                                                                                                                                                                                                                                              　　在这里，拥有灵根才能修仙，所有凡根注定只是凡人。\n???     莫无忌，只有凡根，一介凡人！\n???     是就此老去，还是不甘？???
+## 5                                                                                                                                                                                                                         　　天降神物！异血附体！???     群仙惊惧！万魔退避！???     一名从东洲大陆走出的少年。???     一具生死相依的红粉骷髅。???     一个立志成为至强者的故事。???     一段叱咤星河，大闹三界的传说。???     忘语新书，已完本《凡人修仙传》》《魔天记》。
+## 6                                                                                                                                    　　伴随着魂导科技的进步，斗罗大陆上的人类征服了海洋，又发现了两片大陆。魂兽也随着人类魂师的猎杀无度走向灭亡，沉睡无数年的魂兽之王在星斗大森林最后的净土苏醒，它要带领仅存的族人，向人类复仇！\n???     唐舞麟立志要成为一名强大的魂师，可当武魂觉醒时，苏醒的，却是……\n???     旷世之才，龙王之争，我们的龙王传说，将由此开始。\n???</code></pre>
+<div id="柱状图直方图饼图" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 柱状图、直方图、饼图</h2>
+<div id="柱状图" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 柱状图</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch4.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计小说类型频数</span></span>
+<span id="cb5-2"><a href="ch4.html#cb5-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="fu">table</span>(novel<span class="sc">$</span>小说类型)</span>
+<span id="cb5-3"><a href="ch4.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 对频数排序</span></span>
+<span id="cb5-4"><a href="ch4.html#cb5-4" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span>a[<span class="fu">order</span>(a,<span class="at">decreasing =</span> T)]</span>
+<span id="cb5-5"><a href="ch4.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制柱状图</span></span>
+<span id="cb5-6"><a href="ch4.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>,<span class="at">las =</span> <span class="dv">2</span>)</span>
+<span id="cb5-7"><a href="ch4.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(a[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],<span class="at">names.arg =</span> <span class="fu">names</span>(a)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],<span class="at">family=</span><span class="st">&quot;SimSun&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;频数&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>))</span>
+<span id="cb5-8"><a href="ch4.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;各类型小说频数分布柱状图&quot;</span>,<span class="at">family=</span><span class="st">&quot;SimSun&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ch4.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求得各类型小说平均点击数的均值</span></span>
+<span id="cb6-2"><a href="ch4.html#cb6-2" aria-hidden="true" tabindex="-1"></a>means<span class="ot">&lt;-</span>novel<span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="ch4.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(小说类型)<span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="ch4.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(总点击数<span class="sc">/</span><span class="dv">10000</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="ch4.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span>
+<span id="cb6-6"><a href="ch4.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>,<span class="at">las =</span> <span class="dv">2</span>)</span>
+<span id="cb6-7"><a href="ch4.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制均值柱状图</span></span>
+<span id="cb6-8"><a href="ch4.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(means<span class="sc">$</span>mean[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">names.arg=</span>means<span class="sc">$</span>小说类型[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],<span class="at">family=</span><span class="st">&quot;SimSun&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;总点击数(万次)&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;grey&quot;</span>))</span>
+<span id="cb6-9"><a href="ch4.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;各类型小说平均总点击数&quot;</span>,<span class="at">family=</span><span class="st">&quot;SimSun&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch4.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">200</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ch4.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建绘图所需数据矩阵d</span></span>
+<span id="cb8-2"><a href="ch4.html#cb8-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> novel<span class="sc">%&gt;%</span><span class="fu">group_by</span>(小说类型,小说性质)<span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="ch4.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">count=</span><span class="fu">n</span>())<span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="ch4.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(小说性质,count)<span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="ch4.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>V1)<span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="ch4.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(公众作品))</span>
+<span id="cb8-7"><a href="ch4.html#cb8-7" aria-hidden="true" tabindex="-1"></a>topics <span class="ot">=</span> d<span class="sc">$</span>小说类型[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb8-8"><a href="ch4.html#cb8-8" aria-hidden="true" tabindex="-1"></a>artwork_type <span class="ot">=</span> <span class="fu">colnames</span>(d)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb8-9"><a href="ch4.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 选取前五类小说</span></span>
+<span id="cb8-10"><a href="ch4.html#cb8-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(<span class="fu">t</span>(d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,])[<span class="sc">-</span><span class="dv">1</span>,]),<span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb8-11"><a href="ch4.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 对列命名</span></span>
+<span id="cb8-12"><a href="ch4.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d) <span class="ot">=</span> topics</span>
+<span id="cb8-13"><a href="ch4.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 对行命名</span></span>
+<span id="cb8-14"><a href="ch4.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(d) <span class="ot">=</span> artwork_type</span>
+<span id="cb8-15"><a href="ch4.html#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="ch4.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制分组柱状图(beside = T)</span></span>
+<span id="cb8-17"><a href="ch4.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>,<span class="at">las=</span><span class="dv">2</span>)</span>
+<span id="cb8-18"><a href="ch4.html#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(d, <span class="at">beside =</span> T, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;grey&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;频数&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span>
+<span id="cb8-19"><a href="ch4.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加图例</span></span>
+<span id="cb8-20"><a href="ch4.html#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(d), <span class="at">fill =</span>  <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;grey&quot;</span>), <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb8-21"><a href="ch4.html#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制堆积柱状图(beside = F)</span></span>
+<span id="cb8-22"><a href="ch4.html#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(d, <span class="at">beside =</span> F, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;grey&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;频数&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">700</span>))</span>
+<span id="cb8-23"><a href="ch4.html#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加图例</span></span>
+<span id="cb8-24"><a href="ch4.html#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(d), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;gold&quot;</span>, <span class="st">&quot;grey&quot;</span>), <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="饼图" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 饼图</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch4.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将小说类型进行简要合并</span></span>
+<span id="cb9-2"><a href="ch4.html#cb9-2" aria-hidden="true" tabindex="-1"></a>novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span> <span class="ot">=</span> <span class="st">&quot;其他&quot;</span></span>
+<span id="cb9-3"><a href="ch4.html#cb9-3" aria-hidden="true" tabindex="-1"></a>novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span>[novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;都市小说&quot;</span> <span class="sc">|</span> novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;职场小说&quot;</span>] <span class="ot">=</span> <span class="st">&quot;都市类小说&quot;</span></span>
+<span id="cb9-4"><a href="ch4.html#cb9-4" aria-hidden="true" tabindex="-1"></a>novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span>[novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;科幻小说&quot;</span> <span class="sc">|</span> novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;玄幻小说&quot;</span> <span class="sc">|</span> novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;奇幻小说&quot;</span>] <span class="ot">=</span> <span class="st">&quot;幻想类小说&quot;</span></span>
+<span id="cb9-5"><a href="ch4.html#cb9-5" aria-hidden="true" tabindex="-1"></a>novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span>[novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;武侠小说&quot;</span> <span class="sc">|</span> novel<span class="sc">$</span>小说类型 <span class="sc">==</span> <span class="st">&quot;仙侠小说&quot;</span>] <span class="ot">=</span> <span class="st">&quot;武侠类小说&quot;</span></span>
+<span id="cb9-6"><a href="ch4.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 求出每一类所占百分比</span></span>
+<span id="cb9-7"><a href="ch4.html#cb9-7" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">=</span> <span class="fu">table</span>(novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span>) <span class="sc">/</span> <span class="fu">sum</span>(<span class="fu">table</span>(novel<span class="sc">$</span><span class="st">&#39;小说类别&#39;</span>)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb9-8"><a href="ch4.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义标签</span></span>
+<span id="cb9-9"><a href="ch4.html#cb9-9" aria-hidden="true" tabindex="-1"></a>label1 <span class="ot">=</span> <span class="fu">names</span>(ratio)</span>
+<span id="cb9-10"><a href="ch4.html#cb9-10" aria-hidden="true" tabindex="-1"></a>label2 <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">round</span>(ratio, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>)</span>
+<span id="cb9-11"><a href="ch4.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制饼图</span></span>
+<span id="cb9-12"><a href="ch4.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&quot;SimSun&quot;</span>) </span>
+<span id="cb9-13"><a href="ch4.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(ratio, <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>), <span class="at">labels =</span> <span class="fu">paste</span>(label1, label2, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>), <span class="at">font =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="直方图" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> 直方图</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ch4.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 去掉异常值</span></span>
+<span id="cb10-2"><a href="ch4.html#cb10-2" aria-hidden="true" tabindex="-1"></a>chara <span class="ot">=</span> <span class="fu">sort</span>(novel<span class="sc">$</span>总字数<span class="sc">/</span><span class="dv">10000</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">1500</span>] </span>
+<span id="cb10-3"><a href="ch4.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制直方图</span></span>
+<span id="cb10-4"><a href="ch4.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>,<span class="at">las=</span><span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="ch4.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(chara, <span class="at">breaks =</span> <span class="dv">10</span>, <span class="at">xlab =</span> <span class="st">&quot;总字数(万字)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;频数&quot;</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>,<span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb10-6"><a href="ch4.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整直方图组距</span></span>
+<span id="cb10-7"><a href="ch4.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(chara, <span class="at">breaks =</span> <span class="dv">100</span>, <span class="at">xlab =</span> <span class="st">&quot;总字数(万字)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;频数&quot;</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>,<span class="at">border =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="箱线图饼图散点图" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 箱线图、饼图、散点图</h2>
+<div id="折线图" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 折线图</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch4.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取数据</span></span>
+<span id="cb11-2"><a href="ch4.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(AirPassengers)</span>
+<span id="cb11-3"><a href="ch4.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 画时间序列图</span></span>
+<span id="cb11-4"><a href="ch4.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AirPassengers)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="箱线图" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 箱线图</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ch4.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 定性与定量变量--分组箱线图 ##</span></span>
+<span id="cb12-2"><a href="ch4.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将画板分成1行2列</span></span>
+<span id="cb12-3"><a href="ch4.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>)  </span>
+<span id="cb12-4"><a href="ch4.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 不同性质的小说总点击数和评论数有差别吗</span></span>
+<span id="cb12-5"><a href="ch4.html#cb12-5" aria-hidden="true" tabindex="-1"></a>novel_ <span class="ot">=</span> novel<span class="sc">%&gt;%</span><span class="fu">filter</span>(小说性质 <span class="sc">==</span> <span class="st">&#39;公众作品&#39;</span><span class="sc">|</span>小说性质 <span class="sc">==</span> <span class="st">&#39;VIP作品&#39;</span>)<span class="sc">%&gt;%</span><span class="fu">mutate</span>(小说性质<span class="ot">=</span><span class="fu">factor</span>(小说性质))</span>
+<span id="cb12-6"><a href="ch4.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log</span>(总点击数) <span class="sc">~</span> 小说性质, <span class="at">data =</span> novel_, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;gold&#39;</span>,<span class="st">&#39;grey&#39;</span>), <span class="at">ylab =</span> <span class="st">&quot;总点击数对数&quot;</span>)</span>
+<span id="cb12-7"><a href="ch4.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log</span>(总点击数) <span class="sc">~</span> 小说性质, <span class="at">data =</span> novel_, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;gold&#39;</span>,<span class="st">&#39;grey&#39;</span>), <span class="at">ylab =</span> <span class="st">&quot;总评论数对数&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="散点图" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> 散点图</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ch4.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 两个定量变量--散点图 ##</span></span>
+<span id="cb13-2"><a href="ch4.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 去除较大的异常值后画图</span></span>
+<span id="cb13-3"><a href="ch4.html#cb13-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> novel[novel<span class="sc">$</span>评论数 <span class="sc">&lt;</span> <span class="dv">8000</span> <span class="sc">&amp;</span> novel<span class="sc">$</span>总点击数 <span class="sc">&lt;</span> <span class="dv">200000</span>, ]</span>
+<span id="cb13-4"><a href="ch4.html#cb13-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> test<span class="sc">$</span>总点击数</span>
+<span id="cb13-5"><a href="ch4.html#cb13-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> test<span class="sc">$</span>评论数</span>
+<span id="cb13-6"><a href="ch4.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;SimSun&quot;</span>)  </span>
+<span id="cb13-7"><a href="ch4.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">xlab =</span> <span class="st">&quot;总点击数&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;评论数&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

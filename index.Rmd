@@ -1,6 +1,7 @@
 ---
-title: "A Book"
-author: "Frida Gomam"
+title: "统计分析与R语言（辅助材料）"
+author: 
+  - 朱雪宁 & 任怡萌
 site: bookdown::bookdown_site
 documentclass: book
 output:
@@ -8,10 +9,24 @@ output:
   #bookdown::pdf_book: default
 ---
 
-# Hello World
+# 前言 {-}
 
-Hi.
+这是《统计分析与R语言》一书所用R语言代码辅助材料，还在更新中。错漏之处难免，欢迎指出错误或提出改进意见。
 
-Bye.
+**相关下载**：
 
-<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
+- 需要补充数据文件
+
+使用本教程必须安装的**软件包**：
+
+- package1
+
+- package2
+
+本教程中用到的软件包列表（更新R软件后可以在一个基本R中运行如下命令）：
+
+[待补充]
+
+编译本教程所用的R软件环境：
+
+[待补充]

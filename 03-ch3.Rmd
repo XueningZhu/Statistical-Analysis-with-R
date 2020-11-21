@@ -1,0 +1,118 @@
+# 第3章：基本统计分析 {#ch3}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+```
+
+```{r}
+rm(list = ls())#清理工作空间
+tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据
+```
+
+## 基本描述统计量
+
+### 频数统计
+
+
+```{r}
+(type<- table(tenement$region))#频数统计
+tenement$regiontype=tenement$region#设置新变量
+tenement[!is.element(tenement$region,c("朝阳","通州","昌平","丰台")),]$regiontype="其他"#将非朝阳、通州、昌平和丰台的租赁房间合并为为其他
+sort(table(tenement$regiontype))
+```
+
+
+### 均值
+
+
+```{r}
+mean(tenement$rent)#求房租均值
+tenement_num=tenement[c("rent","area")]#选取数值型子集
+colMeans(tenement_num)#同时计算列和
+```
+### 分位数
+
+
+```{r}
+median(tenement$rent)#求租金的中位数
+quantile(tenement$rent, probs = 0.5)#利用quantile()函数求中位数
+quantile(tenement$rent, probs = seq(0, 1, 0.25))#求向量最小值、最大值、四分位数
+```
+
+### 方差和标准差
+```{r}
+mean(tenement$rent[tenement$regiontype == "昌平"])#昌平区租金均值
+var(tenement$rent[tenement$regiontype == "昌平"])#昌平区租金方差
+mean(tenement$rent[tenement$regiontype == "其他"])#其他区租金均值
+var(tenement$rent[tenement$regiontype == "其他"])#其他区租金方差
+
+
+sd(tenement$rent[tenement$regiontype == "昌平"])#昌平区租金标准差
+sd(tenement$rent[tenement$regiontype == "其他"])#其他区租金标准差
+cov(tenement$rent, tenement$area)#协方差
+cor(tenement$rent, tenement$area)#相关系数
+
+cov(tenement_num)#协方差矩阵
+cor(tenement_num)#相关系数矩阵
+
+```
+
+### 最大值、最小值
+```{r}
+max(tenement$rent)#租金最高值
+min(tenement$rent)#租金最低值
+a=which.max(tenement$rent)#找出租金最高的房间对应数据所在行
+tenement[a,]#输出这一行的内容
+
+```
+
+### 峰度和偏度
+```{r,eval=FALSE}
+library(e1071)#加载包
+```
+```{r,include=FALSE}
+library(e1071)#加载包
+```
+
+```{r}
+skewness(tenement$rent)#用e1071包求租金的偏度
+kurtosis(tenement$rent) #用e1071包求租金的峰度
+```
+
+## 交叉分组下的频数分析
+
+```{r}
+rm(list = ls())#清理工作空间
+tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据
+```
+
+### 交叉列联表
+
+```{r}
+tenement$regiontype=tenement$region#设置新变量
+tenement[!is.element(tenement$region,c("朝阳","通州","昌平","丰台")),]$regiontype="其他"#将非朝阳、通州、昌平和丰台的租赁房间合并为为其他
+
+(tab <- table(tenement$regiontype,tenement$floor_grp))#建立城区和楼层的交叉列联表
+prop.table(tab)#频率形式交叉列联表
+margin.table(tab,1)#求行变量边际函数
+margin.table(tab,2)#求列变量边际函数
+addmargins(tab)#添加边际和
+
+
+
+```
+
+### 描述统计量的分组统计
+
+```{r,include=FALSE}
+library(dplyr)
+```
+```{r}
+library(dplyr)
+tenement_group<-group_by(tenement,regiontype,floor_grp)
+summarise(tenement_group,
+          meanrent=mean(rent),#分组计算平均平均租金
+          maxrent=max(rent),#分组计算最高租金
+          minrent=min(rent))#分组计算最低租金
+```
+
