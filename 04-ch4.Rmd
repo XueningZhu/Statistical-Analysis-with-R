@@ -36,6 +36,9 @@ head(novel)
 a=table(novel$小说类型)
 # 对频数排序
 a=a[order(a,decreasing = T)]
+```
+
+```{r nice-fig, fig.cap='test for plot online', out.width='80%', fig.asp=.75, fig.align='center'}
 # 绘制柱状图
 par(family = "SimSun",las = 2)
 barplot(a[1:5],names.arg = names(a)[1:5],family="SimSun",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
