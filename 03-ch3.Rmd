@@ -11,8 +11,11 @@ tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FA
 
 ## 基本描述统计量
 
+以下从频数统计开始，一一介绍均值、分位数、方差、标准差、最大最小值、峰度、偏度等基本统计量。
+
 ### 频数统计
 
+频数（freguency）统计是对定性变量的各水平计数进行统计的描述统计量。
 
 ```{r}
 (type<- table(tenement$region))#频数统计
@@ -24,14 +27,17 @@ sort(table(tenement$regiontype))
 
 ### 均值
 
+均值（mean），即一组数值型数据的平均数，是最常用的统计量之一。
 
 ```{r}
 mean(tenement$rent)#求房租均值
 tenement_num=tenement[c("rent","area")]#选取数值型子集
 colMeans(tenement_num)#同时计算列和
 ```
+
 ### 分位数
 
+在数据分布偏度较大的情况下，均值并不能很好地反映数据的一般水平。此时，可使用中位数（median）刻画数据的一般情形。中位数是分位数（quantile）的一个特殊情况。
 
 ```{r}
 median(tenement$rent)#求租金的中位数
@@ -40,6 +46,9 @@ quantile(tenement$rent, probs = seq(0, 1, 0.25))#求向量最小值、最大值�
 ```
 
 ### 方差和标准差
+
+方差（variance）和标准差（standard deviation）是描述一组数值型数据的分散程度的描述统计量。协方差（covariance）和相关系数（correlation coefficient）是描述变量相关程度的描述统计量。
+
 ```{r}
 mean(tenement$rent[tenement$regiontype == "昌平"])#昌平区租金均值
 var(tenement$rent[tenement$regiontype == "昌平"])#昌平区租金方差
@@ -58,6 +67,9 @@ cor(tenement_num)#相关系数矩阵
 ```
 
 ### 最大值、最小值
+
+最大值（maximum value）、最小值（minimum value）描述一组数值型变量由高到低排序后最大和最小的元素。
+
 ```{r}
 max(tenement$rent)#租金最高值
 min(tenement$rent)#租金最低值
@@ -67,6 +79,9 @@ tenement[a,]#输出这一行的内容
 ```
 
 ### 峰度和偏度
+
+偏度（skewness）和峰度（kurtosis）是一组用于描述数据分布形态的统计量。
+
 ```{r,eval=FALSE}
 library(e1071)#加载包
 ```
@@ -88,6 +103,8 @@ tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FA
 
 ### 交叉列联表
 
+交叉列联表(contingency table)是对两个类别变量每个交叉水平下的频数统计。交叉列联表可以展示两个类别变量之间的相关关系。
+
 ```{r}
 tenement$regiontype=tenement$region#设置新变量
 tenement[!is.element(tenement$region,c("朝阳","通州","昌平","丰台")),]$regiontype="其他"#将非朝阳、通州、昌平和丰台的租赁房间合并为为其他
@@ -97,12 +114,11 @@ prop.table(tab)#频率形式交叉列联表
 margin.table(tab,1)#求行变量边际函数
 margin.table(tab,2)#求列变量边际函数
 addmargins(tab)#添加边际和
-
-
-
 ```
 
 ### 描述统计量的分组统计
+
+描述统计量的分组统计是指对定量变量按照类别变量各取值水平分组后，进行描述统计的操作。
 
 ```{r,include=FALSE}
 library(dplyr)

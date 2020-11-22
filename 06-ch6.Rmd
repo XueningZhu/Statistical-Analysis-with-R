@@ -27,6 +27,10 @@ rm(list = ls())
 ```{r}
 library(ggplot2)
 jobinfo <- read.csv("./data/jobinfo_ch7.csv", fileEncoding = "utf-8")
+```
+
+
+```{r ch6-plot1, eval = F}
 ggplot(data = jobinfo,aes(x=aveSalary)) +
     geom_histogram(binwidth = 2000,fill="gold") +
     labs(y="频数",x = "岗位薪资") +
@@ -36,6 +40,8 @@ ggplot(data = jobinfo,aes(x=aveSalary)) +
           axis.title = element_text(size = 12),
           axis.text = element_text(size = 11))
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fivvpwj311c0qo75i.jpg)
 
 该数据中的因变量薪资呈右偏分布，如图所示。最高的月薪为19999.5元/月，对应的岗位是一个规模为1000-5000人的国企，这个岗位要求申请人有2年的工作经验。从整体情况来看，有75%的岗位月薪低于10000元。
 
@@ -48,6 +54,9 @@ ggplot(data = jobinfo,aes(x=aveSalary)) +
 # 将学历转化为因子型变量，便于画图
 jobinfo$学历要求 = factor(jobinfo$学历要求,levels=c("中专","高中","大专","无","本科","研究生"))
 jobinfo$对数薪资 <- log(jobinfo$aveSalary)
+```
+
+```{r ch6-plot2, eval = F}
 # 绘制箱线图
 ggplot(jobinfo,aes(学历要求,对数薪资)) + 
         geom_boxplot(varwidth = TRUE, fill = c(rep("grey",4),rep("gold",2))) + 
@@ -59,13 +68,15 @@ ggplot(jobinfo,aes(学历要求,对数薪资)) +
           axis.text = element_text(size = 12))
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fipn4uj311c0qo75l.jpg)
+
 从图中可以看到，在五种学历要求中，研究生学历的薪资中位数最高，达到了8999.75元，对应的对数薪资为9.10；其次为本科学历的岗位，达到了8999.50元；薪资水平最低的为中专学历，月薪仅有5249.50元。水平最高的学历岗位比最低的月薪高出了3750.25元，但是仅根据描述分析，我们仍然不能说明学历对薪资有统计意义上的显著影响。
 
 ### 任务三 {-}
 
 通过箱线图，分别探究岗位对于Python和SPSS要求与否对薪资水平是否有影响。
 
-```{r}
+```{r ch6-plot3, eval = F}
 ggplot(jobinfo,aes(as.factor(Python),对数薪资)) + 
         geom_boxplot(fill = c("grey","gold")) + 
         labs(x="是否要求会使用Python", y = "对数薪资") +
@@ -74,7 +85,11 @@ theme(panel.border=element_blank(),
       text = element_text(family = "STXihei"),
                       axis.title = element_text(size = 15),
           axis.text = element_text(size = 14))
+```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fiitvsj311c0qogmu.jpg)
+
+```{r ch6-plot4, eval = F}
 ggplot(jobinfo,aes(as.factor(SPSS),对数薪资)) + 
         geom_boxplot(fill = c("grey","gold")) + 
         labs(x="是否要求会使用SPSS", y = "对数薪资") +
@@ -84,6 +99,8 @@ theme(panel.border=element_blank(),
                       axis.title = element_text(size = 15),
           axis.text = element_text(size = 14))
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fi62skj311c0qogmt.jpg)
 
 从数目上看，要求掌握Python的岗位占比为4.4%，要求掌握SPSS的岗位占比约为8.0%。从箱线图中可以看出，要求掌握这两种软件的薪资中位数均高于不要求掌握该软件的岗位。
 
@@ -117,12 +134,14 @@ summary(lm.fit1)
 
 对任务四中的模型进行诊断，找出可能存在的问题。
 
-```{r}
+```{r ch6-plot5, eval = F}
 ## 对线性模型进行回归诊断
 # 将画布分为2*2的4块
 par(mfrow=c(2,2))
 plot(lm.fit1, which = c(1:4)) 
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fi1jljj311c0qoaec.jpg)
 
 左上图为残差与拟合值的散点图，若因变量和自变量呈现线性相关的关系，则残差值与拟合值没有任何的系统关联。图中所示残差并不随着拟合值的变化呈现规律性变化，因此基本满足线性假设；右上图为正态Q-Q图，当因变量服从正态分布时，图中的散点应该落在呈45度倾斜的直线上。根据图示，模型中的残差项在较大值的部分偏离直线，因此较大程度上偏离了正态分布；左下图为位置尺度图，若满足同方差假定，则水平线周围的点应呈现无规律随机分布，根据图中所示，随着拟合值增大，标准化残差呈现升高的规律，表明存在一定的异方差问题；右下图为样本点的库克距离，其最大值未超过0.05，因此认为样本中不存在异常点。
 
@@ -200,9 +219,14 @@ dat0 <- cbind(dat0,style)
 ```{r}
 lm1 <- lm(price~CATE+school+subway+style+floor+bedrooms+AREA,data=dat0)
 summary(lm1)            #回归结果展示
+```
+
+```{r ch6-plot6, eval = F}
 par(mfrow=c(2,2))           #画2*2的图
 plot(lm1,which=c(1:4))      #模型诊断图，存在异方差现象，对因变量取对数
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6fhsdcjj311c0qotdo.jpg)
 
 根据模型诊断结果可以看出，残差近似满足零均值假定，图中所示残差并不随着拟合值的变化呈现规律性变化，因此基本满足线性假设；右上图为正态Q-Q图，当因变量服从正态分布时，图中的散点应该落在呈45度倾斜的直线上。根据图示，模型中的残差项在较大值的部分偏离直线，因此一定程度上偏离了正态分布；左下图为位置尺度图，若满足同方差假定，则水平线周围的点应呈现无规律随机分布，根据图中所示，随着拟合值增大，标准化残差呈现升高的规律，表明存在一定的异方差问题；右下图为样本点的库克距离，其最大值未超过0.05，因此认为样本中不存在异常点。
 

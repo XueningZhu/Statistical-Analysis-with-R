@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 第6章：线性回归 | 统计分析与R语言（辅助材料）</title>
-  <meta name="description" content="6 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
+  <title>7 第6章：线性回归 | 统计分析与R语言（辅助材料）</title>
+  <meta name="description" content="7 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
+  <meta property="og:title" content="7 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
   <meta property="og:type" content="book" />
   
   
   
-  
+  <meta name="github-repo" content="XueningZhu/Statistical-Analysis-with-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
+  <meta name="twitter:title" content="7 第6章：线性回归 | 统计分析与R语言（辅助材料）" />
   
   
   
@@ -24,6 +24,7 @@
 <meta name="author" content="朱雪宁 &amp; 任怡萌" />
 
 
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -130,40 +131,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
-<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> 第1章：统计分析与R语言</a></li>
-<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> 第2章：R语言中的数据管理与预处理</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> output:</a></li>
+<li class="chapter" data-level="2" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>2</b> 第1章：统计分析与R语言</a></li>
+<li class="chapter" data-level="3" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>3</b> 第2章：R语言中的数据管理与预处理</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#基本数据类型"><i class="fa fa-check"></i><b>2.1</b> 基本数据类型</a>
+<li class="chapter" data-level="3.1" data-path="ch2.html"><a href="ch2.html#基本数据类型"><i class="fa fa-check"></i><b>3.1</b> 基本数据类型</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#数值型"><i class="fa fa-check"></i><b>2.1.1</b> 数值型</a></li>
-<li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#字符"><i class="fa fa-check"></i><b>2.1.2</b> 字符</a></li>
-<li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#逻辑型"><i class="fa fa-check"></i><b>2.1.3</b> 逻辑型</a></li>
-<li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#因子型数据"><i class="fa fa-check"></i><b>2.1.4</b> 因子型数据</a></li>
+<li class="chapter" data-level="3.1.1" data-path="ch2.html"><a href="ch2.html#数值型"><i class="fa fa-check"></i><b>3.1.1</b> 数值型</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ch2.html"><a href="ch2.html#字符"><i class="fa fa-check"></i><b>3.1.2</b> 字符</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ch2.html"><a href="ch2.html#逻辑型"><i class="fa fa-check"></i><b>3.1.3</b> 逻辑型</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ch2.html"><a href="ch2.html#因子型数据"><i class="fa fa-check"></i><b>3.1.4</b> 因子型数据</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#数据结构"><i class="fa fa-check"></i><b>2.2</b> 数据结构</a>
+<li class="chapter" data-level="3.2" data-path="ch2.html"><a href="ch2.html#数据结构"><i class="fa fa-check"></i><b>3.2</b> 数据结构</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#向量"><i class="fa fa-check"></i><b>2.2.1</b> 向量</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#矩阵"><i class="fa fa-check"></i><b>2.2.2</b> 矩阵</a></li>
-<li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#数组"><i class="fa fa-check"></i><b>2.2.3</b> 数组</a></li>
-<li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#数据框"><i class="fa fa-check"></i><b>2.2.4</b> 数据框</a></li>
+<li class="chapter" data-level="3.2.1" data-path="ch2.html"><a href="ch2.html#向量"><i class="fa fa-check"></i><b>3.2.1</b> 向量</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch2.html"><a href="ch2.html#矩阵"><i class="fa fa-check"></i><b>3.2.2</b> 矩阵</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch2.html"><a href="ch2.html#数组"><i class="fa fa-check"></i><b>3.2.3</b> 数组</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch2.html"><a href="ch2.html#数据框"><i class="fa fa-check"></i><b>3.2.4</b> 数据框</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch2.html"><a href="ch2.html#列表"><i class="fa fa-check"></i><b>3.2.5</b> 列表</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#数据的读入"><i class="fa fa-check"></i><b>2.3</b> 数据的读入</a>
+<li class="chapter" data-level="3.3" data-path="ch2.html"><a href="ch2.html#数据的读入与写出"><i class="fa fa-check"></i><b>3.3</b> 数据的读入与写出</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#使用键盘输入数据"><i class="fa fa-check"></i><b>2.3.1</b> 使用键盘输入数据</a></li>
-<li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#从带分隔符的文本文件导入数据"><i class="fa fa-check"></i><b>2.3.2</b> 从带分隔符的文本文件导入数据</a></li>
-<li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#导入excel数据"><i class="fa fa-check"></i><b>2.3.3</b> 导入Excel数据</a></li>
-<li class="chapter" data-level="2.3.4" data-path="ch2.html"><a href="ch2.html#逐行读入数据"><i class="fa fa-check"></i><b>2.3.4</b> 逐行读入数据</a></li>
+<li class="chapter" data-level="3.3.1" data-path="ch2.html"><a href="ch2.html#使用键盘输入数据"><i class="fa fa-check"></i><b>3.3.1</b> 使用键盘输入数据</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch2.html"><a href="ch2.html#从带分隔符的文本文件导入数据"><i class="fa fa-check"></i><b>3.3.2</b> 从带分隔符的文本文件导入数据</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ch2.html"><a href="ch2.html#导入excel数据"><i class="fa fa-check"></i><b>3.3.3</b> 导入Excel数据</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ch2.html"><a href="ch2.html#逐行读入数据"><i class="fa fa-check"></i><b>3.3.4</b> 逐行读入数据</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#数据集管理及预处理"><i class="fa fa-check"></i><b>2.4</b> 数据集管理及预处理</a>
+<li class="chapter" data-level="3.4" data-path="ch2.html"><a href="ch2.html#数据集管理及预处理"><i class="fa fa-check"></i><b>3.4</b> 数据集管理及预处理</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="ch2.html"><a href="ch2.html#了解数据概况"><i class="fa fa-check"></i><b>2.4.1</b> 了解数据概况</a></li>
-<li class="chapter" data-level="2.4.2" data-path="ch2.html"><a href="ch2.html#变量类型转换"><i class="fa fa-check"></i><b>2.4.2</b> 变量类型转换</a></li>
-<li class="chapter" data-level="2.4.3" data-path="ch2.html"><a href="ch2.html#时间型数据的操作"><i class="fa fa-check"></i><b>2.4.3</b> 时间型数据的操作</a></li>
-<li class="chapter" data-level="2.4.4" data-path="ch2.html"><a href="ch2.html#数据集合并"><i class="fa fa-check"></i><b>2.4.4</b> 数据集合并</a></li>
-<li class="chapter" data-level="2.4.5" data-path="ch2.html"><a href="ch2.html#数据缺失异常"><i class="fa fa-check"></i><b>2.4.5</b> 数据缺失、异常</a></li>
+<li class="chapter" data-level="3.4.1" data-path="ch2.html"><a href="ch2.html#了解数据概况"><i class="fa fa-check"></i><b>3.4.1</b> 了解数据概况</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch2.html"><a href="ch2.html#变量类型转换"><i class="fa fa-check"></i><b>3.4.2</b> 变量类型转换</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ch2.html"><a href="ch2.html#时间型数据的操作"><i class="fa fa-check"></i><b>3.4.3</b> 时间型数据的操作</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ch2.html"><a href="ch2.html#数据集合并"><i class="fa fa-check"></i><b>3.4.4</b> 数据集合并</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ch2.html"><a href="ch2.html#数据缺失异常"><i class="fa fa-check"></i><b>3.4.5</b> 数据缺失、异常</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="ch2.html"><a href="ch2.html#习题答案"><i class="fa fa-check"></i><b>2.5</b> 习题答案</a>
+<li class="chapter" data-level="3.5" data-path="ch2.html"><a href="ch2.html#习题答案"><i class="fa fa-check"></i><b>3.5</b> 习题答案</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.1"><i class="fa fa-check"></i>题目 2.1</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.2"><i class="fa fa-check"></i>题目 2.2</a></li>
@@ -172,23 +174,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.5-实训题目"><i class="fa fa-check"></i>题目 2.5 （实训题目）</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> 第3章：基本统计分析</a>
+<li class="chapter" data-level="4" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>4</b> 第3章：基本统计分析</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#基本描述统计量"><i class="fa fa-check"></i><b>3.1</b> 基本描述统计量</a>
+<li class="chapter" data-level="4.1" data-path="ch3.html"><a href="ch3.html#基本描述统计量"><i class="fa fa-check"></i><b>4.1</b> 基本描述统计量</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="ch3.html"><a href="ch3.html#频数统计"><i class="fa fa-check"></i><b>3.1.1</b> 频数统计</a></li>
-<li class="chapter" data-level="3.1.2" data-path="ch3.html"><a href="ch3.html#均值"><i class="fa fa-check"></i><b>3.1.2</b> 均值</a></li>
-<li class="chapter" data-level="3.1.3" data-path="ch3.html"><a href="ch3.html#分位数"><i class="fa fa-check"></i><b>3.1.3</b> 分位数</a></li>
-<li class="chapter" data-level="3.1.4" data-path="ch3.html"><a href="ch3.html#方差和标准差"><i class="fa fa-check"></i><b>3.1.4</b> 方差和标准差</a></li>
-<li class="chapter" data-level="3.1.5" data-path="ch3.html"><a href="ch3.html#最大值最小值"><i class="fa fa-check"></i><b>3.1.5</b> 最大值、最小值</a></li>
-<li class="chapter" data-level="3.1.6" data-path="ch3.html"><a href="ch3.html#峰度和偏度"><i class="fa fa-check"></i><b>3.1.6</b> 峰度和偏度</a></li>
+<li class="chapter" data-level="4.1.1" data-path="ch3.html"><a href="ch3.html#频数统计"><i class="fa fa-check"></i><b>4.1.1</b> 频数统计</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch3.html"><a href="ch3.html#均值"><i class="fa fa-check"></i><b>4.1.2</b> 均值</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ch3.html"><a href="ch3.html#分位数"><i class="fa fa-check"></i><b>4.1.3</b> 分位数</a></li>
+<li class="chapter" data-level="4.1.4" data-path="ch3.html"><a href="ch3.html#方差和标准差"><i class="fa fa-check"></i><b>4.1.4</b> 方差和标准差</a></li>
+<li class="chapter" data-level="4.1.5" data-path="ch3.html"><a href="ch3.html#最大值最小值"><i class="fa fa-check"></i><b>4.1.5</b> 最大值、最小值</a></li>
+<li class="chapter" data-level="4.1.6" data-path="ch3.html"><a href="ch3.html#峰度和偏度"><i class="fa fa-check"></i><b>4.1.6</b> 峰度和偏度</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#交叉分组下的频数分析"><i class="fa fa-check"></i><b>3.2</b> 交叉分组下的频数分析</a>
+<li class="chapter" data-level="4.2" data-path="ch3.html"><a href="ch3.html#交叉分组下的频数分析"><i class="fa fa-check"></i><b>4.2</b> 交叉分组下的频数分析</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="ch3.html"><a href="ch3.html#交叉列联表"><i class="fa fa-check"></i><b>3.2.1</b> 交叉列联表</a></li>
-<li class="chapter" data-level="3.2.2" data-path="ch3.html"><a href="ch3.html#描述统计量的分组统计"><i class="fa fa-check"></i><b>3.2.2</b> 描述统计量的分组统计</a></li>
+<li class="chapter" data-level="4.2.1" data-path="ch3.html"><a href="ch3.html#交叉列联表"><i class="fa fa-check"></i><b>4.2.1</b> 交叉列联表</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch3.html"><a href="ch3.html#描述统计量的分组统计"><i class="fa fa-check"></i><b>4.2.2</b> 描述统计量的分组统计</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#习题答案-1"><i class="fa fa-check"></i><b>3.3</b> 习题答案</a>
+<li class="chapter" data-level="4.3" data-path="ch3.html"><a href="ch3.html#习题答案-1"><i class="fa fa-check"></i><b>4.3</b> 习题答案</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.1"><i class="fa fa-check"></i>题目 3.1</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.2"><i class="fa fa-check"></i>题目 3.2</a></li>
@@ -196,46 +198,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.4"><i class="fa fa-check"></i>题目 3.4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> 第4章：描述分析</a>
+<li class="chapter" data-level="5" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>5</b> 第4章：描述分析</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#柱状图直方图饼图"><i class="fa fa-check"></i><b>4.1</b> 柱状图、直方图、饼图</a>
+<li class="chapter" data-level="5.1" data-path="ch4.html"><a href="ch4.html#统计表格"><i class="fa fa-check"></i><b>5.1</b> 统计表格</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="ch4.html"><a href="ch4.html#柱状图"><i class="fa fa-check"></i><b>4.1.1</b> 柱状图</a></li>
-<li class="chapter" data-level="4.1.2" data-path="ch4.html"><a href="ch4.html#饼图"><i class="fa fa-check"></i><b>4.1.2</b> 饼图</a></li>
-<li class="chapter" data-level="4.1.3" data-path="ch4.html"><a href="ch4.html#直方图"><i class="fa fa-check"></i><b>4.1.3</b> 直方图</a></li>
+<li class="chapter" data-level="5.1.1" data-path="ch4.html"><a href="ch4.html#变量说明表"><i class="fa fa-check"></i><b>5.1.1</b> 变量说明表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch4.html"><a href="ch4.html#分组汇总统计表格"><i class="fa fa-check"></i><b>5.1.2</b> 分组汇总统计表格</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#箱线图饼图散点图"><i class="fa fa-check"></i><b>4.2</b> 箱线图、饼图、散点图</a>
+<li class="chapter" data-level="5.2" data-path="ch4.html"><a href="ch4.html#数据可视化基础"><i class="fa fa-check"></i><b>5.2</b> 数据可视化基础</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#折线图"><i class="fa fa-check"></i><b>4.2.1</b> 折线图</a></li>
-<li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#箱线图"><i class="fa fa-check"></i><b>4.2.2</b> 箱线图</a></li>
-<li class="chapter" data-level="4.2.3" data-path="ch4.html"><a href="ch4.html#散点图"><i class="fa fa-check"></i><b>4.2.3</b> 散点图</a></li>
+<li class="chapter" data-level="5.2.1" data-path="ch4.html"><a href="ch4.html#柱状图"><i class="fa fa-check"></i><b>5.2.1</b> 柱状图</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch4.html"><a href="ch4.html#饼图"><i class="fa fa-check"></i><b>5.2.2</b> 饼图</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch4.html"><a href="ch4.html#直方图"><i class="fa fa-check"></i><b>5.2.3</b> 直方图</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch4.html"><a href="ch4.html#折线图"><i class="fa fa-check"></i><b>5.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch4.html"><a href="ch4.html#箱线图"><i class="fa fa-check"></i><b>5.2.5</b> 箱线图</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ch4.html"><a href="ch4.html#散点图"><i class="fa fa-check"></i><b>5.2.6</b> 散点图</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#习题答案-2"><i class="fa fa-check"></i><b>4.3</b> 习题答案</a>
+<li class="chapter" data-level="5.3" data-path="ch4.html"><a href="ch4.html#数据可视化进阶"><i class="fa fa-check"></i><b>5.3</b> 数据可视化进阶</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ch4.html"><a href="ch4.html#ggplot2-包"><i class="fa fa-check"></i><b>5.3.1</b> ggplot2 包</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch4.html"><a href="ch4.html#交互可视化"><i class="fa fa-check"></i><b>5.3.2</b> 交互可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch4.html"><a href="ch4.html#习题答案-2"><i class="fa fa-check"></i><b>5.4</b> 习题答案</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.3实训题目"><i class="fa fa-check"></i>题目 4.3（实训题目）</a></li>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.4实训题目"><i class="fa fa-check"></i>题目 4.4（实训题目）</a></li>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.5实训题目"><i class="fa fa-check"></i>题目 4.5（实训题目）</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> 第5章：参数估计与假设检验</a>
+<li class="chapter" data-level="6" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>6</b> 第5章：参数估计与假设检验</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="ch5.html"><a href="ch5.html#总体样本和样本量"><i class="fa fa-check"></i><b>5.1</b> 总体、样本和样本量</a></li>
-<li class="chapter" data-level="5.2" data-path="ch5.html"><a href="ch5.html#参数估计"><i class="fa fa-check"></i><b>5.2</b> 参数估计</a>
+<li class="chapter" data-level="6.1" data-path="ch5.html"><a href="ch5.html#总体样本和样本量"><i class="fa fa-check"></i><b>6.1</b> 总体、样本和样本量</a></li>
+<li class="chapter" data-level="6.2" data-path="ch5.html"><a href="ch5.html#参数估计"><i class="fa fa-check"></i><b>6.2</b> 参数估计</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="ch5.html"><a href="ch5.html#矩估计"><i class="fa fa-check"></i><b>5.2.1</b> 矩估计</a></li>
-<li class="chapter" data-level="5.2.2" data-path="ch5.html"><a href="ch5.html#极大似然估计"><i class="fa fa-check"></i><b>5.2.2</b> 极大似然估计</a></li>
-<li class="chapter" data-level="5.2.3" data-path="ch5.html"><a href="ch5.html#区间估计"><i class="fa fa-check"></i><b>5.2.3</b> 区间估计</a></li>
+<li class="chapter" data-level="6.2.1" data-path="ch5.html"><a href="ch5.html#矩估计"><i class="fa fa-check"></i><b>6.2.1</b> 矩估计</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch5.html"><a href="ch5.html#极大似然估计"><i class="fa fa-check"></i><b>6.2.2</b> 极大似然估计</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch5.html"><a href="ch5.html#区间估计"><i class="fa fa-check"></i><b>6.2.3</b> 区间估计</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="ch5.html"><a href="ch5.html#假设检验"><i class="fa fa-check"></i><b>5.3</b> 假设检验</a></li>
-<li class="chapter" data-level="5.4" data-path="ch5.html"><a href="ch5.html#习题答案-3"><i class="fa fa-check"></i><b>5.4</b> 习题答案</a>
+<li class="chapter" data-level="6.3" data-path="ch5.html"><a href="ch5.html#假设检验"><i class="fa fa-check"></i><b>6.3</b> 假设检验</a></li>
+<li class="chapter" data-level="6.4" data-path="ch5.html"><a href="ch5.html#习题答案-3"><i class="fa fa-check"></i><b>6.4</b> 习题答案</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#题目-5.2"><i class="fa fa-check"></i>题目 5.2</a></li>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#题目-5.3"><i class="fa fa-check"></i>题目 5.3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> 第6章：线性回归</a>
+<li class="chapter" data-level="7" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>7</b> 第6章：线性回归</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#教程案例"><i class="fa fa-check"></i><b>6.1</b> 教程案例</a>
+<li class="chapter" data-level="7.1" data-path="ch6.html"><a href="ch6.html#教程案例"><i class="fa fa-check"></i><b>7.1</b> 教程案例</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务一"><i class="fa fa-check"></i>任务一</a></li>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务二"><i class="fa fa-check"></i>任务二</a></li>
@@ -245,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务六"><i class="fa fa-check"></i>任务六</a></li>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务七"><i class="fa fa-check"></i>任务七</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#习题答案-4"><i class="fa fa-check"></i><b>6.2</b> 习题答案</a>
+<li class="chapter" data-level="7.2" data-path="ch6.html"><a href="ch6.html#习题答案-4"><i class="fa fa-check"></i><b>7.2</b> 习题答案</a>
 <ul>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务一-1"><i class="fa fa-check"></i>任务一</a></li>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务二-1"><i class="fa fa-check"></i>任务二</a></li>
@@ -253,46 +262,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务四-1"><i class="fa fa-check"></i>任务四</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="ch7.html"><a href="ch7.html"><i class="fa fa-check"></i><b>7</b> 第7章：逻辑回归</a>
+<li class="chapter" data-level="8" data-path="ch7.html"><a href="ch7.html"><i class="fa fa-check"></i><b>8</b> 第7章：逻辑回归</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="ch7.html"><a href="ch7.html#教程案例-1"><i class="fa fa-check"></i><b>7.1</b> 教程案例</a>
+<li class="chapter" data-level="8.1" data-path="ch7.html"><a href="ch7.html#教程案例-1"><i class="fa fa-check"></i><b>8.1</b> 教程案例</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="ch7.html"><a href="ch7.html#任务一-2"><i class="fa fa-check"></i><b>7.1.1</b> 任务一</a></li>
-<li class="chapter" data-level="7.1.2" data-path="ch7.html"><a href="ch7.html#任务二-2"><i class="fa fa-check"></i><b>7.1.2</b> 任务二</a></li>
-<li class="chapter" data-level="7.1.3" data-path="ch7.html"><a href="ch7.html#任务三-2"><i class="fa fa-check"></i><b>7.1.3</b> 任务三</a></li>
-<li class="chapter" data-level="7.1.4" data-path="ch7.html"><a href="ch7.html#任务四-2"><i class="fa fa-check"></i><b>7.1.4</b> 任务四</a></li>
-<li class="chapter" data-level="7.1.5" data-path="ch7.html"><a href="ch7.html#任务五-1"><i class="fa fa-check"></i><b>7.1.5</b> 任务五</a></li>
-<li class="chapter" data-level="7.1.6" data-path="ch7.html"><a href="ch7.html#任务六-1"><i class="fa fa-check"></i><b>7.1.6</b> 任务六</a></li>
-<li class="chapter" data-level="7.1.7" data-path="ch7.html"><a href="ch7.html#任务七-1"><i class="fa fa-check"></i><b>7.1.7</b> 任务七</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务一-2"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务二-2"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务三-2"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务四-2"><i class="fa fa-check"></i>任务四</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务五-1"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务六-1"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务七-1"><i class="fa fa-check"></i>任务七</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="ch7.html"><a href="ch7.html#习题答案-5"><i class="fa fa-check"></i><b>7.2</b> 习题答案</a>
+<li class="chapter" data-level="8.2" data-path="ch7.html"><a href="ch7.html#习题答案-5"><i class="fa fa-check"></i><b>8.2</b> 习题答案</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="ch7.html"><a href="ch7.html#任务一-3"><i class="fa fa-check"></i><b>7.2.1</b> 任务一</a></li>
-<li class="chapter" data-level="7.2.2" data-path="ch7.html"><a href="ch7.html#任务二-3"><i class="fa fa-check"></i><b>7.2.2</b> 任务二</a></li>
-<li class="chapter" data-level="7.2.3" data-path="ch7.html"><a href="ch7.html#任务三-3"><i class="fa fa-check"></i><b>7.2.3</b> 任务三</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务一-3"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务二-3"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务三-3"><i class="fa fa-check"></i>任务三</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ch8.html"><a href="ch8.html"><i class="fa fa-check"></i><b>8</b> 第8章：降维分析</a>
+<li class="chapter" data-level="9" data-path="ch8.html"><a href="ch8.html"><i class="fa fa-check"></i><b>9</b> 第8章：降维分析</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="ch8.html"><a href="ch8.html#主成分分析"><i class="fa fa-check"></i><b>8.1</b> 主成分分析</a>
+<li class="chapter" data-level="9.1" data-path="ch8.html"><a href="ch8.html#主成分分析"><i class="fa fa-check"></i><b>9.1</b> 主成分分析</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="ch8.html"><a href="ch8.html#任务二-4"><i class="fa fa-check"></i><b>8.1.1</b> 任务二</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ch8.html"><a href="ch8.html#任务三-4"><i class="fa fa-check"></i><b>8.1.2</b> 任务三</a></li>
-<li class="chapter" data-level="8.1.3" data-path="ch8.html"><a href="ch8.html#任务四-3"><i class="fa fa-check"></i><b>8.1.3</b> 任务四</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务一-4"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务二-4"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-4"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务四-3"><i class="fa fa-check"></i>任务四</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="ch8.html"><a href="ch8.html#因子分析"><i class="fa fa-check"></i><b>8.2</b> 因子分析</a>
+<li class="chapter" data-level="9.2" data-path="ch8.html"><a href="ch8.html#因子分析"><i class="fa fa-check"></i><b>9.2</b> 因子分析</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="ch8.html"><a href="ch8.html#任务五-2"><i class="fa fa-check"></i><b>8.2.1</b> 任务五</a></li>
-<li class="chapter" data-level="8.2.2" data-path="ch8.html"><a href="ch8.html#任务六-2"><i class="fa fa-check"></i><b>8.2.2</b> 任务六</a></li>
-<li class="chapter" data-level="8.2.3" data-path="ch8.html"><a href="ch8.html#任务七-2"><i class="fa fa-check"></i><b>8.2.3</b> 任务七</a></li>
-<li class="chapter" data-level="8.2.4" data-path="ch8.html"><a href="ch8.html#任务八"><i class="fa fa-check"></i><b>8.2.4</b> 任务八</a></li>
-<li class="chapter" data-level="8.2.5" data-path="ch8.html"><a href="ch8.html#任务九选做"><i class="fa fa-check"></i><b>8.2.5</b> 任务九（选做）</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务五-2"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务六-2"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务七-2"><i class="fa fa-check"></i>任务七</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务八"><i class="fa fa-check"></i>任务八</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务九选做"><i class="fa fa-check"></i>任务九（选做）</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="ch8.html"><a href="ch8.html#习题答案-6"><i class="fa fa-check"></i><b>8.3</b> 习题答案</a>
+<li class="chapter" data-level="9.3" data-path="ch8.html"><a href="ch8.html#习题答案-6"><i class="fa fa-check"></i><b>9.3</b> 习题答案</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="ch8.html"><a href="ch8.html#任务一-4"><i class="fa fa-check"></i><b>8.3.1</b> 任务一</a></li>
-<li class="chapter" data-level="8.3.2" data-path="ch8.html"><a href="ch8.html#任务二-5"><i class="fa fa-check"></i><b>8.3.2</b> 任务二</a></li>
-<li class="chapter" data-level="8.3.3" data-path="ch8.html"><a href="ch8.html#任务三-5"><i class="fa fa-check"></i><b>8.3.3</b> 任务三</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务一-5"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务二-5"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-5"><i class="fa fa-check"></i>任务三</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -312,13 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch6" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> 第6章：线性回归</h1>
+<div id="ch6" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> 第6章：线性回归</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch6.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 数据准备 </span><span class="al">###</span></span>
 <span id="cb1-2"><a href="ch6.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空工作空间</span></span>
 <span id="cb1-3"><a href="ch6.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
-<div id="教程案例" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> 教程案例</h2>
+<div id="教程案例" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> 教程案例</h2>
 <p><strong>案例背景</strong></p>
 <p>随着“互联网+”和大数据时代的到来，越来越多的数据科学公司如雨后春笋般涌现。传统行业也面临着“互联网+”时代下的创新转型，对于数据分析及相关领域有大量人才需求，各行各业与数据分析相关的招聘岗位越来越多。</p>
 <p>在数据分析相关岗位的招聘中，合理定位岗位薪资，找出与岗位薪资挂钩的特殊技能尤其关键。在市场层面上，可以了解数据分析人才市场现状，合理化市场资源配置；在公司层面上，可以为公司招聘提供借鉴，为数据分析人才定制薪资提供参考；对于应聘者而言，能够更科学地进行职业测评，实现准确地自我定位；对于高校来说，能够明确学生的培养方向，优化应用统计及数据分析方向人才培养方案。</p>
@@ -327,78 +337,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>任务一</h3>
 <p>读入数据，将数据命名为<code>jobinfo</code>，并绘制岗位薪资的频数直方图，解读图中的结果。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ch6.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-2"><a href="ch6.html#cb2-2" aria-hidden="true" tabindex="-1"></a>jobinfo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/jobinfo_ch7.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>)</span>
-<span id="cb2-3"><a href="ch6.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> jobinfo,<span class="fu">aes</span>(<span class="at">x=</span>aveSalary)) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="ch6.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>,<span class="at">fill=</span><span class="st">&quot;gold&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="ch6.html#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;频数&quot;</span>,<span class="at">x =</span> <span class="st">&quot;岗位薪资&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="ch6.html#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb2-7"><a href="ch6.html#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb2-8"><a href="ch6.html#cb2-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
-<span id="cb2-9"><a href="ch6.html#cb2-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb2-10"><a href="ch6.html#cb2-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<span id="cb2-2"><a href="ch6.html#cb2-2" aria-hidden="true" tabindex="-1"></a>jobinfo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/jobinfo_ch7.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch6.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> jobinfo,<span class="fu">aes</span>(<span class="at">x=</span>aveSalary)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="ch6.html#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>,<span class="at">fill=</span><span class="st">&quot;gold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="ch6.html#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;频数&quot;</span>,<span class="at">x =</span> <span class="st">&quot;岗位薪资&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="ch6.html#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="ch6.html#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb3-6"><a href="ch6.html#cb3-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
+<span id="cb3-7"><a href="ch6.html#cb3-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb3-8"><a href="ch6.html#cb3-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))</span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fivvpwj311c0qo75i.jpg" /></p>
 <p>该数据中的因变量薪资呈右偏分布，如图所示。最高的月薪为19999.5元/月，对应的岗位是一个规模为1000-5000人的国企，这个岗位要求申请人有2年的工作经验。从整体情况来看，有75%的岗位月薪低于10000元。</p>
 </div>
 <div id="任务二" class="section level3 unnumbered">
 <h3>任务二</h3>
 <p>通过箱线图，探究岗位学历要求对薪资水平是否有影响。（提示：为了使得箱线图更加美观，可以对因变量取对数）</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch6.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用箱线图画出，学历vs对数平均薪资的分布，箱体的宽度越宽表示样本量越多</span></span>
-<span id="cb3-2"><a href="ch6.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将学历转化为因子型变量，便于画图</span></span>
-<span id="cb3-3"><a href="ch6.html#cb3-3" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>学历要求 <span class="ot">=</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>学历要求,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;中专&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大专&quot;</span>,<span class="st">&quot;无&quot;</span>,<span class="st">&quot;本科&quot;</span>,<span class="st">&quot;研究生&quot;</span>))</span>
-<span id="cb3-4"><a href="ch6.html#cb3-4" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>对数薪资 <span class="ot">&lt;-</span> <span class="fu">log</span>(jobinfo<span class="sc">$</span>aveSalary)</span>
-<span id="cb3-5"><a href="ch6.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制箱线图</span></span>
-<span id="cb3-6"><a href="ch6.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(学历要求,对数薪资)) <span class="sc">+</span> </span>
-<span id="cb3-7"><a href="ch6.html#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">varwidth =</span> <span class="cn">TRUE</span>, <span class="at">fill =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="st">&quot;gold&quot;</span>,<span class="dv">2</span>))) <span class="sc">+</span> </span>
-<span id="cb3-8"><a href="ch6.html#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;学历要求&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>)<span class="sc">+</span></span>
-<span id="cb3-9"><a href="ch6.html#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb3-10"><a href="ch6.html#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb3-11"><a href="ch6.html#cb3-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
-<span id="cb3-12"><a href="ch6.html#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>),</span>
-<span id="cb3-13"><a href="ch6.html#cb3-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch6.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用箱线图画出，学历vs对数平均薪资的分布，箱体的宽度越宽表示样本量越多</span></span>
+<span id="cb4-2"><a href="ch6.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将学历转化为因子型变量，便于画图</span></span>
+<span id="cb4-3"><a href="ch6.html#cb4-3" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>学历要求 <span class="ot">=</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>学历要求,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;中专&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大专&quot;</span>,<span class="st">&quot;无&quot;</span>,<span class="st">&quot;本科&quot;</span>,<span class="st">&quot;研究生&quot;</span>))</span>
+<span id="cb4-4"><a href="ch6.html#cb4-4" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>对数薪资 <span class="ot">&lt;-</span> <span class="fu">log</span>(jobinfo<span class="sc">$</span>aveSalary)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch6.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制箱线图</span></span>
+<span id="cb5-2"><a href="ch6.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(学历要求,对数薪资)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="ch6.html#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">varwidth =</span> <span class="cn">TRUE</span>, <span class="at">fill =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;grey&quot;</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="st">&quot;gold&quot;</span>,<span class="dv">2</span>))) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="ch6.html#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;学历要求&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>)<span class="sc">+</span></span>
+<span id="cb5-5"><a href="ch6.html#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="ch6.html#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb5-7"><a href="ch6.html#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
+<span id="cb5-8"><a href="ch6.html#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb5-9"><a href="ch6.html#cb5-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fipn4uj311c0qo75l.jpg" /></p>
 <p>从图中可以看到，在五种学历要求中，研究生学历的薪资中位数最高，达到了8999.75元，对应的对数薪资为9.10；其次为本科学历的岗位，达到了8999.50元；薪资水平最低的为中专学历，月薪仅有5249.50元。水平最高的学历岗位比最低的月薪高出了3750.25元，但是仅根据描述分析，我们仍然不能说明学历对薪资有统计意义上的显著影响。</p>
 </div>
 <div id="任务三" class="section level3 unnumbered">
 <h3>任务三</h3>
 <p>通过箱线图，分别探究岗位对于Python和SPSS要求与否对薪资水平是否有影响。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch6.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(<span class="fu">as.factor</span>(Python),对数薪资)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="ch6.html#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="ch6.html#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;是否要求会使用Python&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="ch6.html#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb4-5"><a href="ch6.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb4-6"><a href="ch6.html#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
-<span id="cb4-7"><a href="ch6.html#cb4-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb4-8"><a href="ch6.html#cb4-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch6.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(<span class="fu">as.factor</span>(SPSS),对数薪资)) <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="ch6.html#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="ch6.html#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;是否要求会使用SPSS&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="ch6.html#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb5-5"><a href="ch6.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb5-6"><a href="ch6.html#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
-<span id="cb5-7"><a href="ch6.html#cb5-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb5-8"><a href="ch6.html#cb5-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ch6.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(<span class="fu">as.factor</span>(Python),对数薪资)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="ch6.html#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="ch6.html#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;是否要求会使用Python&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="ch6.html#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="ch6.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb6-6"><a href="ch6.html#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
+<span id="cb6-7"><a href="ch6.html#cb6-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb6-8"><a href="ch6.html#cb6-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fiitvsj311c0qogmu.jpg" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch6.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jobinfo,<span class="fu">aes</span>(<span class="fu">as.factor</span>(SPSS),对数薪资)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="ch6.html#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="ch6.html#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;是否要求会使用SPSS&quot;</span>, <span class="at">y =</span> <span class="st">&quot;对数薪资&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="ch6.html#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="ch6.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.border=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb7-6"><a href="ch6.html#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>),</span>
+<span id="cb7-7"><a href="ch6.html#cb7-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb7-8"><a href="ch6.html#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fi62skj311c0qogmt.jpg" /></p>
 <p>从数目上看，要求掌握Python的岗位占比为4.4%，要求掌握SPSS的岗位占比约为8.0%。从箱线图中可以看出，要求掌握这两种软件的薪资中位数均高于不要求掌握该软件的岗位。</p>
 </div>
 <div id="任务四" class="section level3 unnumbered">
 <h3>任务四</h3>
 <p>首先以岗位薪资为因变量，以地区、公司类别、公司规模、学历、经验要求以及12种软件需求为自变量，探求这些比变量对于薪资的影响，建立回归模型，并利用summary函数查看回归结果。</p>
 <p>需要注意，在在建立回归模型之前，我们需要利用公司所在地、公司类别、公司规模、学历要求创建虚拟变量。回归时，公司类别以国企为基准，公司规模以少于50人为基准，学历以无为基准。</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ch6.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据预处理</span></span>
-<span id="cb6-2"><a href="ch6.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 转换为factor型变量，地区以河北为基准，公司类别以国企为基准，公司规模以少于50人为基准，学历以无为基准</span></span>
-<span id="cb6-3"><a href="ch6.html#cb6-3" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>公司类别 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>公司类别, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;国企&quot;</span>,<span class="st">&quot;合资&quot;</span>,<span class="st">&quot;外资&quot;</span>,<span class="st">&quot;上市公司&quot;</span>,<span class="st">&quot;民营公司&quot;</span>,<span class="st">&quot;创业公司&quot;</span>))</span>
-<span id="cb6-4"><a href="ch6.html#cb6-4" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>公司规模 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>公司规模, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;少于50人&quot;</span>,<span class="st">&quot;50-500人&quot;</span>,<span class="st">&quot;500-1000人&quot;</span>,<span class="st">&quot;1000-5000人&quot;</span>,<span class="st">&quot;5000-10000人&quot;</span>,<span class="st">&quot;10000人以上&quot;</span>))</span>
-<span id="cb6-5"><a href="ch6.html#cb6-5" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>学历要求 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>学历要求, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;无&quot;</span>,<span class="st">&quot;中专&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大专&quot;</span>,<span class="st">&quot;本科&quot;</span>,<span class="st">&quot;研究生&quot;</span>))</span>
-<span id="cb6-6"><a href="ch6.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="ch6.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 软件要求</span></span>
-<span id="cb6-8"><a href="ch6.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>)){</span>
-<span id="cb6-9"><a href="ch6.html#cb6-9" aria-hidden="true" tabindex="-1"></a>        jobinfo[,i] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(jobinfo[,i])</span>
-<span id="cb6-10"><a href="ch6.html#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch6.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 建立线性模型</span></span>
-<span id="cb7-2"><a href="ch6.html#cb7-2" aria-hidden="true" tabindex="-1"></a>lm.fit1 <span class="ot">=</span> <span class="fu">lm</span>(aveSalary <span class="sc">~</span> ., <span class="at">data =</span> jobinfo)</span>
-<span id="cb7-3"><a href="ch6.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 查看回归结果</span></span>
-<span id="cb7-4"><a href="ch6.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit1)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ch6.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据预处理</span></span>
+<span id="cb8-2"><a href="ch6.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 转换为factor型变量，地区以河北为基准，公司类别以国企为基准，公司规模以少于50人为基准，学历以无为基准</span></span>
+<span id="cb8-3"><a href="ch6.html#cb8-3" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>公司类别 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>公司类别, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;国企&quot;</span>,<span class="st">&quot;合资&quot;</span>,<span class="st">&quot;外资&quot;</span>,<span class="st">&quot;上市公司&quot;</span>,<span class="st">&quot;民营公司&quot;</span>,<span class="st">&quot;创业公司&quot;</span>))</span>
+<span id="cb8-4"><a href="ch6.html#cb8-4" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>公司规模 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>公司规模, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;少于50人&quot;</span>,<span class="st">&quot;50-500人&quot;</span>,<span class="st">&quot;500-1000人&quot;</span>,<span class="st">&quot;1000-5000人&quot;</span>,<span class="st">&quot;5000-10000人&quot;</span>,<span class="st">&quot;10000人以上&quot;</span>))</span>
+<span id="cb8-5"><a href="ch6.html#cb8-5" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>学历要求 <span class="ot">&lt;-</span> <span class="fu">factor</span>(jobinfo<span class="sc">$</span>学历要求, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;无&quot;</span>,<span class="st">&quot;中专&quot;</span>,<span class="st">&quot;高中&quot;</span>,<span class="st">&quot;大专&quot;</span>,<span class="st">&quot;本科&quot;</span>,<span class="st">&quot;研究生&quot;</span>))</span>
+<span id="cb8-6"><a href="ch6.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="ch6.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 软件要求</span></span>
+<span id="cb8-8"><a href="ch6.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>)){</span>
+<span id="cb8-9"><a href="ch6.html#cb8-9" aria-hidden="true" tabindex="-1"></a>        jobinfo[,i] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(jobinfo[,i])</span>
+<span id="cb8-10"><a href="ch6.html#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch6.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 建立线性模型</span></span>
+<span id="cb9-2"><a href="ch6.html#cb9-2" aria-hidden="true" tabindex="-1"></a>lm.fit1 <span class="ot">=</span> <span class="fu">lm</span>(aveSalary <span class="sc">~</span> ., <span class="at">data =</span> jobinfo)</span>
+<span id="cb9-3"><a href="ch6.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 查看回归结果</span></span>
+<span id="cb9-4"><a href="ch6.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = aveSalary ~ ., data = jobinfo)
@@ -450,24 +460,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="任务五" class="section level3 unnumbered">
 <h3>任务五</h3>
 <p>对任务四中的模型进行诊断，找出可能存在的问题。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch6.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 对线性模型进行回归诊断</span></span>
-<span id="cb9-2"><a href="ch6.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将画布分为2*2的4块</span></span>
-<span id="cb9-3"><a href="ch6.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb9-4"><a href="ch6.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit1, <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch6.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 对线性模型进行回归诊断</span></span>
+<span id="cb11-2"><a href="ch6.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将画布分为2*2的4块</span></span>
+<span id="cb11-3"><a href="ch6.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb11-4"><a href="ch6.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit1, <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)) </span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fi1jljj311c0qoaec.jpg" /></p>
 <p>左上图为残差与拟合值的散点图，若因变量和自变量呈现线性相关的关系，则残差值与拟合值没有任何的系统关联。图中所示残差并不随着拟合值的变化呈现规律性变化，因此基本满足线性假设；右上图为正态Q-Q图，当因变量服从正态分布时，图中的散点应该落在呈45度倾斜的直线上。根据图示，模型中的残差项在较大值的部分偏离直线，因此较大程度上偏离了正态分布；左下图为位置尺度图，若满足同方差假定，则水平线周围的点应呈现无规律随机分布，根据图中所示，随着拟合值增大，标准化残差呈现升高的规律，表明存在一定的异方差问题；右下图为样本点的库克距离，其最大值未超过0.05，因此认为样本中不存在异常点。</p>
 </div>
 <div id="任务六" class="section level3 unnumbered">
 <h3>任务六</h3>
 <p>可将因变量进行对数变换，重新拟合回归模型，使用BIC准则对变量进行选择，并对变量选择后的模型结果进行解读。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ch6.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 计算对数因变量</span></span>
-<span id="cb10-2"><a href="ch6.html#cb10-2" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>对数薪资 <span class="ot">&lt;-</span> <span class="fu">log</span>(jobinfo<span class="sc">$</span>aveSalary)</span>
-<span id="cb10-3"><a href="ch6.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 建立对数线性模型，剔除平均薪资变量</span></span>
-<span id="cb10-4"><a href="ch6.html#cb10-4" aria-hidden="true" tabindex="-1"></a>lm.fit2 <span class="ot">=</span> <span class="fu">lm</span>(对数薪资 <span class="sc">~</span> .<span class="sc">-</span>aveSalary, <span class="at">data =</span> jobinfo)</span>
-<span id="cb10-5"><a href="ch6.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 使用BIC准则选择模型</span></span>
-<span id="cb10-6"><a href="ch6.html#cb10-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(jobinfo)</span>
-<span id="cb10-7"><a href="ch6.html#cb10-7" aria-hidden="true" tabindex="-1"></a>lm.bic <span class="ot">&lt;-</span> <span class="fu">step</span>(lm.fit2, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">k =</span> <span class="fu">log</span>(n), <span class="at">trace =</span> F)</span>
-<span id="cb10-8"><a href="ch6.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.bic)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ch6.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 计算对数因变量</span></span>
+<span id="cb12-2"><a href="ch6.html#cb12-2" aria-hidden="true" tabindex="-1"></a>jobinfo<span class="sc">$</span>对数薪资 <span class="ot">&lt;-</span> <span class="fu">log</span>(jobinfo<span class="sc">$</span>aveSalary)</span>
+<span id="cb12-3"><a href="ch6.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 建立对数线性模型，剔除平均薪资变量</span></span>
+<span id="cb12-4"><a href="ch6.html#cb12-4" aria-hidden="true" tabindex="-1"></a>lm.fit2 <span class="ot">=</span> <span class="fu">lm</span>(对数薪资 <span class="sc">~</span> .<span class="sc">-</span>aveSalary, <span class="at">data =</span> jobinfo)</span>
+<span id="cb12-5"><a href="ch6.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 使用BIC准则选择模型</span></span>
+<span id="cb12-6"><a href="ch6.html#cb12-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(jobinfo)</span>
+<span id="cb12-7"><a href="ch6.html#cb12-7" aria-hidden="true" tabindex="-1"></a>lm.bic <span class="ot">&lt;-</span> <span class="fu">step</span>(lm.fit2, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">k =</span> <span class="fu">log</span>(n), <span class="at">trace =</span> F)</span>
+<span id="cb12-8"><a href="ch6.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.bic)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = 对数薪资 ~ SPSS + Excel + Python + SQL + Hadoop + 
@@ -507,46 +517,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="任务七" class="section level3 unnumbered">
 <h3>任务七</h3>
 <p>使用任务六得到的模型，对新样本的薪资水平进行预测。假设有一份北京市上市公司数据分析岗位的工作，该公司为1500人的中小型公司，这个工作要求申请人掌握R、Python、SQL和Hadoop的技能，并且有至少3年的工作经验，最低学历为硕士。希望通过模型预测该岗位的薪资。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ch6.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 新样本</span></span>
-<span id="cb12-2"><a href="ch6.html#cb12-2" aria-hidden="true" tabindex="-1"></a>testdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">R =</span> <span class="dv">1</span>, <span class="at">SPSS =</span> <span class="dv">0</span>, <span class="at">Excel =</span> <span class="dv">0</span>, <span class="at">Python =</span> <span class="dv">1</span>, <span class="at">MATLAB =</span> <span class="dv">0</span>, <span class="at">Java =</span> <span class="dv">0</span>, <span class="at">SQL =</span> <span class="dv">1</span>, <span class="at">SAS =</span> <span class="dv">0</span>, <span class="at">Stata =</span> <span class="dv">0</span>, <span class="at">EViews =</span> <span class="dv">0</span>, <span class="at">Spark =</span> <span class="dv">0</span>, <span class="at">Hadoop =</span> <span class="dv">1</span>, 公司类别 <span class="ot">=</span> <span class="st">&quot;上市公司&quot;</span>, 公司规模 <span class="ot">=</span> <span class="st">&quot;1000-5000人&quot;</span>, 学历要求 <span class="ot">=</span> <span class="st">&quot;研究生&quot;</span>, 工作经验 <span class="ot">=</span> <span class="dv">3</span>, 地区 <span class="ot">=</span> <span class="st">&quot;北上深&quot;</span>)</span>
-<span id="cb12-3"><a href="ch6.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 将软件技能转换为factor类型</span></span>
-<span id="cb12-4"><a href="ch6.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>)) {</span>
-<span id="cb12-5"><a href="ch6.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    testdata[,i] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(testdata[,i])</span>
-<span id="cb12-6"><a href="ch6.html#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-7"><a href="ch6.html#cb12-7" aria-hidden="true" tabindex="-1"></a>logsalary_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm.bic, <span class="at">newdata =</span> testdata)  <span class="co"># 预测值</span></span>
-<span id="cb12-8"><a href="ch6.html#cb12-8" aria-hidden="true" tabindex="-1"></a>sigma_hat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(lm.bic<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>lm.bic<span class="sc">$</span>df.residual  <span class="co"># sigma^2估计值</span></span>
-<span id="cb12-9"><a href="ch6.html#cb12-9" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">exp</span>(logsalary_hat <span class="sc">+</span> sigma_hat2<span class="sc">/</span><span class="dv">2</span>)  <span class="co"># </span></span>
-<span id="cb12-10"><a href="ch6.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;平均薪资水平约为&quot;</span>, <span class="fu">round</span>(y_hat, <span class="dv">2</span>), <span class="st">&quot;元/月&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ch6.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 新样本</span></span>
+<span id="cb14-2"><a href="ch6.html#cb14-2" aria-hidden="true" tabindex="-1"></a>testdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">R =</span> <span class="dv">1</span>, <span class="at">SPSS =</span> <span class="dv">0</span>, <span class="at">Excel =</span> <span class="dv">0</span>, <span class="at">Python =</span> <span class="dv">1</span>, <span class="at">MATLAB =</span> <span class="dv">0</span>, <span class="at">Java =</span> <span class="dv">0</span>, <span class="at">SQL =</span> <span class="dv">1</span>, <span class="at">SAS =</span> <span class="dv">0</span>, <span class="at">Stata =</span> <span class="dv">0</span>, <span class="at">EViews =</span> <span class="dv">0</span>, <span class="at">Spark =</span> <span class="dv">0</span>, <span class="at">Hadoop =</span> <span class="dv">1</span>, 公司类别 <span class="ot">=</span> <span class="st">&quot;上市公司&quot;</span>, 公司规模 <span class="ot">=</span> <span class="st">&quot;1000-5000人&quot;</span>, 学历要求 <span class="ot">=</span> <span class="st">&quot;研究生&quot;</span>, 工作经验 <span class="ot">=</span> <span class="dv">3</span>, 地区 <span class="ot">=</span> <span class="st">&quot;北上深&quot;</span>)</span>
+<span id="cb14-3"><a href="ch6.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 将软件技能转换为factor类型</span></span>
+<span id="cb14-4"><a href="ch6.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>)) {</span>
+<span id="cb14-5"><a href="ch6.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    testdata[,i] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(testdata[,i])</span>
+<span id="cb14-6"><a href="ch6.html#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-7"><a href="ch6.html#cb14-7" aria-hidden="true" tabindex="-1"></a>logsalary_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm.bic, <span class="at">newdata =</span> testdata)  <span class="co"># 预测值</span></span>
+<span id="cb14-8"><a href="ch6.html#cb14-8" aria-hidden="true" tabindex="-1"></a>sigma_hat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(lm.bic<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>lm.bic<span class="sc">$</span>df.residual  <span class="co"># sigma^2估计值</span></span>
+<span id="cb14-9"><a href="ch6.html#cb14-9" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">exp</span>(logsalary_hat <span class="sc">+</span> sigma_hat2<span class="sc">/</span><span class="dv">2</span>)  <span class="co"># </span></span>
+<span id="cb14-10"><a href="ch6.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;平均薪资水平约为&quot;</span>, <span class="fu">round</span>(y_hat, <span class="dv">2</span>), <span class="st">&quot;元/月&quot;</span>)</span></code></pre></div>
 <pre><code>## 平均薪资水平约为 18288.72 元/月</code></pre>
 <p>根据模型的预测结果，该工作岗位薪资约为18288.72元/月。</p>
 </div>
 </div>
-<div id="习题答案-4" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> 习题答案</h2>
+<div id="习题答案-4" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> 习题答案</h2>
 <p><strong>案例背景</strong></p>
 <p>截至2016年5月25日的北京住宅年内交易数据显示，北京市已经全面进入二手房时代。二手房定价是二手房交易过程中重要的环节之一。若能根据住房的特征，更准确地估计价格，住房业主将会获得更准确的市场定位。</p>
 <p>数据集<code>house.csv</code>为来自某二手房中介网站的北京在售二手房2016年5月的相关数据，共包括单位面积房价（price）、城区（CATE）、卧室数（bedrooms）、厅数（halls）、房屋面积（AREA）、楼层（floor）、是否临近地铁（subway）、是否是学区房（school）这几个变量。以房价为因变量，在R中建立普通线性回归模型，并对模型结果进行诊断。</p>
 <div id="任务一-1" class="section level3 unnumbered">
 <h3>任务一</h3>
 <p>读入数据，命名为<code>dat0</code>，并将“厅数”变量处理为“有厅”、“无厅”和“其他”三个等级。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ch6.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 清除工作环境</span></span>
-<span id="cb14-2"><a href="ch6.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\014</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ch6.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 清除工作环境</span></span>
+<span id="cb16-2"><a href="ch6.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\014</span><span class="st">&quot;</span>)</span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ch6.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb15-2"><a href="ch6.html#cb15-2" aria-hidden="true" tabindex="-1"></a>dat0 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/house.csv&quot;</span>,<span class="at">header=</span>T,<span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>) <span class="co">#读入数据</span></span>
-<span id="cb15-3"><a href="ch6.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 处理厅数</span></span>
-<span id="cb15-4"><a href="ch6.html#cb15-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(dat0)[<span class="dv">1</span>]</span>
-<span id="cb15-5"><a href="ch6.html#cb15-5" aria-hidden="true" tabindex="-1"></a>style<span class="ot">=</span><span class="fu">rep</span>(<span class="st">&quot;其他&quot;</span>,n)</span>
-<span id="cb15-6"><a href="ch6.html#cb15-6" aria-hidden="true" tabindex="-1"></a>style[<span class="fu">which</span>(dat0<span class="sc">$</span>halls<span class="sc">==</span><span class="dv">0</span>)]<span class="ot">=</span><span class="st">&quot;无厅&quot;</span>        </span>
-<span id="cb15-7"><a href="ch6.html#cb15-7" aria-hidden="true" tabindex="-1"></a>style[<span class="fu">which</span>(dat0<span class="sc">$</span>halls<span class="sc">&gt;</span><span class="dv">0</span>)]<span class="ot">=</span><span class="st">&quot;有厅&quot;</span>     </span>
-<span id="cb15-8"><a href="ch6.html#cb15-8" aria-hidden="true" tabindex="-1"></a>style<span class="ot">=</span><span class="fu">factor</span>(style,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;无厅&quot;</span>,<span class="st">&quot;有厅&quot;</span>))</span>
-<span id="cb15-9"><a href="ch6.html#cb15-9" aria-hidden="true" tabindex="-1"></a>dat0 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dat0,style)  </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ch6.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb17-2"><a href="ch6.html#cb17-2" aria-hidden="true" tabindex="-1"></a>dat0 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/house.csv&quot;</span>,<span class="at">header=</span>T,<span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>) <span class="co">#读入数据</span></span>
+<span id="cb17-3"><a href="ch6.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 处理厅数</span></span>
+<span id="cb17-4"><a href="ch6.html#cb17-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(dat0)[<span class="dv">1</span>]</span>
+<span id="cb17-5"><a href="ch6.html#cb17-5" aria-hidden="true" tabindex="-1"></a>style<span class="ot">=</span><span class="fu">rep</span>(<span class="st">&quot;其他&quot;</span>,n)</span>
+<span id="cb17-6"><a href="ch6.html#cb17-6" aria-hidden="true" tabindex="-1"></a>style[<span class="fu">which</span>(dat0<span class="sc">$</span>halls<span class="sc">==</span><span class="dv">0</span>)]<span class="ot">=</span><span class="st">&quot;无厅&quot;</span>        </span>
+<span id="cb17-7"><a href="ch6.html#cb17-7" aria-hidden="true" tabindex="-1"></a>style[<span class="fu">which</span>(dat0<span class="sc">$</span>halls<span class="sc">&gt;</span><span class="dv">0</span>)]<span class="ot">=</span><span class="st">&quot;有厅&quot;</span>     </span>
+<span id="cb17-8"><a href="ch6.html#cb17-8" aria-hidden="true" tabindex="-1"></a>style<span class="ot">=</span><span class="fu">factor</span>(style,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;无厅&quot;</span>,<span class="st">&quot;有厅&quot;</span>))</span>
+<span id="cb17-9"><a href="ch6.html#cb17-9" aria-hidden="true" tabindex="-1"></a>dat0 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dat0,style)  </span></code></pre></div>
 </div>
 <div id="任务二-1" class="section level3 unnumbered">
 <h3>任务二</h3>
 <p>以房价为因变量，建立普通线性回归模型，并对模型结果进行诊断。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ch6.html#cb16-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price<span class="sc">~</span>CATE<span class="sc">+</span>school<span class="sc">+</span>subway<span class="sc">+</span>style<span class="sc">+</span>floor<span class="sc">+</span>bedrooms<span class="sc">+</span>AREA,<span class="at">data=</span>dat0)</span>
-<span id="cb16-2"><a href="ch6.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)            <span class="co">#回归结果展示</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ch6.html#cb18-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price<span class="sc">~</span>CATE<span class="sc">+</span>school<span class="sc">+</span>subway<span class="sc">+</span>style<span class="sc">+</span>floor<span class="sc">+</span>bedrooms<span class="sc">+</span>AREA,<span class="at">data=</span>dat0)</span>
+<span id="cb18-2"><a href="ch6.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)            <span class="co">#回归结果展示</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ CATE + school + subway + style + floor + 
@@ -577,16 +587,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 1.427 on 16197 degrees of freedom
 ## Multiple R-squared:  0.5904, Adjusted R-squared:  0.5901 
 ## F-statistic:  1945 on 12 and 16197 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ch6.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))           <span class="co">#画2*2的图</span></span>
-<span id="cb18-2"><a href="ch6.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm1,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))      <span class="co">#模型诊断图，存在异方差现象，对因变量取对数</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ch6.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))           <span class="co">#画2*2的图</span></span>
+<span id="cb20-2"><a href="ch6.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm1,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))      <span class="co">#模型诊断图，存在异方差现象，对因变量取对数</span></span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6fhsdcjj311c0qotdo.jpg" /></p>
 <p>根据模型诊断结果可以看出，残差近似满足零均值假定，图中所示残差并不随着拟合值的变化呈现规律性变化，因此基本满足线性假设；右上图为正态Q-Q图，当因变量服从正态分布时，图中的散点应该落在呈45度倾斜的直线上。根据图示，模型中的残差项在较大值的部分偏离直线，因此一定程度上偏离了正态分布；左下图为位置尺度图，若满足同方差假定，则水平线周围的点应呈现无规律随机分布，根据图中所示，随着拟合值增大，标准化残差呈现升高的规律，表明存在一定的异方差问题；右下图为样本点的库克距离，其最大值未超过0.05，因此认为样本中不存在异常点。</p>
 </div>
 <div id="任务三-1" class="section level3 unnumbered">
 <h3>任务三</h3>
 <p>对于任务二中的数据，建立对数线性模型，并加入城区与学区的交互项，对系数进行解读。</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ch6.html#cb19-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> CATE <span class="sc">*</span> school <span class="sc">+</span> subway <span class="sc">+</span> style <span class="sc">+</span> floor <span class="sc">+</span> bedrooms <span class="sc">+</span> AREA, <span class="at">data =</span> dat0)   </span>
-<span id="cb19-2"><a href="ch6.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)            <span class="co">#回归结果展示</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ch6.html#cb21-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> CATE <span class="sc">*</span> school <span class="sc">+</span> subway <span class="sc">+</span> style <span class="sc">+</span> floor <span class="sc">+</span> bedrooms <span class="sc">+</span> AREA, <span class="at">data =</span> dat0)   </span>
+<span id="cb21-2"><a href="ch6.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)            <span class="co">#回归结果展示</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(price) ~ CATE * school + subway + style + floor + 
@@ -629,12 +639,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="任务四-1" class="section level3 unnumbered">
 <h3>任务四</h3>
 <p>使用BIC准则对任务三的模型进行选择，使用最终的模型进行新样本单位面积房价的预测。其中，预测样本为一间海淀区的两室一厅学区房，其在楼中的低楼层，并且临近地铁，房屋面积为70平方米。</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ch6.html#cb21-1" aria-hidden="true" tabindex="-1"></a>lm3.bic <span class="ot">&lt;-</span> <span class="fu">step</span>(lm2, <span class="at">k =</span> <span class="fu">log</span>(<span class="fu">nrow</span>(dat0)), <span class="at">trace =</span> F)</span>
-<span id="cb21-2"><a href="ch6.html#cb21-2" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">CATE =</span> <span class="st">&quot;海淀&quot;</span>, <span class="at">bedrooms =</span> <span class="dv">2</span>, <span class="at">halls =</span> <span class="dv">1</span>, <span class="at">AREA =</span> <span class="dv">70</span>, <span class="at">floor =</span> <span class="st">&quot;low&quot;</span>, <span class="at">subway =</span> <span class="dv">1</span>, <span class="at">school =</span> <span class="dv">1</span>, <span class="at">style =</span> <span class="st">&quot;有厅&quot;</span>)</span>
-<span id="cb21-3"><a href="ch6.html#cb21-3" aria-hidden="true" tabindex="-1"></a>logprice_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm3.bic, <span class="at">newdata =</span> newdata)  <span class="co"># 预测值</span></span>
-<span id="cb21-4"><a href="ch6.html#cb21-4" aria-hidden="true" tabindex="-1"></a>sig_hat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(lm3.bic<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>lm3.bic<span class="sc">$</span>df.residual  <span class="co"># sigma^2估计值</span></span>
-<span id="cb21-5"><a href="ch6.html#cb21-5" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">exp</span>(logprice_hat <span class="sc">+</span> sig_hat2<span class="sc">/</span><span class="dv">2</span>)  <span class="co"># </span></span>
-<span id="cb21-6"><a href="ch6.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;单位面积房价约为&quot;</span>, <span class="fu">round</span>(y_hat, <span class="dv">2</span>), <span class="st">&quot;万元/平方米&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ch6.html#cb23-1" aria-hidden="true" tabindex="-1"></a>lm3.bic <span class="ot">&lt;-</span> <span class="fu">step</span>(lm2, <span class="at">k =</span> <span class="fu">log</span>(<span class="fu">nrow</span>(dat0)), <span class="at">trace =</span> F)</span>
+<span id="cb23-2"><a href="ch6.html#cb23-2" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">CATE =</span> <span class="st">&quot;海淀&quot;</span>, <span class="at">bedrooms =</span> <span class="dv">2</span>, <span class="at">halls =</span> <span class="dv">1</span>, <span class="at">AREA =</span> <span class="dv">70</span>, <span class="at">floor =</span> <span class="st">&quot;low&quot;</span>, <span class="at">subway =</span> <span class="dv">1</span>, <span class="at">school =</span> <span class="dv">1</span>, <span class="at">style =</span> <span class="st">&quot;有厅&quot;</span>)</span>
+<span id="cb23-3"><a href="ch6.html#cb23-3" aria-hidden="true" tabindex="-1"></a>logprice_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm3.bic, <span class="at">newdata =</span> newdata)  <span class="co"># 预测值</span></span>
+<span id="cb23-4"><a href="ch6.html#cb23-4" aria-hidden="true" tabindex="-1"></a>sig_hat2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(lm3.bic<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>lm3.bic<span class="sc">$</span>df.residual  <span class="co"># sigma^2估计值</span></span>
+<span id="cb23-5"><a href="ch6.html#cb23-5" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">exp</span>(logprice_hat <span class="sc">+</span> sig_hat2<span class="sc">/</span><span class="dv">2</span>)  <span class="co"># </span></span>
+<span id="cb23-6"><a href="ch6.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;单位面积房价约为&quot;</span>, <span class="fu">round</span>(y_hat, <span class="dv">2</span>), <span class="st">&quot;万元/平方米&quot;</span>)</span></code></pre></div>
 <pre><code>## 单位面积房价约为 7.98 万元/平方米</code></pre>
 <p>使用任务三中的模型可以得到，新样本的单位面积房价预测值约为7.98万元/平方米。</p>
 

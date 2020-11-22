@@ -59,7 +59,9 @@ descriptive <- descriptive[order(descriptive$index_origin),]  # 将数据按照�
 descriptive$offertype[descriptive$offertype %in% c("AD小奖", "Offer", "AD无奖")] <- "Admitted"    # 不考虑奖学金，均归入“Admitted“（录取）
 descriptive$offertype[descriptive$offertype == "Rej"] <- "Rejected"   
 descriptive <- descriptive[ - which(descriptive$offertype == ""),]   # 删去缺失录取结果的样本
+```
 
+```{r ch7-plot1, eval = F}
 ## 绘制饼状图
 (piechart1 <- ggplot(descriptive, aes(x = factor(1), fill = factor(descriptive$offertype))) +
     geom_bar(position = "fill", width = 1) +
@@ -68,6 +70,8 @@ descriptive <- descriptive[ - which(descriptive$offertype == ""),]   # 删去缺
     labs(x = "", y = "", title = "\n录取类型") +
     plot_theme_pie)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg)
 
 数据中，录取的案例占一半以上，其中包括无奖录取、小奖录取和全奖录取，拒绝的申请占比为27.6%，还有少部分申请结果为Waiting List。在后续的建模中，将把Waiting List划分为拒绝类别。
 
@@ -129,7 +133,9 @@ gpa_offertype <- descriptive[, c("Standardgap", "offertype", "CollegeRankTop50")
 gpa_offertype$offertype <- factor(gpa_offertype$offertype, levels = c("Admitted", "Rejected"),
                                  labels = c("录取","被拒"))                 #  调整因子水平
 gpa_offertype$CollegeRankTop50 <- factor(gpa_offertype$CollegeRankTop50, levels = c("Top50","Others"))
+```
 
+```{r ch7-plot2, eval = F}
 ## 画图
 (boxplot1 <- ggplot(gpa_offertype, aes(x = factor(CollegeRankTop50), y = Standardgap, fill = factor(offertype))) +
     geom_boxplot(show.legend = T, varwidth = T) +
@@ -137,7 +143,11 @@ gpa_offertype$CollegeRankTop50 <- factor(gpa_offertype$CollegeRankTop50, levels 
     scale_y_continuous(limits = c(2, 4),breaks = seq(2, 4, by = 0.2))+     # 不考虑gpa<2.0的样本
     labs(x = "申请学校的世界排名", y = "GPA", title = "成绩与申请结果") +
     plot_theme)
+```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg)
+
+```{r}
 ## 成绩分段
 descriptive$gpa_dis <- cut(descriptive$Standardgap, breaks = c(0, 3.4, 3.55, 3.7, Inf),
                            labels = c("<=3.4", "3.4~3.55", "3.55~3.7", ">3.7"))
@@ -161,7 +171,9 @@ ifadmitted <- ifelse(descriptive$offertype == "Admitted",1,0)
 admittedPct <- aggregate(ifadmitted, list(descriptive$toefl_dis, descriptive$CollegeRankTop50), mean)
 colnames(admittedPct) <- c("TOEFL","学校排名","admittedpct")
 admittedPct$学校排名 <- factor(admittedPct$学校排名,levels = c("Top50","Others"))
+```
 
+```{r ch7-plot3, eval = F}
 ### 画图
 (barplot2 <- ggplot(admittedPct, aes(TOEFL, admittedpct, fill = 学校排名)) + 
   geom_bar(stat='identity',position='dodge') +
@@ -174,6 +186,8 @@ admittedPct$学校排名 <- factor(admittedPct$学校排名,levels = c("Top50","
             colour = "orange",x = 5.4, y = 0.7, size = 5.7, vjust =  - 0.5) + 
   plot_theme)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg)
 
 结论：对于排名靠前的学校来说，托福成绩越高，平均录取率越高。
 
@@ -202,7 +216,9 @@ count_plot$X1 <- factor(count_plot$X1, levels = c(1, 2, 3),        # 调整变�
 count_plot$X2 <- factor(count_plot$X2, levels = c("research","paper","first",
                                                   "sci","rl","intern","exchange"),
                            labels = c("科研", "论文", "一作", "SCI论文", "牛推", "实习", "交换"))
+```
 
+```{r ch7-plot4, eval = F}
 ## 绘制硬件条件与申请学位的矩阵图
 (matrix1 <- ggplot(count_plot, aes(x = X1, y = X2, label = value, fill = value)) + # 画图
     geom_tile(show.legend = F) +    
@@ -211,6 +227,8 @@ count_plot$X2 <- factor(count_plot$X2, levels = c("research","paper","first",
     scale_fill_gradient("count", low = "white", high = "lightCoral") +
     labs(x = "申请学位", y = "硬件条件", title = "") + plot_theme)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg)
 
 结论：申请硕士实习更加重要，申请博士论文更加重要，而混合申请介于两者之间。
 
@@ -253,11 +271,16 @@ summary(myglm)    # 查看回归结果
 library(pROC)
 # 进行预测
 pred <- predict(myglm, descriptive_test, type="response")
+```
+
+```{r ch7-plot5, eval = F}
 par(family='STXihei')
 # 绘制ROC曲线
 plot.roc(descriptive_test$offertype, pred, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "FPR",ylab = "TPR", main = "预测ROC曲线")  
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg)
 
 根据曲线的结果，AUC值（即ROC曲线下的面积）为0.754，说明该模型对数据的预测效果较好。
 
@@ -304,10 +327,16 @@ fitted.results <- predict(fit,newdata = testset, type = 'response')
 ## 绘制ROC曲线 & 计算AUC值
 library(ROCR)
 testset$churn <- as.factor(testset$churn)
+```
+
+```{r ch7-plot6, eval = F}
 par(family='STXihei')
 plot.roc(testset$churn, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "特异度",ylab = "敏感度",
          fitted.results, main = "预测ROC曲线")  
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg)
+
 绘制ROC曲线如上所示，计算得到AUC值为0.617，模型在测试集上的预测表现较好。
+

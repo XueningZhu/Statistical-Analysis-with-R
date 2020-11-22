@@ -26,12 +26,37 @@ novel = read.csv('./data/novel.csv', fileEncoding = "UTF-8")
 head(novel)
 ```
 
+## 统计表格
 
-## 柱状图、直方图、饼图
+### 变量说明表
+
+对于定性变量，列示其主要水平及对应频数；对于定量变量，关注其取值范围、最大值、最小值、中位数等描述性统计量。这些变量描述指标在R语言中可以通过summary()函数直接获取。
+
+```{r}
+# 对小说数据的若干列使用summary()函数
+summary(novel[, 2:4])
+```
+
+### 分组汇总统计表格
+
+分组统计表格按照各个类别进行汇总，描述类别内部各个变量的特征。通过这种方式，可以比较各个类别之间的差异，输出所关心的汇总报表。
+
+```{r}
+# 利用group_by()函数对小说按照小说类型分类
+novel.小说类型 = novel %>% group_by(小说类型)
+# 制作分组统计表
+novel.小说类型 %>% summarise(平均评分 = mean(评分), 最大评论数 = max(评论数))
+```
+
+## 数据可视化基础
+
+统计表格是使用表格的形式展示汇总的统计指标，但从直观性而言，使用统计图形则更为合适。基本统计图形包括柱状图、饼图、箱线图、散点图、折线图和直方图。
 
 ### 柱状图
 
-```{r, warning=FALSE}
+柱状图（barplot）是用柱子高低来表示取值大小的一种统计图形。常见的柱状图有频数柱状图及均值柱状图。频数柱状图展示的是定性变量各水平的频数统计，柱子高度代表每个水平频数大小。
+
+```{r ch4-plot1, warning=FALSE, eval=F, echo = T}
 # 统计小说类型频数
 a=table(novel$小说类型)
 # 对频数排序
@@ -40,11 +65,13 @@ a=a[order(a,decreasing = T)]
 par(family = "STXihei",las = 2)
 barplot(a[1:5],names.arg = names(a)[1:5],family="STXihei",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
 title("各类型小说频数分布柱状图",family="STXihei")
-
 ```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5mjdaslj311c0qo75z.jpg)
+
+柱状图并不仅用于展现频数，也可以展示按照分组划分后各类别的均值等指标。这种柱状图称为均值柱状图。
 
 
-```{r, warning=FALSE}
+```{r ch4-plot2, warning=FALSE, eval=F}
 # 求得各类型小说平均点击数的均值
 means<-novel%>%
   group_by(小说类型)%>%
@@ -58,8 +85,11 @@ title("各类型小说平均总点击数",family="STXihei")
 options(scipen = 200)
 
 ```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zk27nmj311c0qoq4s.jpg)
 
-```{r, warning=FALSE}
+对两个或多个定性变量绘制柱状图可使用分组柱状图或堆积柱状图来展现。
+
+```{r ch4-plot3, warning=FALSE, eval = F}
 # 构建绘图所需数据矩阵d
 d = novel%>%group_by(小说类型, 小说性质)%>%
   summarise(count=n())%>%
@@ -85,10 +115,13 @@ barplot(d, beside = F, col = c("gold","grey"), ylab = "频数", ylim = c(0,700))
 # 添加图例
 legend("topright", legend = rownames(d), fill = c("gold", "grey"), cex = 0.8)
 ```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjyyl6j311c0qomz4.jpg)
 
 ### 饼图
 
-```{r}
+饼图（pie），是用圆形及圆内扇形的度数来表示数值大小的图形，主要用于表示总体中各组成部分所占的比例。
+
+```{r ch4-plot4, eval = F}
 # 将小说类型进行简要合并
 novel$'小说类别' = "其他"
 novel$'小说类别'[novel$小说类型 == "都市小说" | novel$小说类型 == "职场小说"] = "都市类小说"
@@ -104,17 +137,21 @@ par(family="STXihei")
 pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep = "\n"), font = 1)
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjv53uj311c0qowgo.jpg)
+
 ### 直方图
 
-```{r eval=FALSE, include=FALSE}
+直方图（histogram）是用于展示定量变量分布形态的一种统计图形。
+
+```{r ch4-plot5, eval=T, eval = F}
 # 随机生成1000个正态分布数
 r=rnorm(1000)
 # 绘制直方图
 hist(r) 
 ```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjm29kj311c0qo0tu.jpg)
 
-
-```{r, warning=FALSE}
+```{r ch4-plot6, warning=FALSE, eval = F}
 # 去掉异常值
 chara = sort(novel$总字数/10000)[1:1500] 
 # 绘制直方图
@@ -124,35 +161,43 @@ hist(chara, breaks = 10, xlab = "总字数(万字)", ylab = "频数", main = "",
 hist(chara, breaks = 100, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
 ```
 
-## 箱线图、饼图、散点图
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjcbryj311c0qodha.jpg)
 
 ### 折线图
-```{r}
+
+折线图（line chart），是以折线的上升或下降来表示统计数量的增减变化的统计图，一般用于反映变量随时间变化的特征。它不仅可以表示数量的多少，而且可以反映数据的变化趋势。
+
+```{r ch4-plot7, eval = F}
 # 获取数据
 data(AirPassengers)
 # 画时间序列图
 plot(AirPassengers)
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5ziupr9j311c0qodi4.jpg)
 
 ### 箱线图
-```{r}
+
+箱线图（boxplot）主要用于描述定量变量在定性变量各个水平上的分布差异。
+
+```{r ch4-plot8, eval = F}
 ## 定性与定量变量--分组箱线图 ##
 # 将画板分成1行2列
 par(mfrow=c(1,2),family = "STXihei")  
 # 不同性质的小说总点击数和评论数有差别吗
 novel_ = novel %>%
-  filter((小说性质 == '公众作品')|(小说性质 == 'VIP作品')) %>%
+  dplyr::filter((小说性质 == '公众作品')|(小说性质 == 'VIP作品')) %>%
   mutate(小说性质=factor(小说性质))
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总点击数对数")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总评论数对数")
-
-
-
 ```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zi29gxj311c0qo0ub.jpg)
 
 ### 散点图
-```{r}
+
+散点图（scatter diagram）是用二维坐标展示两个连续变量之间关系的一种图形。散点图用坐标横轴代表变量x，纵轴代表变量y，每组数据在坐标系中用一个点表示，n个样本点就形成了n个散点。
+
+```{r ch4-plot9, eval = F}
 ## 两个定量变量--散点图 ##
 # 去除较大的异常值后画图
 test = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
@@ -160,6 +205,164 @@ x = test$总点击数
 y = test$评论数
 par(family = "STXihei")  
 plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhxj1oj311c0qowhl.jpg)
+
+## 数据可视化进阶
+
+### ggplot2 包
+
+#### 柱状图
+
+首先通过频数柱状图查看数据中小说类型的分布。
+
+```{r ch4-plot10, eval = F}
+# 计算频数
+novel_count = novel%>%group_by(小说类型)%>%summarise(count = n())%>%arrange(desc(count))
+# 构建坐标轴图层p,将变量按照频数排序并取前十
+p = ggplot(novel_count[1:10,], mapping = aes(x = reorder(小说类型,desc(count)), y = count))
+# 绘制柱状图
+p + geom_bar(stat = 'identity')+
+  theme_gray(base_family = 'STXihei')+
+  labs(x = "小说类型", y = "频数")
+```
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zht3cej311c0qoabb.jpg)
+
+#### 饼图
+
+如前所述，饼图可以查看定性变量分布比例。
+
+```{r}
+## 饼图 ##
+## step 1: 统计频数（此处也可使用table()），即统计出来每一类别的频数。
+df1 = ddply(novel, .(小说类别), nrow)
+df1 = df1[order(df1$V1, decreasing = T), ]
+
+## step 2: 画出堆积柱状图。
+# 计算各个标签的位置 
+pos = (cumsum(df1$V1) - df1$V1/2)
+# 构建坐标轴图层p
+p = ggplot(df1, aes(x = "", y = V1, fill = factor(小说类别,levels = c('武侠类小说','都市类小说','幻想类小说','其他')))) 
+# 绘制柱状图
+p = p + geom_bar(width = 1,stat = "identity")+theme_gray(base_family = 'STXihei') + scale_fill_brewer('',palette = "Blues")
+```
+
+```{r ch4-plot11, eval = F}
+# step 3 : 变成极坐标，并加比例标签。
+# 换到极坐标
+p = p+ coord_polar(theta = "y")
+# 添加文本信息
+p + geom_text(aes(y = pos, label = paste(round(V1 / sum(V1) * 100, 2), "%", ""))) + 
+theme(axis.title = element_blank(), 
+      axis.text = element_blank(), 
+      axis.ticks = element_blank(),
+      text = element_text(family='STXihei')) 
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhk710j311c0qoju3.jpg)
+
+#### 直方图
+
+频数柱状图和饼图往往用于展示定性变量的分布频率，对于连续变量（如：小说总点击数）分布则需用直方图展示。
+
+```{r ch4-plot12, eval = F}
+# 构建坐标轴图层p
+p = ggplot(novel, mapping = aes(x = log(总点击数)))
+# 绘制直方图
+p + geom_histogram(bins = 30) + theme_gray(base_family = 'STXihei') + xlab('对数总点击数') + ylab('频数')
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhfubij311c0qo0tq.jpg)
+
+#### 折线图
+
+对于连续变量的时间序列数据，可以通过折线图形式展示。
+
+```{r ch4-plot13, eval = F}
+## 折线图 ##
+# 构建坐标轴图层p
+p = ggplot(economics, aes(x = date, y = unemploy))
+# 绘制折线图
+p + geom_line()
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhbxwqj311c0qoq57.jpg)
+
+#### 箱线图
+
+分组箱线图可用于比较组别之间变量分布差异。
+
+```{r ch4-plot14, eval = F}
+# 构建坐标轴图层p
+p = ggplot(novel_, mapping = aes(x = 小说性质, y = log(总点击数)))
+# 绘制分组箱线图
+p+ geom_boxplot(fill = c('gold','grey')) + theme_gray(base_family = 'STXihei') + xlab('小说性质') + ylab('对数总点击数')
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh7o6oj311c0qodh1.jpg)
+
+#### 散点图
+
+对于两个定量变量，可以用散点图展示其关系。
+
+```{r ch4-plot15, eval = F}
+# 构建坐标轴图层p
+data = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
+p = ggplot(data , mapping = aes(x = 总点击数, y = 评论数))
+# 绘制散点图
+p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh26s9j311c0qoacz.jpg)
+
+利用ggplot2包，也可以将其它变量映射到散点图当中，例如将不同性质的小说用不同的颜色来表示。
+
+```{r ch4-plot16, eval = F}
+# 构建坐标轴图层p
+p = ggplot(na.omit(data) , mapping = aes(x = 总点击数, y = 评论数 , col = 小说性质))
+# 绘制散点图
+p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zgvlsqj311c0qotcd.jpg)
+
+### 交互可视化
+
+#### 柱状图
+
+此处将type设置为bar就可以绘出柱状图，当把鼠标移动到任何一根柱子上面，就会实时显示出它的数值和对应的小说类型。
+
+```{r}
+### 均值柱状图 ###
+plot_ly(novel, y= ~ 总点击数, x = ~ 小说类型, type = "bar")
+```
+
+#### 饼图
+
+交互式饼图可以展现每个组成部分更多的数据细节。
+
+```{r}
+## 动态饼图 ##
+# 读取数据
+piedata = data.frame(value = c(29.05, 24.08, 10.85, 36.23), group = c("幻想类小说", "都市类小说", "武侠小说", "其他"))
+# 绘制图形
+plot_ly(piedata, values = ~value, labels = ~group, type = "pie")
+```
+
+#### 直方图
+
+在表现定量变量的分布时，直方图是必不可少的工具。
+
+```{r}
+## 直方图 ##
+p = plot_ly(novel, x = ~ log10(总点击数), type = "histogram")
+# 增加坐标轴及标题信息
+layout(p,
+       title = "对数点击数分布直方图", 
+       xaxis = list( title = "对数点击数", showgrid = F),     
+       yaxis = list( title = "频数"),    
+       margin = list(l = 50, r = 50, b = 50, t = 50, pad = 4))
 ```
 
 ## 习题答案
@@ -178,6 +381,7 @@ Sys.setlocale("LC_ALL", "zh_cn.utf-8")
 实训题目：使用“北美旅游产品数据集”，该案例数据提供了2926条北美旅游数据观测。其中包括产品名称、旅游方式、供应商、等级、景点个数、交通情况、用餐情况、是否有自由活动、客户评分、出游人数、评价人数、报价信息、旅游线路等。尝试完成以下分析。
 
 a.读入数据，筛选出产品名称、旅游方式、供应商、等级、景点个数、交通、用餐、自由活动、总评价、出游人数、出发地、每日报价、旅游线路变量并重命名为英文变量名。
+
 ```{r}
 dat = read.xlsx("./data/data_4_3.xlsx")                                                         # 原始数据
 travel_dat = dat[,c(1:8,12:13,15,17:23,25)]                                               # 筛选出需要用到的变量
@@ -190,7 +394,8 @@ colnames(travel_dat) = c("Product", "TravelMethod", "Agency", "Star",
 
 
 b.提取周一到周日报价中的数值部分，计算一周报价的均值（若一周7天均无报价则缺失），并以新变量“Price”存入数据集travel_dat中，剔除平均价格缺失的样本。绘制价格的对数分布直方图并进行简要解读。
-```{r}
+
+```{r ch4-plot17, eval = F}
 allPrice = travel_dat[,12:18]                              # 取出周一到周日的数据
 allPrice[allPrice==""] = NA                                # 处理缺失值
 
@@ -220,10 +425,12 @@ ggplot(travel_dat)+
 
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63y3eybj311c0qoab1.jpg)
+
 c.提取“Star”变量中的“*钻”字符来表示产品等级，当一个产品包含多个钻级时取最大钻级，并将产品钻级以新变量“Star2”存入数据集travel_dat中，变量类型为因子型。
 
 绘制价格的对数对产品等级的分组箱线图，并按每一等级的平均价格由低到高进行排列，对箱线图结果作出简要解读。
-```{r warning=FALSE}
+```{r ch4-plot18, warning=FALSE, eval = F}
 star = strsplit(as.character(travel_dat$Star), "\\,")         # 按“,”分开等级
 
 StarNum = function(x)                                          # 自定义函数，提取产品等级
@@ -261,11 +468,13 @@ ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
 
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xvnxuj311c0qo3zu.jpg)
+
 ### 题目 4.4（实训题目）{-}
 
 实训题目：RTB（Real Time Bidding，实时竞拍）是目前一种重要的广告投放方式。当前的各种APP都有许多广告位，等待广告主的投放。对于投放广告的广告主，他们通过竞拍获得广告位，自然希望自己的广告能有更高的点击量。使用RTB数据集，本数据包括了来自某广告外包承包商（DPS）的4695条观测值，因变量为是否点击（1-点击/0-未点击），正样本大约占总样本的20%，请对以下自变量进行分析。
 
-```{r}
+```{r ch4-plot19, eval = F}
 rtb_data = read.csv("./data/data_4_4.csv")
 #将定性变量转为因子性变量，并设置标签
 rtb_data$dc = factor(rtb_data$dc,levels = c(1,0))
@@ -284,7 +493,9 @@ par(las = 2,mai = c(1,1,0.5,1),family = "STXihei")
 spineplot(dc~atype,rtb_data,col = c('gold','grey'),xlab = '',yaxlabels = c('点击','不点击'),ylab = '')
 ```
 
-```{r warning=FALSE}
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xpng9j311c0qowfm.jpg)
+
+```{r ch4-plot20, warning=FALSE, eval = F}
 bidf_plot = as.data.frame(subset(rtb_data,select = c('dc','bidf')))
 bidf_plot$dc = factor(bidf_plot$dc,levels = c(1,0),labels = c('点击','不点击'))
 ggplot(bidf_plot)+
@@ -301,11 +512,13 @@ ggplot(bidf_plot)+
         axis.line = element_line(colour = "black"))#调整主题样式
 ```
 
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xmmi2j311c0qota1.jpg)
+
 ### 题目 4.5（实训题目）{-}
 
 实训题目：使用“数据分析招聘数据集”，该数据集包括某网站数据分析岗位2018-2019年招聘情况。该数据共7493条招聘信息，覆盖北京、上海、深圳、山西、陕西以及河北六个地区。
 
-```{r warning=FALSE}
+```{r ch4-plot21, warning=FALSE, eval = F}
 fin_data = read.csv("./data/data_4_5.csv", header = T, stringsAsFactors = FALSE)
 ###提取工资的函数
 fun_wage = function(x){
@@ -338,7 +551,9 @@ ggplot(fin_data)+
 summary(fin_data$wage)
 ```
 
-```{r warning=FALSE}
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xfx9ij311c0qo0tq.jpg)
+
+```{r ch4-plot22, warning=FALSE, eval = F}
 ###对岗位进行分类
 fin_data$is_tech = 0
 fin_data[str_detect(fin_data$X3,"数据|IT|量化|工程师"),]$is_tech = 1
@@ -367,7 +582,9 @@ ggplot(fin_data_city)+
         axis.line = element_line(colour = "black"))#设置背景和坐标轴
 ```
 
-```{r warning=FALSE}
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xcpdsj311c0qo0u6.jpg)
+
+```{r ch4-plot23, warning=FALSE, eval = F}
 ###提取工作经验要求的函数
 fun_work = function(x){
   str_list0 = str_split(x,"[|]")[[1]]
@@ -403,3 +620,5 @@ ggplot(fin_data)+
         axis.line = element_line(colour = "black"))#设置背景和坐标轴
 
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63x7ljgj311c0qowge.jpg)

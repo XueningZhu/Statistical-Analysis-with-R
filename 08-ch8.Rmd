@@ -36,9 +36,14 @@ predictor <- nba[2:18]
 
 ## 变量间相关系数
 M <- cor(predictor)
+```
+
+```{r ch8-plot1, eval = F}
 par(family='STXihei')
 corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg)
 
 根据变量的相关系数图可以看出，部分变量之间的正相关性较强，例如出场数和上场总时间，命中次数和出手次数等。
 
@@ -47,11 +52,13 @@ corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 
 使用`psych`包中的`scree()`函数，绘制崖底碎石土，选择合适的主成分个数。scree()函数中，通过指定参数factors和pc的取值，生成主成分分析或因子分析的崖底碎石图，hline参数取值为绘制水平直线的高度，默认值为1，设置为负数则不绘制水平线。scree()函数会返回根据特征值绘制的崖底碎石图，同时返回特征值向量，因此可以使用该返回值计算累计方差贡献率。
 
-```{r}
+```{r ch8-plot2, eval = F}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 result1 <- scree(predictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg)
 
 ```{r}
 ## 计算累计方差贡献率
@@ -108,10 +115,15 @@ $PC_1$=0.09 * 出场数 + 0.1 * 上场总时间-0.02 * 投篮率 + 0.12 * 命中
 cov <- cov(nba[,2:18])
 ## 转换为相关系数矩阵（等价于标准化后数据的协方差矩阵）
 cor <- cov2cor(cov)
+```
+
+```{r ch8-plot3, eval = F}
 ## 选择因子数目
 par(family='STXihei')
 result2 <- scree(cor, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg)
 
 利用scree()函数绘制因子分析的崖底碎石图，结合累计方差贡献率（由fa()函数输出）等指标，设置公因子数为3。
 
@@ -185,9 +197,17 @@ R中自带的数据列表`Harman23.cor`包含了305个女孩的8个身体测量�
 ```{r}
 library(psych)
 my_cov <- Harman23.cor$cov
+```
+
+```{r ch8-plot4, eval = F}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 hw1 <- scree(my_cov, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg)
+
+```{r}
 ## 提取主成分
 pc <- principal(my_cov, nfactors = 2)
 pc
@@ -203,10 +223,15 @@ R中自带的数据集`USJudgeRatings`包含了律师对美国高等法院法官
 
 ```{r}
 USpredictor <- USJudgeRatings[, -1]
+```
+
+```{r ch8-plot5, eval = F}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 hw2 <- scree(USpredictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg)
 
 ```{r}
 pc2 <- principal(USpredictor, nfactors = 1, scores = T)
@@ -224,9 +249,17 @@ R中自带的数据列表`ability.cov`提供了六个心理学测验的数据，
 ```{r}
 cov_hw3 <- ability.cov$cov
 corr <- cov2cor(cov_hw3)
+```
+
+```{r ch8-plot6, eval = F}
 ## 选择因子数目
 par(family='STXihei')
 result2 <- scree(corr, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg)
+
+```{r}
 ## 提取公共因子
 fa_hw2 <- fa(corr, n.obs = ability.cov$n.obs, nfactors = 2, rotate = "none", fm = "ml")
 fa_hw2
@@ -237,3 +270,5 @@ fa_hw2
 farot_hw2 <- fa(corr, n.obs = ability.cov$n.obs, nfactors = 2, rotate = "varimax", fm = "ml")
 farot_hw2
 ```
+
+

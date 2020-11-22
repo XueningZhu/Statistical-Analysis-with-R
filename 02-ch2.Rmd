@@ -4,6 +4,8 @@
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 ```
 
+本章节采用的是某电影榜单上排名top250的电影数据，数据集包含250部电影的名称、评分等数据。
+
 ```{r}
 rm(list = ls())#清空环境
 movie <- read.csv("./data/top250.csv",fileEncoding = "gbk")#读取数据
@@ -13,6 +15,9 @@ head(movie)#电影数据示例
 ## 基本数据类型
 
 ###  数值型
+
+数值型变量是一种定量数据类型，这类数据的取值是连续的。例如，电影数据集中的评分(score)就是用数值类型存放的。可以通过如下方式查看这一列对应的数据类型并对数值型数据进行加减乘除运算。
+
 ```{r}
 class(movie$score)#查看数据类型
 #自己为变量附一个数值
@@ -25,6 +30,8 @@ exp(10)
 
 ### 字符
 
+字符型变量指用于存储文字的变量类型。在R语言中，用单引号或双引号定义的即是字符型数据。
+
 ```{r}
 #字符的定义
 a = "2"
@@ -36,6 +43,9 @@ class(movie$type)
 
 
 ### 逻辑型
+
+逻辑型数据即取值为TRUE或者FALSE的数据类型。
+
 ```{r}
 # 读入数据时设置把字符数据保留，不转换为factor
 movie = read.csv("./data/top250.csv", header = T, stringsAsFactors = F, fileEncoding = "gbk")
@@ -49,6 +59,9 @@ movie$name[movie$type == "喜剧" & movie$score > 9]
 ```
 
 ### 因子型数据
+
+因子型数据是R语言中比较特殊的一个数据类型，它用于存储类别型变量。例如：性别（男性、女性），年龄分段（未成年人、成年人）等。除存储取值水平无序的类别型变量外，因子型数据还可以设置类别变量各水平的次序。因子型数据可使用命令factor()来定义。
+
 ```{r}
 ## 1.什么是因子型数据 ##
 (genders = factor(c("男", "女", "女", "男", "男")))#生成因子型变量
@@ -77,6 +90,9 @@ movie = read.csv("./data/top250.csv",fileEncoding = "gbk",stringsAsFactors = FAL
 ```
 
 ### 向量
+
+向量(vector)是所有数据结构中最基础的形式，用于存储同一种类型数据的一维数组。
+
 ```{r}
 ###1.基本操作###
 ## (1)向量创建##
@@ -160,6 +176,9 @@ median(as.numeric(salary0))  # 结果是科学计数法的形式
 
 
 ### 矩阵
+
+上一部分讲述的向量只能够展示一维数据信息。如果想要展示二维数据信息，则需要用到矩阵的组织形式。矩阵(matrix)是一个二维数组，矩阵每一个元素的数据类型相同。
+
 ```{r}
 ### 1.创建与引用 ###
 ##(1)创建##
@@ -210,6 +229,9 @@ eigen(B) #矩阵B的特征值
 ```
 
 ### 数组
+
+数组(array)是向量和矩阵的推广，用于表达三维或者三维以上的数据。
+
 ```{r}
 ##1.创建及引用##
 # 创建数组
@@ -224,6 +246,9 @@ matrix2<-result[,,2]#获取数组中第2水平的矩阵
 ```
 
 ### 数据框
+
+数据框(dataframe)是实际数据处理中最常用的数据结构形式。数据框的每一行可以存储一条数据记录，每一列可以存储不同类型的变量。
+
 ```{r}
 ### 1.创建数据框 ###
 # 读入一个txt,csv等格式数据,即自成一个数据框
@@ -271,7 +296,46 @@ popular_type2 = movie%>%group_by(type)%>%
 head(popular_type2)
 ```
 
-## 数据的读入
+### 列表
+
+列表（list）是R语言中可以容纳各种类型的数据对象，如向量、矩阵、数据框，甚至一个列表也可以成为另一个列表的元素。
+
+```{r}
+##1.创建##
+(example = list("abc", 3:5, matrix(1, nrow = 3, ncol = 4), data.frame(x = 1:4, y = paste0("boy_", 1:4))))
+
+##2.基本操作##
+# 查看
+(complex = list(first = list(1:2), second = list(letters, list(matrix(1:4, nrow = 2, ncol = 2)))))
+str(complex)
+# 利用名字引用元素
+complex$first  
+# 利用序号引用元素
+complex[[1]]
+# 利用名字添加元素
+complex$new = 1:5; complex
+# 利用序号添加元素
+complex[[3]] = matrix(1, 2, 3); complex
+
+##3. 列表中的**ply函数##
+# 老王耗子药的单价,单位(元/袋)
+(price = list(year2014 = 36:33, year2015 = 32:35, year2016 = 30:27))
+# lapply返回列表
+lapply(price, mean)
+# 求方差
+lapply(price, sd)
+# 求分位数
+lapply(price, quantile)
+# sapply默认返回向量或矩阵
+sapply(price, mean)
+sapply(price, sd)
+sapply(price, quantile)
+# mapply实现了将price与amount对应元素相乘的效果
+(amount = list(year2014 = rep(200, 4), year2015 = rep(100, 4), year2016 = rep(300, 4)))
+(income_quarter = mapply("*", price, amount))
+```
+
+## 数据的读入与写出
 
 
 ```{r}
@@ -280,6 +344,9 @@ movie = read.csv("./data/top250.csv",fileEncoding = "gbk",stringsAsFactors = FAL
 ```
 
 ### 使用键盘输入数据
+
+当读入数据较少时，可通过键盘输入数据。主要方式分为：直接输入以及利用R内置表格编辑器输入。
+
 ```{r}
 scores <- c(61,66,84,80,100)
 #scores <- data.frame() #建立一个空数据框
@@ -293,6 +360,9 @@ mydatatxt<-"name gender age
 ```
 
 ### 从带分隔符的文本文件导入数据
+
+文本文件是一种常用的数据文件格式，函数read.table()可以从带分隔符的文本文件中导入数据，并生成一个数据框。常见的文本文件的数据格式为csv，读入csv文件可使用专有函数read.csv()。
+
 ```{r}
 ### 1. read.rable() ###
 #从txt中读入,分隔符为"\t"
@@ -317,6 +387,9 @@ options(encoding = "gbk")
 ```
 
 ### 逐行读入数据
+
+在文件较大或格式较为复杂的情况下，直接将文件读入内存会花费很长时间。因此，可以每次读入一行文件，进行逐行处理。
+
 ```{r}
 #建立与文件的连接
 con<-file("./data/top250.csv")
@@ -338,22 +411,31 @@ movie = read.csv("./data/top250.csv",fileEncoding = "gbk",stringsAsFactors = FAL
 ```
 
 ### 了解数据概况
+
+拿到数据集后需要先查看数据的概况，主要通过R语言中的汇总函数实现。首先使用str()函数查看每列数据的类型，了解取值情况。接下来，可通过summary()函数查看每列数据的汇总统计。
+
 ```{r}
 str(movie)
 summary(movie)
 ```
 
-
-
 ### 变量类型转换
+
 #### 1.基本数据类型之间的转换
+
+变量类型转换可以分为两步，首先利用is族函数判断变量类型，再通过as族函数转换变量类型。
+
 ```{r}
 a="1"#将1赋值给a
 is.numeric(a)#判断a是否是数值型数据
 a<-as.numeric(a)#将a转换为数值型数据
 is.numeric(a)#再次判断a是否是数值型数据
 ```
+
 #### 2.不同结构化数据类型间的转换
+
+结构化数据类型之间的转换与基本数据类型转换相似，首先使用class()函数判断数据结构，再使用as族函数进行转换。
+
 ```{r}
 tbl <- table(movie$nation)#统计不同国家的频次
 class(tbl)#查看数据格式
@@ -362,6 +444,9 @@ class(tbl)
 ```
 
 #### 3.日期值转换
+
+日期类型的变量需要使用如下方法进行转换。
+
 ```{r}
 ###(1)将字符转换成Date日期格式###
 # 函数head用来查看数据前6个元素，函数class用来查看对象数据类型
@@ -376,6 +461,9 @@ as.POSIXct(1472562988, origin = "1960-01-01")#日期值转换，以"1960-01-01"�
 ```
 
 ### 时间型数据的操作
+
+针对时间型数据的常用操作为：特征提取、差值运算、排序运算。
+
 #### 1.特征提取
 ```{r}
 library(lubridate)#加载lubridate包
@@ -410,6 +498,9 @@ head(movie[order(movie$showtime), c("name", "showtime")])
 ```
 
 ### 数据集合并
+
+实践中，常常需要将不同表的信息进行合并。在R语言中可以使用函数merge()来实现数据框的合并。
+
 ```{r}
 director <- c("陈凯歌", "宫崎骏", "李廷香","詹姆斯·卡梅隆", "刘镇伟", "周星驰", "李安", "姜文", "张艺谋", "吴宇森","岩井俊二", "王家卫", "陈可辛"  )
 birthyear <- c(1952,1941,1964,1954,1952,1962,1954,1963,1950,1946,1963,1958,1962)
@@ -420,7 +511,10 @@ directors <- data.frame(director, birthyear, gender);
 
 
 ```
+
 ### 数据缺失、异常
+
+在R语言中检测缺失值可使用is.na()函数。该函数将会返回逻辑值TRUE或FALSE，TRUE代表缺失，FALSE代表未缺失。数据中的异常值为不符合常理或与总体取值高度不一致的数据。通常对数据是否缺失、异常的判断是在数据汇总之后进行的。
 
 ```{r}
 ###(1)删除法###

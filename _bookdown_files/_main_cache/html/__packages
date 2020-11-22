@@ -10,15 +10,8 @@ reshape2
 plotly
 openxlsx
 purrr
-lattice
-BSDA
-e1071
-timeDate
-timeSeries
-fBasics
 reshape
-readxl
-lubridate
 pROC
 ROCR
 psych
+readxl
