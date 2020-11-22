@@ -121,7 +121,7 @@ legend("topright", legend = rownames(d), fill = c("gold", "grey"), cex = 0.8)
 
 饼图（pie），是用圆形及圆内扇形的度数来表示数值大小的图形，主要用于表示总体中各组成部分所占的比例。
 
-```{r ch4-plot4, eval = F}
+```{r}
 # 将小说类型进行简要合并
 novel$'小说类别' = "其他"
 novel$'小说类别'[novel$小说类型 == "都市小说" | novel$小说类型 == "职场小说"] = "都市类小说"
@@ -132,6 +132,9 @@ ratio = table(novel$'小说类别') / sum(table(novel$'小说类别')) * 100
 # 定义标签
 label1 = names(ratio)
 label2 = paste0(round(ratio, 2), "%")
+```
+
+```{r ch4-plot4, eval = F}
 # 绘制饼图
 par(family="STXihei") 
 pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep = "\n"), font = 1)
@@ -151,9 +154,12 @@ hist(r)
 ```
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjm29kj311c0qo0tu.jpg)
 
-```{r ch4-plot6, warning=FALSE, eval = F}
+```{r}
 # 去掉异常值
 chara = sort(novel$总字数/10000)[1:1500] 
+```
+
+```{r ch4-plot6, warning=FALSE, eval = F}
 # 绘制直方图
 par(mfrow=c(1,2),family = "STXihei",las=2)
 hist(chara, breaks = 10, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
@@ -180,14 +186,17 @@ plot(AirPassengers)
 
 箱线图（boxplot）主要用于描述定量变量在定性变量各个水平上的分布差异。
 
-```{r ch4-plot8, eval = F}
+```{r}
 ## 定性与定量变量--分组箱线图 ##
-# 将画板分成1行2列
-par(mfrow=c(1,2),family = "STXihei")  
 # 不同性质的小说总点击数和评论数有差别吗
 novel_ = novel %>%
   dplyr::filter((小说性质 == '公众作品')|(小说性质 == 'VIP作品')) %>%
   mutate(小说性质=factor(小说性质))
+```
+
+```{r ch4-plot8, eval = F}
+# 将画板分成1行2列
+par(mfrow=c(1,2),family = "STXihei")  
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总点击数对数")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总评论数对数")
 ```
@@ -197,12 +206,15 @@ boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'),
 
 散点图（scatter diagram）是用二维坐标展示两个连续变量之间关系的一种图形。散点图用坐标横轴代表变量x，纵轴代表变量y，每组数据在坐标系中用一个点表示，n个样本点就形成了n个散点。
 
-```{r ch4-plot9, eval = F}
+```{r}
 ## 两个定量变量--散点图 ##
 # 去除较大的异常值后画图
 test = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
 x = test$总点击数
 y = test$评论数
+```
+
+```{r ch4-plot9, eval = F}
 par(family = "STXihei")  
 plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
 ```
@@ -217,9 +229,12 @@ plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
 
 首先通过频数柱状图查看数据中小说类型的分布。
 
-```{r ch4-plot10, eval = F}
+```{r}
 # 计算频数
 novel_count = novel%>%group_by(小说类型)%>%summarise(count = n())%>%arrange(desc(count))
+```
+
+```{r ch4-plot10, eval = F}
 # 构建坐标轴图层p,将变量按照频数排序并取前十
 p = ggplot(novel_count[1:10,], mapping = aes(x = reorder(小说类型,desc(count)), y = count))
 # 绘制柱状图
@@ -306,9 +321,12 @@ p+ geom_boxplot(fill = c('gold','grey')) + theme_gray(base_family = 'STXihei') +
 
 对于两个定量变量，可以用散点图展示其关系。
 
-```{r ch4-plot15, eval = F}
+```{r}
 # 构建坐标轴图层p
 data = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
+```
+
+```{r ch4-plot15, eval = F}
 p = ggplot(data , mapping = aes(x = 总点击数, y = 评论数))
 # 绘制散点图
 p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
@@ -395,7 +413,7 @@ colnames(travel_dat) = c("Product", "TravelMethod", "Agency", "Star",
 
 b.提取周一到周日报价中的数值部分，计算一周报价的均值（若一周7天均无报价则缺失），并以新变量“Price”存入数据集travel_dat中，剔除平均价格缺失的样本。绘制价格的对数分布直方图并进行简要解读。
 
-```{r ch4-plot17, eval = F}
+```{r}
 allPrice = travel_dat[,12:18]                              # 取出周一到周日的数据
 allPrice[allPrice==""] = NA                                # 处理缺失值
 
@@ -411,7 +429,9 @@ price = allPrice %>% apply(2, PriceToNum)                  # 得到价格的数�
 avgprice = apply(price, 1, function(x) mean(x, na.rm = T)) # 平均价格
 travel_dat$Price = avgprice                                # 建立新变量价格
 travel_dat = travel_dat[!is.na(travel_dat$Price),]         # 去除缺失价格的观测
+```
 
+```{r ch4-plot17, eval = F}
 ggplot(travel_dat)+
   geom_histogram(aes(x = Price),fill = "gold",bins = 30) +
   xlab("产品价格（对数变换）") +
@@ -430,7 +450,7 @@ ggplot(travel_dat)+
 c.提取“Star”变量中的“*钻”字符来表示产品等级，当一个产品包含多个钻级时取最大钻级，并将产品钻级以新变量“Star2”存入数据集travel_dat中，变量类型为因子型。
 
 绘制价格的对数对产品等级的分组箱线图，并按每一等级的平均价格由低到高进行排列，对箱线图结果作出简要解读。
-```{r ch4-plot18, warning=FALSE, eval = F}
+```{r}
 star = strsplit(as.character(travel_dat$Star), "\\,")         # 按“,”分开等级
 
 StarNum = function(x)                                          # 自定义函数，提取产品等级
@@ -452,7 +472,9 @@ travel_dat$Star2 = as.factor(star1)                            # 变成因子变
 travel_dat$Star2 = factor(travel_dat$Star2,                    # 按照均价重新排序水平
                       levels = levels(travel_dat$Star2)[c(1,5,2,3,4)], 
                       labels = c("2钻","无信息","3钻","4钻","5钻"))
+```
 
+```{r ch4-plot18, warning=FALSE, eval = F}
 ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
   theme_bw(base_family = "STXihei")+
   geom_boxplot(varwidth=T, color = adjustcolor("#8CE52E"), fill = adjustcolor("#8CE52E", alpha.f = 0.4)) +
@@ -464,8 +486,6 @@ ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
         panel.grid.major = element_blank(),                     # 去掉背景网格
         panel.grid.minor = element_blank(),
         axis.ticks = element_blank())                        # 去掉坐标轴
-
-
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xvnxuj311c0qo3zu.jpg)
@@ -474,7 +494,7 @@ ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
 
 实训题目：RTB（Real Time Bidding，实时竞拍）是目前一种重要的广告投放方式。当前的各种APP都有许多广告位，等待广告主的投放。对于投放广告的广告主，他们通过竞拍获得广告位，自然希望自己的广告能有更高的点击量。使用RTB数据集，本数据包括了来自某广告外包承包商（DPS）的4695条观测值，因变量为是否点击（1-点击/0-未点击），正样本大约占总样本的20%，请对以下自变量进行分析。
 
-```{r ch4-plot19, eval = F}
+```{r}
 rtb_data = read.csv("./data/data_4_4.csv")
 #将定性变量转为因子性变量，并设置标签
 rtb_data$dc = factor(rtb_data$dc,levels = c(1,0))
@@ -489,15 +509,21 @@ ratio_atype = rtb_data %>% group_by(atype) %>% summarise(ratio=sum(dc==1)/n())
 list = ratio_atype$atype[order(ratio_atype$ratio,decreasing = T)]
 #将ADX平台类型按照点击率降序排序
 rtb_data$atype = factor(rtb_data$atype,levels = list)
+```
+
+```{r ch4-plot19, eval = F}
 par(las = 2,mai = c(1,1,0.5,1),family = "STXihei")
 spineplot(dc~atype,rtb_data,col = c('gold','grey'),xlab = '',yaxlabels = c('点击','不点击'),ylab = '')
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xpng9j311c0qowfm.jpg)
 
-```{r ch4-plot20, warning=FALSE, eval = F}
+```{r}
 bidf_plot = as.data.frame(subset(rtb_data,select = c('dc','bidf')))
 bidf_plot$dc = factor(bidf_plot$dc,levels = c(1,0),labels = c('点击','不点击'))
+```
+
+```{r ch4-plot20, warning=FALSE, eval = F}
 ggplot(bidf_plot)+
   geom_boxplot(aes(x = dc,y = bidf,fill = dc),varwidth = T)+ #将箱线图按每一等级的平均价格由低到高进行排列，并调节图像的颜色
   ylab("竞标底价（对数变换）")+ 
@@ -518,7 +544,7 @@ ggplot(bidf_plot)+
 
 实训题目：使用“数据分析招聘数据集”，该数据集包括某网站数据分析岗位2018-2019年招聘情况。该数据共7493条招聘信息，覆盖北京、上海、深圳、山西、陕西以及河北六个地区。
 
-```{r ch4-plot21, warning=FALSE, eval = F}
+```{r}
 fin_data = read.csv("./data/data_4_5.csv", header = T, stringsAsFactors = FALSE)
 ###提取工资的函数
 fun_wage = function(x){
@@ -537,7 +563,9 @@ fun_wage = function(x){
 fin_data$wage = fin_data$X6%>%
   lapply(fun_wage) %>% unlist() ###提取工资
 fin_data=fin_data[which(fin_data$wage <= 40000 & fin_data$wage >= 3000),]#筛选工资在3000-40000的
+```
 
+```{r ch4-plot21, warning=FALSE, eval = F}
 ggplot(fin_data)+
   geom_histogram(aes(x = wage),fill = "gold",bins = 25) +
   xlab("薪资水平（元／月）") +
@@ -547,13 +575,15 @@ ggplot(fin_data)+
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"))         #设置网格，取消边框
+```
 
+```{r}
 summary(fin_data$wage)
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xfx9ij311c0qo0tq.jpg)
 
-```{r ch4-plot22, warning=FALSE, eval = F}
+```{r}
 ###对岗位进行分类
 fin_data$is_tech = 0
 fin_data[str_detect(fin_data$X3,"数据|IT|量化|工程师"),]$is_tech = 1
@@ -562,6 +592,9 @@ fin_data_city=fin_data%>%
   group_by(X0,is_tech)%>%
   summarise(meanwage=mean(wage,na.rm = T),#计算平均工资
             countwage=length(wage))#计算岗位个数
+```
+
+```{r ch4-plot22, warning=FALSE, eval = F}
 ###绘制并列柱状图
 ggplot(fin_data_city)+
   geom_bar(aes(x = reorder(X0,X = -meanwage,FUN = median),#将城市按照工资均值排序
@@ -584,7 +617,7 @@ ggplot(fin_data_city)+
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xcpdsj311c0qo0u6.jpg)
 
-```{r ch4-plot23, warning=FALSE, eval = F}
+```{r}
 ###提取工作经验要求的函数
 fun_work = function(x){
   str_list0 = str_split(x,"[|]")[[1]]
@@ -603,6 +636,9 @@ fin_data[which(fin_data$work == "无经验"),]$work = "不限"#将无经验变�
 #设置标签wage0，将不限排在最后
 fin_data$wage0=fin_data$wage
 fin_data[which(fin_data$work == "不限"),]$wage0 = 0
+```
+
+```{r ch4-plot23, warning=FALSE, eval = F}
 #绘制箱线图
 ggplot(fin_data)+
   geom_boxplot(aes(x = reorder(work,X = -wage0),#按照wage0对work排序，“不限”排在最后

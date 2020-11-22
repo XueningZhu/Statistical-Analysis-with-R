@@ -15,3 +15,10 @@ pROC
 ROCR
 psych
 readxl
+lattice
+BSDA
+e1071
+timeDate
+timeSeries
+fBasics
+lubridate
