@@ -1,4 +1,4 @@
-# 第7章：逻辑回归 {-}
+# 第7章：逻辑回归 {-#ch7}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)

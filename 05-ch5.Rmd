@@ -1,4 +1,4 @@
-# 第5章：参数估计与假设检验 {-}
+# 第5章：参数估计与假设检验 {-#ch5}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)

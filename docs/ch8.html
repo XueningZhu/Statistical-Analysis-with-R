@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第8章：降维分析 | 统计分析与R语言（辅助材料）</title>
+  <meta name="description" content="第8章：降维分析 | 统计分析与R语言（辅助材料）" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第8章：降维分析 | 统计分析与R语言（辅助材料）" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="XueningZhu/Statistical-Analysis-with-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第8章：降维分析 | 统计分析与R语言（辅助材料）" />
+  
+  
+  
+
+<meta name="author" content="朱雪宁 &amp; 任怡萌" />
+
+
+<meta name="date" content="2020-11-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch7.html"/>
+
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> output:</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i>第1章：统计分析与R语言</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i>第2章：R语言中的数据管理与预处理</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#基本数据类型"><i class="fa fa-check"></i>2.1 基本数据类型</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数值型"><i class="fa fa-check"></i>2.1.1 数值型</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#字符型"><i class="fa fa-check"></i>2.1.2 字符型</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#逻辑型"><i class="fa fa-check"></i>2.1.3 逻辑型</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#因子型数据"><i class="fa fa-check"></i>2.1.4 因子型数据</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据结构"><i class="fa fa-check"></i>2.2 数据结构</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#向量"><i class="fa fa-check"></i>2.2.1 向量</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#矩阵"><i class="fa fa-check"></i>2.2.2 矩阵</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数组"><i class="fa fa-check"></i>2.2.3 数组</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据框"><i class="fa fa-check"></i>2.2.4 数据框</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#列表"><i class="fa fa-check"></i>2.2.5 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据的读入与写出"><i class="fa fa-check"></i>2.3 数据的读入与写出</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#使用键盘输入数据"><i class="fa fa-check"></i>2.3.1 使用键盘输入数据</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#从带分隔符的文本文件导入数据"><i class="fa fa-check"></i>2.3.2 从带分隔符的文本文件导入数据</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#导入excel数据"><i class="fa fa-check"></i>2.3.3 导入Excel数据</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#逐行读入数据"><i class="fa fa-check"></i>2.3.4 逐行读入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据集管理及预处理"><i class="fa fa-check"></i>2.4 数据集管理及预处理</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#了解数据概况"><i class="fa fa-check"></i>2.4.1 了解数据概况</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#变量类型转换"><i class="fa fa-check"></i>2.4.2 变量类型转换</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#时间型数据的操作"><i class="fa fa-check"></i>2.4.3 时间型数据的操作</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据集合并"><i class="fa fa-check"></i>2.4.4 数据集合并</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#数据缺失异常"><i class="fa fa-check"></i>2.4.5 数据缺失、异常</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#习题答案"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.1"><i class="fa fa-check"></i>题目 2.1</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.2"><i class="fa fa-check"></i>题目 2.2</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.3"><i class="fa fa-check"></i>题目 2.3</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.4实训题目"><i class="fa fa-check"></i>题目 2.4（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#题目-2.5-实训题目"><i class="fa fa-check"></i>题目 2.5 （实训题目）</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i>第3章：基本统计分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#基本描述统计量"><i class="fa fa-check"></i>3.1 基本描述统计量</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#频数统计"><i class="fa fa-check"></i>3.1.1 频数统计</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#均值"><i class="fa fa-check"></i>3.1.2 均值</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#分位数"><i class="fa fa-check"></i>3.1.3 分位数</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#方差和标准差"><i class="fa fa-check"></i>3.1.4 方差和标准差</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#最大值最小值"><i class="fa fa-check"></i>3.1.5 最大值、最小值</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#峰度和偏度"><i class="fa fa-check"></i>3.1.6 峰度和偏度</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#交叉分组下的频数分析"><i class="fa fa-check"></i>3.2 交叉分组下的频数分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#交叉列联表"><i class="fa fa-check"></i>3.2.1 交叉列联表</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#描述统计量的分组统计"><i class="fa fa-check"></i>3.2.2 描述统计量的分组统计</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#习题答案-1"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.1"><i class="fa fa-check"></i>题目 3.1</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.2"><i class="fa fa-check"></i>题目 3.2</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.3"><i class="fa fa-check"></i>题目 3.3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#题目-3.4"><i class="fa fa-check"></i>题目 3.4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i>第4章：描述分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#统计表格"><i class="fa fa-check"></i>4.1 统计表格</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#变量说明表"><i class="fa fa-check"></i>4.1.1 变量说明表</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#分组汇总统计表格"><i class="fa fa-check"></i>4.1.2 分组汇总统计表格</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#数据可视化基础"><i class="fa fa-check"></i>4.2 数据可视化基础</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#柱状图"><i class="fa fa-check"></i>4.2.2 柱状图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#饼图"><i class="fa fa-check"></i>4.2.3 饼图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#直方图"><i class="fa fa-check"></i>4.2.4 直方图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#折线图"><i class="fa fa-check"></i>4.2.5 折线图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#箱线图"><i class="fa fa-check"></i>4.2.6 箱线图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#散点图"><i class="fa fa-check"></i>4.2.7 散点图</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#相关系数图"><i class="fa fa-check"></i>4.2.8 相关系数图</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#数据可视化进阶"><i class="fa fa-check"></i>4.3 数据可视化进阶</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#ggplot2-包"><i class="fa fa-check"></i>4.3.1 ggplot2 包</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#交互可视化"><i class="fa fa-check"></i>4.3.2 交互可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#习题答案-2"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.3实训题目"><i class="fa fa-check"></i>题目 4.3（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.4实训题目"><i class="fa fa-check"></i>题目 4.4（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#题目-4.5实训题目"><i class="fa fa-check"></i>题目 4.5（实训题目）</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i>第5章：参数估计与假设检验</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#参数估计"><i class="fa fa-check"></i>5.2 参数估计</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#矩估计"><i class="fa fa-check"></i>5.2.1 矩估计</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#极大似然估计"><i class="fa fa-check"></i>5.2.2 极大似然估计</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#区间估计"><i class="fa fa-check"></i>5.2.3 区间估计</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#假设检验"><i class="fa fa-check"></i>5.3 假设检验</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#习题答案-3"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#题目-5.2"><i class="fa fa-check"></i>题目 5.2</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#题目-5.3"><i class="fa fa-check"></i>题目 5.3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i>第6章：线性回归</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#教程案例"><i class="fa fa-check"></i>教程案例</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#案例背景"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务一"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务二"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务三"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务四"><i class="fa fa-check"></i>任务四</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务五"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务六"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务七"><i class="fa fa-check"></i>任务七</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#习题答案-4"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#案例背景-1"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务一-1"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务二-1"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务三-1"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#任务四-1"><i class="fa fa-check"></i>任务四</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html"><i class="fa fa-check"></i>第7章：逻辑回归</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#教程案例-1"><i class="fa fa-check"></i>教程案例</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#案例背景-2"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务一-2"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务二-2"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务三-2"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务四-2"><i class="fa fa-check"></i>任务四</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务五-1"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务六-1"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务七-1"><i class="fa fa-check"></i>任务七</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#习题答案-5"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#案例背景-3"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务一-3"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务二-3"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch7.html"><a href="ch7.html#任务三-3"><i class="fa fa-check"></i>任务三</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html"><i class="fa fa-check"></i>第8章：降维分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#案例背景-4"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#主成分分析"><i class="fa fa-check"></i>8.1 主成分分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务一-4"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务二-4"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-4"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务四-3"><i class="fa fa-check"></i>任务四</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#因子分析"><i class="fa fa-check"></i>8.2 因子分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务五-2"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务六-2"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务七-2"><i class="fa fa-check"></i>任务七</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务八"><i class="fa fa-check"></i>任务八</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务九选做"><i class="fa fa-check"></i>任务九（选做）</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#习题答案-6"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务一-5"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务二-5"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-5"><i class="fa fa-check"></i>任务三</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计分析与R语言（辅助材料）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch8" class="section level1 unnumbered">
+<h1>第8章：降维分析</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch8.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 数据准备 </span><span class="al">###</span></span>
+<span id="cb1-2"><a href="ch8.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空工作空间</span></span>
+<span id="cb1-3"><a href="ch8.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<div id="案例背景-4" class="section level3 unnumbered">
+<h3>案例背景</h3>
+<p>NBA，全称为美国职业篮球联赛(National Basketball Association)，作为美国四大职业体育联盟之一，在美国本土，在四大联赛中的排名绝非第一；而就全球而言，尤其是中国，其普及率和收看率，则是远远高于其他三大联盟。</p>
+<p>NBA作为商业联盟，不管是联盟还是球队，最关心的问题还是盈利，其球队市值估价也逐年提高。据《福布斯》2019年发布的NBA球队市值，30支NBA球队的估值首次全部达到或超过12亿美元，平均市值为19亿美元，较去年增长13%，是三年前的3倍，其中，纽约尼克斯达到40亿美金，是所有球队中最高的。对于NBA球队来说，其收入包括门票收入、广告收入等，而球队支出中，则有一大部分在于球员薪金。</p>
+<p>那么，自由球员在自由市场中的价值，具体表现为其下一份合同的薪金大小，是由哪些因素决定的？根据经验，主要的因素应该包括其在球场上的表现以及其展现的天赋和能力，再或者是对胜利的贡献。对于球队经理来说，需要主观地综合考虑多方面的因素，给出合适的合同。因此对球员薪金影响因素的量化分析，可以更合理地估计出球员在各个方面的水平与价值，对应合理的薪金合同，也有助于球队挑选更具性价比的球员，组建更为合理的阵容。这对球队战绩的提升、球队运营收入的增益，有着重要的意义。</p>
+<p>本章案例数据收集自截至2019年NBA球员季后赛总得分和每个球员的比赛详细数据。该数据收集了2448条NBA职业篮球运动员的各项比赛数据，其中包含勒布朗·詹姆斯、迈克尔·乔丹、科比·布莱恩特等多位全能巨星球员的投篮、三分球、罚球、助攻、抢断次数和季后赛总得分等18个变量信息。</p>
+<p><img src="pics/data_intro.png" /></p>
+</div>
+<div id="主成分分析" class="section level2 unnumbered">
+<h2>8.1 主成分分析</h2>
+<div id="任务一-4" class="section level3 unnumbered">
+<h3>任务一</h3>
+<p>读入数据<code>NBA.xlsx</code>，命名为nba，并将第2-18个变量提取为一个新的数据框，命名为<code>predictor</code>。绘制变量之间的相关系数矩阵图</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ch8.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb2-2"><a href="ch8.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-3"><a href="ch8.html#cb2-3" aria-hidden="true" tabindex="-1"></a>nba <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;./data/NBA.xlsx&quot;</span>)</span>
+<span id="cb2-4"><a href="ch8.html#cb2-4" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> nba[<span class="dv">2</span><span class="sc">:</span><span class="dv">18</span>]</span>
+<span id="cb2-5"><a href="ch8.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="ch8.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 变量间相关系数</span></span>
+<span id="cb2-7"><a href="ch8.html#cb2-7" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(predictor)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch8.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb3-2"><a href="ch8.html#cb3-2" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(M, <span class="at">tl.srt =</span> <span class="dv">60</span>,<span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg" /></p>
+<p>根据变量的相关系数图可以看出，部分变量之间的正相关性较强，例如出场数和上场总时间，命中次数和出手次数等。</p>
+</div>
+<div id="任务二-4" class="section level3 unnumbered">
+<h3>任务二</h3>
+<p>使用<code>psych</code>包中的<code>scree()</code>函数，绘制崖底碎石土，选择合适的主成分个数。scree()函数中，通过指定参数factors和pc的取值，生成主成分分析或因子分析的崖底碎石图，hline参数取值为绘制水平直线的高度，默认值为1，设置为负数则不绘制水平线。scree()函数会返回根据特征值绘制的崖底碎石图，同时返回特征值向量，因此可以使用该返回值计算累计方差贡献率。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch8.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
+<span id="cb4-2"><a href="ch8.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb4-3"><a href="ch8.html#cb4-3" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(predictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ch8-plot2-1.png" width="672" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ch8.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 计算累计方差贡献率</span></span>
+<span id="cb5-2"><a href="ch8.html#cb5-2" aria-hidden="true" tabindex="-1"></a>cumvar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cumsum</span>(result1<span class="sc">$</span>pcv)<span class="sc">/</span><span class="fu">sum</span>(result1<span class="sc">$</span>pcv),<span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="ch8.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;前三个主成分累计方差贡献率为：&#39;</span>, cumvar[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## 前三个主成分累计方差贡献率为： 0.63 0.73 0.8</code></pre>
+<p>根据崖底碎石图的拐点，结合主成分解释总体方差的比例（约为80%），选择主成分个数为3。</p>
+</div>
+<div id="任务三-4" class="section level3 unnumbered">
+<h3>任务三</h3>
+<p>根据任务二中确定的主成分个数，提取主成分，并对结果进行解读。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ch8.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取主成分</span></span>
+<span id="cb7-2"><a href="ch8.html#cb7-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">principal</span>(predictor, <span class="at">nfactors =</span> <span class="dv">3</span>)</span>
+<span id="cb7-3"><a href="ch8.html#cb7-3" aria-hidden="true" tabindex="-1"></a>pc</span></code></pre></div>
+<pre><code>## Principal Components Analysis
+## Call: principal(r = predictor, nfactors = 3)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##                     RC1   RC2  RC3   h2    u2 com
+## 出场数             0.85  0.30 0.20 0.86 0.144 1.4
+## 上场总时间（min）  0.91  0.33 0.13 0.95 0.051 1.3
+## 投篮率             0.12 -0.07 0.80 0.67 0.334 1.1
+## 命中次数           0.93  0.25 0.08 0.94 0.059 1.2
+## 出手次数           0.92  0.28 0.08 0.93 0.065 1.2
+## 三分投球率        -0.09  0.54 0.51 0.57 0.432 2.0
+## 三分命中次数       0.31  0.90 0.03 0.91 0.087 1.2
+## 三分出手次数       0.33  0.90 0.03 0.93 0.071 1.3
+## 罚球率             0.17  0.11 0.61 0.41 0.591 1.2
+## 罚球命中次数       0.92  0.23 0.05 0.90 0.101 1.1
+## 罚球出手次数       0.94  0.17 0.05 0.92 0.084 1.1
+## 篮板数             0.90  0.01 0.11 0.83 0.174 1.0
+## 助攻次数           0.77  0.41 0.03 0.76 0.238 1.5
+## 抢断次数           0.70  0.56 0.08 0.81 0.191 1.9
+## 盖帽次数           0.71  0.02 0.13 0.53 0.475 1.1
+## 失误次数           0.73  0.52 0.08 0.80 0.195 1.8
+## 犯规次数           0.91  0.18 0.16 0.88 0.120 1.1
+## 
+##                        RC1  RC2  RC3
+## SS loadings           9.00 3.16 1.43
+## Proportion Var        0.53 0.19 0.08
+## Cumulative Var        0.53 0.72 0.80
+## Proportion Explained  0.66 0.23 0.10
+## Cumulative Proportion 0.66 0.90 1.00
+## 
+## Mean item complexity =  1.3
+## Test of the hypothesis that 3 components are sufficient.
+## 
+## The root mean square of the residuals (RMSR) is  0.05 
+##  with the empirical chi square  1937.64  with prob &lt;  0 
+## 
+## Fit based upon off diagonal values = 0.99</code></pre>
+<p>R的输出结果中，前三列为三个成分的载荷，它是指观测变量与主成分的相关系数，这里需要注意，载荷系数的正负本身没有意义 ，但是不同载荷系数之间的正负对比是有意义的；h2栏指主成分对每个原始变量的方差贡献率，即主成分对每个变量的方差解释度，由每个主成分的载荷平方求和得到，例如对于出场数，三个主成分一共解释了86%的方差；u2栏指成分唯一性，由1-h2计算得到，即方差无法被主成分解释的比例；最后一列com为主成分在每个变量上的Hoffman’s复杂度指数，<span class="math inline">\(X_i\)</span>对应的复杂度由<span class="math inline">\(\frac{\left(\Sigma_{k} \rho_{k i}^{2}\right)^{2}}{\Sigma_{k}\left(\rho_{k i}\right)^{4}}\)</span>计算得到，其中<span class="math inline">\(\rho_{k i}\)</span>为第k个主成分与变量<span class="math inline">\(X_i\)</span>的因子载荷，该指数表示前k个主成分与第i个变量之间的综合相关性大小，值越大表示整体相关性越强。</p>
+<p>从代码结果的最后一个输出表可以看出，第一主成分解释了出场数85%的方差，第三主成分解释了投篮率80%的方差，第二主成分则分别解释了三分命中次数和三分出手次数90%的方差。代码结果中的累计贡献率显示，前三个主成分的累计贡献率达到了80%，因此使用这三个主成分可以很好地概括这组数据。</p>
+<p>利用主成分分量的值可以对各个主成分进行解释，第一主成分的三分投球率分量为负值，其余都为正值，除了投篮率、罚球率、三分投球率、三分命中次数等表示“命中”占比的指标外，其余分量大多数都大于0.5，因此第一主成分反映球员的比赛活跃与主动程度，可以称为<strong>场内活跃因子</strong>。第二大主成分在三分球的命中次数和出手次数上分量高达90%，在2010-2018的8个NBA赛季中，球员的三分球得分尝试大幅度增加，因为球队都不约而同地得出了一个结论：根据加入胜率的计算，三分球投篮尝试（特别是从角落投出）在统计数据上让球队赢得比赛的可能性增加20%到35%。因此，我们可以称第二大主成分为<strong>胜率加成因子</strong>。第三大主成分在投篮（命中）率、罚球（命中）率和三分投球（命中）率分量较大，由于命中率体现了球员的篮球技术水平，第三主成分则可以被称为<strong>技术水平因子</strong>。</p>
+</div>
+<div id="任务四-3" class="section level3 unnumbered">
+<h3>任务四</h3>
+<p>通过<code>principal()</code>函数返回的<code>weights</code>对象，可以得到每个变量的主成分得分系数，从而将主成分表示为变量的线性组合形式。在<code>principal()</code>函数的基础上，添加参数<code>score = TRUE</code>，即可以获得所有球员样本在三个主成分上的得分，通过这个得分，可以从三个角度（场内活跃因子、胜率加成因子、技术水平因子）对球员的综合实力进行评价。请计算主成分得分系数，并输出前六个样本的主成分得分，对结果进行适当解读。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch8.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">unclass</span>(pc<span class="sc">$</span>weights), <span class="dv">2</span>)  <span class="co"># 计算主成分得分系数</span></span></code></pre></div>
+<pre><code>##                     RC1   RC2   RC3
+## 出场数             0.09 -0.01  0.07
+## 上场总时间（min）  0.10  0.00  0.01
+## 投篮率            -0.02 -0.13  0.64
+## 命中次数           0.12 -0.04 -0.02
+## 出手次数           0.11 -0.02 -0.03
+## 三分投球率        -0.15  0.25  0.37
+## 三分命中次数      -0.10  0.41 -0.08
+## 三分出手次数      -0.10  0.40 -0.08
+## 罚球率            -0.03 -0.02  0.46
+## 罚球命中次数       0.12 -0.05 -0.05
+## 罚球出手次数       0.14 -0.08 -0.04
+## 篮板数             0.15 -0.16  0.02
+## 助攻次数           0.07  0.08 -0.07
+## 抢断次数           0.02  0.16 -0.04
+## 盖帽次数           0.12 -0.12  0.05
+## 失误次数           0.04  0.13 -0.04
+## 犯规次数           0.12 -0.08  0.05</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch8.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 计算主成分得分</span></span>
+<span id="cb11-2"><a href="ch8.html#cb11-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">principal</span>(predictor, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">scores =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="ch8.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pc<span class="sc">$</span>scores)</span></code></pre></div>
+<pre><code>##            RC1       RC2         RC3
+## [1,]  8.303699  8.511875 -2.74635320
+## [2,]  7.180972  3.157658 -1.17880314
+## [3,]  7.867405 -3.731918  0.03163649
+## [4,]  6.281025  6.742762 -1.80571153
+## [5,] 10.055778 -4.066821 -0.12789204
+## [6,] 10.340703 -3.711050  0.36334196</code></pre>
+<p>利用如下公式可得到主成分得分，以第一主成分为例：</p>
+<p><span class="math inline">\(PC_1\)</span>=0.09 * 出场数 + 0.1 * 上场总时间-0.02 * 投篮率 + 0.12 * 命中次数 + 0.11 * 出手次数-0.15 * 三分投球率-0.1 * 三分命中次数-0.1 * 三分出手次数-0.03 * 罚球率 + 0.12 * 罚球命中次数 + 0.14 * 罚球出手次数 + 0.15 * 篮板数 + 0.07 * 助攻次数 + 0.02 * 抢断次数 + 0.12 * 盖帽次数 + 0.04 * 失误次数 + 0.12 * 犯规次数</p>
+<p>以第一个球员为例，他的场内活跃因子和胜率加成因子得分较高，说明他是一位在比赛场上主动进攻类型的球员，但是他的技术水平因子得分较低，因此还是需要多加练习，提高自己的投篮命中率，从而获得更多分数。</p>
+</div>
+</div>
+<div id="因子分析" class="section level2 unnumbered">
+<h2>8.2 因子分析</h2>
+<div id="任务五-2" class="section level3 unnumbered">
+<h3>任务五</h3>
+<p>在进行因子分析之前，需要对数据进行标准化，再计算协方差矩阵；或等价地，使用原始数据的相关系数矩阵作为因子分析函数的输入。利用scree()函数绘制因子分析的崖底碎石图，结合累计方差贡献率（由fa()函数输出）等指标，选择合适的公因子数目。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ch8.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 因子分析</span></span>
+<span id="cb13-2"><a href="ch8.html#cb13-2" aria-hidden="true" tabindex="-1"></a>cov <span class="ot">&lt;-</span> <span class="fu">cov</span>(nba[,<span class="dv">2</span><span class="sc">:</span><span class="dv">18</span>])</span>
+<span id="cb13-3"><a href="ch8.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 转换为相关系数矩阵（等价于标准化后数据的协方差矩阵）</span></span>
+<span id="cb13-4"><a href="ch8.html#cb13-4" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">cov2cor</span>(cov)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ch8.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 选择因子数目</span></span>
+<span id="cb14-2"><a href="ch8.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb14-3"><a href="ch8.html#cb14-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(cor, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ch8-plot3-1.png" width="672" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg" /></p>
+<p>利用scree()函数绘制因子分析的崖底碎石图，结合累计方差贡献率（由fa()函数输出）等指标，设置公因子数为3。</p>
+</div>
+<div id="任务六-2" class="section level3 unnumbered">
+<h3>任务六</h3>
+<p>使用NBA季后赛球员数据来进行公共因子的提取，公因子数目根据任务五的结果所得。使用最大似然法提取未旋转的因子，对提取公共因子的结果进行解读。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ch8.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取公共因子</span></span>
+<span id="cb15-2"><a href="ch8.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(cor, <span class="at">n.obs =</span> <span class="dv">2448</span>, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
+<pre><code>## Factor Analysis using method =  ml
+## Call: fa(r = cor, nfactors = 3, n.obs = 2448, rotate = &quot;none&quot;, fm = &quot;ml&quot;)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##                    ML1   ML2   ML3    h2     u2 com
+## 出场数            0.81  0.31  0.38 0.903 0.0970 1.7
+## 上场总时间（min） 0.87  0.35  0.31 0.977 0.0228 1.6
+## 投篮率            0.12  0.10  0.15 0.046 0.9537 2.7
+## 命中次数          0.86  0.47  0.07 0.964 0.0359 1.6
+## 出手次数          0.88  0.44  0.06 0.964 0.0365 1.5
+## 三分投球率        0.27 -0.26  0.08 0.148 0.8521 2.1
+## 三分命中次数      0.87 -0.49 -0.01 0.993 0.0074 1.6
+## 三分出手次数      0.88 -0.47 -0.01 0.995 0.0048 1.5
+## 罚球率            0.25  0.05  0.10 0.074 0.9258 1.4
+## 罚球命中次数      0.85  0.51 -0.12 0.993 0.0066 1.7
+## 罚球出手次数      0.82  0.55 -0.08 0.985 0.0154 1.8
+## 篮板数            0.67  0.53  0.29 0.812 0.1879 2.3
+## 助攻次数          0.80  0.28  0.07 0.729 0.2715 1.3
+## 抢断次数          0.83  0.07  0.19 0.735 0.2650 1.1
+## 盖帽次数          0.51  0.37  0.24 0.454 0.5462 2.3
+## 失误次数          0.84  0.14  0.08 0.726 0.2738 1.1
+## 犯规次数          0.78  0.43  0.34 0.902 0.0980 2.0
+## 
+##                        ML1  ML2  ML3
+## SS loadings           9.34 2.44 0.62
+## Proportion Var        0.55 0.14 0.04
+## Cumulative Var        0.55 0.69 0.73
+## Proportion Explained  0.75 0.20 0.05
+## Cumulative Proportion 0.75 0.95 1.00
+## 
+## Mean item complexity =  1.7
+## Test of the hypothesis that 3 factors are sufficient.
+## 
+## The degrees of freedom for the null model are  136  and the objective function was  32.07 with Chi Square of  78273.06
+## The degrees of freedom for the model are 88  and the objective function was  4.81 
+## 
+## The root mean square of the residuals (RMSR) is  0.04 
+## The df corrected root mean square of the residuals is  0.05 
+## 
+## The harmonic number of observations is  2448 with the empirical chi square  1017.8  with prob &lt;  4.3e-158 
+## The total number of observations was  2448  with Likelihood Chi Square =  11717.56  with prob &lt;  0 
+## 
+## Tucker Lewis Index of factoring reliability =  0.77
+## RMSEA index =  0.232  and the 90 % confidence intervals are  0.229 0.236
+## BIC =  11030.9
+## Fit based upon off diagonal values = 1
+## Measures of factor score adequacy             
+##                                                   ML1  ML2  ML3
+## Correlation of (regression) scores with factors     1 1.00 0.96
+## Multiple R square of scores with factors            1 0.99 0.91
+## Minimum correlation of possible factor scores       1 0.99 0.83</code></pre>
+<p>得到结果后，如何解读公共因子的含义呢？解释公因子<span class="math inline">\(F_i\)</span>时，可以通过对载荷系数的绝对值较大的输入来解释，与主成分分析的R程序结果类似，这里同样需要注意，载荷系数的正负本身没有意义，但是不同载荷系数之间的正负对比是有意义的。以上面的结果为例，我们取公共因子的个数为3，3个公共因子反映的原始变量信息已占总信息的73%。查看输出的因子载荷矩阵A，以ML1对应的列（第一个公共因子的载荷向量）为例，除了投篮率、三分球技术指标、罚球率和盖帽次数外，其余各数值都接近或大于0.8，这表示其余的变量可以来解释公因子<span class="math inline">\(F_1\)</span>，或者说<span class="math inline">\(F_1\)</span>主要反应这些变量的信息。观察第二个公共因子，其载荷没有0.8左右较大的值，虽然也可以根据相对大小按照以上想法解释，但是容易使公共因子的意义含糊不清，因此我们将介绍因子旋转后的因子载荷矩阵，其实际含义将更加明显。</p>
+</div>
+<div id="任务七-2" class="section level3 unnumbered">
+<h3>任务七</h3>
+<p>当直接提取出的公共因子的典型代表变量不是非常突出时，容易使公共因子的实际意义含糊不清，不利于对因子进行解释，为此需要对因子载荷矩阵进行旋转变换，使得各因子载荷矩阵的每一列各元素的平方按列向0或1两极转化，达到其结构简化的目的。在NBA季后赛球员得分的案例中，我们使用正交旋转进一步提取因子，对新的结果进行解读。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ch8.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 因子旋转</span></span>
+<span id="cb17-2"><a href="ch8.html#cb17-2" aria-hidden="true" tabindex="-1"></a>fa <span class="ot">&lt;-</span> <span class="fu">fa</span>(cor, <span class="at">n.obs =</span> <span class="dv">2448</span>, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
+<span id="cb17-3"><a href="ch8.html#cb17-3" aria-hidden="true" tabindex="-1"></a>fa</span></code></pre></div>
+<pre><code>## Factor Analysis using method =  ml
+## Call: fa(r = cor, nfactors = 3, n.obs = 2448, rotate = &quot;varimax&quot;, fm = &quot;ml&quot;)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##                     ML1  ML3  ML2    h2     u2 com
+## 出场数             0.54 0.70 0.34 0.903 0.0970 2.4
+## 上场总时间（min）  0.64 0.66 0.35 0.977 0.0228 2.5
+## 投篮率             0.07 0.20 0.02 0.046 0.9537 1.2
+## 命中次数           0.81 0.49 0.24 0.964 0.0359 1.9
+## 出手次数           0.81 0.48 0.28 0.964 0.0365 1.9
+## 三分投球率        -0.01 0.07 0.38 0.148 0.8521 1.1
+## 三分命中次数       0.28 0.10 0.95 0.993 0.0074 1.2
+## 三分出手次数       0.31 0.11 0.94 0.995 0.0048 1.2
+## 罚球率             0.14 0.19 0.14 0.074 0.9258 2.8
+## 罚球命中次数       0.92 0.33 0.20 0.993 0.0066 1.4
+## 罚球出手次数       0.91 0.38 0.16 0.985 0.0154 1.4
+## 篮板数             0.62 0.65 0.08 0.812 0.1879 2.0
+## 助攻次数           0.67 0.41 0.34 0.729 0.2715 2.2
+## 抢断次数           0.51 0.45 0.52 0.735 0.2650 3.0
+## 盖帽次数           0.44 0.50 0.09 0.454 0.5462 2.0
+## 失误次数           0.60 0.38 0.47 0.726 0.2738 2.6
+## 犯规次数           0.61 0.69 0.23 0.902 0.0980 2.2
+## 
+##                        ML1  ML3  ML2
+## SS loadings           5.89 3.43 3.07
+## Proportion Var        0.35 0.20 0.18
+## Cumulative Var        0.35 0.55 0.73
+## Proportion Explained  0.48 0.28 0.25
+## Cumulative Proportion 0.48 0.75 1.00
+## 
+## Mean item complexity =  1.9
+## Test of the hypothesis that 3 factors are sufficient.
+## 
+## The degrees of freedom for the null model are  136  and the objective function was  32.07 with Chi Square of  78273.06
+## The degrees of freedom for the model are 88  and the objective function was  4.81 
+## 
+## The root mean square of the residuals (RMSR) is  0.04 
+## The df corrected root mean square of the residuals is  0.05 
+## 
+## The harmonic number of observations is  2448 with the empirical chi square  1017.8  with prob &lt;  4.3e-158 
+## The total number of observations was  2448  with Likelihood Chi Square =  11717.56  with prob &lt;  0 
+## 
+## Tucker Lewis Index of factoring reliability =  0.77
+## RMSEA index =  0.232  and the 90 % confidence intervals are  0.229 0.236
+## BIC =  11030.9
+## Fit based upon off diagonal values = 1
+## Measures of factor score adequacy             
+##                                                    ML1  ML3  ML2
+## Correlation of (regression) scores with factors   0.99 0.96 1.00
+## Multiple R square of scores with factors          0.98 0.93 1.00
+## Minimum correlation of possible factor scores     0.96 0.86 0.99</code></pre>
+<p>因子旋转后，第一个公共因子的因子载荷旋转后弱化了投篮率和三分投球率的意义，使得第一公因子主要解释了命中、出手次数和罚球的命中、出手次数，反映球员的比赛活跃与主动程度，可以称为<strong>场内活跃因子</strong>；第二个公共因子比旋转前加强了篮板数、盖帽次数、命中次数这几个变量的含义，因此可以更清晰地反映球员的<strong>技术水平因子</strong>；第三个公因子与旋转前相比，强化了三分命中次数和三分出手次数的解释，主要反映了三分球相关的信息，是球员对于整场球的<strong>胜算率加成因素</strong>。这和主成分分析得到的结论是类似的，由于因子分析结果进行了因子旋转，第二个和第三个公因子的共性方差相对大小发生了变化，因此公因子的顺序和旋转之前也略有区别。</p>
+</div>
+<div id="任务八" class="section level3 unnumbered">
+<h3>任务八</h3>
+<p>对<code>fa()</code>返回的对象使用<code>factor.scores()</code>函数，可以得到因子得分矩阵，通过这个得分，可以从几个公因子的角度对球员的综合实力进行评价。计算NBA数据的巴特莱特因子得分，设置参数<code>method = 'Bartlett'</code>，查看得分矩阵的前六行。此外，在<code>fa()</code>函数返回的结果中，还可以得到得分系数（标准化的回归权重），储存在<code>weights</code>元素中。对于NBA数据集，输出对载荷矩阵进行旋转后得到的因子得分权重，并进行解读。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ch8.html#cb19-1" aria-hidden="true" tabindex="-1"></a>my_score <span class="ot">&lt;-</span> <span class="fu">factor.scores</span>(nba[,<span class="dv">2</span><span class="sc">:</span><span class="dv">18</span>], fa, <span class="at">method=</span><span class="st">&quot;Bartlett&quot;</span>)</span>
+<span id="cb19-2"><a href="ch8.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_score<span class="sc">$</span>scores)</span></code></pre></div>
+<pre><code>##            ML1       ML3       ML2
+## [1,] 12.579026 -4.495819  8.081668
+## [2,] 11.992141 -3.365741  1.038594
+## [3,]  6.600081  5.852415 -3.107882
+## [4,]  9.424972 -2.345650  6.347182
+## [5,]  9.883615  2.428957 -3.784769
+## [6,]  8.289221  4.695544 -3.199542</code></pre>
+<p>以第一个球员的因子得分为例，其在场内活跃度最高，三分球出手胜率加成也较好，但是命中率技术水平欠佳。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ch8.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(fa<span class="sc">$</span>weights,<span class="dv">2</span>)  <span class="co"># 因子得分权重</span></span></code></pre></div>
+<pre><code>##                     ML1   ML3   ML2
+## 出场数            -0.14  0.32  0.01
+## 上场总时间（min） -0.43  1.09  0.02
+## 投篮率            -0.01  0.01  0.00
+## 命中次数           0.00  0.20 -0.02
+## 出手次数           0.01  0.17 -0.02
+## 三分投球率         0.00  0.01  0.00
+## 三分命中次数      -0.05 -0.16  0.46
+## 三分出手次数      -0.01 -0.31  0.66
+## 罚球率             0.00  0.01  0.00
+## 罚球命中次数       1.19 -1.16 -0.24
+## 罚球出手次数       0.41 -0.29 -0.11
+## 篮板数            -0.05  0.13  0.00
+## 助攻次数           0.00  0.02  0.00
+## 抢断次数          -0.02  0.06  0.01
+## 盖帽次数          -0.01  0.04  0.00
+## 失误次数          -0.01  0.02  0.00
+## 犯规次数          -0.11  0.28  0.00</code></pre>
+<p>根据因子得分权重的结果，每一个公共因子都可以表示为原变量的线性组合，由此得出因子得分函数。进一步地，把每个样本的观测值逐个代入因子得分函数后，即可得到样本的因子得分值。</p>
+</div>
+<div id="任务九选做" class="section level3 unnumbered">
+<h3>任务九（选做）</h3>
+<p>若有2-3个公因子，还可以将每个样本的因子得分绘制在直角坐标系中，从而更清晰地看出样本的散布情况。这里以NBA数据为例，提取3个公因子，将2448个观测的因子得分散点图绘制在三维画布上如下所示。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ch8.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 3个公因子可视化因子得分</span></span>
+<span id="cb23-2"><a href="ch8.html#cb23-2" aria-hidden="true" tabindex="-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">fa</span>(cor, <span class="at">n.obs =</span> <span class="dv">2448</span>, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
+<span id="cb23-3"><a href="ch8.html#cb23-3" aria-hidden="true" tabindex="-1"></a>my_score <span class="ot">&lt;-</span> <span class="fu">factor.scores</span>(nba[,<span class="dv">2</span><span class="sc">:</span><span class="dv">18</span>], fa1, <span class="at">method=</span><span class="st">&quot;Bartlett&quot;</span>)</span>
+<span id="cb23-4"><a href="ch8.html#cb23-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(my_score<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ch8.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 绘制3D散点图（在命令行执行，用浏览器打开结果）</span></span>
+<span id="cb24-2"><a href="ch8.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb24-3"><a href="ch8.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb24-4"><a href="ch8.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>(<span class="at">x=</span>s<span class="sc">$</span>ML1, <span class="co"># x axis</span></span>
+<span id="cb24-5"><a href="ch8.html#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span>s<span class="sc">$</span>ML2,  <span class="co"># y axis</span></span>
+<span id="cb24-6"><a href="ch8.html#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">z=</span>s<span class="sc">$</span>ML3,         <span class="co"># z axis</span></span>
+<span id="cb24-7"><a href="ch8.html#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;scatter3d&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>) </span></code></pre></div>
+</div>
+</div>
+<div id="习题答案-6" class="section level2 unnumbered">
+<h2>习题答案</h2>
+<div id="任务一-5" class="section level3 unnumbered">
+<h3>任务一</h3>
+<p>R中自带的数据列表<code>Harman23.cor</code>包含了305个女孩的8个身体测量指标，列表的<code>cov</code>对象是原始数据及的相关系数矩阵。使用该相关系数矩阵，对8个身体指标进行主成分分析，用较少的变量替换这些原始的身体指标，并对结果进行解读。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ch8.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb25-2"><a href="ch8.html#cb25-2" aria-hidden="true" tabindex="-1"></a>my_cov <span class="ot">&lt;-</span> Harman23.cor<span class="sc">$</span>cov</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ch8.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
+<span id="cb26-2"><a href="ch8.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb26-3"><a href="ch8.html#cb26-3" aria-hidden="true" tabindex="-1"></a>hw1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(my_cov, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ch8-plot4-1.png" width="672" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ch8.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取主成分</span></span>
+<span id="cb27-2"><a href="ch8.html#cb27-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">principal</span>(my_cov, <span class="at">nfactors =</span> <span class="dv">2</span>)</span>
+<span id="cb27-3"><a href="ch8.html#cb27-3" aria-hidden="true" tabindex="-1"></a>pc</span></code></pre></div>
+<pre><code>## Principal Components Analysis
+## Call: principal(r = my_cov, nfactors = 2)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##                 RC1  RC2   h2    u2 com
+## height         0.90 0.25 0.88 0.123 1.2
+## arm.span       0.93 0.19 0.90 0.097 1.1
+## forearm        0.92 0.16 0.87 0.128 1.1
+## lower.leg      0.90 0.22 0.86 0.139 1.1
+## weight         0.26 0.88 0.85 0.150 1.2
+## bitro.diameter 0.19 0.84 0.74 0.261 1.1
+## chest.girth    0.11 0.84 0.72 0.283 1.0
+## chest.width    0.26 0.75 0.62 0.375 1.2
+## 
+##                        RC1  RC2
+## SS loadings           3.52 2.92
+## Proportion Var        0.44 0.37
+## Cumulative Var        0.44 0.81
+## Proportion Explained  0.55 0.45
+## Cumulative Proportion 0.55 1.00
+## 
+## Mean item complexity =  1.1
+## Test of the hypothesis that 2 components are sufficient.
+## 
+## The root mean square of the residuals (RMSR) is  0.05 
+## 
+## Fit based upon off diagonal values = 0.99</code></pre>
+</div>
+<div id="任务二-5" class="section level3 unnumbered">
+<h3>任务二</h3>
+<p>R中自带的数据集<code>USJudgeRatings</code>包含了律师对美国高等法院法官的评分。数据框包含了43个观测、12个变量，变量表如下所示。</p>
+<p><img src="pics/HW_dataintro_ch8.png" />
+请使用主成分分析的方法，用较少的变量总结从<code>INTG</code>到<code>RTEN</code>这11个变量，使得这些主成分可以尽可能保留原始变量的信息，对结果进行解读，并计算43个观测样本的主成分得分。</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ch8.html#cb29-1" aria-hidden="true" tabindex="-1"></a>USpredictor <span class="ot">&lt;-</span> USJudgeRatings[, <span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ch8.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
+<span id="cb30-2"><a href="ch8.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb30-3"><a href="ch8.html#cb30-3" aria-hidden="true" tabindex="-1"></a>hw2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(USpredictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ch8-plot5-1.png" width="672" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ch8.html#cb31-1" aria-hidden="true" tabindex="-1"></a>pc2 <span class="ot">&lt;-</span> <span class="fu">principal</span>(USpredictor, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">scores =</span> T)</span>
+<span id="cb31-2"><a href="ch8.html#cb31-2" aria-hidden="true" tabindex="-1"></a>pc2</span></code></pre></div>
+<pre><code>## Principal Components Analysis
+## Call: principal(r = USpredictor, nfactors = 1, scores = T)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##       PC1   h2     u2 com
+## INTG 0.92 0.84 0.1565   1
+## DMNR 0.91 0.83 0.1663   1
+## DILG 0.97 0.94 0.0613   1
+## CFMG 0.96 0.93 0.0720   1
+## DECI 0.96 0.92 0.0763   1
+## PREP 0.98 0.97 0.0299   1
+## FAMI 0.98 0.95 0.0469   1
+## ORAL 1.00 0.99 0.0091   1
+## WRIT 0.99 0.98 0.0196   1
+## PHYS 0.89 0.80 0.2013   1
+## RTEN 0.99 0.97 0.0275   1
+## 
+##                  PC1
+## SS loadings    10.13
+## Proportion Var  0.92
+## 
+## Mean item complexity =  1
+## Test of the hypothesis that 1 component is sufficient.
+## 
+## The root mean square of the residuals (RMSR) is  0.04 
+##  with the empirical chi square  6.21  with prob &lt;  1 
+## 
+## Fit based upon off diagonal values = 1</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ch8.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pc2<span class="sc">$</span>scores)</span></code></pre></div>
+<pre><code>##                       PC1
+## AARONSON,L.H.  -0.1857981
+## ALEXANDER,J.M.  0.7469865
+## ARMENTANO,A.J.  0.0704772
+## BERDON,R.I.     1.1358765
+## BRACKEN,J.J.   -2.1586211
+## BURNS,E.B.      0.7669406</code></pre>
+</div>
+<div id="任务三-5" class="section level3 unnumbered">
+<h3>任务三</h3>
+<p>R中自带的数据列表<code>ability.cov</code>提供了六个心理学测验的数据，包括112个参与者的观测值和6个变量：非语言的普通智力测验（general）、画图测验（picture）、积木图案测验（blocks）、迷宫测验（maze）、阅读测验（reading）和词汇测验（vocab），该列表的cov对象为变量间的协方差矩阵。使用因子分析的方法，选择合适的公因子数目，将6个变量转化为计较少的一组潜在心理学因素，解释不同公因子的含义。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="ch8.html#cb35-1" aria-hidden="true" tabindex="-1"></a>cov_hw3 <span class="ot">&lt;-</span> ability.cov<span class="sc">$</span>cov</span>
+<span id="cb35-2"><a href="ch8.html#cb35-2" aria-hidden="true" tabindex="-1"></a>corr <span class="ot">&lt;-</span> <span class="fu">cov2cor</span>(cov_hw3)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ch8.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 选择因子数目</span></span>
+<span id="cb36-2"><a href="ch8.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb36-3"><a href="ch8.html#cb36-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(corr, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/ch8-plot6-1.png" width="672" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="ch8.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取公共因子</span></span>
+<span id="cb37-2"><a href="ch8.html#cb37-2" aria-hidden="true" tabindex="-1"></a>fa_hw2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(corr, <span class="at">n.obs =</span> ability.cov<span class="sc">$</span>n.obs, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
+<span id="cb37-3"><a href="ch8.html#cb37-3" aria-hidden="true" tabindex="-1"></a>fa_hw2</span></code></pre></div>
+<pre><code>## Factor Analysis using method =  ml
+## Call: fa(r = corr, nfactors = 2, n.obs = ability.cov$n.obs, rotate = &quot;none&quot;, 
+##     fm = &quot;ml&quot;)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##          ML1   ML2   h2    u2 com
+## general 0.65  0.35 0.54 0.455 1.5
+## picture 0.35  0.54 0.41 0.589 1.7
+## blocks  0.47  0.75 0.78 0.218 1.7
+## maze    0.25  0.41 0.23 0.769 1.7
+## reading 0.96 -0.13 0.95 0.052 1.0
+## vocab   0.82 -0.04 0.67 0.334 1.0
+## 
+##                        ML1  ML2
+## SS loadings           2.42 1.16
+## Proportion Var        0.40 0.19
+## Cumulative Var        0.40 0.60
+## Proportion Explained  0.68 0.32
+## Cumulative Proportion 0.68 1.00
+## 
+## Mean item complexity =  1.4
+## Test of the hypothesis that 2 factors are sufficient.
+## 
+## The degrees of freedom for the null model are  15  and the objective function was  2.48 with Chi Square of  268.35
+## The degrees of freedom for the model are 4  and the objective function was  0.06 
+## 
+## The root mean square of the residuals (RMSR) is  0.04 
+## The df corrected root mean square of the residuals is  0.07 
+## 
+## The harmonic number of observations is  112 with the empirical chi square  4.23  with prob &lt;  0.38 
+## The total number of observations was  112  with Likelihood Chi Square =  6.11  with prob &lt;  0.19 
+## 
+## Tucker Lewis Index of factoring reliability =  0.968
+## RMSEA index =  0.068  and the 90 % confidence intervals are  0 0.171
+## BIC =  -12.77
+## Fit based upon off diagonal values = 0.99
+## Measures of factor score adequacy             
+##                                                    ML1  ML2
+## Correlation of (regression) scores with factors   0.98 0.89
+## Multiple R square of scores with factors          0.96 0.80
+## Minimum correlation of possible factor scores     0.91 0.59</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ch8.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 因子旋转</span></span>
+<span id="cb39-2"><a href="ch8.html#cb39-2" aria-hidden="true" tabindex="-1"></a>farot_hw2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(corr, <span class="at">n.obs =</span> ability.cov<span class="sc">$</span>n.obs, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
+<span id="cb39-3"><a href="ch8.html#cb39-3" aria-hidden="true" tabindex="-1"></a>farot_hw2</span></code></pre></div>
+<pre><code>## Factor Analysis using method =  ml
+## Call: fa(r = corr, nfactors = 2, n.obs = ability.cov$n.obs, rotate = &quot;varimax&quot;, 
+##     fm = &quot;ml&quot;)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##          ML1  ML2   h2    u2 com
+## general 0.50 0.54 0.54 0.455 2.0
+## picture 0.16 0.62 0.41 0.589 1.1
+## blocks  0.21 0.86 0.78 0.218 1.1
+## maze    0.11 0.47 0.23 0.769 1.1
+## reading 0.96 0.18 0.95 0.052 1.1
+## vocab   0.78 0.22 0.67 0.334 1.2
+## 
+##                        ML1  ML2
+## SS loadings           1.86 1.72
+## Proportion Var        0.31 0.29
+## Cumulative Var        0.31 0.60
+## Proportion Explained  0.52 0.48
+## Cumulative Proportion 0.52 1.00
+## 
+## Mean item complexity =  1.3
+## Test of the hypothesis that 2 factors are sufficient.
+## 
+## The degrees of freedom for the null model are  15  and the objective function was  2.48 with Chi Square of  268.35
+## The degrees of freedom for the model are 4  and the objective function was  0.06 
+## 
+## The root mean square of the residuals (RMSR) is  0.04 
+## The df corrected root mean square of the residuals is  0.07 
+## 
+## The harmonic number of observations is  112 with the empirical chi square  4.23  with prob &lt;  0.38 
+## The total number of observations was  112  with Likelihood Chi Square =  6.11  with prob &lt;  0.19 
+## 
+## Tucker Lewis Index of factoring reliability =  0.968
+## RMSEA index =  0.068  and the 90 % confidence intervals are  0 0.171
+## BIC =  -12.77
+## Fit based upon off diagonal values = 0.99
+## Measures of factor score adequacy             
+##                                                    ML1  ML2
+## Correlation of (regression) scores with factors   0.97 0.90
+## Multiple R square of scores with factors          0.94 0.81
+## Minimum correlation of possible factor scores     0.88 0.63</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch7.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

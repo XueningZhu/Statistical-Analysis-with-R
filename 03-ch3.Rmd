@@ -1,4 +1,4 @@
-# 第3章：基本统计分析 {-}
+# 第3章：基本统计分析 {-#ch3}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)

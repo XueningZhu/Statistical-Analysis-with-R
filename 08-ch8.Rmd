@@ -1,4 +1,4 @@
-# 第8章：降维分析 {-}
+# 第8章：降维分析 {-#ch8}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
