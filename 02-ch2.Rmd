@@ -247,7 +247,7 @@ mWide = data.frame(Name = c("A", "B"), Type = c("喜剧", "动作"),
 # 将列名中的GF去掉
 colnames(mWide)[3:5] = gsub("GF", "", colnames(mWide)[3:5])
 mWide #查看原表
-(mLong = melt(mWide, id.vars = c("Name", "Type"), variable.name = "Year")) 
+(mLong = melt(mWide, id.vars = c("Name", "Type"), variable_name = "Year")) 
 
 ## (2) 长表变宽表 ##
 # 将列Year从字符型变成数值型
@@ -435,4 +435,127 @@ movie[is.na(movie$score), ]$score<-mean(movie$score, na.rm = T)#赋值均值
 
 ```
 
+## 习题答案
 
+### 题目 2.1 {-}
+
+如何理解R语言中的“向量化”操作？请举一个例子说明。
+
+对于一个向量$x$，“向量化”操作指命令可以直接对向量的每个元素进行操作，不需要使用循环实现计算。比如命令语句$x$+2或者$x^3$，向量$x$中的每个元素都加2或每个元素都变成三次幂。
+
+### 题目 2.2 {-}
+
+请描述R语言中矩阵与数据框之间的两个不同点。
+
+a.数据框实际上是由多个长度相同的向量组成，而矩阵实际上是一个二维向量。
+
+b.数据框所包含的向量可以是不同数据类型的，而矩阵仅能包含一种数据类型。
+
+### 题目 2.3 {-}
+
+对矩阵的操作：
+
+1.在R中生成生成下面的矩阵A。
+
+$$A=\left(\begin{array}{lll}
+1 & 2 & 3 \\
+4 & 2 & 1 \\
+2 & 3 & 0
+\end{array}\right)$$
+
+```{r}
+#构造矩阵
+(A=matrix(c(1,4,2,2,2,3,3,1,0),nrow=3))
+```
+
+2.计算矩阵A的转置矩阵B和逆矩阵C。
+
+```{r}
+(B=t(A))#求转置矩阵
+(C=solve(A))#求逆矩阵
+```
+
+3.求矩阵A和矩阵C的乘积。
+
+```{r}
+A%*%C#矩阵乘积
+```
+### 题目 2.4（实训题目）{-}
+
+实训题目：使用电视剧网播量数据集，该数据集收集了4266条电视剧的信息。请完成以下任务。
+
+a.	获取数据集，查看数据概况。
+
+```{r}
+tv<-read.csv("./data/电视剧播量.csv",fileEncoding="gbk",stringsAsFactors = F)#读取数据
+head(tv)#查看数据前几行
+
+```
+
+b.	删除数据集中剧名缺失的值。
+
+```{r}
+tv<-tv[-which(tv$剧名 == "null"),]#删除缺失数据
+```
+
+c. 不考虑缺失数据影响，计算电视剧的平均得分。
+
+```{r}
+#将缺失数据处理成NA
+tv[which(tv$得分=="null"),]$得分=NA
+tv[which(tv$得分=="."),]$得分=NA
+#转换数据格式
+tv$得分<-as.numeric(tv$得分)
+#计算平均得分
+mean(tv$得分,na.rm = T)
+
+```
+
+### 题目 2.5 （实训题目）{-}
+
+实训题目：使用手机游戏数据集，该数据集收集了1141条手机游戏信息及评分。请完成以下任务。
+
+a.	获取数据集，查看数据概况。
+```{r}
+game<-read.csv("./data/安卓手机游戏.csv",fileEncoding = "gbk",stringsAsFactors = F)#读取数据
+summary(game)#查看数据概况
+```
+
+b.	提取热度中的数值部分，计算各游戏类型的热度均值，找出平均热度最高的游戏类型。
+```{r,eval=FALSE}
+#加载包
+library(stringr)
+library(dplyr)
+```
+```{r,include=FALSE}
+#加载包
+library(stringr)
+library(dplyr)
+```
+
+```{r}
+#转换数据格式
+game$hot<-as.numeric(str_extract(game$热度,"\\d+"))
+#计算热度均值
+hot_aver<-game%>%
+  group_by(类别)%>%
+  summarise(meanhot=mean(hot,na.rm = T))#平均热度
+#找出平均热度最高的游戏类型
+(hot_aver=hot_aver[order(hot_aver$meanhot, decreasing = T), ])
+
+```
+平均热度最高的游戏类别为体育运动。
+
+c.	计算各游戏类型的平均评分，最高评分，最低评分，评分标准差，并作简要分析。
+```{r,warning=FALSE}
+grade_aver<-game%>%
+  group_by(类别)%>%
+  summarise(meangrade=mean(评分,na.rm = T),#平均评分
+            maxgrade=max(评分,na.rm = T),#最高评分
+            mingrade=min(评分,na.rm = T),#最低评分
+            sdgrade=sd(评分,na.rm = T))#评分标准差
+(grade_aver=grade_aver[order(grade_aver$meangrade, decreasing = T), ])#按照平均得分排序
+
+```
+
+分析：虽然平均热度最高的游戏类别为体育运动，但平均评分最高的游戏类别为角色扮演，同时角色扮演的评分波动较大。

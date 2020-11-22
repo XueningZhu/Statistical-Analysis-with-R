@@ -231,3 +231,66 @@ t.test(x, y, alternative = "two.sided", paired = T, var.equal = F, conf.level = 
 ```
 
 检验的p值为0.0435，故应拒绝原假设$H_0:\mu=0$，即可认为试验前后的受试者体重有显著差异。进一步，平均含量差值的估计量为$\hat \mu = \bar x - \bar y = -2.6$，可见服用药物后的体重要高于服用药物前的体重。
+
+## 习题答案
+
+### 题目 5.2 {-}
+
+假设某产品在制造时分为合格品与不合格品两类，我们用一个随机变量X来表示某个产品经检查后是否合格，X=0表示合格品，X=1表示不合格品，则X服从两点分布$b(1,p)$，其中p是未知的不合格品率。现抽取20个产品，看其是否合格，得到样本如下所示：
+
+1 0 0 0 1 0 1 1 1 0 1 0 0 1 0 0 1 1 1 1
+
+求p的最大似然估计，并在R中进行实现。
+
+
+```{r}
+set.seed(4)
+p = 0.5
+# 生成的样本是
+samples = rbinom(n=20, size=1, prob = p)
+print(samples)
+
+# p 的最大似然估计值是
+p_mle = mean(samples)
+cat('均值的最大似然估计值是: ', p_mle, '\n')
+```
+
+均值的最大似然估计值是:0.55。
+
+### 题目 5.3 {-}
+
+假设灯泡的寿命服从正态分布。为了估计某种灯泡的平均寿命，现随机地抽取15只灯泡测试，得到它们的寿命（单位：小时）如下：
+
+998   1021   988   986   1018   997   996   
+
+973   925   985   981   1007   1011   968   1002
+
+试求灯泡平均寿命的0.95置信区间，并在R中进行实现。
+
+```{r}
+set.seed(8)
+n = 15
+u = 1000
+samples = rnorm(n, u, 25)
+samples = round(samples, 0)
+cat('寿命样本: ', samples, '\n')
+
+
+# 区间估计
+# 方法一：按照公式计算
+weight_u = mean(samples)
+weight_var = sum((samples - weight_u) ^ 2) / (n-1)
+spread = qt(1-0.05/2, n-1) * sqrt(weight_var / n)
+
+cat(sprintf('灯泡寿命的置信区间是: [%s, %s]', 
+            round(weight_u - spread, 4),
+            round(weight_u + spread, 4), '\n'))
+
+# 方法二：使用t.test()计算
+interval_2 <- t.test(samples, conf.level = 0.95)$conf.int
+cat(sprintf('灯泡寿命的置信区间是: [%s, %s]', 
+            round(interval_2[1], 4),
+            round(interval_2[2], 4), '\n'))
+```
+
+无论使用公式还是使用R中的自带函数计算，灯泡寿命的置信区间都是: [977.2537, 1003.5463]。

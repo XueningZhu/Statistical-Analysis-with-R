@@ -116,3 +116,61 @@ summarise(tenement_group,
           minrent=min(rent))#分组计算最低租金
 ```
 
+## 习题答案
+
+```{r}
+tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据
+```
+
+### 题目 3.1 {-}
+
+请求出租房数据集中租赁房间面积（area）的偏度和峰值，并作出简要分析。
+
+```{r}
+library(fBasics)
+skewness(tenement$area) #用fBasics包求评分的偏度
+kurtosis(tenement$area) #用fBasics包求评分的峰度
+```
+分析：面积的偏度为1.03，说明面积是一个右偏分布；面积的峰度为1.07，说明标准化后的面积分布比正态分布更尖锐，尾部更粗。
+
+### 题目 3.2 {-}
+
+请求出向量城区(region)和供暖方式(heating)的交叉列联表的频率形式,并添加边际和，给出简要解读。
+```{r}
+tab <- table(tenement$region,tenement$heating)#建立城区和供暖方式的交叉列联表
+p_tab <- prop.table(tab)#频率形式交叉列联表
+addmargins(p_tab)#添加边际和
+```
+分析：租赁房间的供暖方式以集中供暖为主，自采暖为辅。不同城区中，朝阳区房源数量最多。朝阳区的集中供暖房源占比最大。
+
+### 题目 3.3 {-}
+
+利用租房数据集，通过分组统计求出每个城区的平均租金并简要解读。
+
+```{r,eval=FALSE}
+library(dplyr)
+```
+
+
+```{r,include=FALSE}
+library(dplyr)
+```
+
+```{r}
+tenement%>%group_by(region)%>%
+  summarise(meanrent=mean(rent))#平均租金
+```
+
+分析：西城区的房源平均租金最高，为3785元；房山区的房源平均租金最低，为1752元。
+
+### 题目 3.4 {-}
+
+利用租房数据集，通过分组统计计算出不同城区房源的平均租赁面积、最大租赁面积和最小租赁面积并简要解读。
+```{r}
+library(dplyr)
+tenement%>%group_by(region)%>%
+  summarise(meanarea=mean(area),
+            maxarea=max(area),
+            minarea=min(area))
+```
+分析：石景山区房源的平均租赁面积最大，为13.7平米，房山区房源的平均租赁面积最小，为11.9平米；最大租赁面积为30平米，分别在昌平区和通州区；最小租赁面积为5平米，分别在朝阳区和通州区。

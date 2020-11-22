@@ -36,15 +36,13 @@ head(novel)
 a=table(novel$小说类型)
 # 对频数排序
 a=a[order(a,decreasing = T)]
-```
-
-```{r nice-fig, fig.cap='test for plot online', out.width='80%', fig.asp=.75, fig.align='center'}
 # 绘制柱状图
-par(family = "SimSun",las = 2)
-barplot(a[1:5],names.arg = names(a)[1:5],family="SimSun",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
-title("各类型小说频数分布柱状图",family="SimSun")
+par(family = "STXihei",las = 2)
+barplot(a[1:5],names.arg = names(a)[1:5],family="STXihei",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
+title("各类型小说频数分布柱状图",family="STXihei")
 
 ```
+
 
 ```{r, warning=FALSE}
 # 求得各类型小说平均点击数的均值
@@ -52,10 +50,10 @@ means<-novel%>%
   group_by(小说类型)%>%
   summarise(mean = mean(总点击数/10000))%>%
   arrange(desc(mean))
-par(family = "SimSun",las = 2)
+par(family = "STXihei",las = 2)
 # 绘制均值柱状图
-barplot(means$mean[1:5], names.arg=means$小说类型[1:5],family="SimSun",ylab = "总点击数(万次)",xlab="",col = c("gold","grey","grey","grey","grey"))
-title("各类型小说平均总点击数",family="SimSun")
+barplot(means$mean[1:5], names.arg=means$小说类型[1:5],family="STXihei",ylab = "总点击数(万次)",xlab="",col = c("gold","grey","grey","grey","grey"))
+title("各类型小说平均总点击数",family="STXihei")
 
 options(scipen = 200)
 
@@ -63,8 +61,8 @@ options(scipen = 200)
 
 ```{r, warning=FALSE}
 # 构建绘图所需数据矩阵d
-d = novel%>%group_by(小说类型,小说性质)%>%
-  dplyr::summarise(count=n())%>%
+d = novel%>%group_by(小说类型, 小说性质)%>%
+  summarise(count=n())%>%
   spread(小说性质,count)%>%
   select(-V1)%>%
   arrange(desc(公众作品))
@@ -78,7 +76,7 @@ colnames(d) = topics
 rownames(d) = artwork_type
 
 # 绘制分组柱状图(beside = T)
-par(mfrow=c(1,2), family = "SimSun",las=2)
+par(mfrow=c(1,2), family = "STXihei",las=2)
 barplot(d, beside = T, col = c("gold","grey"), ylab = "频数", ylim = c(0,500))
 # 添加图例
 legend("topright", legend = rownames(d), fill =  c("gold","grey"), cex = 0.8)
@@ -102,7 +100,7 @@ ratio = table(novel$'小说类别') / sum(table(novel$'小说类别')) * 100
 label1 = names(ratio)
 label2 = paste0(round(ratio, 2), "%")
 # 绘制饼图
-par(family="SimSun") 
+par(family="STXihei") 
 pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep = "\n"), font = 1)
 ```
 
@@ -120,7 +118,7 @@ hist(r)
 # 去掉异常值
 chara = sort(novel$总字数/10000)[1:1500] 
 # 绘制直方图
-par(mfrow=c(1,2),family = "SimSun",las=2)
+par(mfrow=c(1,2),family = "STXihei",las=2)
 hist(chara, breaks = 10, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
 # 调整直方图组距
 hist(chara, breaks = 100, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
@@ -141,9 +139,11 @@ plot(AirPassengers)
 ```{r}
 ## 定性与定量变量--分组箱线图 ##
 # 将画板分成1行2列
-par(mfrow=c(1,2),family = "SimSun")  
+par(mfrow=c(1,2),family = "STXihei")  
 # 不同性质的小说总点击数和评论数有差别吗
-novel_ = novel%>%filter(小说性质 == '公众作品'|小说性质 == 'VIP作品')%>%mutate(小说性质=factor(小说性质))
+novel_ = novel %>%
+  filter((小说性质 == '公众作品')|(小说性质 == 'VIP作品')) %>%
+  mutate(小说性质=factor(小说性质))
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总点击数对数")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总评论数对数")
 
@@ -158,6 +158,248 @@ boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'),
 test = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
 x = test$总点击数
 y = test$评论数
-par(family = "SimSun")  
+par(family = "STXihei")  
 plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
+```
+
+## 习题答案
+
+```{r}
+library(openxlsx)          # 读取.xlsx数据
+library(dplyr)             # 用导管运算
+library(ggplot2)           # 画ggplot图
+library(stringr)           # 处理字符串
+library(purrr)             # 使用map函数
+Sys.setlocale("LC_ALL", "zh_cn.utf-8")
+```
+
+### 题目 4.3（实训题目）{-}
+
+实训题目：使用“北美旅游产品数据集”，该案例数据提供了2926条北美旅游数据观测。其中包括产品名称、旅游方式、供应商、等级、景点个数、交通情况、用餐情况、是否有自由活动、客户评分、出游人数、评价人数、报价信息、旅游线路等。尝试完成以下分析。
+
+a.读入数据，筛选出产品名称、旅游方式、供应商、等级、景点个数、交通、用餐、自由活动、总评价、出游人数、出发地、每日报价、旅游线路变量并重命名为英文变量名。
+```{r}
+dat = read.xlsx("./data/data_4_3.xlsx")                                                         # 原始数据
+travel_dat = dat[,c(1:8,12:13,15,17:23,25)]                                               # 筛选出需要用到的变量
+colnames(travel_dat) = c("Product", "TravelMethod", "Agency", "Star",
+                          "Place", "Traffic", "Meal","FreeActivitie",
+                          "Evaluate","Sale","Depart","SunPrice","MonPrice",
+                          "Tuesprice","WedPrice","ThusPrice",
+                          "Friprice","Satprice","Routine")                                 # 将变量名改为英文
+```
+
+
+b.提取周一到周日报价中的数值部分，计算一周报价的均值（若一周7天均无报价则缺失），并以新变量“Price”存入数据集travel_dat中，剔除平均价格缺失的样本。绘制价格的对数分布直方图并进行简要解读。
+```{r}
+allPrice = travel_dat[,12:18]                              # 取出周一到周日的数据
+allPrice[allPrice==""] = NA                                # 处理缺失值
+
+PriceToNum = function(price)                               # 自定义函数，提取价格的数值部分
+{
+  price = gsub("\\D", "", as.character(price)) %>% 
+    as.numeric()                                            # 去字符串中的价格部分
+  return(price)
+}
+
+price = allPrice %>% apply(2, PriceToNum)                  # 得到价格的数值部分
+
+avgprice = apply(price, 1, function(x) mean(x, na.rm = T)) # 平均价格
+travel_dat$Price = avgprice                                # 建立新变量价格
+travel_dat = travel_dat[!is.na(travel_dat$Price),]         # 去除缺失价格的观测
+
+ggplot(travel_dat)+
+  geom_histogram(aes(x = Price),fill = "gold",bins = 30) +
+  xlab("产品价格（对数变换）") +
+  ylab("频数") +
+  theme_bw(base_family = "STXihei")+                         #设置背景颜色和字体
+  scale_x_log10(breaks = c(1000, 10000), labels = c("1千","1万"))+#对数变换
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"))         #设置网格，取消边框
+
+```
+
+c.提取“Star”变量中的“*钻”字符来表示产品等级，当一个产品包含多个钻级时取最大钻级，并将产品钻级以新变量“Star2”存入数据集travel_dat中，变量类型为因子型。
+
+绘制价格的对数对产品等级的分组箱线图，并按每一等级的平均价格由低到高进行排列，对箱线图结果作出简要解读。
+```{r warning=FALSE}
+star = strsplit(as.character(travel_dat$Star), "\\,")         # 按“,”分开等级
+
+StarNum = function(x)                                          # 自定义函数，提取产品等级
+{
+  if("暂无酒店信息" %in% x){
+    return("无")
+  }else{
+    x = x %>% strsplit("晚|钻")                                # 得到几晚几钻的信息
+    x = x %>% map(2) %>% unlist() %>% as.numeric() %>% 
+      ceiling() %>% max(na.rm=T)                                # 用最大的钻级表示该产品的等级
+    
+    return(x)
+  }
+}
+
+star1= star  %>% lapply(StarNum) %>% unlist()                  # 得到产品等级
+star1[star1==-Inf] = "无"                                      # 将-Inf表示为无产品等级信息
+travel_dat$Star2 = as.factor(star1)                            # 变成因子变量并保存至travel_dat中
+travel_dat$Star2 = factor(travel_dat$Star2,                    # 按照均价重新排序水平
+                      levels = levels(travel_dat$Star2)[c(1,5,2,3,4)], 
+                      labels = c("2钻","无信息","3钻","4钻","5钻"))
+
+ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
+  theme_bw(base_family = "STXihei")+
+  geom_boxplot(varwidth=T, color = adjustcolor("#8CE52E"), fill = adjustcolor("#8CE52E", alpha.f = 0.4)) +
+  scale_y_log10(breaks=c(2e3,1e4,8e4),                          # 对价格取对数
+    labels=c("2千", "1万", "8万")) +
+  ylab("产品价格（对数变换）") +
+  xlab("") + 
+  theme(panel.background = element_rect(fill = "transparent"),  # 背景透明
+        panel.grid.major = element_blank(),                     # 去掉背景网格
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_blank())                        # 去掉坐标轴
+
+
+```
+
+### 题目 4.4（实训题目）{-}
+
+实训题目：RTB（Real Time Bidding，实时竞拍）是目前一种重要的广告投放方式。当前的各种APP都有许多广告位，等待广告主的投放。对于投放广告的广告主，他们通过竞拍获得广告位，自然希望自己的广告能有更高的点击量。使用RTB数据集，本数据包括了来自某广告外包承包商（DPS）的4695条观测值，因变量为是否点击（1-点击/0-未点击），正样本大约占总样本的20%，请对以下自变量进行分析。
+
+```{r}
+rtb_data = read.csv("./data/data_4_4.csv")
+#将定性变量转为因子性变量，并设置标签
+rtb_data$dc = factor(rtb_data$dc,levels = c(1,0))
+rtb_data$atype = factor(rtb_data$atype,levels = c(3,7,8,13),labels = c("Inmobi","Zplay","Baidu","Iflytek"))
+rtb_data$instl = factor(rtb_data$instl,levels = c(1,0),labels = c("是","否"))
+rtb_data$isp = factor(rtb_data$isp,levels = c(0,1,2,3),labels = c("未知","中国移动","中国联通","中国电信"))
+rtb_data$nt = factor(rtb_data$nt,levels = c(0,1,2,3,4,5),labels = c("未知","WIFI","2G","3G","4G","5G"))
+rtb_data$mfr = as.factor(rtb_data$mfr)
+rtb_data$period = as.factor(rtb_data$period)
+#计算不同ADX平台的点击率
+ratio_atype = rtb_data %>% group_by(atype) %>% summarise(ratio=sum(dc==1)/n())
+list = ratio_atype$atype[order(ratio_atype$ratio,decreasing = T)]
+#将ADX平台类型按照点击率降序排序
+rtb_data$atype = factor(rtb_data$atype,levels = list)
+par(las = 2,mai = c(1,1,0.5,1),family = "STXihei")
+spineplot(dc~atype,rtb_data,col = c('gold','grey'),xlab = '',yaxlabels = c('点击','不点击'),ylab = '')
+```
+
+```{r warning=FALSE}
+bidf_plot = as.data.frame(subset(rtb_data,select = c('dc','bidf')))
+bidf_plot$dc = factor(bidf_plot$dc,levels = c(1,0),labels = c('点击','不点击'))
+ggplot(bidf_plot)+
+  geom_boxplot(aes(x = dc,y = bidf,fill = dc),varwidth = T)+ #将箱线图按每一等级的平均价格由低到高进行排列，并调节图像的颜色
+  ylab("竞标底价（对数变换）")+ 
+  xlab("")+#添加坐标轴信息
+  labs(fill = "是否点击广告")+
+  scale_y_log10()+#对纵坐标轴做对数变化
+  scale_fill_manual(values = c("gold", "grey"))+
+  theme_bw(base_family = "STXihei")+
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black"))#调整主题样式
+```
+
+### 题目 4.5（实训题目）{-}
+
+实训题目：使用“数据分析招聘数据集”，该数据集包括某网站数据分析岗位2018-2019年招聘情况。该数据共7493条招聘信息，覆盖北京、上海、深圳、山西、陕西以及河北六个地区。
+
+```{r warning=FALSE}
+fin_data = read.csv("./data/data_4_5.csv", header = T, stringsAsFactors = FALSE)
+###提取工资的函数
+fun_wage = function(x){
+  if(x == "面议"){#面议，工资12000
+    wage = 12000
+  }else if (!is.na(str_extract(x,"-"))){#提取中间点
+    wage1 = as.numeric(str_split(x, "-")[[1]][1])
+    wage2 = as.numeric(str_split(x, "-")[[1]][2])
+    wage=0.5*(wage1+wage2)
+  }else{#提取xxx以上，以下
+    wage=gsub("\\D", "", as.character(x)) %>% 
+    as.numeric()
+  }
+  return(wage)
+}
+fin_data$wage = fin_data$X6%>%
+  lapply(fun_wage) %>% unlist() ###提取工资
+fin_data=fin_data[which(fin_data$wage <= 40000 & fin_data$wage >= 3000),]#筛选工资在3000-40000的
+
+ggplot(fin_data)+
+  geom_histogram(aes(x = wage),fill = "gold",bins = 25) +
+  xlab("薪资水平（元／月）") +
+  ylab("频数") +
+  theme_bw(base_family = "STXihei")+                         #设置背景颜色和字体
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"))         #设置网格，取消边框
+
+summary(fin_data$wage)
+```
+
+```{r warning=FALSE}
+###对岗位进行分类
+fin_data$is_tech = 0
+fin_data[str_detect(fin_data$X3,"数据|IT|量化|工程师"),]$is_tech = 1
+###计算各个城市按照岗位类别分类的平均工资和岗位个数
+fin_data_city=fin_data%>%
+  group_by(X0,is_tech)%>%
+  summarise(meanwage=mean(wage,na.rm = T),#计算平均工资
+            countwage=length(wage))#计算岗位个数
+###绘制并列柱状图
+ggplot(fin_data_city)+
+  geom_bar(aes(x = reorder(X0,X = -meanwage,FUN = median),#将城市按照工资均值排序
+               y = meanwage/1000,
+               fill = factor(is_tech,
+                           levels = c(0,1),
+                           labels = c("传统金融","金融科技"))),
+           #is_tech对应传统金融和金融科技
+           stat = "identity",position = "dodge")+#position = "dodge"设置为并列柱状图
+  theme_bw(base_family = "STXihei")+#背景设置为白色，字体为宋体
+  labs(fill = "岗位类别")+#设置图例
+  scale_fill_manual(values = c("DimGrey","gold"))+#填充颜色
+  xlab("城市")+#设置横轴名称
+  ylab("薪资平均水平（千元）")+#设置纵轴名称
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"))#设置背景和坐标轴
+```
+
+```{r warning=FALSE}
+###提取工作经验要求的函数
+fun_work = function(x){
+  str_list0 = str_split(x,"[|]")[[1]]
+  work0 = str_list0[str_detect(str_list0,"经验")]
+  if(length(work0) == 1){#提取有经验要求的
+    work = substring(work0, 4)
+  }else{#提取无经验要求的
+    work = "不限"
+  }
+  return(work)
+}
+#提取工作经验要求
+fin_data$work = fin_data$X7%>%
+  lapply(fun_work) %>% unlist() 
+fin_data[which(fin_data$work == "无经验"),]$work = "不限"#将无经验变为不限
+#设置标签wage0，将不限排在最后
+fin_data$wage0=fin_data$wage
+fin_data[which(fin_data$work == "不限"),]$wage0 = 0
+#绘制箱线图
+ggplot(fin_data)+
+  geom_boxplot(aes(x = reorder(work,X = -wage0),#按照wage0对work排序，“不限”排在最后
+                   y = wage/10000,
+                   fill = factor(is_tech,levels = c(0,1),labels = c("传统金融","金融科技"))),#设置is_tech标签
+               varwidth = T)+
+  labs(fill = "岗位类别")+#设置图例
+  scale_fill_manual(values = c("DimGrey","gold"))+#填充颜色
+  xlab("岗位类别")+#设置横轴名称
+  ylab("岗位工资（万元）")+#设置纵轴名称
+  theme_bw(base_family = "STXihei")+#背景设置为白色，字体为宋体
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"))#设置背景和坐标轴
+
 ```
