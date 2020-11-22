@@ -1,4 +1,4 @@
-# 第3章：基本统计分析 {#ch3}
+# 第3章：基本统计分析 {-}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
@@ -9,11 +9,11 @@ rm(list = ls())#清理工作空间
 tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据
 ```
 
-## 基本描述统计量
+## 3.1 基本描述统计量 {-}
 
 以下从频数统计开始，一一介绍均值、分位数、方差、标准差、最大最小值、峰度、偏度等基本统计量。
 
-### 频数统计
+### 3.1.1 频数统计{-}
 
 频数（freguency）统计是对定性变量的各水平计数进行统计的描述统计量。
 
@@ -25,7 +25,7 @@ sort(table(tenement$regiontype))
 ```
 
 
-### 均值
+### 3.1.2 均值{-}
 
 均值（mean），即一组数值型数据的平均数，是最常用的统计量之一。
 
@@ -35,7 +35,7 @@ tenement_num=tenement[c("rent","area")]#选取数值型子集
 colMeans(tenement_num)#同时计算列和
 ```
 
-### 分位数
+### 3.1.3 分位数{-}
 
 在数据分布偏度较大的情况下，均值并不能很好地反映数据的一般水平。此时，可使用中位数（median）刻画数据的一般情形。中位数是分位数（quantile）的一个特殊情况。
 
@@ -45,7 +45,7 @@ quantile(tenement$rent, probs = 0.5)#利用quantile()函数求中位数
 quantile(tenement$rent, probs = seq(0, 1, 0.25))#求向量最小值、最大值、四分位数
 ```
 
-### 方差和标准差
+### 3.1.4 方差和标准差{-}
 
 方差（variance）和标准差（standard deviation）是描述一组数值型数据的分散程度的描述统计量。协方差（covariance）和相关系数（correlation coefficient）是描述变量相关程度的描述统计量。
 
@@ -66,7 +66,7 @@ cor(tenement_num)#相关系数矩阵
 
 ```
 
-### 最大值、最小值
+### 3.1.5 最大值、最小值{-}
 
 最大值（maximum value）、最小值（minimum value）描述一组数值型变量由高到低排序后最大和最小的元素。
 
@@ -78,7 +78,7 @@ tenement[a,]#输出这一行的内容
 
 ```
 
-### 峰度和偏度
+### 3.1.6 峰度和偏度{-}
 
 偏度（skewness）和峰度（kurtosis）是一组用于描述数据分布形态的统计量。
 
@@ -94,14 +94,14 @@ skewness(tenement$rent)#用e1071包求租金的偏度
 kurtosis(tenement$rent) #用e1071包求租金的峰度
 ```
 
-## 交叉分组下的频数分析
+## 3.2 交叉分组下的频数分析{-}
 
 ```{r}
 rm(list = ls())#清理工作空间
 tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据
 ```
 
-### 交叉列联表
+### 3.2.1 交叉列联表 {-}
 
 交叉列联表(contingency table)是对两个类别变量每个交叉水平下的频数统计。交叉列联表可以展示两个类别变量之间的相关关系。
 
@@ -116,7 +116,7 @@ margin.table(tab,2)#求列变量边际函数
 addmargins(tab)#添加边际和
 ```
 
-### 描述统计量的分组统计
+### 3.2.2 描述统计量的分组统计{-}
 
 描述统计量的分组统计是指对定量变量按照类别变量各取值水平分组后，进行描述统计的操作。
 
@@ -132,7 +132,7 @@ summarise(tenement_group,
           minrent=min(rent))#分组计算最低租金
 ```
 
-## 习题答案
+## 习题答案{-}
 
 ```{r}
 tenement = read.csv("./data/rent.csv",fileEncoding = "gbk",stringsAsFactors = FALSE)#导入数据

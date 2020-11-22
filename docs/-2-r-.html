@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第2章：R语言中的数据管理与预处理 | 统计分析与R语言（辅助材料）</title>
+  <meta name="description" content="第2章：R语言中的数据管理与预处理 | 统计分析与R语言（辅助材料）" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第2章：R语言中的数据管理与预处理 | 统计分析与R语言（辅助材料）" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="XueningZhu/Statistical-Analysis-with-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第2章：R语言中的数据管理与预处理 | 统计分析与R语言（辅助材料）" />
+  
+  
+  
+
+<meta name="author" content="朱雪宁 &amp; 任怡萌" />
+
+
+<meta name="date" content="2020-11-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="-1-r-.html"/>
+<link rel="next" href="-3-.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> output:</a></li>
+<li class="chapter" data-level="" data-path="-1-r-.html"><a href="-1-r-.html"><i class="fa fa-check"></i>第1章：统计分析与R语言</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html"><i class="fa fa-check"></i>第2章：R语言中的数据管理与预处理</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#基本数据类型"><i class="fa fa-check"></i>2.1 基本数据类型</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数值型"><i class="fa fa-check"></i>2.1.1 数值型</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#字符型"><i class="fa fa-check"></i>2.1.2 字符型</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#逻辑型"><i class="fa fa-check"></i>2.1.3 逻辑型</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#因子型数据"><i class="fa fa-check"></i>2.1.4 因子型数据</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据结构"><i class="fa fa-check"></i>2.2 数据结构</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#向量"><i class="fa fa-check"></i>2.2.1 向量</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#矩阵"><i class="fa fa-check"></i>2.2.2 矩阵</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数组"><i class="fa fa-check"></i>2.2.3 数组</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据框"><i class="fa fa-check"></i>2.2.4 数据框</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#列表"><i class="fa fa-check"></i>2.2.5 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据的读入与写出"><i class="fa fa-check"></i>2.3 数据的读入与写出</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#使用键盘输入数据"><i class="fa fa-check"></i>2.3.1 使用键盘输入数据</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#从带分隔符的文本文件导入数据"><i class="fa fa-check"></i>2.3.2 从带分隔符的文本文件导入数据</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#导入excel数据"><i class="fa fa-check"></i>2.3.3 导入Excel数据</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#逐行读入数据"><i class="fa fa-check"></i>2.3.4 逐行读入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据集管理及预处理"><i class="fa fa-check"></i>2.4 数据集管理及预处理</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#了解数据概况"><i class="fa fa-check"></i>2.4.1 了解数据概况</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#变量类型转换"><i class="fa fa-check"></i>2.4.2 变量类型转换</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#时间型数据的操作"><i class="fa fa-check"></i>2.4.3 时间型数据的操作</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据集合并"><i class="fa fa-check"></i>2.4.4 数据集合并</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#数据缺失异常"><i class="fa fa-check"></i>2.4.5 数据缺失、异常</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#习题答案"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#题目-2.1"><i class="fa fa-check"></i>题目 2.1</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#题目-2.2"><i class="fa fa-check"></i>题目 2.2</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#题目-2.3"><i class="fa fa-check"></i>题目 2.3</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#题目-2.4实训题目"><i class="fa fa-check"></i>题目 2.4（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="-2-r-.html"><a href="-2-r-.html#题目-2.5-实训题目"><i class="fa fa-check"></i>题目 2.5 （实训题目）</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html"><i class="fa fa-check"></i>第3章：基本统计分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#基本描述统计量"><i class="fa fa-check"></i>3.1 基本描述统计量</a>
+<ul>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#频数统计"><i class="fa fa-check"></i>3.1.1 频数统计</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#均值"><i class="fa fa-check"></i>3.1.2 均值</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#分位数"><i class="fa fa-check"></i>3.1.3 分位数</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#方差和标准差"><i class="fa fa-check"></i>3.1.4 方差和标准差</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#最大值最小值"><i class="fa fa-check"></i>3.1.5 最大值、最小值</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#峰度和偏度"><i class="fa fa-check"></i>3.1.6 峰度和偏度</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#交叉分组下的频数分析"><i class="fa fa-check"></i>3.2 交叉分组下的频数分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#交叉列联表"><i class="fa fa-check"></i>3.2.1 交叉列联表</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#描述统计量的分组统计"><i class="fa fa-check"></i>3.2.2 描述统计量的分组统计</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#习题答案-1"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#题目-3.1"><i class="fa fa-check"></i>题目 3.1</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#题目-3.2"><i class="fa fa-check"></i>题目 3.2</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#题目-3.3"><i class="fa fa-check"></i>题目 3.3</a></li>
+<li class="chapter" data-level="" data-path="-3-.html"><a href="-3-.html#题目-3.4"><i class="fa fa-check"></i>题目 3.4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html"><i class="fa fa-check"></i>第4章：描述分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#统计表格"><i class="fa fa-check"></i>4.1 统计表格</a>
+<ul>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#变量说明表"><i class="fa fa-check"></i>4.1.1 变量说明表</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#分组汇总统计表格"><i class="fa fa-check"></i>4.1.2 分组汇总统计表格</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#数据可视化基础"><i class="fa fa-check"></i>4.2 数据可视化基础</a>
+<ul>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#柱状图"><i class="fa fa-check"></i>4.2.2 柱状图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#饼图"><i class="fa fa-check"></i>4.2.3 饼图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#直方图"><i class="fa fa-check"></i>4.2.4 直方图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#折线图"><i class="fa fa-check"></i>4.2.5 折线图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#箱线图"><i class="fa fa-check"></i>4.2.6 箱线图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#散点图"><i class="fa fa-check"></i>4.2.7 散点图</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#相关系数图"><i class="fa fa-check"></i>4.2.8 相关系数图</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#数据可视化进阶"><i class="fa fa-check"></i>4.3 数据可视化进阶</a>
+<ul>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#ggplot2-包"><i class="fa fa-check"></i>4.3.1 ggplot2 包</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#交互可视化"><i class="fa fa-check"></i>4.3.2 交互可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#习题答案-2"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#题目-4.3实训题目"><i class="fa fa-check"></i>题目 4.3（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#题目-4.4实训题目"><i class="fa fa-check"></i>题目 4.4（实训题目）</a></li>
+<li class="chapter" data-level="" data-path="-4-.html"><a href="-4-.html#题目-4.5实训题目"><i class="fa fa-check"></i>题目 4.5（实训题目）</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html"><i class="fa fa-check"></i>第5章：参数估计与假设检验</a>
+<ul>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#参数估计"><i class="fa fa-check"></i>5.2 参数估计</a>
+<ul>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#矩估计"><i class="fa fa-check"></i>5.2.1 矩估计</a></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#极大似然估计"><i class="fa fa-check"></i>5.2.2 极大似然估计</a></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#区间估计"><i class="fa fa-check"></i>5.2.3 区间估计</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#假设检验"><i class="fa fa-check"></i>5.3 假设检验</a></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#习题答案-3"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#题目-5.2"><i class="fa fa-check"></i>题目 5.2</a></li>
+<li class="chapter" data-level="" data-path="-5-.html"><a href="-5-.html#题目-5.3"><i class="fa fa-check"></i>题目 5.3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html"><i class="fa fa-check"></i>第6章：线性回归</a>
+<ul>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#教程案例"><i class="fa fa-check"></i>教程案例</a>
+<ul>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#案例背景"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务一"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务二"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务三"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务四"><i class="fa fa-check"></i>任务四</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务五"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务六"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务七"><i class="fa fa-check"></i>任务七</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#习题答案-4"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#案例背景-1"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务一-1"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务二-1"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务三-1"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="-6-.html"><a href="-6-.html#任务四-1"><i class="fa fa-check"></i>任务四</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html"><i class="fa fa-check"></i>第7章：逻辑回归</a>
+<ul>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#教程案例-1"><i class="fa fa-check"></i>教程案例</a>
+<ul>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#案例背景-2"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务一-2"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务二-2"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务三-2"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务四-2"><i class="fa fa-check"></i>任务四</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务五-1"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务六-1"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务七-1"><i class="fa fa-check"></i>任务七</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#习题答案-5"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#案例背景-3"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务一-3"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务二-3"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-7-.html"><a href="-7-.html#任务三-3"><i class="fa fa-check"></i>任务三</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html"><i class="fa fa-check"></i>第8章：降维分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#案例背景-4"><i class="fa fa-check"></i>案例背景</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#主成分分析"><i class="fa fa-check"></i>8.1 主成分分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务一-4"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务二-4"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务三-4"><i class="fa fa-check"></i>任务三</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务四-3"><i class="fa fa-check"></i>任务四</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#因子分析"><i class="fa fa-check"></i>8.2 因子分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务五-2"><i class="fa fa-check"></i>任务五</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务六-2"><i class="fa fa-check"></i>任务六</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务七-2"><i class="fa fa-check"></i>任务七</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务八"><i class="fa fa-check"></i>任务八</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务九选做"><i class="fa fa-check"></i>任务九（选做）</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#习题答案-6"><i class="fa fa-check"></i>习题答案</a>
+<ul>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务一-5"><i class="fa fa-check"></i>任务一</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务二-5"><i class="fa fa-check"></i>任务二</a></li>
+<li class="chapter" data-level="" data-path="-8-.html"><a href="-8-.html#任务三-5"><i class="fa fa-check"></i>任务三</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计分析与R语言（辅助材料）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="第2章r语言中的数据管理与预处理" class="section level1 unnumbered">
+<h1>第2章：R语言中的数据管理与预处理</h1>
+<p>本章节采用的是某电影榜单上排名top250的电影数据，数据集包含250部电影的名称、评分等数据。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="-2-r-.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())<span class="co">#清空环境</span></span>
+<span id="cb1-2"><a href="-2-r-.html#cb1-2" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>)<span class="co">#读取数据</span></span>
+<span id="cb1-3"><a href="-2-r-.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie)<span class="co">#电影数据示例</span></span></code></pre></div>
+<pre><code>##   rank           name   showtime duration        director type score nation
+## 1    1   肖申克的救赎  1994/9/10      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬   1993/1/1      171          陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷  1994/9/14      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传  1994/6/23      142          Robert 爱情   9.4   美国
+## 5    5       美丽人生 1997/12/20      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻  2001/7/20      125          宫崎骏 动画   9.2   日本</code></pre>
+<div id="基本数据类型" class="section level2 unnumbered">
+<h2>2.1 基本数据类型</h2>
+<div id="数值型" class="section level3 unnumbered">
+<h3>2.1.1 数值型</h3>
+<p>数值型变量是一种定量数据类型，这类数据的取值是连续的。例如，电影数据集中的评分(score)就是用数值类型存放的。可以通过如下方式查看这一列对应的数据类型并对数值型数据进行加减乘除运算。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="-2-r-.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>score)<span class="co">#查看数据类型</span></span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="-2-r-.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#自己为变量附一个数值</span></span>
+<span id="cb5-2"><a href="-2-r-.html#cb5-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="dv">2</span>;<span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="-2-r-.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1000</span>)  <span class="co"># 正无穷</span></span></code></pre></div>
+<pre><code>## [1] Inf</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="-2-r-.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">10</span> <span class="sc">/</span> <span class="dv">0</span>  <span class="co"># 负无穷</span></span></code></pre></div>
+<pre><code>## [1] -Inf</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="-2-r-.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1000</span>) <span class="sc">/</span> <span class="fu">exp</span>(<span class="dv">990</span>)  <span class="co"># NaN类型</span></span></code></pre></div>
+<pre><code>## [1] NaN</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="-2-r-.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 22026.47</code></pre>
+</div>
+<div id="字符型" class="section level3 unnumbered">
+<h3>2.1.2 字符型</h3>
+<p>字符型变量指用于存储文字的变量类型。在R语言中，用单引号或双引号定义的即是字符型数据。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="-2-r-.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#字符的定义</span></span>
+<span id="cb15-2"><a href="-2-r-.html#cb15-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="st">&quot;2&quot;</span></span>
+<span id="cb15-3"><a href="-2-r-.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="-2-r-.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 判断电影数据集中，变量“类型(type)&quot;,&quot;电影名称(name)&quot;是不是字符型变量</span></span>
+<span id="cb17-2"><a href="-2-r-.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>name)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="-2-r-.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>type)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="逻辑型" class="section level3 unnumbered">
+<h3>2.1.3 逻辑型</h3>
+<p>逻辑型数据即取值为TRUE或者FALSE的数据类型。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="-2-r-.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读入数据时设置把字符数据保留，不转换为factor</span></span>
+<span id="cb21-2"><a href="-2-r-.html#cb21-2" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>, <span class="at">header =</span> T, <span class="at">stringsAsFactors =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>)</span>
+<span id="cb21-3"><a href="-2-r-.html#cb21-3" aria-hidden="true" tabindex="-1"></a>movie<span class="sc">$</span>type[movie<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;霸王别姬&quot;</span>] <span class="sc">==</span> <span class="st">&quot;爱情&quot;</span> </span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="-2-r-.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 想在数据集中挑选大于9分的喜剧电影名称（name）？</span></span>
+<span id="cb23-2"><a href="-2-r-.html#cb23-2" aria-hidden="true" tabindex="-1"></a>movie<span class="sc">$</span>name[movie<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;喜剧&quot;</span> <span class="sc">&amp;</span> movie<span class="sc">$</span>score <span class="sc">&gt;</span> <span class="dv">9</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;美丽人生&quot;       &quot;三傻大闹宝莱坞&quot; &quot;触不可及&quot;       &quot;两杆大烟枪&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="-2-r-.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 逻辑语句加减</span></span>
+<span id="cb25-2"><a href="-2-r-.html#cb25-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="因子型数据" class="section level3 unnumbered">
+<h3>2.1.4 因子型数据</h3>
+<p>因子型数据是R语言中比较特殊的一个数据类型，它用于存储类别型变量。例如：性别（男性、女性），年龄分段（未成年人、成年人）等。除存储取值水平无序的类别型变量外，因子型数据还可以设置类别变量各水平的次序。因子型数据可使用命令factor()来定义。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="-2-r-.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 1.什么是因子型数据 ##</span></span>
+<span id="cb27-2"><a href="-2-r-.html#cb27-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">genders =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>)))<span class="co">#生成因子型变量</span></span></code></pre></div>
+<pre><code>## [1] 男 女 女 男 男
+## Levels: 女 男</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="-2-r-.html#cb29-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">class =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Poor&quot;</span>, <span class="st">&quot;Improved&quot;</span>, <span class="st">&quot;Excellent&quot;</span>), <span class="at">ordered =</span> T))<span class="co">#设置因子水平高低</span></span></code></pre></div>
+<pre><code>## [1] Poor      Improved  Excellent
+## Levels: Excellent &lt; Improved &lt; Poor</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="-2-r-.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2.改变因子型数据各水平的编码顺序 ##</span></span>
+<span id="cb31-2"><a href="-2-r-.html#cb31-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">class =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Poor&quot;</span>, <span class="st">&quot;Improved&quot;</span>, <span class="st">&quot;Excellent&quot;</span>), <span class="at">ordered =</span> T,</span>
+<span id="cb31-3"><a href="-2-r-.html#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Poor&quot;</span>, <span class="st">&quot;Improved&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] Poor      Improved  Excellent
+## Levels: Poor &lt; Improved &lt; Excellent</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="-2-r-.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.因子型和字符型数据互相转换 ##</span></span>
+<span id="cb33-2"><a href="-2-r-.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入原始字符变量</span></span>
+<span id="cb33-3"><a href="-2-r-.html#cb33-3" aria-hidden="true" tabindex="-1"></a>all <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>)</span>
+<span id="cb33-4"><a href="-2-r-.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 将字符型变量变成因子型</span></span>
+<span id="cb33-5"><a href="-2-r-.html#cb33-5" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">=</span> <span class="fu">as.factor</span>(all)</span>
+<span id="cb33-6"><a href="-2-r-.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 变换后的数据类型</span></span>
+<span id="cb33-7"><a href="-2-r-.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(gender)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="-2-r-.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gender)<span class="co">#判断gender的数据类型</span></span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+</div>
+</div>
+<div id="数据结构" class="section level2 unnumbered">
+<h2>2.2 数据结构</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="-2-r-.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())<span class="co">#清理工作空间</span></span>
+<span id="cb37-2"><a href="-2-r-.html#cb37-2" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)<span class="co">#导入数据</span></span></code></pre></div>
+<div id="向量" class="section level3 unnumbered">
+<h3>2.2.1 向量</h3>
+<p>向量( {- vector)是所有数据结构中最基础的形式，用于存储同一种类型数据的一维数组。</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="-2-r-.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">###1.基本操作###</span></span>
+<span id="cb38-2"><a href="-2-r-.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="do">## (1)向量创建##</span></span>
+<span id="cb38-3"><a href="-2-r-.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 2 3 3 1 2 4 1 2 4 4 2 3 4 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="-2-r-.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="-2-r-.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seq(起始值, 终止值, 步长)</span></span>
+<span id="cb42-2"><a href="-2-r-.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)<span class="co">#生产0-10之间以2为间隔的等差数列</span></span></code></pre></div>
+<pre><code>## [1]  0  2  4  6  8 10</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="-2-r-.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="co">#生成1—10的连续数列</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="-2-r-.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="do">##(2)向量索引##</span></span>
+<span id="cb46-2"><a href="-2-r-.html#cb46-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)<span class="co">#生成向量</span></span>
+<span id="cb46-3"><a href="-2-r-.html#cb46-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>]<span class="co"># 引用x向量中的第5个元素</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="-2-r-.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(x <span class="sc">==</span> <span class="dv">3</span>)<span class="co">#查看x向量中3所在的位置</span></span></code></pre></div>
+<pre><code>## [1] 5 6</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="-2-r-.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(x)<span class="co">#查看x向量中最大值所在的位置</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="-2-r-.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(x)<span class="co">#查看x向量中最小值所在的位置</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="-2-r-.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">##(3)集合运算##</span></span>
+<span id="cb54-2"><a href="-2-r-.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">12</span>, <span class="dv">4</span>, <span class="dv">123</span>, <span class="dv">12</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))<span class="co">#求交集</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="-2-r-.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(<span class="fu">c</span>(<span class="st">&quot;狗熊会&quot;</span>, <span class="st">&quot;聚数据英才&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;狗熊会&quot;</span>, <span class="st">&quot;助产业振兴&quot;</span>))<span class="co">#求并集</span></span></code></pre></div>
+<pre><code>## [1] &quot;狗熊会&quot;     &quot;聚数据英才&quot; &quot;助产业振兴&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="-2-r-.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">3</span>)<span class="co">#求差集</span></span></code></pre></div>
+<pre><code>## [1] 10  9  8  7  6  2</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="-2-r-.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2.常见向量类型及操作 </span><span class="al">###</span></span>
+<span id="cb60-2"><a href="-2-r-.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="do">## (1)数值型向量 ##</span></span>
+<span id="cb60-3"><a href="-2-r-.html#cb60-3" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>)<span class="co">#创建数值向量</span></span>
+<span id="cb60-4"><a href="-2-r-.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(x)<span class="co">#求最小值</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="-2-r-.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(x)<span class="co">#求最大值</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="-2-r-.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(x)<span class="co">#求范围</span></span></code></pre></div>
+<pre><code>## [1]  4 10</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="-2-r-.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># match函数</span></span>
+<span id="cb66-2"><a href="-2-r-.html#cb66-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb66-3"><a href="-2-r-.html#cb66-3" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> letters[x]) <span class="co"># letters是一个内置字符串，里面储存26个字母字符</span></span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot;
+## [20] &quot;d&quot;</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="-2-r-.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(y, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 2 3 3 1 2 4 1 2 4 4 2 3 4 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="-2-r-.html#cb70-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span>)</span>
+<span id="cb70-2"><a href="-2-r-.html#cb70-2" aria-hidden="true" tabindex="-1"></a>letters</span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="-2-r-.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(x, letters)</span></code></pre></div>
+<pre><code>## [1] 1 3 7 8</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="-2-r-.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cut函数</span></span>
+<span id="cb74-2"><a href="-2-r-.html#cb74-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">72</span>,<span class="dv">21</span>,<span class="dv">39</span>,<span class="dv">74</span>,<span class="dv">62</span>,<span class="dv">76</span>,<span class="dv">64</span>,<span class="dv">43</span>,<span class="dv">94</span>,<span class="dv">44</span>,<span class="dv">87</span>,<span class="dv">43</span>,<span class="dv">42</span>,<span class="dv">35</span>,<span class="dv">39</span>,<span class="dv">46</span>,<span class="dv">45</span>,<span class="dv">33</span>,<span class="dv">24</span>,<span class="dv">38</span>))<span class="co">#生成向量</span></span></code></pre></div>
+<pre><code>##  [1] 72 21 39 74 62 76 64 43 94 44 87 43 42 35 39 46 45 33 24 38</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="-2-r-.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将年龄数据离散化  </span></span>
+<span id="cb76-2"><a href="-2-r-.html#cb76-2" aria-hidden="true" tabindex="-1"></a>label <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;青年&#39;</span>, <span class="st">&#39;中年&#39;</span>, <span class="st">&#39;老年&#39;</span>)  <span class="co">#设置标签</span></span>
+<span id="cb76-3"><a href="-2-r-.html#cb76-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">ages =</span> <span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>, <span class="dv">100</span>), <span class="at">labels =</span> label))<span class="co">#划分区间</span></span></code></pre></div>
+<pre><code>##  [1] 老年 青年 中年 老年 老年 老年 老年 中年 老年 中年 老年 中年 中年 青年 中年
+## [16] 中年 中年 青年 青年 中年
+## Levels: 青年 中年 老年</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="-2-r-.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sort和order函数</span></span>
+<span id="cb78-2"><a href="-2-r-.html#cb78-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>))<span class="co">#生成向量</span></span></code></pre></div>
+<pre><code>## [1] 1 5 4 6 7</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="-2-r-.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(x)</span></code></pre></div>
+<pre><code>## [1] 1 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="-2-r-.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
+<pre><code>## [1] 1 3 2 4 5</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="-2-r-.html#cb84-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">order</span>(x)]</span></code></pre></div>
+<pre><code>## [1] 1 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="-2-r-.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (2)字符串向量 ##</span></span>
+<span id="cb86-2"><a href="-2-r-.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nchar用来提取字符串的长度</span></span>
+<span id="cb86-3"><a href="-2-r-.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;欢迎关注狗熊会&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="-2-r-.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 看看数据集中的电影名字的长度分别是多少</span></span>
+<span id="cb88-2"><a href="-2-r-.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(movie<span class="sc">$</span>name)</span></code></pre></div>
+<pre><code>##   [1]  6  4  7  4  4  4  5  6  4  6  5  7  7  6  9  5  2  4  2  4  8  4  3  6  5
+##  [26]  4  4  5  8  4  4  3  2  4  4  9  5  5  4  5  5  4  5  7  3  5  3  4  3  4
+##  [51]  4  4  2  4  4  5  3  4  5  6  4  9  3  3  4  4  4  6  8  6  4  8  6  4  5
+##  [76]  3  4  4  6  4  4  4  7  4  3  4  4  3  2  2  7 10  9  4  3  2  3  5  2  4
+## [101]  4  5  4  8  3  2  5  3  7  4  5  4  3  4  5  4  4  5  4 10  7  4  4  3  4
+## [126]  2  4  4  8  5  2  2  4  4  7  5  3  4  4  4  5  5  5  6  7 13  4  3  5  4
+## [151]  5  7  4  4  6  6  3  4  3  4  6  5  5  3  5  2  4  2  3  3  3  2  4  2  4
+## [176]  5  4  4  7  4  5  8  6  4  3  5  4  5  5  4  9  3  6 10  5  2  5  2  4  6
+## [201]  4  4  4  4  3  5  8  5  4  5 13  4  2  4  4 12  8  2  4  4  5  6  4  3  5
+## [226]  7  5  5  2  2  4  5  5  5  5  2  4  2  4  7  8  4  7  3  2  4  4  5  4  8</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="-2-r-.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 中英文的字符长度计算方法有不同</span></span>
+<span id="cb90-2"><a href="-2-r-.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;Welcome to follow the CluBear&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 29</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="-2-r-.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># substr提取子字符串</span></span>
+<span id="cb92-2"><a href="-2-r-.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(<span class="st">&quot;欢迎关注狗熊会&quot;</span>, <span class="dv">1</span>, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;欢迎关注&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="-2-r-.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(<span class="st">&quot;一懒众衫小&quot;</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;众衫小&quot;</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="-2-r-.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># paste基本玩法</span></span>
+<span id="cb96-2"><a href="-2-r-.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">&quot;双11&quot;</span>, <span class="st">&quot;是个&quot;</span>, <span class="st">&quot;什么节日&quot;</span>), <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;双11是个什么节日&quot;</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="-2-r-.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A 1&quot; &quot;A 2&quot; &quot;A 3&quot; &quot;A 4&quot;</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="-2-r-.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># paste花式玩法</span></span>
+<span id="cb100-2"><a href="-2-r-.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1234&quot;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="-2-r-.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="-2-r-.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A_1&quot; &quot;A_2&quot; &quot;A_3&quot; &quot;A_4&quot;</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="-2-r-.html#cb106-1" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;狗熊会&quot;</span>, <span class="st">&quot;CluBear&quot;</span>, <span class="st">&quot;双11&quot;</span>, <span class="st">&quot;生日&quot;</span>)</span>
+<span id="cb106-2"><a href="-2-r-.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 返回含有关键字的字符位置</span></span>
+<span id="cb106-3"><a href="-2-r-.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;Bear&quot;</span>, txt)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="-2-r-.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;生日&quot;</span>, <span class="st">&quot;happy birthday&quot;</span>, txt)</span></code></pre></div>
+<pre><code>## [1] &quot;狗熊会&quot;         &quot;CluBear&quot;        &quot;双11&quot;           &quot;happy birthday&quot;</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="-2-r-.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grep返回movie的director中包含“青春”的行号2，movie[2, ]即提取出movie数据集的第2行</span></span>
+<span id="cb110-2"><a href="-2-r-.html#cb110-2" aria-hidden="true" tabindex="-1"></a>(index <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;陈凯歌&quot;</span>, movie<span class="sc">$</span>director))</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="-2-r-.html#cb112-1" aria-hidden="true" tabindex="-1"></a>(cmovie <span class="ot">&lt;-</span> movie[index, ])</span></code></pre></div>
+<pre><code>##   rank     name showtime duration director type score nation
+## 2    2 霸王别姬 1993/1/1      171   陈凯歌 爱情   9.5   中国</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="-2-r-.html#cb114-1" aria-hidden="true" tabindex="-1"></a>salary <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;22万&quot;</span>, <span class="st">&quot;30万&quot;</span>, <span class="st">&quot;50万&quot;</span>, <span class="st">&quot;120万&quot;</span>, <span class="st">&quot;11万&quot;</span>)</span>
+<span id="cb114-2"><a href="-2-r-.html#cb114-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">salary0 =</span> <span class="fu">gsub</span>(<span class="st">&quot;万&quot;</span>, <span class="st">&quot;0000&quot;</span>, salary))</span></code></pre></div>
+<pre><code>## [1] &quot;220000&quot;  &quot;300000&quot;  &quot;500000&quot;  &quot;1200000&quot; &quot;110000&quot;</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="-2-r-.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.numeric</span>(salary0))</span></code></pre></div>
+<pre><code>## [1] 466000</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="-2-r-.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">as.numeric</span>(salary0))  <span class="co"># 结果是科学计数法的形式</span></span></code></pre></div>
+<pre><code>## [1] 3e+05</code></pre>
+</div>
+<div id="矩阵" class="section level3 unnumbered">
+<h3>2.2.2 矩阵</h3>
+<p>上一部分讲述的向量只能够展示一维数据信息。如果想要展示二维数据信息，则需要用到矩阵的组织形式。矩阵(matrix)是一个二维数组，矩阵每一个元素的数据类型相同。</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="-2-r-.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 1.创建与引用 </span><span class="al">###</span></span>
+<span id="cb120-2"><a href="-2-r-.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="do">##(1)创建##</span></span>
+<span id="cb120-3"><a href="-2-r-.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成全部是0的矩阵</span></span>
+<span id="cb120-4"><a href="-2-r-.html#cb120-4" aria-hidden="true" tabindex="-1"></a>(<span class="at">zero =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="-2-r-.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成一个对角全是1的矩阵,直接在diag中输入对角线向量即可</span></span>
+<span id="cb122-2"><a href="-2-r-.html#cb122-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">dig14 =</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    1    0    0
+## [3,]    0    0    1    0
+## [4,]    0    0    0    1</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="-2-r-.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="do">##(2)创建##</span></span>
+<span id="cb124-2"><a href="-2-r-.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 从已有数据转化成矩阵</span></span>
+<span id="cb124-3"><a href="-2-r-.html#cb124-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">M =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">4</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="-2-r-.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成指定对角元素的对角矩阵</span></span>
+<span id="cb126-2"><a href="-2-r-.html#cb126-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">N =</span> <span class="fu">diag</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    2    0    0
+## [3,]    0    0    3    0
+## [4,]    0    0    0    4</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="-2-r-.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2.基本的矩阵操作 </span><span class="al">###</span></span>
+<span id="cb128-2"><a href="-2-r-.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 矩阵概览 ##</span></span>
+<span id="cb128-3"><a href="-2-r-.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看矩阵的维度</span></span>
+<span id="cb128-4"><a href="-2-r-.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(M) </span></code></pre></div>
+<pre><code>## [1] 3 4</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="-2-r-.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取矩阵的行数</span></span>
+<span id="cb130-2"><a href="-2-r-.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(M) </span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="-2-r-.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取矩阵的列数</span></span>
+<span id="cb132-2"><a href="-2-r-.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(M)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="-2-r-.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 4</span></span>
+<span id="cb134-2"><a href="-2-r-.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 引用元素</span></span>
+<span id="cb134-3"><a href="-2-r-.html#cb134-3" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">1</span>, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="-2-r-.html#cb136-1" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    4    7
+## [2,]    5    8</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="-2-r-.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 给行列命名</span></span>
+<span id="cb138-2"><a href="-2-r-.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M) <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;x_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb138-3"><a href="-2-r-.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(M) <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>; M</span></code></pre></div>
+<pre><code>##   x_ 1 x_ 2 x_ 3 x_ 4
+## 1    1    4    7   10
+## 2    2    5    8   11
+## 3    3    6    9   12</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="-2-r-.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 同样的命令可调用行列名</span></span>
+<span id="cb140-2"><a href="-2-r-.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M)</span></code></pre></div>
+<pre><code>## [1] &quot;x_ 1&quot; &quot;x_ 2&quot; &quot;x_ 3&quot; &quot;x_ 4&quot;</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="-2-r-.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(M)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="-2-r-.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将多个矩阵合并</span></span>
+<span id="cb144-2"><a href="-2-r-.html#cb144-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">A =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> T))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="-2-r-.html#cb146-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">B =</span> <span class="fu">diag</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">13</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   11    0    0
+## [2,]    0   12    0
+## [3,]    0    0   13</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="-2-r-.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(A, B) </span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   11    0    0
+## [5,]    0   12    0
+## [6,]    0    0   13</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="-2-r-.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(A, B) </span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    1    2    3   11    0    0
+## [2,]    4    5    6    0   12    0
+## [3,]    7    8    9    0    0   13</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="-2-r-.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.矩阵的数学操作 </span><span class="al">###</span></span>
+<span id="cb152-2"><a href="-2-r-.html#cb152-2" aria-hidden="true" tabindex="-1"></a>A <span class="sc">+</span> B <span class="co">#矩阵的加法</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   12    2    3
+## [2,]    4   17    6
+## [3,]    7    8   22</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="-2-r-.html#cb154-1" aria-hidden="true" tabindex="-1"></a>A <span class="sc">-</span> B <span class="co">#矩阵的减法</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  -10    2    3
+## [2,]    4   -7    6
+## [3,]    7    8   -4</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="-2-r-.html#cb156-1" aria-hidden="true" tabindex="-1"></a>A <span class="sc">*</span> B <span class="co">#矩阵各元素对应相乘</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   11    0    0
+## [2,]    0   60    0
+## [3,]    0    0  117</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="-2-r-.html#cb158-1" aria-hidden="true" tabindex="-1"></a>A <span class="sc">%*%</span> B <span class="co">#矩阵的乘法</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   11   24   39
+## [2,]   44   60   78
+## [3,]   77   96  117</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="-2-r-.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(B) <span class="co">#矩阵B的逆</span></span></code></pre></div>
+<pre><code>##            [,1]       [,2]       [,3]
+## [1,] 0.09090909 0.00000000 0.00000000
+## [2,] 0.00000000 0.08333333 0.00000000
+## [3,] 0.00000000 0.00000000 0.07692308</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="-2-r-.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(B) <span class="co">#矩阵B的特征值</span></span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 13 12 11
+## 
+## $vectors
+##      [,1] [,2] [,3]
+## [1,]    0    0    1
+## [2,]    0    1    0
+## [3,]    1    0    0</code></pre>
+</div>
+<div id="数组" class="section level3 unnumbered">
+<h3>2.2.3 数组</h3>
+<p>数组(array)是向量和矩阵的推广，用于表达三维或者三维以上的数据。</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="-2-r-.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="do">##1.创建及引用##</span></span>
+<span id="cb164-2"><a href="-2-r-.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建数组</span></span>
+<span id="cb164-3"><a href="-2-r-.html#cb164-3" aria-hidden="true" tabindex="-1"></a>(result <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">18</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>),<span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;r1&quot;</span>,<span class="st">&quot;r2&quot;</span>,<span class="st">&quot;r3&quot;</span>),<span class="fu">c</span>(<span class="st">&quot;c1&quot;</span>,<span class="st">&quot;c2&quot;</span>,<span class="st">&quot;c3&quot;</span>),<span class="fu">c</span>(<span class="st">&quot;h1&quot;</span>,<span class="st">&quot;h2&quot;</span>))))</span></code></pre></div>
+<pre><code>## , , h1
+## 
+##    c1 c2 c3
+## r1  1  4  7
+## r2  2  5  8
+## r3  3  6  9
+## 
+## , , h2
+## 
+##    c1 c2 c3
+## r1 10 13 16
+## r2 11 14 17
+## r3 12 15 18</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="-2-r-.html#cb166-1" aria-hidden="true" tabindex="-1"></a>result[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>]<span class="co">#获取单个元素</span></span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="-2-r-.html#cb168-1" aria-hidden="true" tabindex="-1"></a>result[<span class="dv">1</span>,,] <span class="co">#获取第一维度的数据</span></span></code></pre></div>
+<pre><code>##    h1 h2
+## c1  1 10
+## c2  4 13
+## c3  7 16</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="-2-r-.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">##2. 操作数组元素##</span></span>
+<span id="cb170-2"><a href="-2-r-.html#cb170-2" aria-hidden="true" tabindex="-1"></a>matrix1<span class="ot">&lt;-</span>result[,,<span class="dv">1</span>]<span class="co">#获取数组中第1水平的矩阵</span></span>
+<span id="cb170-3"><a href="-2-r-.html#cb170-3" aria-hidden="true" tabindex="-1"></a>matrix2<span class="ot">&lt;-</span>result[,,<span class="dv">2</span>]<span class="co">#获取数组中第2水平的矩阵</span></span>
+<span id="cb170-4"><a href="-2-r-.html#cb170-4" aria-hidden="true" tabindex="-1"></a>(add<span class="ot">&lt;-</span>matrix1<span class="sc">+</span>matrix2)<span class="co">#矩阵相加</span></span></code></pre></div>
+<pre><code>##    c1 c2 c3
+## r1 11 17 23
+## r2 13 19 25
+## r3 15 21 27</code></pre>
+</div>
+<div id="数据框" class="section level3 unnumbered">
+<h3>2.2.4 数据框</h3>
+<p>数据框(dataframe)是实际数据处理中最常用的数据结构形式。数据框的每一行可以存储一条数据记录，每一列可以存储不同类型的变量。</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="-2-r-.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 1.创建数据框 </span><span class="al">###</span></span>
+<span id="cb172-2"><a href="-2-r-.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 读入一个txt,csv等格式数据,即自成一个数据框</span></span>
+<span id="cb172-3"><a href="-2-r-.html#cb172-3" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>, <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb172-4"><a href="-2-r-.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="-2-r-.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 自己创建</span></span>
+<span id="cb174-2"><a href="-2-r-.html#cb174-2" aria-hidden="true" tabindex="-1"></a>director <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;陈凯歌&quot;</span>, <span class="st">&quot;宫崎骏&quot;</span>, <span class="st">&quot;李廷香&quot;</span>,<span class="st">&quot;詹姆斯·卡梅隆&quot;</span>, <span class="st">&quot;刘镇伟&quot;</span>, <span class="st">&quot;周星驰&quot;</span>, <span class="st">&quot;李安&quot;</span>, <span class="st">&quot;姜文&quot;</span>, <span class="st">&quot;张艺谋&quot;</span>, <span class="st">&quot;吴宇森&quot;</span>,<span class="st">&quot;岩井俊二&quot;</span>, <span class="st">&quot;王家卫&quot;</span>, <span class="st">&quot;陈可辛&quot;</span>  )</span>
+<span id="cb174-3"><a href="-2-r-.html#cb174-3" aria-hidden="true" tabindex="-1"></a>birthyear <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1952</span>,<span class="dv">1941</span>,<span class="dv">1964</span>,<span class="dv">1954</span>,<span class="dv">1952</span>,<span class="dv">1962</span>,<span class="dv">1954</span>,<span class="dv">1963</span>,<span class="dv">1950</span>,<span class="dv">1946</span>,<span class="dv">1963</span>,<span class="dv">1958</span>,<span class="dv">1962</span>)</span>
+<span id="cb174-4"><a href="-2-r-.html#cb174-4" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>)</span>
+<span id="cb174-5"><a href="-2-r-.html#cb174-5" aria-hidden="true" tabindex="-1"></a>directors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(director, birthyear, gender); <span class="fu">head</span>(directors)</span></code></pre></div>
+<pre><code>##        director birthyear gender
+## 1        陈凯歌      1952     男
+## 2        宫崎骏      1941     男
+## 3        李廷香      1964     女
+## 4 詹姆斯·卡梅隆      1954     男
+## 5        刘镇伟      1952     男
+## 6        周星驰      1962     男</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="-2-r-.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2.变形--长宽表互换 </span><span class="al">###</span></span>
+<span id="cb176-2"><a href="-2-r-.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(reshape)</span></span>
+<span id="cb176-3"><a href="-2-r-.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)</span>
+<span id="cb176-4"><a href="-2-r-.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(reshape2)</span></span>
+<span id="cb176-5"><a href="-2-r-.html#cb176-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb176-6"><a href="-2-r-.html#cb176-6" aria-hidden="true" tabindex="-1"></a><span class="do">## (1) 宽表变长表 ##</span></span>
+<span id="cb176-7"><a href="-2-r-.html#cb176-7" aria-hidden="true" tabindex="-1"></a>mWide <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">Type =</span> <span class="fu">c</span>(<span class="st">&quot;喜剧&quot;</span>, <span class="st">&quot;动作&quot;</span>),</span>
+<span id="cb176-8"><a href="-2-r-.html#cb176-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">GF2018 =</span> <span class="fu">c</span>(<span class="fl">6.5</span>, <span class="fl">8.0</span>), <span class="at">GF2019 =</span> <span class="fu">c</span>(<span class="fl">7.0</span>, <span class="fl">7.5</span>), <span class="at">GF2020 =</span> <span class="fu">c</span>(<span class="fl">8.1</span>, <span class="fl">7.3</span>))</span>
+<span id="cb176-9"><a href="-2-r-.html#cb176-9" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># 由于构造数据框时列名不可以为纯数字，在数字前添加GF</span></span>
+<span id="cb176-10"><a href="-2-r-.html#cb176-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 将列名中的GF去掉</span></span>
+<span id="cb176-11"><a href="-2-r-.html#cb176-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mWide)[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot;GF&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(mWide)[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb176-12"><a href="-2-r-.html#cb176-12" aria-hidden="true" tabindex="-1"></a>mWide <span class="co">#查看原表</span></span></code></pre></div>
+<pre><code>##   Name Type 2018 2019 2020
+## 1    A 喜剧  6.5  7.0  8.1
+## 2    B 动作  8.0  7.5  7.3</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="-2-r-.html#cb178-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">mLong =</span> <span class="fu">melt</span>(mWide, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Type&quot;</span>), <span class="at">variable_name =</span> <span class="st">&quot;Year&quot;</span>)) </span></code></pre></div>
+<pre><code>##   Name Type Year value
+## 1    A 喜剧 2018   6.5
+## 2    B 动作 2018   8.0
+## 3    A 喜剧 2019   7.0
+## 4    B 动作 2019   7.5
+## 5    A 喜剧 2020   8.1
+## 6    B 动作 2020   7.3</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="-2-r-.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (2) 长表变宽表 ##</span></span>
+<span id="cb180-2"><a href="-2-r-.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将列Year从字符型变成数值型</span></span>
+<span id="cb180-3"><a href="-2-r-.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mLong$Year = as.numeric(mLong$Year)</span></span>
+<span id="cb180-4"><a href="-2-r-.html#cb180-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-5"><a href="-2-r-.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 长表变宽表</span></span>
+<span id="cb180-6"><a href="-2-r-.html#cb180-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(mLong, Name <span class="sc">+</span> Type <span class="sc">~</span> Year)</span></code></pre></div>
+<pre><code>##   Name Type 2018 2019 2020
+## 1    A 喜剧  6.5  7.0  8.1
+## 2    B 动作  8.0  7.5  7.3</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="-2-r-.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.R中的数据透视表-神奇的ddply </span><span class="al">###</span></span>
+<span id="cb182-2"><a href="-2-r-.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(plyr)</span></span>
+<span id="cb182-3"><a href="-2-r-.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb182-4"><a href="-2-r-.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 根据电影类型进行分组，查看不同类型电影评分的平均水平</span></span>
+<span id="cb182-5"><a href="-2-r-.html#cb182-5" aria-hidden="true" tabindex="-1"></a>popular_type_grouped<span class="ot">=</span><span class="fu">group_by</span>(movie,type)<span class="co">#根据电影类型进行分组</span></span>
+<span id="cb182-6"><a href="-2-r-.html#cb182-6" aria-hidden="true" tabindex="-1"></a>popular_type1<span class="ot">=</span><span class="fu">summarise</span>(popular_type_grouped,</span>
+<span id="cb182-7"><a href="-2-r-.html#cb182-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mean_score=</span><span class="fu">mean</span>(score),<span class="co">#计算不同类型的平均评分</span></span>
+<span id="cb182-8"><a href="-2-r-.html#cb182-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max_score=</span><span class="fu">max</span>(score))<span class="co">#计算不同类型的最高评分</span></span>
+<span id="cb182-9"><a href="-2-r-.html#cb182-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(popular_type1)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   type  mean_score max_score
+##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 传记        7.97       9.1
+## 2 冒险        8.75       9.2
+## 3 剧情        8.19       9.6
+## 4 动作        8.01       9.4
+## 5 动画        7.31       9.2
+## 6 历史        7.35       9.4</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="-2-r-.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co">#利用管道函数%&gt;%省去中间变量命名</span></span>
+<span id="cb184-2"><a href="-2-r-.html#cb184-2" aria-hidden="true" tabindex="-1"></a>popular_type2 <span class="ot">=</span> movie<span class="sc">%&gt;%</span><span class="fu">group_by</span>(type)<span class="sc">%&gt;%</span></span>
+<span id="cb184-3"><a href="-2-r-.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score=</span><span class="fu">mean</span>(score),<span class="co">#计算不同类型的平均评分</span></span>
+<span id="cb184-4"><a href="-2-r-.html#cb184-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_score=</span><span class="fu">max</span>(score))<span class="co">#计算不同类型的最高评分</span></span>
+<span id="cb184-5"><a href="-2-r-.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(popular_type2)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   type  mean_score max_score
+##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 传记        7.97       9.1
+## 2 冒险        8.75       9.2
+## 3 剧情        8.19       9.6
+## 4 动作        8.01       9.4
+## 5 动画        7.31       9.2
+## 6 历史        7.35       9.4</code></pre>
+</div>
+<div id="列表" class="section level3 unnumbered">
+<h3>2.2.5 列表</h3>
+<p>列表（list）是R语言中可以容纳各种类型的数据对象，如向量、矩阵、数据框，甚至一个列表也可以成为另一个列表的元素。</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="-2-r-.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="do">##1.创建##</span></span>
+<span id="cb186-2"><a href="-2-r-.html#cb186-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">example =</span> <span class="fu">list</span>(<span class="st">&quot;abc&quot;</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">4</span>), <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">y =</span> <span class="fu">paste0</span>(<span class="st">&quot;boy_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;abc&quot;
+## 
+## [[2]]
+## [1] 3 4 5
+## 
+## [[3]]
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    1    1
+## [2,]    1    1    1    1
+## [3,]    1    1    1    1
+## 
+## [[4]]
+##   x     y
+## 1 1 boy_1
+## 2 2 boy_2
+## 3 3 boy_3
+## 4 4 boy_4</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="-2-r-.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="do">##2.基本操作##</span></span>
+<span id="cb188-2"><a href="-2-r-.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看</span></span>
+<span id="cb188-3"><a href="-2-r-.html#cb188-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">complex =</span> <span class="fu">list</span>(<span class="at">first =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">second =</span> <span class="fu">list</span>(letters, <span class="fu">list</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)))))</span></code></pre></div>
+<pre><code>## $first
+## $first[[1]]
+## [1] 1 2
+## 
+## 
+## $second
+## $second[[1]]
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+## 
+## $second[[2]]
+## $second[[2]][[1]]
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="-2-r-.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(complex)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ first :List of 1
+##   ..$ : int [1:2] 1 2
+##  $ second:List of 2
+##   ..$ : chr [1:26] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; ...
+##   ..$ :List of 1
+##   .. ..$ : int [1:2, 1:2] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="-2-r-.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用名字引用元素</span></span>
+<span id="cb192-2"><a href="-2-r-.html#cb192-2" aria-hidden="true" tabindex="-1"></a>complex<span class="sc">$</span>first  </span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="-2-r-.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用序号引用元素</span></span>
+<span id="cb194-2"><a href="-2-r-.html#cb194-2" aria-hidden="true" tabindex="-1"></a>complex[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="-2-r-.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用名字添加元素</span></span>
+<span id="cb196-2"><a href="-2-r-.html#cb196-2" aria-hidden="true" tabindex="-1"></a>complex<span class="sc">$</span>new <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>; complex</span></code></pre></div>
+<pre><code>## $first
+## $first[[1]]
+## [1] 1 2
+## 
+## 
+## $second
+## $second[[1]]
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+## 
+## $second[[2]]
+## $second[[2]][[1]]
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## 
+## 
+## 
+## $new
+## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="-2-r-.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 利用序号添加元素</span></span>
+<span id="cb198-2"><a href="-2-r-.html#cb198-2" aria-hidden="true" tabindex="-1"></a>complex[[<span class="dv">3</span>]] <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>); complex</span></code></pre></div>
+<pre><code>## $first
+## $first[[1]]
+## [1] 1 2
+## 
+## 
+## $second
+## $second[[1]]
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+## 
+## $second[[2]]
+## $second[[2]][[1]]
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## 
+## 
+## 
+## $new
+##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    1    1    1</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="-2-r-.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="do">##3. 列表中的**ply函数##</span></span>
+<span id="cb200-2"><a href="-2-r-.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 老王耗子药的单价,单位(元/袋)</span></span>
+<span id="cb200-3"><a href="-2-r-.html#cb200-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">price =</span> <span class="fu">list</span>(<span class="at">year2014 =</span> <span class="dv">36</span><span class="sc">:</span><span class="dv">33</span>, <span class="at">year2015 =</span> <span class="dv">32</span><span class="sc">:</span><span class="dv">35</span>, <span class="at">year2016 =</span> <span class="dv">30</span><span class="sc">:</span><span class="dv">27</span>))</span></code></pre></div>
+<pre><code>## $year2014
+## [1] 36 35 34 33
+## 
+## $year2015
+## [1] 32 33 34 35
+## 
+## $year2016
+## [1] 30 29 28 27</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="-2-r-.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply返回列表</span></span>
+<span id="cb202-2"><a href="-2-r-.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(price, mean)</span></code></pre></div>
+<pre><code>## $year2014
+## [1] 34.5
+## 
+## $year2015
+## [1] 33.5
+## 
+## $year2016
+## [1] 28.5</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="-2-r-.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求方差</span></span>
+<span id="cb204-2"><a href="-2-r-.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(price, sd)</span></code></pre></div>
+<pre><code>## $year2014
+## [1] 1.290994
+## 
+## $year2015
+## [1] 1.290994
+## 
+## $year2016
+## [1] 1.290994</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="-2-r-.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求分位数</span></span>
+<span id="cb206-2"><a href="-2-r-.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(price, quantile)</span></code></pre></div>
+<pre><code>## $year2014
+##    0%   25%   50%   75%  100% 
+## 33.00 33.75 34.50 35.25 36.00 
+## 
+## $year2015
+##    0%   25%   50%   75%  100% 
+## 32.00 32.75 33.50 34.25 35.00 
+## 
+## $year2016
+##    0%   25%   50%   75%  100% 
+## 27.00 27.75 28.50 29.25 30.00</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="-2-r-.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sapply默认返回向量或矩阵</span></span>
+<span id="cb208-2"><a href="-2-r-.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(price, mean)</span></code></pre></div>
+<pre><code>## year2014 year2015 year2016 
+##     34.5     33.5     28.5</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="-2-r-.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(price, sd)</span></code></pre></div>
+<pre><code>## year2014 year2015 year2016 
+## 1.290994 1.290994 1.290994</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="-2-r-.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(price, quantile)</span></code></pre></div>
+<pre><code>##      year2014 year2015 year2016
+## 0%      33.00    32.00    27.00
+## 25%     33.75    32.75    27.75
+## 50%     34.50    33.50    28.50
+## 75%     35.25    34.25    29.25
+## 100%    36.00    35.00    30.00</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="-2-r-.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mapply实现了将price与amount对应元素相乘的效果</span></span>
+<span id="cb214-2"><a href="-2-r-.html#cb214-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">amount =</span> <span class="fu">list</span>(<span class="at">year2014 =</span> <span class="fu">rep</span>(<span class="dv">200</span>, <span class="dv">4</span>), <span class="at">year2015 =</span> <span class="fu">rep</span>(<span class="dv">100</span>, <span class="dv">4</span>), <span class="at">year2016 =</span> <span class="fu">rep</span>(<span class="dv">300</span>, <span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>## $year2014
+## [1] 200 200 200 200
+## 
+## $year2015
+## [1] 100 100 100 100
+## 
+## $year2016
+## [1] 300 300 300 300</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="-2-r-.html#cb216-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">income_quarter =</span> <span class="fu">mapply</span>(<span class="st">&quot;*&quot;</span>, price, amount))</span></code></pre></div>
+<pre><code>##      year2014 year2015 year2016
+## [1,]     7200     3200     9000
+## [2,]     7000     3300     8700
+## [3,]     6800     3400     8400
+## [4,]     6600     3500     8100</code></pre>
+</div>
+</div>
+<div id="数据的读入与写出" class="section level2 unnumbered">
+<h2>2.3 数据的读入与写出</h2>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="-2-r-.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())<span class="co">#清理工作空间</span></span>
+<span id="cb218-2"><a href="-2-r-.html#cb218-2" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)<span class="co">#导入数据</span></span></code></pre></div>
+<div id="使用键盘输入数据" class="section level3 unnumbered">
+<h3>2.3.1 使用键盘输入数据</h3>
+<p>当读入数据较少时，可通过键盘输入数据。主要方式分为：直接输入以及利用R内置表格编辑器输入。</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="-2-r-.html#cb219-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">61</span>,<span class="dv">66</span>,<span class="dv">84</span>,<span class="dv">80</span>,<span class="dv">100</span>)</span>
+<span id="cb219-2"><a href="-2-r-.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="co">#scores &lt;- data.frame() #建立一个空数据框</span></span>
+<span id="cb219-3"><a href="-2-r-.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="co">#scores &lt;-edit(scores)  #触发R内置编辑器</span></span>
+<span id="cb219-4"><a href="-2-r-.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入数据集</span></span>
+<span id="cb219-5"><a href="-2-r-.html#cb219-5" aria-hidden="true" tabindex="-1"></a>mydatatxt<span class="ot">&lt;-</span><span class="st">&quot;name gender age</span></span>
+<span id="cb219-6"><a href="-2-r-.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="st">张三 M 20</span></span>
+<span id="cb219-7"><a href="-2-r-.html#cb219-7" aria-hidden="true" tabindex="-1"></a><span class="st">李四 F 23</span></span>
+<span id="cb219-8"><a href="-2-r-.html#cb219-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb219-9"><a href="-2-r-.html#cb219-9" aria-hidden="true" tabindex="-1"></a>(mydata<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>,<span class="at">text =</span> mydatatxt)) <span class="co"># 读取数据集</span></span></code></pre></div>
+<pre><code>##   name gender age
+## 1 张三      M  20
+## 2 李四      F  23</code></pre>
+</div>
+<div id="从带分隔符的文本文件导入数据" class="section level3 unnumbered">
+<h3>2.3.2 从带分隔符的文本文件导入数据</h3>
+<p>文本文件是一种常用的数据文件格式，函数read.table()可以从带分隔符的文本文件中导入数据，并生成一个数据框。常见的文本文件的数据格式为csv，读入csv文件可使用专有函数read.csv()。</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="-2-r-.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 1. read.rable() </span><span class="al">###</span></span>
+<span id="cb221-2"><a href="-2-r-.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="co">#从txt中读入,分隔符为&quot;\t&quot;</span></span>
+<span id="cb221-3"><a href="-2-r-.html#cb221-3" aria-hidden="true" tabindex="-1"></a>tes <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/top250.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;GBK&quot;</span>); <span class="fu">head</span>(tes)</span></code></pre></div>
+<pre><code>##   rank           name   showtime duration        director type score nation
+## 1    1   肖申克的救赎  1994/9/10      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬   1993/1/1      171          陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷  1994/9/14      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传  1994/6/23      142          Robert 爱情   9.4   美国
+## 5    5       美丽人生 1997/12/20      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻  2001/7/20      125          宫崎骏 动画   9.2   日本</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="-2-r-.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2. read.csv() </span><span class="al">###</span></span>
+<span id="cb223-2"><a href="-2-r-.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co">#专用函数read.csv</span></span>
+<span id="cb223-3"><a href="-2-r-.html#cb223-3" aria-hidden="true" tabindex="-1"></a>movie_csv <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;GBK&quot;</span>); <span class="fu">head</span>(movie_csv)</span></code></pre></div>
+<pre><code>##   rank           name   showtime duration        director type score nation
+## 1    1   肖申克的救赎  1994/9/10      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬   1993/1/1      171          陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷  1994/9/14      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传  1994/6/23      142          Robert 爱情   9.4   美国
+## 5    5       美丽人生 1997/12/20      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻  2001/7/20      125          宫崎骏 动画   9.2   日本</code></pre>
+</div>
+<div id="导入excel数据" class="section level3 unnumbered">
+<h3>2.3.3 导入Excel数据</h3>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="-2-r-.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>) <span class="co"># 加载包</span></span>
+<span id="cb225-2"><a href="-2-r-.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 其中col_names参数仍然是为了设定是否把第一行当做变量名</span></span>
+<span id="cb225-3"><a href="-2-r-.html#cb225-3" aria-hidden="true" tabindex="-1"></a>movie_excel <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">read_excel</span>(<span class="st">&quot;./data/top250.xlsx&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>));<span class="fu">head</span>(movie_excel)</span></code></pre></div>
+<pre><code>##   rank           name showtime duration        director type score nation
+## 1    1   肖申克的救赎    34587      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬    33970      171          陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷    34591      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传    34508      142          Robert 爱情   9.4   美国
+## 5    5       美丽人生    35784      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻    37092      125          宫崎骏 动画   9.2   日本</code></pre>
+</div>
+<div id="逐行读入数据" class="section level3 unnumbered">
+<h3>2.3.4 逐行读入数据</h3>
+<p>在文件较大或格式较为复杂的情况下，直接将文件读入内存会花费很长时间。因此，可以每次读入一行文件，进行逐行处理。</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="-2-r-.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co">#建立与文件的连接</span></span>
+<span id="cb227-2"><a href="-2-r-.html#cb227-2" aria-hidden="true" tabindex="-1"></a>con<span class="ot">&lt;-</span><span class="fu">file</span>(<span class="st">&quot;./data/top250.csv&quot;</span>)</span>
+<span id="cb227-3"><a href="-2-r-.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="co">#逐行读入所有数据</span></span>
+<span id="cb227-4"><a href="-2-r-.html#cb227-4" aria-hidden="true" tabindex="-1"></a>line_all<span class="ot">&lt;-</span><span class="fu">readLines</span>(con)</span>
+<span id="cb227-5"><a href="-2-r-.html#cb227-5" aria-hidden="true" tabindex="-1"></a><span class="co">#读取前10行数据</span></span>
+<span id="cb227-6"><a href="-2-r-.html#cb227-6" aria-hidden="true" tabindex="-1"></a>line_10<span class="ot">&lt;-</span><span class="fu">readLines</span>(con,<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb227-7"><a href="-2-r-.html#cb227-7" aria-hidden="true" tabindex="-1"></a>line_10</span></code></pre></div>
+<pre><code>##  [1] &quot;rank,name,showtime,duration,director,type,score,nation&quot;       
+##  [2] &quot;1,肖申克的救赎,1994/9/10,142,弗兰克·德拉邦特,剧情,9.6,美国&quot;   
+##  [3] &quot;2,霸王别姬,1993/1/1,171,陈凯歌,爱情,9.5,中国&quot;                 
+##  [4] &quot;3,这个杀手不太冷,1994/9/14,110,吕克·贝松,动作,9.4,法国&quot;       
+##  [5] &quot;4,阿甘正传,1994/6/23,142,Robert,爱情,9.4,美国&quot;                
+##  [6] &quot;5,美丽人生,1997/12/20,116,罗伯托·贝尼尼,喜剧,9.5,意大利&quot;      
+##  [7] &quot;6,千与千寻,2001/7/20,125,宫崎骏,动画,9.2,日本&quot;                
+##  [8] &quot;7,泰坦尼克号,1998/4/3,194,詹姆斯·卡梅隆,爱情,9.2,美国&quot;        
+##  [9] &quot;8,辛德勒的名单,1993/11/30,195,史蒂文·斯皮尔伯格,历史,9.4,美国&quot;
+## [10] &quot;9,盗梦空间,2010/9/1,148,克里斯托弗·诺兰,科幻,9.3,美国&quot;</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="-2-r-.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(con)<span class="co">#关闭连接</span></span>
+<span id="cb229-2"><a href="-2-r-.html#cb229-2" aria-hidden="true" tabindex="-1"></a>split_line<span class="ot">=</span><span class="fu">strsplit</span>(line_all,<span class="st">&quot;,&quot;</span>)<span class="co">#分隔符为”,”</span></span>
+<span id="cb229-3"><a href="-2-r-.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_line,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;rank&quot;     &quot;name&quot;     &quot;showtime&quot; &quot;duration&quot; &quot;director&quot; &quot;type&quot;     &quot;score&quot;   
+## [8] &quot;nation&quot;  
+## 
+## [[2]]
+## [1] &quot;1&quot;               &quot;肖申克的救赎&quot;    &quot;1994/9/10&quot;       &quot;142&quot;            
+## [5] &quot;弗兰克·德拉邦特&quot; &quot;剧情&quot;            &quot;9.6&quot;             &quot;美国&quot;           
+## 
+## [[3]]
+## [1] &quot;2&quot;        &quot;霸王别姬&quot; &quot;1993/1/1&quot; &quot;171&quot;      &quot;陈凯歌&quot;   &quot;爱情&quot;     &quot;9.5&quot;     
+## [8] &quot;中国&quot;</code></pre>
+</div>
+</div>
+<div id="数据集管理及预处理" class="section level2 unnumbered">
+<h2>2.4 数据集管理及预处理</h2>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="-2-r-.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())<span class="co">#清理工作空间</span></span>
+<span id="cb231-2"><a href="-2-r-.html#cb231-2" aria-hidden="true" tabindex="-1"></a>movie <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)<span class="co">#导入数据</span></span></code></pre></div>
+<div id="了解数据概况" class="section level3 unnumbered">
+<h3>2.4.1 了解数据概况</h3>
+<p>拿到数据集后需要先查看数据的概况，主要通过R语言中的汇总函数实现。首先使用str()函数查看每列数据的类型，了解取值情况。接下来，可通过summary()函数查看每列数据的汇总统计。</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="-2-r-.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(movie)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    250 obs. of  8 variables:
+##  $ rank    : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ name    : chr  &quot;肖申克的救赎&quot; &quot;霸王别姬&quot; &quot;这个杀手不太冷&quot; &quot;阿甘正传&quot; ...
+##  $ showtime: chr  &quot;1994/9/10&quot; &quot;1993/1/1&quot; &quot;1994/9/14&quot; &quot;1994/6/23&quot; ...
+##  $ duration: int  142 171 110 142 116 125 194 195 148 98 ...
+##  $ director: chr  &quot;弗兰克·德拉邦特&quot; &quot;陈凯歌&quot; &quot;吕克·贝松&quot; &quot;Robert&quot; ...
+##  $ type    : chr  &quot;剧情&quot; &quot;爱情&quot; &quot;动作&quot; &quot;爱情&quot; ...
+##  $ score   : num  9.6 9.5 9.4 9.4 9.5 9.2 9.2 9.4 9.3 9.3 ...
+##  $ nation  : chr  &quot;美国&quot; &quot;中国&quot; &quot;法国&quot; &quot;美国&quot; ...</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="-2-r-.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(movie)</span></code></pre></div>
+<pre><code>##       rank           name             showtime            duration    
+##  Min.   :  1.0   Length:250         Length:250         Min.   : 45.0  
+##  1st Qu.: 60.5   Class :character   Class :character   1st Qu.:103.0  
+##  Median :126.5   Mode  :character   Mode  :character   Median :118.0  
+##  Mean   :125.9                                         Mean   :122.2  
+##  3rd Qu.:190.0                                         3rd Qu.:136.0  
+##  Max.   :250.0                                         Max.   :238.0  
+##                                                        NA&#39;s   :12     
+##    director             type               score           nation         
+##  Length:250         Length:250         Min.   :-1.000   Length:250        
+##  Class :character   Class :character   1st Qu.: 8.500   Class :character  
+##  Mode  :character   Mode  :character   Median : 8.700   Mode  :character  
+##                                        Mean   : 7.853                     
+##                                        3rd Qu.: 8.900                     
+##                                        Max.   : 9.600                     
+## </code></pre>
+</div>
+<div id="变量类型转换" class="section level3 unnumbered">
+<h3>2.4.2 变量类型转换</h3>
+<div id="基本数据类型之间的转换" class="section level4" number="1.0.0.1">
+<h4><span class="header-section-number">1.0.0.1</span> 1.基本数据类型之间的转换</h4>
+<p>变量类型转换可以分为两步，首先利用is族函数判断变量类型，再通过as族函数转换变量类型。</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="-2-r-.html#cb236-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="co">#将1赋值给a</span></span>
+<span id="cb236-2"><a href="-2-r-.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)<span class="co">#判断a是否是数值型数据</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="-2-r-.html#cb238-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(a)<span class="co">#将a转换为数值型数据</span></span>
+<span id="cb238-2"><a href="-2-r-.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)<span class="co">#再次判断a是否是数值型数据</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="不同结构化数据类型间的转换" class="section level4" number="1.0.0.2">
+<h4><span class="header-section-number">1.0.0.2</span> 2.不同结构化数据类型间的转换</h4>
+<p>结构化数据类型之间的转换与基本数据类型转换相似，首先使用class()函数判断数据结构，再使用as族函数进行转换。</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="-2-r-.html#cb240-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(movie<span class="sc">$</span>nation)<span class="co">#统计不同国家的频次</span></span>
+<span id="cb240-2"><a href="-2-r-.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tbl)<span class="co">#查看数据格式</span></span></code></pre></div>
+<pre><code>## [1] &quot;table&quot;</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="-2-r-.html#cb242-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tbl)<span class="co">#转化为数据框</span></span>
+<span id="cb242-2"><a href="-2-r-.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tbl)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+<div id="日期值转换" class="section level4" number="1.0.0.3">
+<h4><span class="header-section-number">1.0.0.3</span> 3.日期值转换</h4>
+<p>日期类型的变量需要使用如下方法进行转换。</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="-2-r-.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="do">###(1)将字符转换成Date日期格式###</span></span>
+<span id="cb244-2"><a href="-2-r-.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 函数head用来查看数据前6个元素，函数class用来查看对象数据类型</span></span>
+<span id="cb244-3"><a href="-2-r-.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
+<pre><code>## [1] &quot;1994/9/10&quot;  &quot;1993/1/1&quot;   &quot;1994/9/14&quot;  &quot;1994/6/23&quot;  &quot;1997/12/20&quot;
+## [6] &quot;2001/7/20&quot;</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="-2-r-.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="-2-r-.html#cb248-1" aria-hidden="true" tabindex="-1"></a>movie<span class="sc">$</span>showtime <span class="ot">=</span> <span class="fu">as.Date</span>(movie<span class="sc">$</span>showtime)</span>
+<span id="cb248-2"><a href="-2-r-.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
+<pre><code>## [1] &quot;1994-09-10&quot; &quot;1993-01-01&quot; &quot;1994-09-14&quot; &quot;1994-06-23&quot; &quot;1997-12-20&quot;
+## [6] &quot;2001-07-20&quot;</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="-2-r-.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="-2-r-.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&#39;1/15/2020&#39;</span>, <span class="at">format =</span> <span class="st">&#39;%m/%d/%Y&#39;</span>) <span class="co">#对日/月/年类型字符进行日期转换</span></span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-15&quot;</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="-2-r-.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="do">###(2)将字符转换成POSIXct/POSIXlt时间格式###</span></span>
+<span id="cb254-2"><a href="-2-r-.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="dv">1472562988</span>, <span class="at">origin =</span> <span class="st">&quot;1960-01-01&quot;</span>)<span class="co">#日期值转换，以&quot;1960-01-01&quot;为起点</span></span></code></pre></div>
+<pre><code>## [1] &quot;2006-08-30 21:16:28 CST&quot;</code></pre>
+</div>
+</div>
+<div id="时间型数据的操作" class="section level3 unnumbered">
+<h3>2.4.3 时间型数据的操作</h3>
+<p>针对时间型数据的常用操作为：特征提取、差值运算、排序运算。</p>
+<div id="特征提取" class="section level4" number="1.0.0.4">
+<h4><span class="header-section-number">1.0.0.4</span> 1.特征提取</h4>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="-2-r-.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)<span class="co">#加载lubridate包</span></span>
+<span id="cb256-2"><a href="-2-r-.html#cb256-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="st">&quot;2020-11-20 01:30:29&quot;</span></span>
+<span id="cb256-3"><a href="-2-r-.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(t)<span class="co">#提取年份</span></span></code></pre></div>
+<pre><code>## [1] 2020</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="-2-r-.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(t)<span class="co">#提取月份</span></span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="-2-r-.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mday</span>(t)<span class="co">#提取日期是一个月中的第几天</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="-2-r-.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(t)<span class="co">#提取日期是一周中的第几天</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="-2-r-.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(t)<span class="co">#取出日期中的小时数</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="-2-r-.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(t)<span class="co">#取出日期中的分钟数</span></span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="-2-r-.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(t)<span class="co">#取出日期中的秒</span></span></code></pre></div>
+<pre><code>## [1] 29</code></pre>
+</div>
+<div id="插值运算" class="section level4" number="1.0.0.5">
+<h4><span class="header-section-number">1.0.0.5</span> 2.插值运算</h4>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="-2-r-.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求任意两个日期距离的天数</span></span>
+<span id="cb270-2"><a href="-2-r-.html#cb270-2" aria-hidden="true" tabindex="-1"></a>begin <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2016-03-04&quot;</span>)</span>
+<span id="cb270-3"><a href="-2-r-.html#cb270-3" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2016-05-08&quot;</span>)</span>
+<span id="cb270-4"><a href="-2-r-.html#cb270-4" aria-hidden="true" tabindex="-1"></a>(<span class="at">during =</span> end <span class="sc">-</span> begin)</span></code></pre></div>
+<pre><code>## Time difference of 65 days</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="-2-r-.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求任意两个日期距离的周数和小时数</span></span>
+<span id="cb272-2"><a href="-2-r-.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(end, begin, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span></code></pre></div>
+<pre><code>## Time difference of 9.285714 weeks</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="-2-r-.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(end, begin, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>)</span></code></pre></div>
+<pre><code>## Time difference of 1560 hours</code></pre>
+</div>
+<div id="排序" class="section level4" number="1.0.0.6">
+<h4><span class="header-section-number">1.0.0.6</span> 3.排序</h4>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="-2-r-.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 单独对时间进行排序</span></span>
+<span id="cb276-2"><a href="-2-r-.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(movie<span class="sc">$</span>showtime))</span></code></pre></div>
+<pre><code>## [1] &quot;1931-01-30&quot; &quot;1936-02-25&quot; &quot;1939-12-15&quot; &quot;1940-05-17&quot; &quot;1950-08-26&quot;
+## [6] &quot;1952-04-11&quot;</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="-2-r-.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 对数据表格中的数据按照时间顺序排列,这里只选取前6行，对电影名称、上映日期做展示</span></span>
+<span id="cb278-2"><a href="-2-r-.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie[<span class="fu">order</span>(movie<span class="sc">$</span>showtime), <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;showtime&quot;</span>)])</span></code></pre></div>
+<pre><code>##         name   showtime
+## 214 城市之光 1931-01-30
+## 103 摩登时代 1936-02-25
+## 20  乱世佳人 1939-12-15
+## 147 魂断蓝桥 1940-05-17
+## 171   罗生门 1950-08-26
+## 157   雨中曲 1952-04-11</code></pre>
+</div>
+</div>
+<div id="数据集合并" class="section level3 unnumbered">
+<h3>2.4.4 数据集合并</h3>
+<p>实践中，常常需要将不同表的信息进行合并。在R语言中可以使用函数merge()来实现数据框的合并。</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="-2-r-.html#cb280-1" aria-hidden="true" tabindex="-1"></a>director <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;陈凯歌&quot;</span>, <span class="st">&quot;宫崎骏&quot;</span>, <span class="st">&quot;李廷香&quot;</span>,<span class="st">&quot;詹姆斯·卡梅隆&quot;</span>, <span class="st">&quot;刘镇伟&quot;</span>, <span class="st">&quot;周星驰&quot;</span>, <span class="st">&quot;李安&quot;</span>, <span class="st">&quot;姜文&quot;</span>, <span class="st">&quot;张艺谋&quot;</span>, <span class="st">&quot;吴宇森&quot;</span>,<span class="st">&quot;岩井俊二&quot;</span>, <span class="st">&quot;王家卫&quot;</span>, <span class="st">&quot;陈可辛&quot;</span>  )</span>
+<span id="cb280-2"><a href="-2-r-.html#cb280-2" aria-hidden="true" tabindex="-1"></a>birthyear <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1952</span>,<span class="dv">1941</span>,<span class="dv">1964</span>,<span class="dv">1954</span>,<span class="dv">1952</span>,<span class="dv">1962</span>,<span class="dv">1954</span>,<span class="dv">1963</span>,<span class="dv">1950</span>,<span class="dv">1946</span>,<span class="dv">1963</span>,<span class="dv">1958</span>,<span class="dv">1962</span>)</span>
+<span id="cb280-3"><a href="-2-r-.html#cb280-3" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>)</span>
+<span id="cb280-4"><a href="-2-r-.html#cb280-4" aria-hidden="true" tabindex="-1"></a>directors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(director, birthyear, gender); </span>
+<span id="cb280-5"><a href="-2-r-.html#cb280-5" aria-hidden="true" tabindex="-1"></a><span class="co"># merge实现的效果是：将movie和directors按照列director匹配并合并起来</span></span>
+<span id="cb280-6"><a href="-2-r-.html#cb280-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">movie.star =</span> <span class="fu">merge</span>(movie[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], directors,<span class="at">by =</span> <span class="st">&quot;director&quot;</span>)) </span></code></pre></div>
+<pre><code>##        director rank       name   showtime duration type score nation birthyear
+## 1        宫崎骏    6   千与千寻 2001-07-20      125 动画   9.2   日本      1941
+## 2 詹姆斯·卡梅隆    7 泰坦尼克号 1998-04-03      194 爱情   9.2   美国      1954
+## 3        陈凯歌    2   霸王别姬 1993-01-01      171 爱情   9.5   中国      1952
+##   gender
+## 1     男
+## 2     男
+## 3     男</code></pre>
+</div>
+<div id="数据缺失异常" class="section level3 unnumbered">
+<h3>2.4.5 数据缺失、异常</h3>
+<p>在R语言中检测缺失值可使用is.na()函数。该函数将会返回逻辑值TRUE或FALSE，TRUE代表缺失，FALSE代表未缺失。数据中的异常值为不符合常理或与总体取值高度不一致的数据。通常对数据是否缺失、异常的判断是在数据汇总之后进行的。</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="-2-r-.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">###(1)删除法###</span></span>
+<span id="cb282-2"><a href="-2-r-.html#cb282-2" aria-hidden="true" tabindex="-1"></a>movie_new<span class="ot">=</span><span class="fu">na.omit</span>(movie)<span class="co">#保留完整观测的行</span></span>
+<span id="cb282-3"><a href="-2-r-.html#cb282-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-4"><a href="-2-r-.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="do">###(2)插补法###</span></span>
+<span id="cb282-5"><a href="-2-r-.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="co">#将均值替换电影时长缺失值</span></span>
+<span id="cb282-6"><a href="-2-r-.html#cb282-6" aria-hidden="true" tabindex="-1"></a>movie[<span class="fu">is.na</span>(movie<span class="sc">$</span>duration), ]<span class="sc">$</span>duration<span class="ot">&lt;-</span><span class="fu">mean</span>(movie<span class="sc">$</span>duration, <span class="at">na.rm =</span> T)</span>
+<span id="cb282-7"><a href="-2-r-.html#cb282-7" aria-hidden="true" tabindex="-1"></a>movie[<span class="fu">which</span>(movie<span class="sc">$</span>score<span class="sc">&lt;</span><span class="dv">0</span>), ]<span class="sc">$</span>score<span class="ot">&lt;-</span>NA<span class="co">#将异常值赋值为NA</span></span>
+<span id="cb282-8"><a href="-2-r-.html#cb282-8" aria-hidden="true" tabindex="-1"></a>movie[<span class="fu">is.na</span>(movie<span class="sc">$</span>score), ]<span class="sc">$</span>score<span class="ot">&lt;-</span><span class="fu">mean</span>(movie<span class="sc">$</span>score, <span class="at">na.rm =</span> T)<span class="co">#赋值均值</span></span></code></pre></div>
+</div>
+</div>
+<div id="习题答案" class="section level2 unnumbered">
+<h2>习题答案</h2>
+<div id="题目-2.1" class="section level3 unnumbered">
+<h3>题目 2.1</h3>
+<p>如何理解R语言中的“向量化”操作？请举一个例子说明。</p>
+<p>对于一个向量<span class="math inline">\(x\)</span>，“向量化”操作指命令可以直接对向量的每个元素进行操作，不需要使用循环实现计算。比如命令语句<span class="math inline">\(x\)</span>+2或者<span class="math inline">\(x^3\)</span>，向量<span class="math inline">\(x\)</span>中的每个元素都加2或每个元素都变成三次幂。</p>
+</div>
+<div id="题目-2.2" class="section level3 unnumbered">
+<h3>题目 2.2</h3>
+<p>请描述R语言中矩阵与数据框之间的两个不同点。</p>
+<p>a.数据框实际上是由多个长度相同的向量组成，而矩阵实际上是一个二维向量。</p>
+<p>b.数据框所包含的向量可以是不同数据类型的，而矩阵仅能包含一种数据类型。</p>
+</div>
+<div id="题目-2.3" class="section level3 unnumbered">
+<h3>题目 2.3</h3>
+<p>对矩阵的操作：</p>
+<p>1.在R中生成生成下面的矩阵A。</p>
+<p><span class="math display">\[A=\left(\begin{array}{lll}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 2 &amp; 1 \\
+2 &amp; 3 &amp; 0
+\end{array}\right)\]</span></p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="-2-r-.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co">#构造矩阵</span></span>
+<span id="cb283-2"><a href="-2-r-.html#cb283-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">A=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">nrow=</span><span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    2    1
+## [3,]    2    3    0</code></pre>
+<p>2.计算矩阵A的转置矩阵B和逆矩阵C。</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="-2-r-.html#cb285-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">B=</span><span class="fu">t</span>(A))<span class="co">#求转置矩阵</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    2
+## [2,]    2    2    3
+## [3,]    3    1    0</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="-2-r-.html#cb287-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">C=</span><span class="fu">solve</span>(A))<span class="co">#求逆矩阵</span></span></code></pre></div>
+<pre><code>##       [,1]  [,2]  [,3]
+## [1,] -0.12  0.36 -0.16
+## [2,]  0.08 -0.24  0.44
+## [3,]  0.32  0.04 -0.24</code></pre>
+<p>3.求矩阵A和矩阵C的乘积。</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="-2-r-.html#cb289-1" aria-hidden="true" tabindex="-1"></a>A<span class="sc">%*%</span>C<span class="co">#矩阵乘积</span></span></code></pre></div>
+<pre><code>##              [,1] [,2] [,3]
+## [1,] 1.000000e+00    0    0
+## [2,] 5.551115e-17    1    0
+## [3,] 0.000000e+00    0    1</code></pre>
+</div>
+<div id="题目-2.4实训题目" class="section level3 unnumbered">
+<h3>题目 2.4（实训题目）</h3>
+<p>实训题目：使用电视剧网播量数据集，该数据集收集了4266条电视剧的信息。请完成以下任务。</p>
+<ol style="list-style-type: lower-alpha">
+<li>获取数据集，查看数据概况。</li>
+</ol>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="-2-r-.html#cb291-1" aria-hidden="true" tabindex="-1"></a>tv<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/电视剧播量.csv&quot;</span>,<span class="at">fileEncoding=</span><span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
+<span id="cb291-2"><a href="-2-r-.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tv)<span class="co">#查看数据前几行</span></span></code></pre></div>
+<pre><code>##           剧名                                    类型 播放量    点赞    差评
+## 1   花千骨2015            言情剧\n/\n穿越剧\n/\n网络剧 3.07亿 992,342 357,808
+## 2 还珠格格2015          古装剧\n\n/\n喜剧\n\n/\n网络剧 73.3万   2,352   7,240
+## 3         天局 武侠剧\n/\n古装剧\n/\n悬疑剧\n/\n网络剧 3454万  38,746   3,593
+## 4     明若晓溪            青春剧\n/\n言情剧\n/\n偶像剧 1.57亿 518,660  72,508
+## 5     多情江山            言情剧\n/\n古装剧\n/\n宫廷剧 1126万  22,553   6,955
+## 6   我是机器人                       偶像剧\n\n/\n喜剧 1660万  37,905   3,605
+##   得分           采集日期
+## 1  7.3 2015-9-23 23:48:48
+## 2  2.5 2015-9-23 23:48:48
+## 3  9.2 2015-9-23 23:48:52
+## 4  8.8 2015-9-23 23:48:51
+## 5  7.6 2015-9-23 23:48:52
+## 6  9.1 2015-9-23 23:48:51</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>删除数据集中剧名缺失的值。</li>
+</ol>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="-2-r-.html#cb293-1" aria-hidden="true" tabindex="-1"></a>tv<span class="ot">&lt;-</span>tv[<span class="sc">-</span><span class="fu">which</span>(tv<span class="sc">$</span>剧名 <span class="sc">==</span> <span class="st">&quot;null&quot;</span>),]<span class="co">#删除缺失数据</span></span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>不考虑缺失数据影响，计算电视剧的平均得分。</li>
+</ol>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="-2-r-.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co">#将缺失数据处理成NA</span></span>
+<span id="cb294-2"><a href="-2-r-.html#cb294-2" aria-hidden="true" tabindex="-1"></a>tv[<span class="fu">which</span>(tv<span class="sc">$</span>得分<span class="sc">==</span><span class="st">&quot;null&quot;</span>),]<span class="sc">$</span>得分<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb294-3"><a href="-2-r-.html#cb294-3" aria-hidden="true" tabindex="-1"></a>tv[<span class="fu">which</span>(tv<span class="sc">$</span>得分<span class="sc">==</span><span class="st">&quot;.&quot;</span>),]<span class="sc">$</span>得分<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb294-4"><a href="-2-r-.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="co">#转换数据格式</span></span>
+<span id="cb294-5"><a href="-2-r-.html#cb294-5" aria-hidden="true" tabindex="-1"></a>tv<span class="sc">$</span>得分<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(tv<span class="sc">$</span>得分)</span>
+<span id="cb294-6"><a href="-2-r-.html#cb294-6" aria-hidden="true" tabindex="-1"></a><span class="co">#计算平均得分</span></span>
+<span id="cb294-7"><a href="-2-r-.html#cb294-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tv<span class="sc">$</span>得分,<span class="at">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## [1] 7.592556</code></pre>
+</div>
+<div id="题目-2.5-实训题目" class="section level3 unnumbered">
+<h3>题目 2.5 （实训题目）</h3>
+<p>实训题目：使用手机游戏数据集，该数据集收集了1141条手机游戏信息及评分。请完成以下任务。</p>
+<ol style="list-style-type: lower-alpha">
+<li>获取数据集，查看数据概况。</li>
+</ol>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="-2-r-.html#cb296-1" aria-hidden="true" tabindex="-1"></a>game<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/安卓手机游戏.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
+<span id="cb296-2"><a href="-2-r-.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(game)<span class="co">#查看数据概况</span></span></code></pre></div>
+<pre><code>##    游戏名称              评分           类别               语言          
+##  Length:1141        Min.   :1.000   Length:1141        Length:1141       
+##  Class :character   1st Qu.:5.200   Class :character   Class :character  
+##  Mode  :character   Median :6.600   Mode  :character   Mode  :character  
+##                     Mean   :6.611                                        
+##                     3rd Qu.:7.900                                        
+##                     Max.   :9.600                                        
+##                     NA&#39;s   :203                                          
+##      热度           最后更新时间         游戏版本             资费          
+##  Length:1141        Length:1141        Length:1141        Length:1141       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##     开发商            支持系统             评论数          喜欢数       
+##  Length:1141        Length:1141        Min.   :    0   Min.   :    0.0  
+##  Class :character   Class :character   1st Qu.:  446   1st Qu.:   67.0  
+##  Mode  :character   Mode  :character   Median :  859   Median :  233.0  
+##                                        Mean   : 2322   Mean   :  786.3  
+##                                        3rd Qu.: 2510   3rd Qu.:  854.8  
+##                                        Max.   :96354   Max.   :13323.0  
+##                                        NA&#39;s   :1       NA&#39;s   :1</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>提取热度中的数值部分，计算各游戏类型的热度均值，找出平均热度最高的游戏类型。</li>
+</ol>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="-2-r-.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co">#加载包</span></span>
+<span id="cb298-2"><a href="-2-r-.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb298-3"><a href="-2-r-.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="-2-r-.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co">#转换数据格式</span></span>
+<span id="cb299-2"><a href="-2-r-.html#cb299-2" aria-hidden="true" tabindex="-1"></a>game<span class="sc">$</span>hot<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(game<span class="sc">$</span>热度,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>))</span>
+<span id="cb299-3"><a href="-2-r-.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="co">#计算热度均值</span></span>
+<span id="cb299-4"><a href="-2-r-.html#cb299-4" aria-hidden="true" tabindex="-1"></a>hot_aver<span class="ot">&lt;-</span>game<span class="sc">%&gt;%</span></span>
+<span id="cb299-5"><a href="-2-r-.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(类别)<span class="sc">%&gt;%</span></span>
+<span id="cb299-6"><a href="-2-r-.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanhot=</span><span class="fu">mean</span>(hot,<span class="at">na.rm =</span> T))<span class="co">#平均热度</span></span>
+<span id="cb299-7"><a href="-2-r-.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="co">#找出平均热度最高的游戏类型</span></span>
+<span id="cb299-8"><a href="-2-r-.html#cb299-8" aria-hidden="true" tabindex="-1"></a>(<span class="at">hot_aver=</span>hot_aver[<span class="fu">order</span>(hot_aver<span class="sc">$</span>meanhot, <span class="at">decreasing =</span> T), ])</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 2
+##    类别       meanhot
+##    &lt;chr&gt;        &lt;dbl&gt;
+##  1 &quot;体育运动&quot;    46.0
+##  2 &quot;竞速游戏&quot;    45.6
+##  3 &quot;游戏工具&quot;    43.6
+##  4 &quot;动作游戏&quot;    42.6
+##  5 &quot;养成游戏&quot;    42.3
+##  6 &quot;角色扮演&quot;    42.2
+##  7 &quot;益智休闲&quot;    41.8
+##  8 &quot;飞行游戏&quot;    41.6
+##  9 &quot;策略塔防&quot;    40.9
+## 10 &quot;音乐游戏&quot;    40.6
+## 11 &quot;格斗游戏&quot;    40.6
+## 12 &quot;射击游戏&quot;    40.0
+## 13 &quot;冒险解谜&quot;    39.5
+## 14 &quot;模拟经营&quot;    38.3
+## 15 &quot;棋牌游戏&quot;    37.1
+## 16 &quot;&quot;           NaN</code></pre>
+<p>平均热度最高的游戏类别为体育运动。</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>计算各游戏类型的平均评分，最高评分，最低评分，评分标准差，并作简要分析。</li>
+</ol>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="-2-r-.html#cb301-1" aria-hidden="true" tabindex="-1"></a>grade_aver<span class="ot">&lt;-</span>game<span class="sc">%&gt;%</span></span>
+<span id="cb301-2"><a href="-2-r-.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(类别)<span class="sc">%&gt;%</span></span>
+<span id="cb301-3"><a href="-2-r-.html#cb301-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meangrade=</span><span class="fu">mean</span>(评分,<span class="at">na.rm =</span> T),<span class="co">#平均评分</span></span>
+<span id="cb301-4"><a href="-2-r-.html#cb301-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">maxgrade=</span><span class="fu">max</span>(评分,<span class="at">na.rm =</span> T),<span class="co">#最高评分</span></span>
+<span id="cb301-5"><a href="-2-r-.html#cb301-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mingrade=</span><span class="fu">min</span>(评分,<span class="at">na.rm =</span> T),<span class="co">#最低评分</span></span>
+<span id="cb301-6"><a href="-2-r-.html#cb301-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sdgrade=</span><span class="fu">sd</span>(评分,<span class="at">na.rm =</span> T))<span class="co">#评分标准差</span></span>
+<span id="cb301-7"><a href="-2-r-.html#cb301-7" aria-hidden="true" tabindex="-1"></a>(<span class="at">grade_aver=</span>grade_aver[<span class="fu">order</span>(grade_aver<span class="sc">$</span>meangrade, <span class="at">decreasing =</span> T), ])<span class="co">#按照平均得分排序</span></span></code></pre></div>
+<pre><code>## # A tibble: 16 x 5
+##    类别       meangrade maxgrade mingrade sdgrade
+##    &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 &quot;角色扮演&quot;      7.00      9.1      4.6    1.33
+##  2 &quot;策略塔防&quot;      6.88      9.3      4.8    1.39
+##  3 &quot;冒险解谜&quot;      6.86      9        4.8    1.23
+##  4 &quot;体育运动&quot;      6.84      8.8      4.9    1.46
+##  5 &quot;格斗游戏&quot;      6.78      8.8      5      1.18
+##  6 &quot;模拟经营&quot;      6.67      9.3      4.7    1.28
+##  7 &quot;动作游戏&quot;      6.65      9        1      1.44
+##  8 &quot;射击游戏&quot;      6.61      8.6      4.7    1.30
+##  9 &quot;养成游戏&quot;      6.55      8.3      5      1.23
+## 10 &quot;益智休闲&quot;      6.46      9.6      4.6    1.31
+## 11 &quot;音乐游戏&quot;      6.4       9        5      1.34
+## 12 &quot;竞速游戏&quot;      6.37      8.8      4.7    1.35
+## 13 &quot;棋牌游戏&quot;      5.84      8.1      4.5    1.22
+## 14 &quot;飞行游戏&quot;      5.70      8.2      4.7    1.09
+## 15 &quot;游戏工具&quot;      5.03      6.4      1      1.63
+## 16 &quot;&quot;            NaN      -Inf      Inf     NA</code></pre>
+<p>分析：虽然平均热度最高的游戏类别为体育运动，但平均评分最高的游戏类别为角色扮演，同时角色扮演的评分波动较大。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="-1-r-.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="-3-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

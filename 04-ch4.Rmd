@@ -1,4 +1,4 @@
-# 第4章：描述分析 {#ch4}
+# 第4章：描述分析 {-}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
@@ -26,9 +26,9 @@ novel = read.csv('./data/novel.csv', fileEncoding = "UTF-8")
 head(novel)
 ```
 
-## 统计表格
+## 4.1 统计表格{-}
 
-### 变量说明表
+### 4.1.1 变量说明表{-}
 
 对于定性变量，列示其主要水平及对应频数；对于定量变量，关注其取值范围、最大值、最小值、中位数等描述性统计量。这些变量描述指标在R语言中可以通过summary()函数直接获取。
 
@@ -37,7 +37,7 @@ head(novel)
 summary(novel[, 2:4])
 ```
 
-### 分组汇总统计表格
+### 4.1.2 分组汇总统计表格{-}
 
 分组统计表格按照各个类别进行汇总，描述类别内部各个变量的特征。通过这种方式，可以比较各个类别之间的差异，输出所关心的汇总报表。
 
@@ -48,11 +48,11 @@ novel.小说类型 = novel %>% group_by(小说类型)
 novel.小说类型 %>% summarise(平均评分 = mean(评分), 最大评论数 = max(评论数))
 ```
 
-## 数据可视化基础
+## 4.2 数据可视化基础{-}
 
 统计表格是使用表格的形式展示汇总的统计指标，但从直观性而言，使用统计图形则更为合适。基本统计图形包括柱状图、饼图、箱线图、散点图、折线图和直方图。
 
-### 柱状图
+### 4.2.2 柱状图{-}
 
 柱状图（barplot）是用柱子高低来表示取值大小的一种统计图形。常见的柱状图有频数柱状图及均值柱状图。频数柱状图展示的是定性变量各水平的频数统计，柱子高度代表每个水平频数大小。
 
@@ -117,7 +117,7 @@ legend("topright", legend = rownames(d), fill = c("gold", "grey"), cex = 0.8)
 ```
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjyyl6j311c0qomz4.jpg)
 
-### 饼图
+### 4.2.3 饼图{-}
 
 饼图（pie），是用圆形及圆内扇形的度数来表示数值大小的图形，主要用于表示总体中各组成部分所占的比例。
 
@@ -142,7 +142,7 @@ pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjv53uj311c0qowgo.jpg)
 
-### 直方图
+### 4.2.4 直方图{-}
 
 直方图（histogram）是用于展示定量变量分布形态的一种统计图形。
 
@@ -169,7 +169,7 @@ hist(chara, breaks = 100, xlab = "总字数(万字)", ylab = "频数", main = ""
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjcbryj311c0qodha.jpg)
 
-### 折线图
+### 4.2.5 折线图{-}
 
 折线图（line chart），是以折线的上升或下降来表示统计数量的增减变化的统计图，一般用于反映变量随时间变化的特征。它不仅可以表示数量的多少，而且可以反映数据的变化趋势。
 
@@ -182,7 +182,7 @@ plot(AirPassengers)
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5ziupr9j311c0qodi4.jpg)
 
-### 箱线图
+### 4.2.6 箱线图{-}
 
 箱线图（boxplot）主要用于描述定量变量在定性变量各个水平上的分布差异。
 
@@ -202,7 +202,7 @@ boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'),
 ```
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zi29gxj311c0qo0ub.jpg)
 
-### 散点图
+### 4.2.7 散点图{-}
 
 散点图（scatter diagram）是用二维坐标展示两个连续变量之间关系的一种图形。散点图用坐标横轴代表变量x，纵轴代表变量y，每组数据在坐标系中用一个点表示，n个样本点就形成了n个散点。
 
@@ -221,9 +221,26 @@ plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhxj1oj311c0qowhl.jpg)
 
-## 数据可视化进阶
 
-### ggplot2 包
+### 4.2.8 相关系数图{-}
+
+相关系数图（corrplot）是对多变量相关关系矩阵的可视化展示。两变量间的相关系数的绝对值越大，说明两组变量的相关性越强。
+
+```{r ch4-plot-add, eval=F}
+# 选取数据
+y = novel[,5:8]
+# 计算相关系数矩阵
+r = cor(y,use="na.or.complete")
+# 绘制相关系数图 
+par(family = "STXihei")  
+corrplot(r, tl.col = "black")
+```
+
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gkye5i9f2hj311c0qogou.jpg)
+
+## 4.3 数据可视化进阶{-}
+
+### 4.3.1 ggplot2 包{-}
 
 #### 柱状图
 
@@ -345,7 +362,7 @@ p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + 
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zgvlsqj311c0qotcd.jpg)
 
-### 交互可视化
+### 4.3.2 交互可视化{-}
 
 #### 柱状图
 
@@ -383,7 +400,7 @@ layout(p,
        margin = list(l = 50, r = 50, b = 50, t = 50, pad = 4))
 ```
 
-## 习题答案
+## 习题答案 {-}
 
 ```{r}
 library(openxlsx)          # 读取.xlsx数据

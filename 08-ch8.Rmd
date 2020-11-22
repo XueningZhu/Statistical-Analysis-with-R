@@ -1,4 +1,4 @@
-# 第8章：降维分析 {#ch8}
+# 第8章：降维分析 {-}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 rm(list = ls())
 ```
 
-**案例背景**
+### 案例背景 {-}
 
 NBA，全称为美国职业篮球联赛(National Basketball Association)，作为美国四大职业体育联盟之一，在美国本土，在四大联赛中的排名绝非第一；而就全球而言，尤其是中国，其普及率和收看率，则是远远高于其他三大联盟。
 
@@ -22,7 +22,7 @@ NBA作为商业联盟，不管是联盟还是球队，最关心的问题还是�
 
 ![](./pics/data_intro.png)
 
-## 主成分分析
+## 8.1 主成分分析{-}
 
 ### 任务一 {-}
 
@@ -52,7 +52,7 @@ corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 
 使用`psych`包中的`scree()`函数，绘制崖底碎石土，选择合适的主成分个数。scree()函数中，通过指定参数factors和pc的取值，生成主成分分析或因子分析的崖底碎石图，hline参数取值为绘制水平直线的高度，默认值为1，设置为负数则不绘制水平线。scree()函数会返回根据特征值绘制的崖底碎石图，同时返回特征值向量，因此可以使用该返回值计算累计方差贡献率。
 
-```{r ch8-plot2, eval = F}
+```{r ch8-plot2}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 result1 <- scree(predictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
@@ -104,7 +104,8 @@ $PC_1$=0.09 * 出场数 + 0.1 * 上场总时间-0.02 * 投篮率 + 0.12 * 命中
 
 以第一个球员为例，他的场内活跃因子和胜率加成因子得分较高，说明他是一位在比赛场上主动进攻类型的球员，但是他的技术水平因子得分较低，因此还是需要多加练习，提高自己的投篮命中率，从而获得更多分数。
 
-## 因子分析
+
+## 8.2 因子分析{-}
 
 ### 任务五 {-}
 
@@ -117,7 +118,7 @@ cov <- cov(nba[,2:18])
 cor <- cov2cor(cov)
 ```
 
-```{r ch8-plot3, eval = F}
+```{r ch8-plot3}
 ## 选择因子数目
 par(family='STXihei')
 result2 <- scree(cor, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
@@ -188,7 +189,8 @@ plot_ly(x=s$ML1, # x axis
         type = "scatter3d", size = 0.5) 
 ```
 
-## 习题答案
+
+## 习题答案 {-}
 
 ### 任务一 {-}
 
@@ -199,7 +201,7 @@ library(psych)
 my_cov <- Harman23.cor$cov
 ```
 
-```{r ch8-plot4, eval = F}
+```{r ch8-plot4}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 hw1 <- scree(my_cov, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
@@ -225,7 +227,7 @@ R中自带的数据集`USJudgeRatings`包含了律师对美国高等法院法官
 USpredictor <- USJudgeRatings[, -1]
 ```
 
-```{r ch8-plot5, eval = F}
+```{r ch8-plot5}
 ## 主成分分析选择因子数目
 par(family='STXihei')
 hw2 <- scree(USpredictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
@@ -251,7 +253,7 @@ cov_hw3 <- ability.cov$cov
 corr <- cov2cor(cov_hw3)
 ```
 
-```{r ch8-plot6, eval = F}
+```{r ch8-plot6}
 ## 选择因子数目
 par(family='STXihei')
 result2 <- scree(corr, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
