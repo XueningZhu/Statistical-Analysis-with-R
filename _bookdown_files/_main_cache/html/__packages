@@ -22,3 +22,5 @@ timeDate
 timeSeries
 fBasics
 lubridate
+data.table
+magrittr

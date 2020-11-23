@@ -1,7 +1,3 @@
 output_dir: "docs"
-book_filename: "Statistical-Analysis-with-R"
-language:
-  ui:
-    chapter_name: "Chapter "
-delete_merged_file: true
 
+delete_merged_file: true

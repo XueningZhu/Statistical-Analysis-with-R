@@ -87,10 +87,11 @@ movie = read.csv("./data/top250.csv",fileEncoding = "gbk",stringsAsFactors = FAL
 
 ### 2.2.1 向量{-}
 
-向量( {- vector)是所有数据结构中最基础的形式，用于存储同一种类型数据的一维数组。
+向量(vector)是所有数据结构中最基础的形式，用于存储同一种类型数据的一维数组。
+
+向量的基本操作包括向量创建、向量的索引提取以及集合的运算：
 
 ```{r}
-###1.基本操作###
 ## (1)向量创建##
 c(1, 1, 1, 2, 3, 3, 1, 2, 4, 1, 2, 4, 4, 2, 3, 4, 1, 2, 3, 4)
 c("a", "b", "c", "d")
@@ -109,12 +110,23 @@ which.min(x)#查看x向量中最小值所在的位置
 intersect(c(1, 2, 3, 3, 12, 4, 123, 12), c(1, 2, 3))#求交集
 union(c("狗熊会", "聚数据英才"), c("狗熊会", "助产业振兴"))#求并集
 setdiff(10:2, 5:3)#求差集
-### 2.常见向量类型及操作 ###
-## (1)数值型向量 ##
+```
+
+常见的向量类型包括数值型向量、字符串向量，这里分别介绍两种向量类型的基本操作。
+
+（1）数值型向量
+
+以下介绍`match()`, `cut()`, `sort()`, `order()`函数：
+
+```{r}
+## 数值型向量 ##
 x<-c(10,6,4,7,8)#创建数值向量
 min(x)#求最小值
 max(x)#求最大值
 range(x)#求范围
+```
+
+```{r}
 # match函数
 x <- c(1, 1, 1, 2, 3, 3, 1, 2, 4, 1, 2, 4, 4, 2, 3, 4, 1, 2, 3, 4)
 (y <- letters[x]) # letters是一个内置字符串，里面储存26个字母字符
@@ -135,8 +147,13 @@ label = c('青年', '中年', '老年')  #设置标签
 sort(x)
 order(x)
 x[order(x)]
+```
 
-## (2)字符串向量 ##
+（2）字符串向量
+
+以下介绍`nchar()`, `cutsubstr`, `paste()`, `grep()`, `gsub()`函数：
+
+```{r}
 # nchar用来提取字符串的长度
 nchar("欢迎关注狗熊会")
 # 看看数据集中的电影名字的长度分别是多少
@@ -154,7 +171,6 @@ paste(1:4, collapse = "")
 paste(1:4, sep="")
 paste("A", 1:4, sep="_")
 
-
 txt = c("狗熊会", "CluBear", "双11", "生日")
 # 返回含有关键字的字符位置
 grep("Bear", txt)
@@ -162,7 +178,6 @@ gsub("生日", "happy birthday", txt)
 # grep返回movie的director中包含“青春”的行号2，movie[2, ]即提取出movie数据集的第2行
 (index <- grep("陈凯歌", movie$director))
 (cmovie <- movie[index, ])
-
 
 salary = c("22万", "30万", "50万", "120万", "11万")
 (salary0 = gsub("万", "0000", salary))
@@ -175,8 +190,9 @@ median(as.numeric(salary0))  # 结果是科学计数法的形式
 
 上一部分讲述的向量只能够展示一维数据信息。如果想要展示二维数据信息，则需要用到矩阵的组织形式。矩阵(matrix)是一个二维数组，矩阵每一个元素的数据类型相同。
 
+首先，这里给出矩阵的创建与引用示例：
+
 ```{r}
-### 1.创建与引用 ###
 ##(1)创建##
 # 生成全部是0的矩阵
 (zero = matrix(1:9, nrow = 3, ncol = 3))
@@ -188,8 +204,11 @@ median(as.numeric(salary0))  # 结果是科学计数法的形式
 (M = matrix(1:12, nrow = 3, ncol = 4))
 # 生成指定对角元素的对角矩阵
 (N = diag(1:4))
+```
 
-### 2.基本的矩阵操作 ###
+下面介绍基本的矩阵操作方法：
+
+```{r}
 ## 矩阵概览 ##
 # 查看矩阵的维度
 dim(M) 
@@ -212,16 +231,17 @@ rownames(M)
 (B = diag(11:13))
 rbind(A, B) 
 cbind(A, B) 
+```
 
-### 3.矩阵的数学操作 ###
+除了上述的基本操作，这里还介绍常用的矩阵数学计算操作：
+
+```{r}
 A + B #矩阵的加法
 A - B #矩阵的减法
 A * B #矩阵各元素对应相乘
 A %*% B #矩阵的乘法
 solve(B) #矩阵B的逆
 eigen(B) #矩阵B的特征值
-
-
 ```
 
 ### 2.2.3 数组{-}
@@ -245,6 +265,8 @@ matrix2<-result[,,2]#获取数组中第2水平的矩阵
 
 数据框(dataframe)是实际数据处理中最常用的数据结构形式。数据框的每一行可以存储一条数据记录，每一列可以存储不同类型的变量。
 
+首先介绍如何创建数据框：
+
 ```{r}
 ### 1.创建数据框 ###
 # 读入一个txt,csv等格式数据,即自成一个数据框
@@ -255,11 +277,11 @@ director <- c("陈凯歌", "宫崎骏", "李廷香","詹姆斯·卡梅隆", "刘
 birthyear <- c(1952,1941,1964,1954,1952,1962,1954,1963,1950,1946,1963,1958,1962)
 gender <- c("男", "男", "女", "男", "男", "男", "男", "男", "男", "男", "男", "男", "男")
 directors <- data.frame(director, birthyear, gender); head(directors)
+```
 
-### 2.变形--长宽表互换 ###
-# install.packages(reshape)
-# library(reshape)
-# install.packages(reshape2)
+下面介绍数据框的变形——长宽表转换的操作方法：
+
+```{r}
 library(reshape2)
 ## (1) 宽表变长表 ##
 mWide = data.frame(Name = c("A", "B"), Type = c("喜剧", "动作"),
@@ -268,16 +290,16 @@ mWide = data.frame(Name = c("A", "B"), Type = c("喜剧", "动作"),
 # 将列名中的GF去掉
 colnames(mWide)[3:5] = gsub("GF", "", colnames(mWide)[3:5])
 mWide #查看原表
-(mLong = melt(mWide, id.vars = c("Name", "Type"), variable.name = "Year")) 
+(mLong = reshape2::melt(mWide, id.vars = c("Name", "Type"), variable.name = "Year")) 
 
 ## (2) 长表变宽表 ##
-# 将列Year从字符型变成数值型
-#mLong$Year = as.numeric(mLong$Year)
-
 # 长表变宽表
 dcast(mLong, Name + Type ~ Year)
-### 3.R中的数据透视表-神奇的ddply ###
-# install.packages(plyr)
+```
+
+使用`**ply`族函数可以在R中对数据框进行向量化操作，从而实现数据透视表的功能，下面对此进行介绍。
+
+```{r}
 library(dplyr)
 # 根据电影类型进行分组，查看不同类型电影评分的平均水平
 popular_type_grouped=group_by(movie,type)#根据电影类型进行分组
@@ -296,6 +318,8 @@ head(popular_type2)
 
 列表（list）是R语言中可以容纳各种类型的数据对象，如向量、矩阵、数据框，甚至一个列表也可以成为另一个列表的元素。
 
+首先介绍列表的创建方法与基本操作：
+
 ```{r}
 ##1.创建##
 (example = list("abc", 3:5, matrix(1, nrow = 3, ncol = 4), data.frame(x = 1:4, y = paste0("boy_", 1:4))))
@@ -312,7 +336,11 @@ complex[[1]]
 complex$new = 1:5; complex
 # 利用序号添加元素
 complex[[3]] = matrix(1, 2, 3); complex
+```
 
+与数据框相似，对列表也可以使用`**ply`族函数进行操作：
+
+```{r}
 ##3. 列表中的**ply函数##
 # 老王耗子药的单价,单位(元/袋)
 (price = list(year2014 = 36:33, year2015 = 32:35, year2016 = 30:27))
@@ -332,7 +360,6 @@ sapply(price, quantile)
 ```
 
 ## 2.3 数据的读入与写出{-}
-
 
 ```{r}
 rm(list = ls())#清理工作空间
@@ -371,15 +398,11 @@ movie_csv = read.csv("./data/top250.csv",fileEncoding = "GBK"); head(movie_csv)
 ```
 
 ### 2.3.3 导入Excel数据{-}
+
 ```{r}
 library("readxl") # 加载包
 # 其中col_names参数仍然是为了设定是否把第一行当做变量名
 movie_excel = data.frame(read_excel("./data/top250.xlsx", col_names = TRUE));head(movie_excel)
-```
-
-
-```{r,include=FALSE}
-options(encoding = "gbk")
 ```
 
 ### 2.3.4 逐行读入数据{-}
@@ -388,7 +411,7 @@ options(encoding = "gbk")
 
 ```{r}
 #建立与文件的连接
-con<-file("./data/top250.csv")
+con<-file("./data/top250.csv", encoding = "GBK")
 #逐行读入所有数据
 line_all<-readLines(con)
 #读取前10行数据
@@ -417,7 +440,7 @@ summary(movie)
 
 ### 2.4.2 变量类型转换{-}
 
-#### 1.基本数据类型之间的转换
+#### 1.基本数据类型之间的转换 {-}
 
 变量类型转换可以分为两步，首先利用is族函数判断变量类型，再通过as族函数转换变量类型。
 
@@ -428,7 +451,7 @@ a<-as.numeric(a)#将a转换为数值型数据
 is.numeric(a)#再次判断a是否是数值型数据
 ```
 
-#### 2.不同结构化数据类型间的转换
+#### 2.不同结构化数据类型间的转换 {-}
 
 结构化数据类型之间的转换与基本数据类型转换相似，首先使用class()函数判断数据结构，再使用as族函数进行转换。
 
@@ -439,7 +462,7 @@ tbl <- as.data.frame(tbl)#转化为数据框
 class(tbl)
 ```
 
-#### 3.日期值转换
+#### 3.日期值转换 {-}
 
 日期类型的变量需要使用如下方法进行转换。
 
@@ -460,7 +483,8 @@ as.POSIXct(1472562988, origin = "1960-01-01")#日期值转换，以"1960-01-01"�
 
 针对时间型数据的常用操作为：特征提取、差值运算、排序运算。
 
-#### 1.特征提取
+#### 1.特征提取 {-}
+
 ```{r}
 library(lubridate)#加载lubridate包
 t = "2020-11-20 01:30:29"
@@ -473,7 +497,8 @@ minute(t)#取出日期中的分钟数
 second(t)#取出日期中的秒
 ```
 
-#### 2.插值运算
+#### 2.插值运算 {-}
+
 ```{r}
 # 求任意两个日期距离的天数
 begin = as.Date("2016-03-04")
@@ -484,7 +509,8 @@ difftime(end, begin, units = "weeks")
 difftime(end, begin, units = "hours")
 ```
 
-#### 3.排序
+#### 3.排序 {-}
+
 ```{r}
 # 单独对时间进行排序
 head(sort(movie$showtime))
@@ -504,8 +530,6 @@ gender <- c("男", "男", "女", "男", "男", "男", "男", "男", "男", "男"
 directors <- data.frame(director, birthyear, gender); 
 # merge实现的效果是：将movie和directors按照列director匹配并合并起来
 (movie.star = merge(movie[1:10, ], directors,by = "director")) 
-
-
 ```
 
 ### 2.4.5 数据缺失、异常 {-}
@@ -521,8 +545,6 @@ movie_new=na.omit(movie)#保留完整观测的行
 movie[is.na(movie$duration), ]$duration<-mean(movie$duration, na.rm = T)
 movie[which(movie$score<0), ]$score<-NA#将异常值赋值为NA
 movie[is.na(movie$score), ]$score<-mean(movie$score, na.rm = T)#赋值均值
-
-
 ```
 
 ## 习题答案 {-}
