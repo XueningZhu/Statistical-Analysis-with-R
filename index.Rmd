@@ -13,6 +13,10 @@ github-repo: XueningZhu/Statistical-Analysis-with-R
   #bookdown::pdf_book: default
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
+```
+
 # 前言 {-}
 
 这是《统计分析与R语言》一书所用R语言代码辅助材料，还在更新中。错漏之处难免，欢迎指出错误或提出改进意见。

@@ -53,6 +53,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -119,6 +126,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -131,7 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> output:</a></li>
+<li><a href="./">Statistical Analysis with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i>第1章：统计分析与R语言</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i>第2章：R语言中的数据管理与预处理</a>
 <ul>
@@ -310,6 +321,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-5"><i class="fa fa-check"></i>任务三</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -329,138 +343,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ch5" class="section level1 unnumbered">
 <h1>第5章：参数估计与假设检验</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ch5.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 数据准备 </span><span class="al">###</span></span>
-<span id="cb1-2"><a href="ch5.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空工作空间</span></span>
-<span id="cb1-3"><a href="ch5.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="ch5.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 数据准备 </span><span class="al">###</span></span>
+<span id="cb428-2"><a href="ch5.html#cb428-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空工作空间</span></span>
+<span id="cb428-3"><a href="ch5.html#cb428-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
 <div id="参数估计" class="section level2 unnumbered">
 <h2>5.2 参数估计</h2>
 <div id="矩估计" class="section level3 unnumbered">
 <h3>5.2.1 矩估计</h3>
-<div id="任务一电池续航时间" class="section level4" number="1.0.0.16">
-<h4><span class="header-section-number">1.0.0.16</span> 任务一：电池续航时间</h4>
+<div id="任务一电池续航时间" class="section level4" number="0.0.0.16">
+<h4><span class="header-section-number">0.0.0.16</span> 任务一：电池续航时间</h4>
 <p>2030年，苹果公司发布新一代手机iPhone SSR。该手机声称续航能力比上一版本（20小时）有较大提升。为调查市面上售卖的苹果手机是否满足这样的续航能力，我们收集并测试了50部苹果手机的续航时间，得到如下数据。假设苹果手机的续航时间服从指数分布，那么使用矩估计推断该苹果手机的平均续航时间是多久？</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ch5.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例1</span></span>
-<span id="cb2-2"><a href="ch5.html#cb2-2" aria-hidden="true" tabindex="-1"></a>battery <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">20.2</span>,<span class="fl">19.4</span>,<span class="fl">18.6</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">21.4</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">17.4</span>,<span class="fl">19.4</span>,<span class="fl">21.4</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">17</span>,</span>
-<span id="cb2-3"><a href="ch5.html#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="dv">23</span>,<span class="fl">22.6</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">22.6</span>,<span class="fl">20.2</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">19.8</span>,<span class="fl">19.8</span>,<span class="fl">20.6</span>,</span>
-<span id="cb2-4"><a href="ch5.html#cb2-4" aria-hidden="true" tabindex="-1"></a>             <span class="fl">20.6</span>,<span class="fl">18.6</span>,<span class="dv">19</span>,<span class="fl">21.4</span>,<span class="fl">20.6</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">19.8</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">17.4</span>,<span class="fl">20.2</span>,<span class="fl">19.8</span>,<span class="fl">17.8</span>,</span>
-<span id="cb2-5"><a href="ch5.html#cb2-5" aria-hidden="true" tabindex="-1"></a>             <span class="fl">17.4</span>,<span class="fl">19.8</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="dv">21</span>,<span class="fl">19.8</span>)</span>
-<span id="cb2-6"><a href="ch5.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(battery)  <span class="co"># 样本均值</span></span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="ch5.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例1</span></span>
+<span id="cb429-2"><a href="ch5.html#cb429-2" aria-hidden="true" tabindex="-1"></a>battery <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">20.2</span>,<span class="fl">19.4</span>,<span class="fl">18.6</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">21.4</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">17.4</span>,<span class="fl">19.4</span>,<span class="fl">21.4</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">17</span>,</span>
+<span id="cb429-3"><a href="ch5.html#cb429-3" aria-hidden="true" tabindex="-1"></a>             <span class="dv">23</span>,<span class="fl">22.6</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">22.6</span>,<span class="fl">20.2</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">19.8</span>,<span class="fl">19.8</span>,<span class="fl">20.6</span>,</span>
+<span id="cb429-4"><a href="ch5.html#cb429-4" aria-hidden="true" tabindex="-1"></a>             <span class="fl">20.6</span>,<span class="fl">18.6</span>,<span class="dv">19</span>,<span class="fl">21.4</span>,<span class="fl">20.6</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">19.8</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">17.4</span>,<span class="fl">20.2</span>,<span class="fl">19.8</span>,<span class="fl">17.8</span>,</span>
+<span id="cb429-5"><a href="ch5.html#cb429-5" aria-hidden="true" tabindex="-1"></a>             <span class="fl">17.4</span>,<span class="fl">19.8</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="dv">21</span>,<span class="fl">19.8</span>)</span>
+<span id="cb429-6"><a href="ch5.html#cb429-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(battery)  <span class="co"># 样本均值</span></span></code></pre></div>
 <pre><code>## [1] 19.824</code></pre>
 <p>答：可以计算得到以上50部手机的续航时间均值为19.824。</p>
 </div>
-<div id="任务二正态总体参数估计" class="section level4" number="1.0.0.17">
-<h4><span class="header-section-number">1.0.0.17</span> 任务二：正态总体参数估计</h4>
+<div id="任务二正态总体参数估计" class="section level4" number="0.0.0.17">
+<h4><span class="header-section-number">0.0.0.17</span> 任务二：正态总体参数估计</h4>
 <p>使用模拟的方法，估计来自于正态总体的均值<span class="math inline">\(\mu\)</span>和方差<span class="math inline">\(\sigma^2\)</span>。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ch5.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例2</span></span>
-<span id="cb4-2"><a href="ch5.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-3"><a href="ch5.html#cb4-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)  <span class="co"># 产生服从正态分布的随机数</span></span>
-<span id="cb4-4"><a href="ch5.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data1)  <span class="co"># 样本均值</span></span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="ch5.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例2</span></span>
+<span id="cb431-2"><a href="ch5.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb431-3"><a href="ch5.html#cb431-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)  <span class="co"># 产生服从正态分布的随机数</span></span>
+<span id="cb431-4"><a href="ch5.html#cb431-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data1)  <span class="co"># 样本均值</span></span></code></pre></div>
 <pre><code>## [1] 5.032256</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ch5.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data1)  <span class="co"># 样本方差</span></span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="ch5.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data1)  <span class="co"># 样本方差</span></span></code></pre></div>
 <pre><code>## [1] 3.933836</code></pre>
 <p>产生1000个服从<span class="math inline">\(N(5,4)\)</span>的随机数，分别求这个样本的一阶原点矩（均值）和二阶中心矩（方差），作为总体均值和方差的估计。结果显示，对总体均值的估计为5.03，总体方差的估计为3.93。</p>
 </div>
 </div>
 <div id="极大似然估计" class="section level3 unnumbered">
 <h3>5.2.2 极大似然估计</h3>
-<div id="任务三苹果手机续航时间" class="section level4" number="1.0.0.18">
-<h4><span class="header-section-number">1.0.0.18</span> 任务三：苹果手机续航时间</h4>
+<div id="任务三苹果手机续航时间" class="section level4" number="0.0.0.18">
+<h4><span class="header-section-number">0.0.0.18</span> 任务三：苹果手机续航时间</h4>
 <p>假设苹果公司发布的新一代手机iPhone SSR续航时间是服从正态分布<span class="math inline">\(N(\mu, \sigma^2)\)</span>，其中，<span class="math inline">\(\mu\)</span> 是总体均值，<span class="math inline">\(\sigma^2\)</span> 是总体方差。请根据案例数据中的50个续航时间样本使用最大似然估计的方法，估计总体的均值和方差。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ch5.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;苹果手机电池续航数据为: &#39;</span>, battery, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="ch5.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;苹果手机电池续航数据为: &#39;</span>, battery, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 苹果手机电池续航数据为:  20.2 19.4 18.6 18.2 19.8 21.4 18.2 19.8 17.4 19.4 21.4 19 19 17 23 22.6 21.4 20.2 22.6 20.2 21.4 20.2 18.2 20.2 19 19.8 19.8 20.6 20.6 18.6 19 21.4 20.6 21.8 19.4 19.8 21.8 19.4 17.4 20.2 19.8 17.8 17.4 19.8 20.2 19 20.2 18.2 21 19.8</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ch5.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 续航时间均值的极大似然估计是</span></span>
-<span id="cb10-2"><a href="ch5.html#cb10-2" aria-hidden="true" tabindex="-1"></a>mu_mle <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
-<span id="cb10-3"><a href="ch5.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 续航时间方差的极大似然估计是</span></span>
-<span id="cb10-4"><a href="ch5.html#cb10-4" aria-hidden="true" tabindex="-1"></a>sigma_mle <span class="ot">&lt;-</span> <span class="fu">mean</span>((battery <span class="sc">-</span> <span class="fu">mean</span>(battery)) <span class="sc">**</span> <span class="dv">2</span>)</span>
-<span id="cb10-5"><a href="ch5.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;均值的最大似然估计值是: &#39;</span>, mu_mle, </span>
-<span id="cb10-6"><a href="ch5.html#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;方差的最大似然估计值是: &#39;</span>, sigma_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="ch5.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 续航时间均值的极大似然估计是</span></span>
+<span id="cb437-2"><a href="ch5.html#cb437-2" aria-hidden="true" tabindex="-1"></a>mu_mle <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
+<span id="cb437-3"><a href="ch5.html#cb437-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 续航时间方差的极大似然估计是</span></span>
+<span id="cb437-4"><a href="ch5.html#cb437-4" aria-hidden="true" tabindex="-1"></a>sigma_mle <span class="ot">&lt;-</span> <span class="fu">mean</span>((battery <span class="sc">-</span> <span class="fu">mean</span>(battery)) <span class="sc">**</span> <span class="dv">2</span>)</span>
+<span id="cb437-5"><a href="ch5.html#cb437-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;均值的最大似然估计值是: &#39;</span>, mu_mle, </span>
+<span id="cb437-6"><a href="ch5.html#cb437-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;方差的最大似然估计值是: &#39;</span>, sigma_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 均值的最大似然估计值是:  19.824 方差的最大似然估计值是:  1.948224</code></pre>
 <p>根据极大似然估计的方法，可以得到手机电池续航时间均值的最大似然估计值是19.824 方差的最大似然估计值是1.948224。</p>
 </div>
-<div id="任务四均匀分布总体参数估计" class="section level4" number="1.0.0.19">
-<h4><span class="header-section-number">1.0.0.19</span> 任务四：均匀分布总体参数估计</h4>
+<div id="任务四均匀分布总体参数估计" class="section level4" number="0.0.0.19">
+<h4><span class="header-section-number">0.0.0.19</span> 任务四：均匀分布总体参数估计</h4>
 <p>设<span class="math inline">\(x_1, ..., x_n\)</span>是从均匀分布总体 <span class="math inline">\(U(0,\theta)\)</span> 中抽出的一个样本，观测值如下：</p>
 <p>6.0627 9.3764 2.6435 3.8009 8.0748 9.7808 9.5793 7.6273 5.0965 0.6448</p>
 <p>6.4357 9.1591 0.9523 2.9537 7.6993 2.5589 5.179 6.7785 1.4723 7.0053</p>
 <p>试求解<span class="math inline">\(\theta\)</span>的最大似然估计。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ch5.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
-<span id="cb12-2"><a href="ch5.html#cb12-2" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb12-3"><a href="ch5.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成的样本是</span></span>
-<span id="cb12-4"><a href="ch5.html#cb12-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">20</span>, <span class="dv">0</span>, theta)</span>
-<span id="cb12-5"><a href="ch5.html#cb12-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">round</span>(samples, <span class="dv">4</span>)</span>
-<span id="cb12-6"><a href="ch5.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;样本是: &#39;</span>, samples, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="ch5.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
+<span id="cb439-2"><a href="ch5.html#cb439-2" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb439-3"><a href="ch5.html#cb439-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成的样本是</span></span>
+<span id="cb439-4"><a href="ch5.html#cb439-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">20</span>, <span class="dv">0</span>, theta)</span>
+<span id="cb439-5"><a href="ch5.html#cb439-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">round</span>(samples, <span class="dv">4</span>)</span>
+<span id="cb439-6"><a href="ch5.html#cb439-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;样本是: &#39;</span>, samples, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 样本是:  6.0627 9.3764 2.6435 3.8009 8.0748 9.7808 9.5793 7.6273 5.0965 0.6448 6.4357 9.1591 0.9523 2.9537 7.6993 2.5589 5.179 6.7785 1.4723 7.0053</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ch5.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># theta 的最大似然估计值是</span></span>
-<span id="cb14-2"><a href="ch5.html#cb14-2" aria-hidden="true" tabindex="-1"></a>theta_mle <span class="ot">=</span> <span class="fu">max</span>(samples)</span>
-<span id="cb14-3"><a href="ch5.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;theta的最大似然估计值是: &#39;</span>, theta_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="ch5.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="co"># theta 的最大似然估计值是</span></span>
+<span id="cb441-2"><a href="ch5.html#cb441-2" aria-hidden="true" tabindex="-1"></a>theta_mle <span class="ot">=</span> <span class="fu">max</span>(samples)</span>
+<span id="cb441-3"><a href="ch5.html#cb441-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;theta的最大似然估计值是: &#39;</span>, theta_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## theta的最大似然估计值是:  9.7808</code></pre>
 <p>在此案例数据中，均匀分布总体的参数<span class="math inline">\(\theta\)</span>极大似然估计值是9.7808。</p>
 </div>
 </div>
 <div id="区间估计" class="section level3 unnumbered">
 <h3>5.2.3 区间估计</h3>
-<div id="任务五手机续航时间的区间估计" class="section level4" number="1.0.0.20">
-<h4><span class="header-section-number">1.0.0.20</span> 任务五：手机续航时间的区间估计</h4>
+<div id="任务五手机续航时间的区间估计" class="section level4" number="0.0.0.20">
+<h4><span class="header-section-number">0.0.0.20</span> 任务五：手机续航时间的区间估计</h4>
 <p>已知上述案例中苹果手机的续航时间服从正态分布，其标准差为2小时，试求该型号手机续航时间的0.95置信区间。可以直接使用<code>z.test()</code>函数，也可以根据公式进行计算。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ch5.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例5：续航时间区间估计</span></span>
-<span id="cb16-2"><a href="ch5.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法一：按照公式计算</span></span>
-<span id="cb16-3"><a href="ch5.html#cb16-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
-<span id="cb16-4"><a href="ch5.html#cb16-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb16-5"><a href="ch5.html#cb16-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb16-6"><a href="ch5.html#cb16-6" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb16-7"><a href="ch5.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;续航时间的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb16-8"><a href="ch5.html#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(mu <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
-<span id="cb16-9"><a href="ch5.html#cb16-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(mu <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="ch5.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例5：续航时间区间估计</span></span>
+<span id="cb443-2"><a href="ch5.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法一：按照公式计算</span></span>
+<span id="cb443-3"><a href="ch5.html#cb443-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
+<span id="cb443-4"><a href="ch5.html#cb443-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb443-5"><a href="ch5.html#cb443-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb443-6"><a href="ch5.html#cb443-6" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb443-7"><a href="ch5.html#cb443-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;续航时间的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb443-8"><a href="ch5.html#cb443-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(mu <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
+<span id="cb443-9"><a href="ch5.html#cb443-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(mu <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 续航时间的置信区间是: [19.2696, 20.3784]</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ch5.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法二：使用z.test()计算</span></span>
-<span id="cb18-2"><a href="ch5.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
-<span id="cb18-3"><a href="ch5.html#cb18-3" aria-hidden="true" tabindex="-1"></a>interval_1 <span class="ot">&lt;-</span> <span class="fu">z.test</span>(battery, <span class="at">sigma.x =</span> sigma, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
-<span id="cb18-4"><a href="ch5.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;续航时间的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb18-5"><a href="ch5.html#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_1[<span class="dv">1</span>], <span class="dv">4</span>),</span>
-<span id="cb18-6"><a href="ch5.html#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_1[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="ch5.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法二：使用z.test()计算</span></span>
+<span id="cb445-2"><a href="ch5.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb445-3"><a href="ch5.html#cb445-3" aria-hidden="true" tabindex="-1"></a>interval_1 <span class="ot">&lt;-</span> <span class="fu">z.test</span>(battery, <span class="at">sigma.x =</span> sigma, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb445-4"><a href="ch5.html#cb445-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;续航时间的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb445-5"><a href="ch5.html#cb445-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_1[<span class="dv">1</span>], <span class="dv">4</span>),</span>
+<span id="cb445-6"><a href="ch5.html#cb445-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_1[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 续航时间的置信区间是: [19.2696, 20.3784]</code></pre>
 <p>无论按照公式计算，还是直接使用R中自带的函数，续航时间的置信区间估计都是 [19.2696, 20.3784]。</p>
 </div>
-<div id="任务六红楼梦词频区间估计" class="section level4" number="1.0.0.21">
-<h4><span class="header-section-number">1.0.0.21</span> 任务六：红楼梦词频区间估计</h4>
+<div id="任务六红楼梦词频区间估计" class="section level4" number="0.0.0.21">
+<h4><span class="header-section-number">0.0.0.21</span> 任务六：红楼梦词频区间估计</h4>
 <p>为了了解红楼梦在前、中、后三个部分对虚词使用的习惯，拟对不同章节的“之”字词频进行分析。假设小说对文言虚词的使用频率服从正态分布，试求第41-80回和第81-120回虚词“之”词频差的0.95置信区间。（注意：请区分两总体方差是否相等两种情况讨论）</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ch5.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例6</span></span>
-<span id="cb20-2"><a href="ch5.html#cb20-2" aria-hidden="true" tabindex="-1"></a>wenyan <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/红楼梦虚词词频统计.csv&quot;</span>, <span class="at">stringsAsFactors =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>)</span>
-<span id="cb20-3"><a href="ch5.html#cb20-3" aria-hidden="true" tabindex="-1"></a>freqx <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">之</span><span class="st">`</span>[<span class="dv">41</span><span class="sc">:</span><span class="dv">80</span>]</span>
-<span id="cb20-4"><a href="ch5.html#cb20-4" aria-hidden="true" tabindex="-1"></a>freqy <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">之</span><span class="st">`</span>[<span class="dv">81</span><span class="sc">:</span><span class="dv">120</span>]</span>
-<span id="cb20-5"><a href="ch5.html#cb20-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">length</span>(freqx); n <span class="ot">=</span> <span class="fu">length</span>(freqy)</span>
-<span id="cb20-6"><a href="ch5.html#cb20-6" aria-hidden="true" tabindex="-1"></a>u_x <span class="ot">=</span> <span class="fu">mean</span>(freqx); u_y <span class="ot">=</span> <span class="fu">mean</span>(freqy)</span>
-<span id="cb20-7"><a href="ch5.html#cb20-7" aria-hidden="true" tabindex="-1"></a>s_x <span class="ot">=</span> <span class="fu">sd</span>(freqx); s_y <span class="ot">=</span> <span class="fu">sd</span>(freqy)</span>
-<span id="cb20-8"><a href="ch5.html#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="ch5.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">## (1) 如果两部分数据的方差相等</span></span>
-<span id="cb20-10"><a href="ch5.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法一：使用公式计算</span></span>
-<span id="cb20-11"><a href="ch5.html#cb20-11" aria-hidden="true" tabindex="-1"></a>s_w <span class="ot">=</span> <span class="fu">sqrt</span>(((m<span class="dv">-1</span>)<span class="sc">*</span>s_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n<span class="dv">-1</span>)<span class="sc">*</span>s_y<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (m<span class="sc">+</span>n<span class="dv">-2</span>))</span>
-<span id="cb20-12"><a href="ch5.html#cb20-12" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, m<span class="sc">+</span>n<span class="dv">-2</span>) <span class="sc">*</span> s_w <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>m <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n)</span>
-<span id="cb20-13"><a href="ch5.html#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb20-14"><a href="ch5.html#cb20-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
-<span id="cb20-15"><a href="ch5.html#cb20-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="ch5.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例6</span></span>
+<span id="cb447-2"><a href="ch5.html#cb447-2" aria-hidden="true" tabindex="-1"></a>wenyan <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/红楼梦虚词词频统计.csv&quot;</span>, <span class="at">stringsAsFactors =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb447-3"><a href="ch5.html#cb447-3" aria-hidden="true" tabindex="-1"></a>freqx <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">之</span><span class="st">`</span>[<span class="dv">41</span><span class="sc">:</span><span class="dv">80</span>]</span>
+<span id="cb447-4"><a href="ch5.html#cb447-4" aria-hidden="true" tabindex="-1"></a>freqy <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">之</span><span class="st">`</span>[<span class="dv">81</span><span class="sc">:</span><span class="dv">120</span>]</span>
+<span id="cb447-5"><a href="ch5.html#cb447-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">length</span>(freqx); n <span class="ot">=</span> <span class="fu">length</span>(freqy)</span>
+<span id="cb447-6"><a href="ch5.html#cb447-6" aria-hidden="true" tabindex="-1"></a>u_x <span class="ot">=</span> <span class="fu">mean</span>(freqx); u_y <span class="ot">=</span> <span class="fu">mean</span>(freqy)</span>
+<span id="cb447-7"><a href="ch5.html#cb447-7" aria-hidden="true" tabindex="-1"></a>s_x <span class="ot">=</span> <span class="fu">sd</span>(freqx); s_y <span class="ot">=</span> <span class="fu">sd</span>(freqy)</span>
+<span id="cb447-8"><a href="ch5.html#cb447-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb447-9"><a href="ch5.html#cb447-9" aria-hidden="true" tabindex="-1"></a><span class="do">## (1) 如果两部分数据的方差相等</span></span>
+<span id="cb447-10"><a href="ch5.html#cb447-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法一：使用公式计算</span></span>
+<span id="cb447-11"><a href="ch5.html#cb447-11" aria-hidden="true" tabindex="-1"></a>s_w <span class="ot">=</span> <span class="fu">sqrt</span>(((m<span class="dv">-1</span>)<span class="sc">*</span>s_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n<span class="dv">-1</span>)<span class="sc">*</span>s_y<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (m<span class="sc">+</span>n<span class="dv">-2</span>))</span>
+<span id="cb447-12"><a href="ch5.html#cb447-12" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, m<span class="sc">+</span>n<span class="dv">-2</span>) <span class="sc">*</span> s_w <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>m <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n)</span>
+<span id="cb447-13"><a href="ch5.html#cb447-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb447-14"><a href="ch5.html#cb447-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
+<span id="cb447-15"><a href="ch5.html#cb447-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [8.9824, 20.3176]</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ch5.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法二：使用t.test()计算</span></span>
-<span id="cb22-2"><a href="ch5.html#cb22-2" aria-hidden="true" tabindex="-1"></a>interval_3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(freqx, freqy, <span class="at">var.equal =</span> T, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
-<span id="cb22-3"><a href="ch5.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb22-4"><a href="ch5.html#cb22-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_3[<span class="dv">1</span>], <span class="dv">4</span>),</span>
-<span id="cb22-5"><a href="ch5.html#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_3[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="ch5.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法二：使用t.test()计算</span></span>
+<span id="cb449-2"><a href="ch5.html#cb449-2" aria-hidden="true" tabindex="-1"></a>interval_3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(freqx, freqy, <span class="at">var.equal =</span> T, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb449-3"><a href="ch5.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb449-4"><a href="ch5.html#cb449-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_3[<span class="dv">1</span>], <span class="dv">4</span>),</span>
+<span id="cb449-5"><a href="ch5.html#cb449-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_3[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [8.9824, 20.3176]</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ch5.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (2) 如果两部分数据方差不等</span></span>
-<span id="cb24-2"><a href="ch5.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法一：使用公式计算</span></span>
-<span id="cb24-3"><a href="ch5.html#cb24-3" aria-hidden="true" tabindex="-1"></a>s_o <span class="ot">=</span> <span class="fu">sqrt</span>(s_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> m <span class="sc">+</span> s_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n)</span>
-<span id="cb24-4"><a href="ch5.html#cb24-4" aria-hidden="true" tabindex="-1"></a>freedom <span class="ot">=</span> s_o<span class="sc">^</span><span class="dv">4</span> <span class="sc">/</span> (s_x<span class="sc">^</span><span class="dv">4</span><span class="sc">/</span>(m<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (m<span class="dv">-1</span>)) <span class="sc">+</span> s_y<span class="sc">^</span><span class="dv">4</span><span class="sc">/</span>(n<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (n<span class="dv">-1</span>)))</span>
-<span id="cb24-5"><a href="ch5.html#cb24-5" aria-hidden="true" tabindex="-1"></a>freedom <span class="ot">=</span> <span class="fu">round</span>(freedom, <span class="dv">0</span>)</span>
-<span id="cb24-6"><a href="ch5.html#cb24-6" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, freedom) <span class="sc">*</span> s_o</span>
-<span id="cb24-7"><a href="ch5.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb24-8"><a href="ch5.html#cb24-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
-<span id="cb24-9"><a href="ch5.html#cb24-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="ch5.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="do">## (2) 如果两部分数据方差不等</span></span>
+<span id="cb451-2"><a href="ch5.html#cb451-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法一：使用公式计算</span></span>
+<span id="cb451-3"><a href="ch5.html#cb451-3" aria-hidden="true" tabindex="-1"></a>s_o <span class="ot">=</span> <span class="fu">sqrt</span>(s_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> m <span class="sc">+</span> s_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n)</span>
+<span id="cb451-4"><a href="ch5.html#cb451-4" aria-hidden="true" tabindex="-1"></a>freedom <span class="ot">=</span> s_o<span class="sc">^</span><span class="dv">4</span> <span class="sc">/</span> (s_x<span class="sc">^</span><span class="dv">4</span><span class="sc">/</span>(m<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (m<span class="dv">-1</span>)) <span class="sc">+</span> s_y<span class="sc">^</span><span class="dv">4</span><span class="sc">/</span>(n<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (n<span class="dv">-1</span>)))</span>
+<span id="cb451-5"><a href="ch5.html#cb451-5" aria-hidden="true" tabindex="-1"></a>freedom <span class="ot">=</span> <span class="fu">round</span>(freedom, <span class="dv">0</span>)</span>
+<span id="cb451-6"><a href="ch5.html#cb451-6" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, freedom) <span class="sc">*</span> s_o</span>
+<span id="cb451-7"><a href="ch5.html#cb451-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb451-8"><a href="ch5.html#cb451-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
+<span id="cb451-9"><a href="ch5.html#cb451-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(u_x <span class="sc">-</span> u_y <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [8.9291, 20.3709]</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ch5.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法二：使用t.test()计算</span></span>
-<span id="cb26-2"><a href="ch5.html#cb26-2" aria-hidden="true" tabindex="-1"></a>interval_4 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(freqx, freqy, <span class="at">var.equal =</span> F, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
-<span id="cb26-3"><a href="ch5.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb26-4"><a href="ch5.html#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_4[<span class="dv">1</span>], <span class="dv">4</span>),</span>
-<span id="cb26-5"><a href="ch5.html#cb26-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_4[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="ch5.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 方法二：使用t.test()计算</span></span>
+<span id="cb453-2"><a href="ch5.html#cb453-2" aria-hidden="true" tabindex="-1"></a>interval_4 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(freqx, freqy, <span class="at">var.equal =</span> F, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb453-3"><a href="ch5.html#cb453-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb453-4"><a href="ch5.html#cb453-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_4[<span class="dv">1</span>], <span class="dv">4</span>),</span>
+<span id="cb453-5"><a href="ch5.html#cb453-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_4[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [8.928, 20.372]</code></pre>
 <p>如果两部分数据方差相等，第41-80回和第81-120回“之”词频差的置信区间是: [8.9824, 20.3176]；如果两部分数据方差不等，第41-80回和第81-120回“之”词频差的置信区间是: [8.9291, 20.3709]。在两总体方差不等的情况中，对t统计量的自由度做了近似处理，因此两种方法计算得到的结果稍有不同。</p>
 </div>
@@ -468,27 +482,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="假设检验" class="section level2 unnumbered">
 <h2>5.3 假设检验</h2>
-<div id="任务一苹果手机续航时间" class="section level4" number="1.0.0.22">
-<h4><span class="header-section-number">1.0.0.22</span> 任务一：苹果手机续航时间</h4>
+<div id="任务一苹果手机续航时间" class="section level4" number="0.0.0.22">
+<h4><span class="header-section-number">0.0.0.22</span> 任务一：苹果手机续航时间</h4>
 <p>假设苹果手机SSR的续航时间服从正态分布<span class="math inline">\(N(\theta, 0.8^2)\)</span>，其中<span class="math inline">\(\theta\)</span>的设计值不低于20小时。根据案例引入中给出的50次抽样检测数据，判断该苹果手机的续航时间是否满足出厂设计的要求？除了使用公式计算p值的方法。对于这个问题，你还可以尝试使用<code>BSDA</code>包中的<code>z.test()</code>和<code>t.test()</code>函数（假设总体方差未知的情况）进行检验。</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ch5.html#cb28-1" aria-hidden="true" tabindex="-1"></a>battery <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">20.2</span>,<span class="fl">19.4</span>,<span class="fl">18.6</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">21.4</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">17.4</span>,<span class="fl">19.4</span>,<span class="fl">21.4</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">17</span>,</span>
-<span id="cb28-2"><a href="ch5.html#cb28-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">23</span>,<span class="fl">22.6</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">22.6</span>,<span class="fl">20.2</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">19.8</span>,<span class="fl">19.8</span>,<span class="fl">20.6</span>,</span>
-<span id="cb28-3"><a href="ch5.html#cb28-3" aria-hidden="true" tabindex="-1"></a>             <span class="fl">20.6</span>,<span class="fl">18.6</span>,<span class="dv">19</span>,<span class="fl">21.4</span>,<span class="fl">20.6</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">19.8</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">17.4</span>,<span class="fl">20.2</span>,<span class="fl">19.8</span>,<span class="fl">17.8</span>,</span>
-<span id="cb28-4"><a href="ch5.html#cb28-4" aria-hidden="true" tabindex="-1"></a>             <span class="fl">17.4</span>,<span class="fl">19.8</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="dv">21</span>,<span class="fl">19.8</span>)</span>
-<span id="cb28-5"><a href="ch5.html#cb28-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb28-6"><a href="ch5.html#cb28-6" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb28-7"><a href="ch5.html#cb28-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb28-8"><a href="ch5.html#cb28-8" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
-<span id="cb28-9"><a href="ch5.html#cb28-9" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(xbar, <span class="at">mean =</span> a, <span class="at">sd =</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
-<span id="cb28-10"><a href="ch5.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;检验的p值为&quot;</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="ch5.html#cb455-1" aria-hidden="true" tabindex="-1"></a>battery <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">20.2</span>,<span class="fl">19.4</span>,<span class="fl">18.6</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">21.4</span>,<span class="fl">18.2</span>,<span class="fl">19.8</span>,<span class="fl">17.4</span>,<span class="fl">19.4</span>,<span class="fl">21.4</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">17</span>,</span>
+<span id="cb455-2"><a href="ch5.html#cb455-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">23</span>,<span class="fl">22.6</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">22.6</span>,<span class="fl">20.2</span>,<span class="fl">21.4</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">19.8</span>,<span class="fl">19.8</span>,<span class="fl">20.6</span>,</span>
+<span id="cb455-3"><a href="ch5.html#cb455-3" aria-hidden="true" tabindex="-1"></a>             <span class="fl">20.6</span>,<span class="fl">18.6</span>,<span class="dv">19</span>,<span class="fl">21.4</span>,<span class="fl">20.6</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">19.8</span>,<span class="fl">21.8</span>,<span class="fl">19.4</span>,<span class="fl">17.4</span>,<span class="fl">20.2</span>,<span class="fl">19.8</span>,<span class="fl">17.8</span>,</span>
+<span id="cb455-4"><a href="ch5.html#cb455-4" aria-hidden="true" tabindex="-1"></a>             <span class="fl">17.4</span>,<span class="fl">19.8</span>,<span class="fl">20.2</span>,<span class="dv">19</span>,<span class="fl">20.2</span>,<span class="fl">18.2</span>,<span class="dv">21</span>,<span class="fl">19.8</span>)</span>
+<span id="cb455-5"><a href="ch5.html#cb455-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb455-6"><a href="ch5.html#cb455-6" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb455-7"><a href="ch5.html#cb455-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb455-8"><a href="ch5.html#cb455-8" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(battery)</span>
+<span id="cb455-9"><a href="ch5.html#cb455-9" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(xbar, <span class="at">mean =</span> a, <span class="at">sd =</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb455-10"><a href="ch5.html#cb455-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;检验的p值为&quot;</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;检验的p值为0.0599&quot;</code></pre>
 <p>检验的p值为0.0599。 当<span class="math inline">\(\alpha&lt;0.0599\)</span>时，<span class="math inline">\(z_\alpha&lt;-1.56\)</span>，由于拒绝域为<span class="math inline">\(W=\{z≤z_\alpha\}\)</span>，于是观测值<span class="math inline">\(z=-1.56\)</span>不在拒绝域里，应接受原假设；
 当<span class="math inline">\(\alpha≥0.0599\)</span>时，<span class="math inline">\(z_\alpha≥-1.56\)</span>，由于拒绝域为<span class="math inline">\(W=\{z≤z_\alpha\}\)</span>，于是观测值<span class="math inline">\(z=-1.56\)</span>落在拒绝域里，应拒绝原假设；
 由此可以看出，0.0599是能用观测值<span class="math inline">\(z=-1.56\)</span>做出“拒绝<span class="math inline">\(H_0\)</span>”的最小的显著性水平。</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ch5.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用检验函数`z.test()`和`t.test()`</span></span>
-<span id="cb30-2"><a href="ch5.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
-<span id="cb30-3"><a href="ch5.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 单样本均值的单边检验</span></span>
-<span id="cb30-4"><a href="ch5.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(battery, <span class="at">mu =</span> <span class="dv">20</span>, <span class="at">sigma.x =</span> <span class="fl">0.8</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="ch5.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用检验函数`z.test()`和`t.test()`</span></span>
+<span id="cb457-2"><a href="ch5.html#cb457-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb457-3"><a href="ch5.html#cb457-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 单样本均值的单边检验</span></span>
+<span id="cb457-4"><a href="ch5.html#cb457-4" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(battery, <span class="at">mu =</span> <span class="dv">20</span>, <span class="at">sigma.x =</span> <span class="fl">0.8</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample z-Test
 ## 
@@ -500,8 +514,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##    19.824</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ch5.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 单样本均值的单边检验（方差未知）</span></span>
-<span id="cb32-2"><a href="ch5.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(battery, <span class="at">mu =</span> <span class="dv">20</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="ch5.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 单样本均值的单边检验（方差未知）</span></span>
+<span id="cb459-2"><a href="ch5.html#cb459-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(battery, <span class="at">mu =</span> <span class="dv">20</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -515,14 +529,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    19.824</code></pre>
 <p>使用R中自带的检验函数，在总体方差已知的情况下，检验p值为0.0599；而在总体方差未知的情况下，检验的p值为0.1909。</p>
 </div>
-<div id="任务二红楼梦虚词频率" class="section level4" number="1.0.0.23">
-<h4><span class="header-section-number">1.0.0.23</span> 任务二：红楼梦虚词频率</h4>
+<div id="任务二红楼梦虚词频率" class="section level4" number="0.0.0.23">
+<h4><span class="header-section-number">0.0.0.23</span> 任务二：红楼梦虚词频率</h4>
 <p>假设小说对文言虚词的使用频率服从正态分布，且词频方差在不同阶段保持不变，在显著性水平<span class="math inline">\(\alpha=0.05\)</span>下，尝试判断41-80回中“亦”使用的频数均值是否比81-120回中高？</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ch5.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 红楼梦</span></span>
-<span id="cb34-2"><a href="ch5.html#cb34-2" aria-hidden="true" tabindex="-1"></a>wenyan <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/红楼梦虚词词频统计.csv&quot;</span>, <span class="at">stringsAsFactors =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
-<span id="cb34-3"><a href="ch5.html#cb34-3" aria-hidden="true" tabindex="-1"></a>freqx <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">亦</span><span class="st">`</span>[<span class="dv">41</span><span class="sc">:</span><span class="dv">80</span>]</span>
-<span id="cb34-4"><a href="ch5.html#cb34-4" aria-hidden="true" tabindex="-1"></a>freqy <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">亦</span><span class="st">`</span>[<span class="dv">81</span><span class="sc">:</span><span class="dv">120</span>]</span>
-<span id="cb34-5"><a href="ch5.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(freqx, freqy, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">var.equal =</span> T, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="ch5.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 红楼梦</span></span>
+<span id="cb461-2"><a href="ch5.html#cb461-2" aria-hidden="true" tabindex="-1"></a>wenyan <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/红楼梦虚词词频统计.csv&quot;</span>, <span class="at">stringsAsFactors =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb461-3"><a href="ch5.html#cb461-3" aria-hidden="true" tabindex="-1"></a>freqx <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">亦</span><span class="st">`</span>[<span class="dv">41</span><span class="sc">:</span><span class="dv">80</span>]</span>
+<span id="cb461-4"><a href="ch5.html#cb461-4" aria-hidden="true" tabindex="-1"></a>freqy <span class="ot">&lt;-</span> wenyan<span class="sc">$</span><span class="st">`</span><span class="at">亦</span><span class="st">`</span>[<span class="dv">81</span><span class="sc">:</span><span class="dv">120</span>]</span>
+<span id="cb461-5"><a href="ch5.html#cb461-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(freqx, freqy, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">var.equal =</span> T, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -536,8 +550,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##      3.90      0.75</code></pre>
 <p>由于检验的P值小于显著性水平0.05，因此拒绝原假设，认为41-80回“亦”使用的平均数量显著高于81-120回，后期语言向白话文靠拢。</p>
 </div>
-<div id="任务三狗熊制药成对样本检验" class="section level4" number="1.0.0.24">
-<h4><span class="header-section-number">1.0.0.24</span> 任务三：狗熊制药成对样本检验</h4>
+<div id="任务三狗熊制药成对样本检验" class="section level4" number="0.0.0.24">
+<h4><span class="header-section-number">0.0.0.24</span> 任务三：狗熊制药成对样本检验</h4>
 <p>假设狗熊会开了一个狗熊制药公司，专业研究减肥药。如果这个药品要在美国市场上合法上市，必须有美国食品药品管理局（FDA）的批准。为此，FDA对使用该药物的受试者做了一组试验，记录了其在使用减肥药前后的体重（单位：kg）。试验的数据分别为</p>
 <table>
 <thead>
@@ -598,11 +612,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>的狗熊制药案例数据中，假定受试者的体重数据服从正态分布，试问：试验前后的受试者体重在显著性水平<span class="math inline">\(\alpha=0.05\)</span>上有无差异？</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ch5.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 成对数据检验</span></span>
-<span id="cb36-2"><a href="ch5.html#cb36-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">43</span>,<span class="dv">55</span>,<span class="dv">49</span>,<span class="dv">62</span>,<span class="dv">59</span>,<span class="dv">49</span>,<span class="dv">57</span>,<span class="dv">54</span>,<span class="dv">55</span>,<span class="dv">48</span>)</span>
-<span id="cb36-3"><a href="ch5.html#cb36-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">55</span>,<span class="dv">60</span>,<span class="dv">58</span>,<span class="dv">54</span>,<span class="dv">56</span>,<span class="dv">53</span>,<span class="dv">61</span>,<span class="dv">51</span>)</span>
-<span id="cb36-4"><a href="ch5.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 成对数据t检验</span></span>
-<span id="cb36-5"><a href="ch5.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, y, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> T, <span class="at">var.equal =</span> F, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="ch5.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 成对数据检验</span></span>
+<span id="cb463-2"><a href="ch5.html#cb463-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">43</span>,<span class="dv">55</span>,<span class="dv">49</span>,<span class="dv">62</span>,<span class="dv">59</span>,<span class="dv">49</span>,<span class="dv">57</span>,<span class="dv">54</span>,<span class="dv">55</span>,<span class="dv">48</span>)</span>
+<span id="cb463-3"><a href="ch5.html#cb463-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">55</span>,<span class="dv">60</span>,<span class="dv">58</span>,<span class="dv">54</span>,<span class="dv">56</span>,<span class="dv">53</span>,<span class="dv">61</span>,<span class="dv">51</span>)</span>
+<span id="cb463-4"><a href="ch5.html#cb463-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 成对数据t检验</span></span>
+<span id="cb463-5"><a href="ch5.html#cb463-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, y, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> T, <span class="at">var.equal =</span> F, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -624,15 +638,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>假设某产品在制造时分为合格品与不合格品两类，我们用一个随机变量X来表示某个产品经检查后是否合格，X=0表示合格品，X=1表示不合格品，则X服从两点分布<span class="math inline">\(b(1,p)\)</span>，其中p是未知的不合格品率。现抽取20个产品，看其是否合格，得到样本如下所示：</p>
 <p>1 0 0 0 1 0 1 1 1 0 1 0 0 1 0 0 1 1 1 1</p>
 <p>求p的最大似然估计，并在R中进行实现。</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ch5.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4</span>)</span>
-<span id="cb38-2"><a href="ch5.html#cb38-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.5</span></span>
-<span id="cb38-3"><a href="ch5.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成的样本是</span></span>
-<span id="cb38-4"><a href="ch5.html#cb38-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="at">n=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob =</span> p)</span>
-<span id="cb38-5"><a href="ch5.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(samples)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="ch5.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4</span>)</span>
+<span id="cb465-2"><a href="ch5.html#cb465-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb465-3"><a href="ch5.html#cb465-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成的样本是</span></span>
+<span id="cb465-4"><a href="ch5.html#cb465-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="at">n=</span><span class="dv">20</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob =</span> p)</span>
+<span id="cb465-5"><a href="ch5.html#cb465-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(samples)</span></code></pre></div>
 <pre><code>##  [1] 1 0 0 0 1 0 1 1 1 0 1 0 0 1 0 0 1 1 1 1</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ch5.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p 的最大似然估计值是</span></span>
-<span id="cb40-2"><a href="ch5.html#cb40-2" aria-hidden="true" tabindex="-1"></a>p_mle <span class="ot">=</span> <span class="fu">mean</span>(samples)</span>
-<span id="cb40-3"><a href="ch5.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;均值的最大似然估计值是: &#39;</span>, p_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="ch5.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p 的最大似然估计值是</span></span>
+<span id="cb467-2"><a href="ch5.html#cb467-2" aria-hidden="true" tabindex="-1"></a>p_mle <span class="ot">=</span> <span class="fu">mean</span>(samples)</span>
+<span id="cb467-3"><a href="ch5.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;均值的最大似然估计值是: &#39;</span>, p_mle, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 均值的最大似然估计值是:  0.55</code></pre>
 <p>均值的最大似然估计值是:0.55。</p>
 </div>
@@ -642,28 +656,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>998 1021 988 986 1018 997 996</p>
 <p>973 925 985 981 1007 1011 968 1002</p>
 <p>试求灯泡平均寿命的0.95置信区间，并在R中进行实现。</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="ch5.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
-<span id="cb42-2"><a href="ch5.html#cb42-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">15</span></span>
-<span id="cb42-3"><a href="ch5.html#cb42-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb42-4"><a href="ch5.html#cb42-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rnorm</span>(n, u, <span class="dv">25</span>)</span>
-<span id="cb42-5"><a href="ch5.html#cb42-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">round</span>(samples, <span class="dv">0</span>)</span>
-<span id="cb42-6"><a href="ch5.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;寿命样本: &#39;</span>, samples, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="ch5.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
+<span id="cb469-2"><a href="ch5.html#cb469-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb469-3"><a href="ch5.html#cb469-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb469-4"><a href="ch5.html#cb469-4" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rnorm</span>(n, u, <span class="dv">25</span>)</span>
+<span id="cb469-5"><a href="ch5.html#cb469-5" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">round</span>(samples, <span class="dv">0</span>)</span>
+<span id="cb469-6"><a href="ch5.html#cb469-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;寿命样本: &#39;</span>, samples, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 寿命样本:  998 1021 988 986 1018 997 996 973 925 985 981 1007 1011 968 1002</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ch5.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间估计</span></span>
-<span id="cb44-2"><a href="ch5.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法一：按照公式计算</span></span>
-<span id="cb44-3"><a href="ch5.html#cb44-3" aria-hidden="true" tabindex="-1"></a>weight_u <span class="ot">=</span> <span class="fu">mean</span>(samples)</span>
-<span id="cb44-4"><a href="ch5.html#cb44-4" aria-hidden="true" tabindex="-1"></a>weight_var <span class="ot">=</span> <span class="fu">sum</span>((samples <span class="sc">-</span> weight_u) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (n<span class="dv">-1</span>)</span>
-<span id="cb44-5"><a href="ch5.html#cb44-5" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>, n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">sqrt</span>(weight_var <span class="sc">/</span> n)</span>
-<span id="cb44-6"><a href="ch5.html#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="ch5.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;灯泡寿命的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb44-8"><a href="ch5.html#cb44-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(weight_u <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
-<span id="cb44-9"><a href="ch5.html#cb44-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(weight_u <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="ch5.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 区间估计</span></span>
+<span id="cb471-2"><a href="ch5.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法一：按照公式计算</span></span>
+<span id="cb471-3"><a href="ch5.html#cb471-3" aria-hidden="true" tabindex="-1"></a>weight_u <span class="ot">=</span> <span class="fu">mean</span>(samples)</span>
+<span id="cb471-4"><a href="ch5.html#cb471-4" aria-hidden="true" tabindex="-1"></a>weight_var <span class="ot">=</span> <span class="fu">sum</span>((samples <span class="sc">-</span> weight_u) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (n<span class="dv">-1</span>)</span>
+<span id="cb471-5"><a href="ch5.html#cb471-5" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">=</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>, n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">sqrt</span>(weight_var <span class="sc">/</span> n)</span>
+<span id="cb471-6"><a href="ch5.html#cb471-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-7"><a href="ch5.html#cb471-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;灯泡寿命的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb471-8"><a href="ch5.html#cb471-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(weight_u <span class="sc">-</span> spread, <span class="dv">4</span>),</span>
+<span id="cb471-9"><a href="ch5.html#cb471-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(weight_u <span class="sc">+</span> spread, <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 灯泡寿命的置信区间是: [977.2537, 1003.5463]</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ch5.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法二：使用t.test()计算</span></span>
-<span id="cb46-2"><a href="ch5.html#cb46-2" aria-hidden="true" tabindex="-1"></a>interval_2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(samples, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
-<span id="cb46-3"><a href="ch5.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;灯泡寿命的置信区间是: [%s, %s]&#39;</span>, </span>
-<span id="cb46-4"><a href="ch5.html#cb46-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_2[<span class="dv">1</span>], <span class="dv">4</span>),</span>
-<span id="cb46-5"><a href="ch5.html#cb46-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_2[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="ch5.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 方法二：使用t.test()计算</span></span>
+<span id="cb473-2"><a href="ch5.html#cb473-2" aria-hidden="true" tabindex="-1"></a>interval_2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(samples, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb473-3"><a href="ch5.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&#39;灯泡寿命的置信区间是: [%s, %s]&#39;</span>, </span>
+<span id="cb473-4"><a href="ch5.html#cb473-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_2[<span class="dv">1</span>], <span class="dv">4</span>),</span>
+<span id="cb473-5"><a href="ch5.html#cb473-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(interval_2[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
 <pre><code>## 灯泡寿命的置信区间是: [977.2537, 1003.5463]</code></pre>
 <p>无论使用公式还是使用R中的自带函数计算，灯泡寿命的置信区间都是: [977.2537, 1003.5463]。</p>
 
@@ -707,8 +721,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-ch5.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -718,7 +732,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Statistical-Analysis-with-R.pdf", "Statistical-Analysis-with-R.epub"],
 "toc": {
 "collapse": "subsection"
 }

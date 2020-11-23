@@ -1,9 +1,5 @@
 # 第6章：线性回归 {-#ch6}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
-```
-
 ```{r message=FALSE,warning=FALSE}
 ### 数据准备 ###
 # 清空工作空间

@@ -53,6 +53,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -119,6 +126,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -131,7 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> output:</a></li>
+<li><a href="./">Statistical Analysis with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i>第1章：统计分析与R语言</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i>第2章：R语言中的数据管理与预处理</a>
 <ul>
@@ -310,6 +321,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch8.html"><a href="ch8.html#任务三-5"><i class="fa fa-check"></i>任务三</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -725,7 +739,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6        周星驰      1962     男</code></pre>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="ch2.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2.变形--长宽表互换 </span><span class="al">###</span></span>
 <span id="cb176-2"><a href="ch2.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(reshape)</span></span>
-<span id="cb176-3"><a href="ch2.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)</span>
+<span id="cb176-3"><a href="ch2.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(reshape)</span></span>
 <span id="cb176-4"><a href="ch2.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(reshape2)</span></span>
 <span id="cb176-5"><a href="ch2.html#cb176-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
 <span id="cb176-6"><a href="ch2.html#cb176-6" aria-hidden="true" tabindex="-1"></a><span class="do">## (1) 宽表变长表 ##</span></span>
@@ -738,7 +752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##   Name Type 2018 2019 2020
 ## 1    A 喜剧  6.5  7.0  8.1
 ## 2    B 动作  8.0  7.5  7.3</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="ch2.html#cb178-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">mLong =</span> <span class="fu">melt</span>(mWide, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Type&quot;</span>), <span class="at">variable_name =</span> <span class="st">&quot;Year&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="ch2.html#cb178-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">mLong =</span> <span class="fu">melt</span>(mWide, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Type&quot;</span>), <span class="at">variable.name =</span> <span class="st">&quot;Year&quot;</span>)) </span></code></pre></div>
 <pre><code>##   Name Type Year value
 ## 1    A 喜剧 2018   6.5
 ## 2    B 动作 2018   8.0
@@ -1097,8 +1111,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="变量类型转换" class="section level3 unnumbered">
 <h3>2.4.2 变量类型转换</h3>
-<div id="基本数据类型之间的转换" class="section level4" number="1.0.0.1">
-<h4><span class="header-section-number">1.0.0.1</span> 1.基本数据类型之间的转换</h4>
+<div id="基本数据类型之间的转换" class="section level4" number="0.0.0.1">
+<h4><span class="header-section-number">0.0.0.1</span> 1.基本数据类型之间的转换</h4>
 <p>变量类型转换可以分为两步，首先利用is族函数判断变量类型，再通过as族函数转换变量类型。</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ch2.html#cb236-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="co">#将1赋值给a</span></span>
 <span id="cb236-2"><a href="ch2.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)<span class="co">#判断a是否是数值型数据</span></span></code></pre></div>
@@ -1107,8 +1121,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb238-2"><a href="ch2.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)<span class="co">#再次判断a是否是数值型数据</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div id="不同结构化数据类型间的转换" class="section level4" number="1.0.0.2">
-<h4><span class="header-section-number">1.0.0.2</span> 2.不同结构化数据类型间的转换</h4>
+<div id="不同结构化数据类型间的转换" class="section level4" number="0.0.0.2">
+<h4><span class="header-section-number">0.0.0.2</span> 2.不同结构化数据类型间的转换</h4>
 <p>结构化数据类型之间的转换与基本数据类型转换相似，首先使用class()函数判断数据结构，再使用as族函数进行转换。</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="ch2.html#cb240-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(movie<span class="sc">$</span>nation)<span class="co">#统计不同国家的频次</span></span>
 <span id="cb240-2"><a href="ch2.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tbl)<span class="co">#查看数据格式</span></span></code></pre></div>
@@ -1117,8 +1131,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb242-2"><a href="ch2.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tbl)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
-<div id="日期值转换" class="section level4" number="1.0.0.3">
-<h4><span class="header-section-number">1.0.0.3</span> 3.日期值转换</h4>
+<div id="日期值转换" class="section level4" number="0.0.0.3">
+<h4><span class="header-section-number">0.0.0.3</span> 3.日期值转换</h4>
 <p>日期类型的变量需要使用如下方法进行转换。</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="ch2.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="do">###(1)将字符转换成Date日期格式###</span></span>
 <span id="cb244-2"><a href="ch2.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 函数head用来查看数据前6个元素，函数class用来查看对象数据类型</span></span>
@@ -1143,8 +1157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="时间型数据的操作" class="section level3 unnumbered">
 <h3>2.4.3 时间型数据的操作</h3>
 <p>针对时间型数据的常用操作为：特征提取、差值运算、排序运算。</p>
-<div id="特征提取" class="section level4" number="1.0.0.4">
-<h4><span class="header-section-number">1.0.0.4</span> 1.特征提取</h4>
+<div id="特征提取" class="section level4" number="0.0.0.4">
+<h4><span class="header-section-number">0.0.0.4</span> 1.特征提取</h4>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="ch2.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)<span class="co">#加载lubridate包</span></span>
 <span id="cb256-2"><a href="ch2.html#cb256-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="st">&quot;2020-11-20 01:30:29&quot;</span></span>
 <span id="cb256-3"><a href="ch2.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(t)<span class="co">#提取年份</span></span></code></pre></div>
@@ -1162,8 +1176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="ch2.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(t)<span class="co">#取出日期中的秒</span></span></code></pre></div>
 <pre><code>## [1] 29</code></pre>
 </div>
-<div id="插值运算" class="section level4" number="1.0.0.5">
-<h4><span class="header-section-number">1.0.0.5</span> 2.插值运算</h4>
+<div id="插值运算" class="section level4" number="0.0.0.5">
+<h4><span class="header-section-number">0.0.0.5</span> 2.插值运算</h4>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="ch2.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 求任意两个日期距离的天数</span></span>
 <span id="cb270-2"><a href="ch2.html#cb270-2" aria-hidden="true" tabindex="-1"></a>begin <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2016-03-04&quot;</span>)</span>
 <span id="cb270-3"><a href="ch2.html#cb270-3" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2016-05-08&quot;</span>)</span>
@@ -1175,8 +1189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="ch2.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(end, begin, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>)</span></code></pre></div>
 <pre><code>## Time difference of 1560 hours</code></pre>
 </div>
-<div id="排序" class="section level4" number="1.0.0.6">
-<h4><span class="header-section-number">1.0.0.6</span> 3.排序</h4>
+<div id="排序" class="section level4" number="0.0.0.6">
+<h4><span class="header-section-number">0.0.0.6</span> 3.排序</h4>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="ch2.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 单独对时间进行排序</span></span>
 <span id="cb276-2"><a href="ch2.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(movie<span class="sc">$</span>showtime))</span></code></pre></div>
 <pre><code>## [1] &quot;1931-01-30&quot; &quot;1936-02-25&quot; &quot;1939-12-15&quot; &quot;1940-05-17&quot; &quot;1950-08-26&quot;
@@ -1444,8 +1458,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-ch2.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -1455,7 +1469,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Statistical-Analysis-with-R.pdf", "Statistical-Analysis-with-R.epub"],
 "toc": {
 "collapse": "subsection"
 }
