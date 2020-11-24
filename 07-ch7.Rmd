@@ -65,7 +65,7 @@ descriptive <- descriptive[ - which(descriptive$offertype == ""),]   # 删去缺
     plot_theme_pie)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg)
 
 数据中，录取的案例占一半以上，其中包括无奖录取、小奖录取和全奖录取，拒绝的申请占比为27.6%，还有少部分申请结果为Waiting List。在后续的建模中，将把Waiting List划分为拒绝类别。
 
@@ -139,7 +139,7 @@ gpa_offertype$CollegeRankTop50 <- factor(gpa_offertype$CollegeRankTop50, levels 
     plot_theme)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg)
 
 ```{r}
 ## 成绩分段
@@ -181,7 +181,7 @@ admittedPct$学校排名 <- factor(admittedPct$学校排名,levels = c("Top50","
   plot_theme)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg)
 
 结论：对于排名靠前的学校来说，托福成绩越高，平均录取率越高。
 
@@ -222,7 +222,7 @@ count_plot$X2 <- factor(count_plot$Var2, levels = c("research","paper","first",
     labs(x = "申请学位", y = "硬件条件", title = "") + plot_theme)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg)
 
 结论：申请硕士实习更加重要，申请博士论文更加重要，而混合申请介于两者之间。
 
@@ -276,7 +276,7 @@ plot.roc(descriptive_test$offertype, pred, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "FPR",ylab = "TPR", main = "预测ROC曲线")  
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg)
 
 根据曲线的结果，AUC值（即ROC曲线下的面积）为0.754，说明该模型对数据的预测效果较好。
 
@@ -335,7 +335,7 @@ plot.roc(testset$churn, col = "dodgerblue", print.auc=TRUE,
          fitted.results, main = "预测ROC曲线")  
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg)
 
 绘制ROC曲线如上所示，计算得到AUC值为0.617，模型在测试集上的预测表现较好。
 

@@ -366,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="ch8.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb527-2"><a href="ch8.html#cb527-2" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(M, <span class="at">tl.srt =</span> <span class="dv">60</span>,<span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot1-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg" /></p>
 <p>根据变量的相关系数图可以看出，部分变量之间的正相关性较强，例如出场数和上场总时间，命中次数和出手次数等。</p>
 </div>
 <div id="选择主成分个数" class="section level3 unnumbered">
@@ -376,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb528-2"><a href="ch8.html#cb528-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb528-3"><a href="ch8.html#cb528-3" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(predictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot2-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg" /></p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="ch8.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 计算累计方差贡献率</span></span>
 <span id="cb529-2"><a href="ch8.html#cb529-2" aria-hidden="true" tabindex="-1"></a>cumvar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cumsum</span>(result1<span class="sc">$</span>pcv)<span class="sc">/</span><span class="fu">sum</span>(result1<span class="sc">$</span>pcv),<span class="dv">2</span>)</span>
 <span id="cb529-3"><a href="ch8.html#cb529-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&#39;前三个主成分累计方差贡献率为：&#39;</span>, cumvar[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
@@ -479,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb538-2"><a href="ch8.html#cb538-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb538-3"><a href="ch8.html#cb538-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(cor, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot3-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg" /></p>
 <p>利用scree()函数绘制因子分析的崖底碎石图，结合累计方差贡献率（由fa()函数输出）等指标，设置公因子数为3。</p>
 </div>
 <div id="提取公共因子" class="section level3 unnumbered">
@@ -658,7 +658,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb550-2"><a href="ch8.html#cb550-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb550-3"><a href="ch8.html#cb550-3" aria-hidden="true" tabindex="-1"></a>hw1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(my_cov, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot4-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg" /></p>
 <div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="ch8.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取主成分</span></span>
 <span id="cb551-2"><a href="ch8.html#cb551-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">principal</span>(my_cov, <span class="at">nfactors =</span> <span class="dv">2</span>)</span>
 <span id="cb551-3"><a href="ch8.html#cb551-3" aria-hidden="true" tabindex="-1"></a>pc</span></code></pre></div>
@@ -699,7 +699,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb554-2"><a href="ch8.html#cb554-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb554-3"><a href="ch8.html#cb554-3" aria-hidden="true" tabindex="-1"></a>hw2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(USpredictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot5-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg" /></p>
 <div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="ch8.html#cb555-1" aria-hidden="true" tabindex="-1"></a>pc2 <span class="ot">&lt;-</span> <span class="fu">principal</span>(USpredictor, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">scores =</span> T)</span>
 <span id="cb555-2"><a href="ch8.html#cb555-2" aria-hidden="true" tabindex="-1"></a>pc2</span></code></pre></div>
 <pre><code>## Principal Components Analysis
@@ -747,7 +747,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb560-2"><a href="ch8.html#cb560-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
 <span id="cb560-3"><a href="ch8.html#cb560-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(corr, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot6-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg" /></p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="ch8.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 提取公共因子</span></span>
 <span id="cb561-2"><a href="ch8.html#cb561-2" aria-hidden="true" tabindex="-1"></a>fa_hw2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(corr, <span class="at">n.obs =</span> ability.cov<span class="sc">$</span>n.obs, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
 <span id="cb561-3"><a href="ch8.html#cb561-3" aria-hidden="true" tabindex="-1"></a>fa_hw2</span></code></pre></div>

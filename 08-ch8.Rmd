@@ -39,7 +39,7 @@ par(family='STXihei')
 corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg)
 
 根据变量的相关系数图可以看出，部分变量之间的正相关性较强，例如出场数和上场总时间，命中次数和出手次数等。
 
@@ -54,7 +54,7 @@ par(family='STXihei')
 result1 <- scree(predictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg)
 
 ```{r}
 ## 计算累计方差贡献率
@@ -120,7 +120,7 @@ par(family='STXihei')
 result2 <- scree(cor, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg)
 
 利用scree()函数绘制因子分析的崖底碎石图，结合累计方差贡献率（由fa()函数输出）等指标，设置公因子数为3。
 
@@ -203,7 +203,7 @@ par(family='STXihei')
 hw1 <- scree(my_cov, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg)
 
 ```{r}
 ## 提取主成分
@@ -229,7 +229,7 @@ par(family='STXihei')
 hw2 <- scree(USpredictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg)
 
 ```{r}
 pc2 <- principal(USpredictor, nfactors = 1, scores = T)
@@ -255,7 +255,7 @@ par(family='STXihei')
 result2 <- scree(corr, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg)
 
 ```{r}
 ## 提取公共因子

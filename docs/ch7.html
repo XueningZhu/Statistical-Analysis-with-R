@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb504-6"><a href="ch7.html#cb504-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">录取类型&quot;</span>) <span class="sc">+</span></span>
 <span id="cb504-7"><a href="ch7.html#cb504-7" aria-hidden="true" tabindex="-1"></a>    plot_theme_pie)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch7-plot1-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg" /></p>
 <p>数据中，录取的案例占一半以上，其中包括无奖录取、小奖录取和全奖录取，拒绝的申请占比为27.6%，还有少部分申请结果为Waiting List。在后续的建模中，将把Waiting List划分为拒绝类别。</p>
 </div>
 <div id="最热门的top10申请学校" class="section level3 unnumbered">
@@ -461,7 +461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb508-6"><a href="ch7.html#cb508-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;申请学校的世界排名&quot;</span>, <span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">title =</span> <span class="st">&quot;成绩与申请结果&quot;</span>) <span class="sc">+</span></span>
 <span id="cb508-7"><a href="ch7.html#cb508-7" aria-hidden="true" tabindex="-1"></a>    plot_theme)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch7-plot2-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg" /></p>
 <div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="ch7.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 成绩分段</span></span>
 <span id="cb509-2"><a href="ch7.html#cb509-2" aria-hidden="true" tabindex="-1"></a>descriptive<span class="sc">$</span>gpa_dis <span class="ot">&lt;-</span> <span class="fu">cut</span>(descriptive<span class="sc">$</span>Standardgap, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">3.4</span>, <span class="fl">3.55</span>, <span class="fl">3.7</span>, <span class="cn">Inf</span>),</span>
 <span id="cb509-3"><a href="ch7.html#cb509-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;&lt;=3.4&quot;</span>, <span class="st">&quot;3.4~3.55&quot;</span>, <span class="st">&quot;3.55~3.7&quot;</span>, <span class="st">&quot;&gt;3.7&quot;</span>))</span></code></pre></div>
@@ -492,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb511-10"><a href="ch7.html#cb511-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">x =</span> <span class="fl">5.4</span>, <span class="at">y =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="fl">5.7</span>, <span class="at">vjust =</span>  <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
 <span id="cb511-11"><a href="ch7.html#cb511-11" aria-hidden="true" tabindex="-1"></a>  plot_theme)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch7-plot3-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg" /></p>
 <p>结论：对于排名靠前的学校来说，托福成绩越高，平均录取率越高。</p>
 </div>
 <div id="硬件条件对于不同学位申请的影响" class="section level3 unnumbered">
@@ -525,7 +525,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb513-6"><a href="ch7.html#cb513-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="st">&quot;count&quot;</span>, <span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;lightCoral&quot;</span>) <span class="sc">+</span></span>
 <span id="cb513-7"><a href="ch7.html#cb513-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;申请学位&quot;</span>, <span class="at">y =</span> <span class="st">&quot;硬件条件&quot;</span>, <span class="at">title =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> plot_theme)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg" /></p>
 <p>结论：申请硕士实习更加重要，申请博士论文更加重要，而混合申请介于两者之间。</p>
 </div>
 </div>
@@ -601,7 +601,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb518-3"><a href="ch7.html#cb518-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.roc</span>(descriptive_test<span class="sc">$</span>offertype, pred, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">print.auc=</span><span class="cn">TRUE</span>,</span>
 <span id="cb518-4"><a href="ch7.html#cb518-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">auc.polygon=</span><span class="cn">TRUE</span>, <span class="at">auc.polygon.col=</span><span class="st">&quot;#f6f6f6&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;FPR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;TPR&quot;</span>, <span class="at">main =</span> <span class="st">&quot;预测ROC曲线&quot;</span>)  </span></code></pre></div>
 <p><img src="_main_files/figure-html/ch7-plot5-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg" /></p>
 <p>根据曲线的结果，AUC值（即ROC曲线下的面积）为0.754，说明该模型对数据的预测效果较好。</p>
 </div>
 </div>
@@ -696,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb524-3"><a href="ch7.html#cb524-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">auc.polygon=</span><span class="cn">TRUE</span>, <span class="at">auc.polygon.col=</span><span class="st">&quot;#f6f6f6&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;特异度&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;敏感度&quot;</span>,</span>
 <span id="cb524-4"><a href="ch7.html#cb524-4" aria-hidden="true" tabindex="-1"></a>         fitted.results, <span class="at">main =</span> <span class="st">&quot;预测ROC曲线&quot;</span>)  </span></code></pre></div>
 <p><img src="_main_files/figure-html/ch7-plot6-1.png" width="672" /></p>
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg) -->
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg" /></p>
 <p>绘制ROC曲线如上所示，计算得到AUC值为0.617，模型在测试集上的预测表现较好。</p>
 
 </div>
