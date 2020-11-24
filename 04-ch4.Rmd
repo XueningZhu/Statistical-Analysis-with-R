@@ -52,7 +52,7 @@ novel.小说类型 %>% summarise(平均评分 = mean(评分), 最大评论数 = 
 
 柱状图（barplot）是用柱子高低来表示取值大小的一种统计图形。常见的柱状图有频数柱状图及均值柱状图。频数柱状图展示的是定性变量各水平的频数统计，柱子高度代表每个水平频数大小。
 
-```{r warning=FALSE, echo = T}
+```{r ch4-plot1, warning=FALSE, echo = T}
 # 统计小说类型频数
 a=table(novel$小说类型)
 # 对频数排序
@@ -62,7 +62,7 @@ par(family = "STXihei",las = 2)
 barplot(a[1:5],names.arg = names(a)[1:5],family="STXihei",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
 title("各类型小说频数分布柱状图",family="STXihei")
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5mjdaslj311c0qo75z.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5mjdaslj311c0qo75z.jpg)
 
 柱状图并不仅用于展现频数，也可以展示按照分组划分后各类别的均值等指标。这种柱状图称为均值柱状图。
 
@@ -80,7 +80,7 @@ title("各类型小说平均总点击数",family="STXihei")
 
 options(scipen = 200)
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zk27nmj311c0qoq4s.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zk27nmj311c0qoq4s.jpg)
 
 对两个或多个定性变量绘制柱状图可使用分组柱状图或堆积柱状图来展现。
 
@@ -110,7 +110,7 @@ barplot(d, beside = F, col = c("gold","grey"), ylab = "频数", ylim = c(0,700))
 # 添加图例
 legend("topright", legend = rownames(d), fill = c("gold", "grey"), cex = 0.8)
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjyyl6j311c0qomz4.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjyyl6j311c0qomz4.jpg)
 
 ### 4.2.3 饼图{-}
 
@@ -135,7 +135,7 @@ par(family="STXihei")
 pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep = "\n"), font = 1)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjv53uj311c0qowgo.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjv53uj311c0qowgo.jpg)
 
 ### 4.2.4 直方图{-}
 
@@ -147,7 +147,7 @@ r=rnorm(1000)
 # 绘制直方图
 hist(r) 
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjm29kj311c0qo0tu.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjm29kj311c0qo0tu.jpg)
 
 ```{r}
 # 去掉异常值
@@ -162,7 +162,7 @@ hist(chara, breaks = 10, xlab = "总字数(万字)", ylab = "频数", main = "",
 hist(chara, breaks = 100, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjcbryj311c0qodha.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zjcbryj311c0qodha.jpg)
 
 ### 4.2.5 折线图{-}
 
@@ -175,7 +175,7 @@ data(AirPassengers)
 plot(AirPassengers)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5ziupr9j311c0qodi4.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5ziupr9j311c0qodi4.jpg)
 
 ### 4.2.6 箱线图{-}
 
@@ -195,7 +195,7 @@ par(mfrow=c(1,2),family = "STXihei")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总点击数对数")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总评论数对数")
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zi29gxj311c0qo0ub.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zi29gxj311c0qo0ub.jpg)
 
 ### 4.2.7 散点图{-}
 
@@ -214,7 +214,7 @@ par(family = "STXihei")
 plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhxj1oj311c0qowhl.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhxj1oj311c0qowhl.jpg)
 
 ### 4.2.8 相关系数图{-}
 
@@ -230,7 +230,7 @@ par(family = "STXihei")
 corrplot(r, tl.col = "black")
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gkye5i9f2hj311c0qogou.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gkye5i9f2hj311c0qogou.jpg)
 
 ## 4.3 数据可视化进阶{-}
 
@@ -253,7 +253,7 @@ p + geom_bar(stat = 'identity')+
   theme_gray(base_family = 'STXihei')+
   labs(x = "小说类型", y = "频数")
 ```
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zht3cej311c0qoabb.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zht3cej311c0qoabb.jpg)
 
 #### 饼图{-}
 
@@ -286,7 +286,7 @@ theme(axis.title = element_blank(),
       text = element_text(family='STXihei')) 
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhk710j311c0qoju3.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhk710j311c0qoju3.jpg)
 
 #### 直方图{-}
 
@@ -299,7 +299,7 @@ p = ggplot(novel, mapping = aes(x = log(总点击数)))
 p + geom_histogram(bins = 30) + theme_gray(base_family = 'STXihei') + xlab('对数总点击数') + ylab('频数')
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhfubij311c0qo0tq.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhfubij311c0qo0tq.jpg)
 
 #### 折线图{-}
 
@@ -313,7 +313,7 @@ p = ggplot(economics, aes(x = date, y = unemploy))
 p + geom_line()
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhbxwqj311c0qoq57.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhbxwqj311c0qoq57.jpg)
 
 #### 箱线图{-}
 
@@ -326,7 +326,7 @@ p = ggplot(novel_, mapping = aes(x = 小说性质, y = log(总点击数)))
 p+ geom_boxplot(fill = c('gold','grey')) + theme_gray(base_family = 'STXihei') + xlab('小说性质') + ylab('对数总点击数')
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh7o6oj311c0qodh1.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh7o6oj311c0qodh1.jpg)
 
 #### 散点图{-}
 
@@ -343,7 +343,7 @@ p = ggplot(data , mapping = aes(x = 总点击数, y = 评论数))
 p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh26s9j311c0qoacz.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh26s9j311c0qoacz.jpg)
 
 利用ggplot2包，也可以将其它变量映射到散点图当中，例如将不同性质的小说用不同的颜色来表示。
 
@@ -354,7 +354,7 @@ p = ggplot(na.omit(data) , mapping = aes(x = 总点击数, y = 评论数 , col =
 p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zgvlsqj311c0qotcd.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zgvlsqj311c0qotcd.jpg)
 
 ### 4.3.2 交互可视化{-}
 
@@ -457,7 +457,7 @@ ggplot(travel_dat)+
 
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63y3eybj311c0qoab1.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63y3eybj311c0qoab1.jpg)
 
 c.提取“Star”变量中的“*钻”字符来表示产品等级，当一个产品包含多个钻级时取最大钻级，并将产品钻级以新变量“Star2”存入数据集travel_dat中，变量类型为因子型。
 
@@ -501,7 +501,7 @@ ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
         axis.ticks = element_blank())                        # 去掉坐标轴
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xvnxuj311c0qo3zu.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xvnxuj311c0qo3zu.jpg)
 
 ### 题目 4.4（实训题目）{-}
 
@@ -529,7 +529,7 @@ par(las = 2,mai = c(1,1,0.5,1),family = "STXihei")
 spineplot(dc~atype,rtb_data,col = c('gold','grey'),xlab = '',yaxlabels = c('点击','不点击'),ylab = '')
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xpng9j311c0qowfm.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xpng9j311c0qowfm.jpg)
 
 ```{r}
 bidf_plot = as.data.frame(subset(rtb_data,select = c('dc','bidf')))
@@ -551,7 +551,7 @@ ggplot(bidf_plot)+
         axis.line = element_line(colour = "black"))#调整主题样式
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xmmi2j311c0qota1.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xmmi2j311c0qota1.jpg)
 
 ### 题目 4.5（实训题目）{-}
 
@@ -595,7 +595,7 @@ ggplot(fin_data)+
 summary(fin_data$wage)
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xfx9ij311c0qo0tq.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xfx9ij311c0qo0tq.jpg)
 
 ```{r}
 ###对岗位进行分类
@@ -629,7 +629,7 @@ ggplot(fin_data_city)+
         axis.line = element_line(colour = "black"))#设置背景和坐标轴
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xcpdsj311c0qo0u6.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63xcpdsj311c0qo0u6.jpg)
 
 ```{r}
 ###提取工作经验要求的函数
@@ -671,4 +671,4 @@ ggplot(fin_data)+
 
 ```
 
-<!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63x7ljgj311c0qowge.jpg) -->
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gky63x7ljgj311c0qowge.jpg)
