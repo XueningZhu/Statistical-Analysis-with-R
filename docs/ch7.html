@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb513-5"><a href="ch7.html#cb513-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">family =</span> <span class="st">&quot;Hei&quot;</span>, <span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
 <span id="cb513-6"><a href="ch7.html#cb513-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="st">&quot;count&quot;</span>, <span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;lightCoral&quot;</span>) <span class="sc">+</span></span>
 <span id="cb513-7"><a href="ch7.html#cb513-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;申请学位&quot;</span>, <span class="at">y =</span> <span class="st">&quot;硬件条件&quot;</span>, <span class="at">title =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> plot_theme)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <!-- ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg) -->
 <p>结论：申请硕士实习更加重要，申请博士论文更加重要，而混合申请介于两者之间。</p>
 </div>
@@ -621,27 +621,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb519-2"><a href="ch7.html#cb519-2" aria-hidden="true" tabindex="-1"></a>testset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/preddata.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>, <span class="at">header =</span> T)</span>
 <span id="cb519-3"><a href="ch7.html#cb519-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb519-4"><a href="ch7.html#cb519-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(trainset)  <span class="do">## 数据概览</span></span></code></pre></div>
-<pre><code>##        ID            tenure          expense            degree        
-##  Min.   :    1   Min.   : 163.0   Min.   : -3.378   Min.   : -0.4319  
-##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076   1st Qu.: 31.2269  
-##  Median :24281   Median : 990.1   Median :134.250   Median : 54.6392  
-##  Mean   :24224   Mean   :1256.1   Mean   :157.270   Mean   : 64.8805  
-##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157   3rd Qu.: 88.6146  
-##  Max.   :48393   Max.   :4475.9   Max.   :437.791   Max.   :214.9449  
-##    tightness         entropy         chgexpense         chgdegree        
-##  Min.   :-2.583   Min.   :0.4846   Min.   :-0.79261   Min.   :-0.992063  
-##  1st Qu.: 5.397   1st Qu.:2.4177   1st Qu.:-0.07968   1st Qu.:-0.159091  
-##  Median : 7.964   Median :3.0005   Median : 0.00000   Median :-0.009615  
-##  Mean   : 9.231   Mean   :2.9491   Mean   :-0.01584   Mean   : 0.011054  
-##  3rd Qu.:11.645   3rd Qu.:3.5461   3rd Qu.: 0.03222   3rd Qu.: 0.153846  
-##  Max.   :32.255   Max.   :5.0324   Max.   : 0.79717   Max.   : 1.187500  
-##      churn        
-##  Min.   :0.00000  
-##  1st Qu.:0.00000  
-##  Median :0.00000  
-##  Mean   :0.03147  
-##  3rd Qu.:0.00000  
-##  Max.   :1.00000</code></pre>
+<pre><code>##        ID            tenure          expense       
+##  Min.   :    1   Min.   : 163.0   Min.   : -3.378  
+##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076  
+##  Median :24281   Median : 990.1   Median :134.250  
+##  Mean   :24224   Mean   :1256.1   Mean   :157.270  
+##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157  
+##  Max.   :48393   Max.   :4475.9   Max.   :437.791  
+##      degree           tightness         entropy      
+##  Min.   : -0.4319   Min.   :-2.583   Min.   :0.4846  
+##  1st Qu.: 31.2269   1st Qu.: 5.397   1st Qu.:2.4177  
+##  Median : 54.6392   Median : 7.964   Median :3.0005  
+##  Mean   : 64.8805   Mean   : 9.231   Mean   :2.9491  
+##  3rd Qu.: 88.6146   3rd Qu.:11.645   3rd Qu.:3.5461  
+##  Max.   :214.9449   Max.   :32.255   Max.   :5.0324  
+##    chgexpense         chgdegree             churn        
+##  Min.   :-0.79261   Min.   :-0.992063   Min.   :0.00000  
+##  1st Qu.:-0.07968   1st Qu.:-0.159091   1st Qu.:0.00000  
+##  Median : 0.00000   Median :-0.009615   Median :0.00000  
+##  Mean   :-0.01584   Mean   : 0.011054   Mean   :0.03147  
+##  3rd Qu.: 0.03222   3rd Qu.: 0.153846   3rd Qu.:0.00000  
+##  Max.   : 0.79717   Max.   : 1.187500   Max.   :1.00000</code></pre>
 </div>
 <div id="模型建立与解读" class="section level4 unnumbered">
 <h4>模型建立与解读</h4>

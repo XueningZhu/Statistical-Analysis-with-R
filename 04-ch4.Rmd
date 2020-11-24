@@ -52,7 +52,7 @@ novel.小说类型 %>% summarise(平均评分 = mean(评分), 最大评论数 = 
 
 柱状图（barplot）是用柱子高低来表示取值大小的一种统计图形。常见的柱状图有频数柱状图及均值柱状图。频数柱状图展示的是定性变量各水平的频数统计，柱子高度代表每个水平频数大小。
 
-```{r ch4-plot1, warning=FALSE, echo = T}
+```{r warning=FALSE, echo = T}
 # 统计小说类型频数
 a=table(novel$小说类型)
 # 对频数排序
