@@ -1,5 +1,5 @@
 ---
-title: "统计分析与R语言（辅助材料）"
+title: "统计分析（以R语言为工具）：辅助材料"
 author: 
   - 朱雪宁 & 任怡萌
 date: "`r Sys.Date()`"
@@ -19,22 +19,48 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 # 前言 {-}
 
-这是《统计分析与R语言》一书所用R语言代码辅助材料，还在更新中。错漏之处难免，欢迎指出错误或提出改进意见。
+这是《统计分析（以R语言为工具）》一书所用R语言代码辅助材料，还在更新中。错漏之处难免，欢迎指出错误或提出改进意见。
 
 **相关下载**：
 
-- 需要补充数据文件
+- [一些配套数据的打包文件](https://pan.baidu.com/s/151lkBFRPpUfnuoH6OQwxlw)，提取码：9pzl
 
 使用本教程必须安装的**软件包**：
 
-- package1
-
-- package2
+- resahpe
+- reshape2
+- plyr
+- dplyr
+- readxl
+- lubridate
+- stringr
+- e1071
+- fBasics
+- tidyr
+- corrplot
+- ggplot2
+- zoo
+- plotly
+- purrr
+- data.table
+- magrittr
+- BSDA
+- pROC
+- ROCR
+- psych
 
 本教程中用到的软件包列表（更新R软件后可以在一个基本R中运行如下命令）：
 
-[待补充]
+```{r echo = T, eval = F}
+pkgs <- c("resahpe", "reshape2", "plyr", "dplyr", "readxl", "lubridate", 
+          "stringr", "e1071", "fBasics", "tidyr", "corrplot", "ggplot2",
+          "zoo", "plotly", "purrr", "data.table", "magrittr", "BSDA",
+          "pROC", "ROCR", "psych")
+install.packages(unique(pkgs))
+```
 
 编译本教程所用的R软件环境：
 
-[待补充]
+```{r}
+devtools::session_info()
+```
