@@ -88,7 +88,7 @@ descriptive$offertype[descriptive$offertype == "Rej"] <- "Rejected"
 descriptive <- descriptive[ - which(descriptive$offertype == ""),]   # 删去缺失录取结果的样本
 ```
 
-```{r ch7-plot1}
+```{r ch7-plot1, eval = F}
 ## 绘制饼状图
 (piechart1 <- ggplot(descriptive, aes(x = factor(1), fill = factor(descriptive$offertype))) +
     geom_bar(position = "fill", width = 1) +
@@ -162,7 +162,7 @@ gpa_offertype$offertype <- factor(gpa_offertype$offertype, levels = c("Admitted"
 gpa_offertype$CollegeRankTop50 <- factor(gpa_offertype$CollegeRankTop50, levels = c("Top50","Others"))
 ```
 
-```{r ch7-plot2}
+```{r ch7-plot2, eval = F}
 ## 画图
 (boxplot1 <- ggplot(gpa_offertype, aes(x = factor(CollegeRankTop50), y = Standardgap, fill = factor(offertype))) +
     geom_boxplot(show.legend = T, varwidth = T) +
@@ -200,7 +200,7 @@ colnames(admittedPct) <- c("TOEFL","学校排名","admittedpct")
 admittedPct$学校排名 <- factor(admittedPct$学校排名,levels = c("Top50","Others"))
 ```
 
-```{r ch7-plot3}
+```{r ch7-plot3, eval = F}
 ### 画图
 (barplot2 <- ggplot(admittedPct, aes(TOEFL, admittedpct, fill = 学校排名)) + 
   geom_bar(stat='identity',position='dodge') +
@@ -245,7 +245,7 @@ count_plot$X2 <- factor(count_plot$Var2, levels = c("research","paper","first",
                            labels = c("科研", "论文", "一作", "SCI论文", "牛推", "实习", "交换"))
 ```
 
-```{r}
+```{r, eval = F}
 ## 绘制硬件条件与申请学位的矩阵图
 (matrix1 <- ggplot(count_plot, aes(x = X1, y = X2, label = value, fill = value)) + # 画图
     geom_tile(show.legend = F) +    
@@ -302,7 +302,7 @@ library(pROC)
 pred <- predict(myglm, descriptive_test, type="response")
 ```
 
-```{r ch7-plot5}
+```{r ch7-plot5, eval = F}
 par(family='STXihei')
 # 绘制ROC曲线
 plot.roc(descriptive_test$offertype, pred, col = "dodgerblue", print.auc=TRUE,
@@ -361,7 +361,7 @@ library(ROCR)
 testset$churn <- as.factor(testset$churn)
 ```
 
-```{r ch7-plot6}
+```{r ch7-plot6, eval = F}
 par(family='STXihei')
 plot.roc(testset$churn, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "特异度",ylab = "敏感度",

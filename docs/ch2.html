@@ -24,7 +24,7 @@
 <meta name="author" content="朱雪宁 &amp; 任怡萌" />
 
 
-<meta name="date" content="2021-01-24" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -552,8 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##  [1] 1 1 1 2 3 3 1 2 4 1 2 4 4 2 3 4 1 2 3 4</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ch2.html#cb73-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span>)</span>
 <span id="cb73-2"><a href="ch2.html#cb73-2" aria-hidden="true" tabindex="-1"></a>letters</span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
-## [21] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ch2.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(x, letters)</span></code></pre></div>
 <pre><code>## [1] 1 3 7 8</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="ch2.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cut函数</span></span>
@@ -562,8 +561,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="ch2.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将年龄数据离散化  </span></span>
 <span id="cb79-2"><a href="ch2.html#cb79-2" aria-hidden="true" tabindex="-1"></a>label <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;青年&#39;</span>, <span class="st">&#39;中年&#39;</span>, <span class="st">&#39;老年&#39;</span>)  <span class="co">#设置标签</span></span>
 <span id="cb79-3"><a href="ch2.html#cb79-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">ages =</span> <span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>, <span class="dv">100</span>), <span class="at">labels =</span> label))<span class="co">#划分区间</span></span></code></pre></div>
-<pre><code>##  [1] 老年 青年 中年 老年 老年 老年 老年 中年 老年 中年 老年 中年 中年 青年 中年 中年
-## [17] 中年 青年 青年 中年
+<pre><code>##  [1] 老年 青年 中年 老年 老年 老年 老年 中年 老年 中年 老年 中年 中年 青年 中年 中年 中年 青年 青年 中年
 ## Levels: 青年 中年 老年</code></pre>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ch2.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sort和order函数</span></span>
 <span id="cb81-2"><a href="ch2.html#cb81-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>))<span class="co">#生成向量</span></span></code></pre></div>
@@ -581,16 +579,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 7</code></pre>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="ch2.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 看看数据集中的电影名字的长度分别是多少</span></span>
 <span id="cb91-2"><a href="ch2.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(movie<span class="sc">$</span>name)</span></code></pre></div>
-<pre><code>##   [1]  6  4  7  4  4  4  5  6  4  6  5  7  7  6  9  5  2  4  2  4  8  4  3  6  5  4
-##  [27]  4  5  8  4  4  3  2  4  4  9  5  5  4  5  5  4  5  7  3  5  3  4  3  4  4  4
-##  [53]  2  4  4  5  3  4  5  6  4  9  3  3  4  4  4  6  8  6  4  8  6  4  5  3  4  4
-##  [79]  6  4  4  4  7  4  3  4  4  3  2  2  7 10  9  4  3  2  3  5  2  4  4  5  4  8
-## [105]  3  2  5  3  7  4  5  4  3  4  5  4  4  5  4 10  7  4  4  3  4  2  4  4  8  5
-## [131]  2  2  4  4  7  5  3  4  4  4  5  5  5  6  7 13  4  3  5  4  5  7  4  4  6  6
-## [157]  3  4  3  4  6  5  5  3  5  2  4  2  3  3  3  2  4  2  4  5  4  4  7  4  5  8
-## [183]  6  4  3  5  4  5  5  4  9  3  6 10  5  2  5  2  4  6  4  4  4  4  3  5  8  5
-## [209]  4  5 13  4  2  4  4 12  8  2  4  4  5  6  4  3  5  7  5  5  2  2  4  5  5  5
-## [235]  5  2  4  2  4  7  8  4  7  3  2  4  4  5  4  8</code></pre>
+<pre><code>##   [1]  6  4  7  4  4  4  5  6  4  6  5  7  7  6  9  5  2  4  2  4  8  4  3  6  5  4  4  5  8  4  4  3  2  4  4  9
+##  [37]  5  5  4  5  5  4  5  7  3  5  3  4  3  4  4  4  2  4  4  5  3  4  5  6  4  9  3  3  4  4  4  6  8  6  4  8
+##  [73]  6  4  5  3  4  4  6  4  4  4  7  4  3  4  4  3  2  2  7 10  9  4  3  2  3  5  2  4  4  5  4  8  3  2  5  3
+## [109]  7  4  5  4  3  4  5  4  4  5  4 10  7  4  4  3  4  2  4  4  8  5  2  2  4  4  7  5  3  4  4  4  5  5  5  6
+## [145]  7 13  4  3  5  4  5  7  4  4  6  6  3  4  3  4  6  5  5  3  5  2  4  2  3  3  3  2  4  2  4  5  4  4  7  4
+## [181]  5  8  6  4  3  5  4  5  5  4  9  3  6 10  5  2  5  2  4  6  4  4  4  4  3  5  8  5  4  5 13  4  2  4  4 12
+## [217]  8  2  4  4  5  6  4  3  5  7  5  5  2  2  4  5  5  5  5  2  4  2  4  7  8  4  7  3  2  4  4  5  4  8</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="ch2.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 中英文的字符长度计算方法有不同</span></span>
 <span id="cb93-2"><a href="ch2.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;Welcome to follow the CluBear&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 29</code></pre>
@@ -903,8 +898,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
-## [21] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -936,8 +930,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
-## [21] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -958,8 +951,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
-## [21] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -1131,16 +1123,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb232-2"><a href="ch2.html#cb232-2" aria-hidden="true" tabindex="-1"></a>split_line<span class="ot">=</span><span class="fu">strsplit</span>(line_all,<span class="st">&quot;,&quot;</span>)<span class="co">#分隔符为”,”</span></span>
 <span id="cb232-3"><a href="ch2.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_line,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot;rank&quot;     &quot;name&quot;     &quot;showtime&quot; &quot;duration&quot; &quot;director&quot; &quot;type&quot;     &quot;score&quot;   
-## [8] &quot;nation&quot;  
+## [1] &quot;rank&quot;     &quot;name&quot;     &quot;showtime&quot; &quot;duration&quot; &quot;director&quot; &quot;type&quot;     &quot;score&quot;    &quot;nation&quot;  
 ## 
 ## [[2]]
-## [1] &quot;1&quot;               &quot;肖申克的救赎&quot;    &quot;1994/9/10&quot;       &quot;142&quot;            
-## [5] &quot;弗兰克·德拉邦特&quot; &quot;剧情&quot;            &quot;9.6&quot;             &quot;美国&quot;           
+## [1] &quot;1&quot;               &quot;肖申克的救赎&quot;    &quot;1994/9/10&quot;       &quot;142&quot;             &quot;弗兰克·德拉邦特&quot; &quot;剧情&quot;           
+## [7] &quot;9.6&quot;             &quot;美国&quot;           
 ## 
 ## [[3]]
-## [1] &quot;2&quot;        &quot;霸王别姬&quot; &quot;1993/1/1&quot; &quot;171&quot;      &quot;陈凯歌&quot;   &quot;爱情&quot;     &quot;9.5&quot;     
-## [8] &quot;中国&quot;</code></pre>
+## [1] &quot;2&quot;        &quot;霸王别姬&quot; &quot;1993/1/1&quot; &quot;171&quot;      &quot;陈凯歌&quot;   &quot;爱情&quot;     &quot;9.5&quot;      &quot;中国&quot;</code></pre>
 </div>
 </div>
 <div id="数据集管理及预处理" class="section level2 unnumbered">
@@ -1161,21 +1151,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ score   : num  9.6 9.5 9.4 9.4 9.5 9.2 9.2 9.4 9.3 9.3 ...
 ##  $ nation  : chr  &quot;美国&quot; &quot;中国&quot; &quot;法国&quot; &quot;美国&quot; ...</code></pre>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ch2.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(movie)</span></code></pre></div>
-<pre><code>##       rank           name             showtime            duration    
-##  Min.   :  1.0   Length:250         Length:250         Min.   : 45.0  
-##  1st Qu.: 60.5   Class :character   Class :character   1st Qu.:103.0  
-##  Median :126.5   Mode  :character   Mode  :character   Median :118.0  
-##  Mean   :125.9                                         Mean   :122.2  
-##  3rd Qu.:190.0                                         3rd Qu.:136.0  
-##  Max.   :250.0                                         Max.   :238.0  
-##                                                        NA&#39;s   :12     
-##    director             type               score           nation         
-##  Length:250         Length:250         Min.   :-1.000   Length:250        
-##  Class :character   Class :character   1st Qu.: 8.500   Class :character  
-##  Mode  :character   Mode  :character   Median : 8.700   Mode  :character  
-##                                        Mean   : 7.853                     
-##                                        3rd Qu.: 8.900                     
-##                                        Max.   : 9.600                     
+<pre><code>##       rank           name             showtime            duration       director             type          
+##  Min.   :  1.0   Length:250         Length:250         Min.   : 45.0   Length:250         Length:250        
+##  1st Qu.: 60.5   Class :character   Class :character   1st Qu.:103.0   Class :character   Class :character  
+##  Median :126.5   Mode  :character   Mode  :character   Median :118.0   Mode  :character   Mode  :character  
+##  Mean   :125.9                                         Mean   :122.2                                        
+##  3rd Qu.:190.0                                         3rd Qu.:136.0                                        
+##  Max.   :250.0                                         Max.   :238.0                                        
+##                                                        NA&#39;s   :12                                           
+##      score           nation         
+##  Min.   :-1.000   Length:250        
+##  1st Qu.: 8.500   Class :character  
+##  Median : 8.700   Mode  :character  
+##  Mean   : 7.853                     
+##  3rd Qu.: 8.900                     
+##  Max.   : 9.600                     
 ## </code></pre>
 </div>
 <div id="变量类型转换" class="section level3 unnumbered">
@@ -1281,14 +1271,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb283-4"><a href="ch2.html#cb283-4" aria-hidden="true" tabindex="-1"></a>directors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(director, birthyear, gender); </span>
 <span id="cb283-5"><a href="ch2.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="co"># merge实现的效果是：将movie和directors按照列director匹配并合并起来</span></span>
 <span id="cb283-6"><a href="ch2.html#cb283-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">movie.star =</span> <span class="fu">merge</span>(movie[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], directors,<span class="at">by =</span> <span class="st">&quot;director&quot;</span>)) </span></code></pre></div>
-<pre><code>##        director rank       name   showtime duration type score nation birthyear
-## 1        宫崎骏    6   千与千寻 2001-07-20      125 动画   9.2   日本      1941
-## 2 詹姆斯·卡梅隆    7 泰坦尼克号 1998-04-03      194 爱情   9.2   美国      1954
-## 3        陈凯歌    2   霸王别姬 1993-01-01      171 爱情   9.5   中国      1952
-##   gender
-## 1     男
-## 2     男
-## 3     男</code></pre>
+<pre><code>##        director rank       name   showtime duration type score nation birthyear gender
+## 1        宫崎骏    6   千与千寻 2001-07-20      125 动画   9.2   日本      1941     男
+## 2 詹姆斯·卡梅隆    7 泰坦尼克号 1998-04-03      194 爱情   9.2   美国      1954     男
+## 3        陈凯歌    2   霸王别姬 1993-01-01      171 爱情   9.5   中国      1952     男</code></pre>
 </div>
 <div id="数据缺失异常" class="section level3 unnumbered">
 <h3>2.4.5 数据缺失、异常</h3>
@@ -1357,20 +1343,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="ch2.html#cb294-1" aria-hidden="true" tabindex="-1"></a>tv<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/电视剧播量.csv&quot;</span>,<span class="at">fileEncoding=</span><span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
 <span id="cb294-2"><a href="ch2.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tv)<span class="co">#查看数据前几行</span></span></code></pre></div>
-<pre><code>##           剧名                                    类型 播放量    点赞    差评 得分
-## 1   花千骨2015            言情剧\n/\n穿越剧\n/\n网络剧 3.07亿 992,342 357,808  7.3
-## 2 还珠格格2015          古装剧\n\n/\n喜剧\n\n/\n网络剧 73.3万   2,352   7,240  2.5
-## 3         天局 武侠剧\n/\n古装剧\n/\n悬疑剧\n/\n网络剧 3454万  38,746   3,593  9.2
-## 4     明若晓溪            青春剧\n/\n言情剧\n/\n偶像剧 1.57亿 518,660  72,508  8.8
-## 5     多情江山            言情剧\n/\n古装剧\n/\n宫廷剧 1126万  22,553   6,955  7.6
-## 6   我是机器人                       偶像剧\n\n/\n喜剧 1660万  37,905   3,605  9.1
-##             采集日期
-## 1 2015-9-23 23:48:48
-## 2 2015-9-23 23:48:48
-## 3 2015-9-23 23:48:52
-## 4 2015-9-23 23:48:51
-## 5 2015-9-23 23:48:52
-## 6 2015-9-23 23:48:51</code></pre>
+<pre><code>##           剧名                                    类型 播放量    点赞    差评 得分           采集日期
+## 1   花千骨2015            言情剧\n/\n穿越剧\n/\n网络剧 3.07亿 992,342 357,808  7.3 2015-9-23 23:48:48
+## 2 还珠格格2015          古装剧\n\n/\n喜剧\n\n/\n网络剧 73.3万   2,352   7,240  2.5 2015-9-23 23:48:48
+## 3         天局 武侠剧\n/\n古装剧\n/\n悬疑剧\n/\n网络剧 3454万  38,746   3,593  9.2 2015-9-23 23:48:52
+## 4     明若晓溪            青春剧\n/\n言情剧\n/\n偶像剧 1.57亿 518,660  72,508  8.8 2015-9-23 23:48:51
+## 5     多情江山            言情剧\n/\n古装剧\n/\n宫廷剧 1126万  22,553   6,955  7.6 2015-9-23 23:48:52
+## 6   我是机器人                       偶像剧\n\n/\n喜剧 1660万  37,905   3,605  9.1 2015-9-23 23:48:51</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>删除数据集中剧名缺失的值。</li>
 </ol>
@@ -1395,30 +1374,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="ch2.html#cb299-1" aria-hidden="true" tabindex="-1"></a>game<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/安卓手机游戏.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
 <span id="cb299-2"><a href="ch2.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(game)<span class="co">#查看数据概况</span></span></code></pre></div>
-<pre><code>##    游戏名称              评分           类别               语言          
-##  Length:1141        Min.   :1.000   Length:1141        Length:1141       
-##  Class :character   1st Qu.:5.200   Class :character   Class :character  
-##  Mode  :character   Median :6.600   Mode  :character   Mode  :character  
-##                     Mean   :6.611                                        
-##                     3rd Qu.:7.900                                        
-##                     Max.   :9.600                                        
-##                     NA&#39;s   :203                                          
-##      热度           最后更新时间         游戏版本             资费          
-##  Length:1141        Length:1141        Length:1141        Length:1141       
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##     开发商            支持系统             评论数          喜欢数       
-##  Length:1141        Length:1141        Min.   :    0   Min.   :    0.0  
-##  Class :character   Class :character   1st Qu.:  446   1st Qu.:   67.0  
-##  Mode  :character   Mode  :character   Median :  859   Median :  233.0  
-##                                        Mean   : 2322   Mean   :  786.3  
-##                                        3rd Qu.: 2510   3rd Qu.:  854.8  
-##                                        Max.   :96354   Max.   :13323.0  
-##                                        NA&#39;s   :1       NA&#39;s   :1</code></pre>
+<pre><code>##    游戏名称              评分           类别               语言               热度           最后更新时间      
+##  Length:1141        Min.   :1.000   Length:1141        Length:1141        Length:1141        Length:1141       
+##  Class :character   1st Qu.:5.200   Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Median :6.600   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                     Mean   :6.611                                                                              
+##                     3rd Qu.:7.900                                                                              
+##                     Max.   :9.600                                                                              
+##                     NA&#39;s   :203                                                                                
+##    游戏版本             资费              开发商            支持系统             评论数          喜欢数       
+##  Length:1141        Length:1141        Length:1141        Length:1141        Min.   :    0   Min.   :    0.0  
+##  Class :character   Class :character   Class :character   Class :character   1st Qu.:  446   1st Qu.:   67.0  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :  859   Median :  233.0  
+##                                                                              Mean   : 2322   Mean   :  786.3  
+##                                                                              3rd Qu.: 2510   3rd Qu.:  854.8  
+##                                                                              Max.   :96354   Max.   :13323.0  
+##                                                                              NA&#39;s   :1       NA&#39;s   :1</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>提取热度中的数值部分，计算各游戏类型的热度均值，找出平均热度最高的游戏类型。</li>
 </ol>

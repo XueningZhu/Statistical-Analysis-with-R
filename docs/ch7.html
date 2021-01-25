@@ -24,7 +24,7 @@
 <meta name="author" content="朱雪宁 &amp; 任怡萌" />
 
 
-<meta name="date" content="2021-01-24" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,7 +627,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb509-5"><a href="ch7.html#cb509-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
 <span id="cb509-6"><a href="ch7.html#cb509-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">录取类型&quot;</span>) <span class="sc">+</span></span>
 <span id="cb509-7"><a href="ch7.html#cb509-7" aria-hidden="true" tabindex="-1"></a>    plot_theme_pie)</span></code></pre></div>
-<p><img src="_main_files/figure-html/ch7-plot1-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lq25o9j311c0qotay.jpg" /></p>
 <p>数据中，录取的案例占一半以上，其中包括无奖录取、小奖录取和全奖录取，拒绝的申请占比为27.6%，还有少部分申请结果为Waiting List。在后续的建模中，将把Waiting List划分为拒绝类别。</p>
 </div>
@@ -653,16 +652,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb510-17"><a href="ch7.html#cb510-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 找出10大热门学校</span></span>
 <span id="cb510-18"><a href="ch7.html#cb510-18" aria-hidden="true" tabindex="-1"></a>(top10_college_apply <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(descriptive<span class="sc">$</span>College_apply_new),</span>
 <span id="cb510-19"><a href="ch7.html#cb510-19" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">decreasing =</span> T)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)]))</span></code></pre></div>
-<pre><code>##  [1] &quot;University of California&quot;                  
-##  [2] &quot;Carnegie Mellon University&quot;                
-##  [3] &quot;University of Southern California&quot;         
-##  [4] &quot;Columbia University&quot;                       
-##  [5] &quot;University of Pennsylvania&quot;                
-##  [6] &quot;Northeastern University&quot;                   
-##  [7] &quot;University of Illinois at Urbana-Champaign&quot;
-##  [8] &quot;University of Michigan&quot;                    
-##  [9] &quot;Cornell University&quot;                        
-## [10] &quot;Texas A&amp;M University&quot;</code></pre>
+<pre><code>##  [1] &quot;University of California&quot;                   &quot;Carnegie Mellon University&quot;                
+##  [3] &quot;University of Southern California&quot;          &quot;Columbia University&quot;                       
+##  [5] &quot;University of Pennsylvania&quot;                 &quot;Northeastern University&quot;                   
+##  [7] &quot;University of Illinois at Urbana-Champaign&quot; &quot;University of Michigan&quot;                    
+##  [9] &quot;Cornell University&quot;                         &quot;Texas A&amp;M University&quot;</code></pre>
 </div>
 <div id="申请gpa对于结果的影响" class="section level3 unnumbered">
 <h3>申请GPA对于结果的影响</h3>
@@ -698,7 +692,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb513-5"><a href="ch7.html#cb513-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>),<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.2</span>))<span class="sc">+</span>     <span class="co"># 不考虑gpa&lt;2.0的样本</span></span>
 <span id="cb513-6"><a href="ch7.html#cb513-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;申请学校的世界排名&quot;</span>, <span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">title =</span> <span class="st">&quot;成绩与申请结果&quot;</span>) <span class="sc">+</span></span>
 <span id="cb513-7"><a href="ch7.html#cb513-7" aria-hidden="true" tabindex="-1"></a>    plot_theme)</span></code></pre></div>
-<p><img src="_main_files/figure-html/ch7-plot2-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpwxtgj311c0qo0uw.jpg" /></p>
 <div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="ch7.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 成绩分段</span></span>
 <span id="cb514-2"><a href="ch7.html#cb514-2" aria-hidden="true" tabindex="-1"></a>descriptive<span class="sc">$</span>gpa_dis <span class="ot">&lt;-</span> <span class="fu">cut</span>(descriptive<span class="sc">$</span>Standardgap, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">3.4</span>, <span class="fl">3.55</span>, <span class="fl">3.7</span>, <span class="cn">Inf</span>),</span>
@@ -729,7 +722,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb516-9"><a href="ch7.html#cb516-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">mean</span>(ifadmitted), <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>, <span class="st">&quot;%&quot;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), </span>
 <span id="cb516-10"><a href="ch7.html#cb516-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">x =</span> <span class="fl">5.4</span>, <span class="at">y =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="fl">5.7</span>, <span class="at">vjust =</span>  <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
 <span id="cb516-11"><a href="ch7.html#cb516-11" aria-hidden="true" tabindex="-1"></a>  plot_theme)</span></code></pre></div>
-<p><img src="_main_files/figure-html/ch7-plot3-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpmeelj311c0qomyy.jpg" /></p>
 <p>结论：对于排名靠前的学校来说，托福成绩越高，平均录取率越高。</p>
 </div>
@@ -762,7 +754,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb518-5"><a href="ch7.html#cb518-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">family =</span> <span class="st">&quot;Hei&quot;</span>, <span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
 <span id="cb518-6"><a href="ch7.html#cb518-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="st">&quot;count&quot;</span>, <span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;lightCoral&quot;</span>) <span class="sc">+</span></span>
 <span id="cb518-7"><a href="ch7.html#cb518-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;申请学位&quot;</span>, <span class="at">y =</span> <span class="st">&quot;硬件条件&quot;</span>, <span class="at">title =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> plot_theme)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpeqabj311c0qo416.jpg" /></p>
 <p>结论：申请硕士实习更加重要，申请博士论文更加重要，而混合申请介于两者之间。</p>
 </div>
@@ -838,7 +829,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb523-2"><a href="ch7.html#cb523-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制ROC曲线</span></span>
 <span id="cb523-3"><a href="ch7.html#cb523-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.roc</span>(descriptive_test<span class="sc">$</span>offertype, pred, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">print.auc=</span><span class="cn">TRUE</span>,</span>
 <span id="cb523-4"><a href="ch7.html#cb523-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">auc.polygon=</span><span class="cn">TRUE</span>, <span class="at">auc.polygon.col=</span><span class="st">&quot;#f6f6f6&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;FPR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;TPR&quot;</span>, <span class="at">main =</span> <span class="st">&quot;预测ROC曲线&quot;</span>)  </span></code></pre></div>
-<p><img src="_main_files/figure-html/ch7-plot5-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg" /></p>
 <p>根据曲线的结果，AUC值（即ROC曲线下的面积）为0.754，说明该模型对数据的预测效果较好。</p>
 </div>
@@ -859,27 +849,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb524-2"><a href="ch7.html#cb524-2" aria-hidden="true" tabindex="-1"></a>testset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/preddata.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>, <span class="at">header =</span> T)</span>
 <span id="cb524-3"><a href="ch7.html#cb524-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb524-4"><a href="ch7.html#cb524-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(trainset)  <span class="do">## 数据概览</span></span></code></pre></div>
-<pre><code>##        ID            tenure          expense            degree        
-##  Min.   :    1   Min.   : 163.0   Min.   : -3.378   Min.   : -0.4319  
-##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076   1st Qu.: 31.2269  
-##  Median :24281   Median : 990.1   Median :134.250   Median : 54.6392  
-##  Mean   :24224   Mean   :1256.1   Mean   :157.270   Mean   : 64.8805  
-##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157   3rd Qu.: 88.6146  
-##  Max.   :48393   Max.   :4475.9   Max.   :437.791   Max.   :214.9449  
-##    tightness         entropy         chgexpense         chgdegree        
-##  Min.   :-2.583   Min.   :0.4846   Min.   :-0.79261   Min.   :-0.992063  
-##  1st Qu.: 5.397   1st Qu.:2.4177   1st Qu.:-0.07968   1st Qu.:-0.159091  
-##  Median : 7.964   Median :3.0005   Median : 0.00000   Median :-0.009615  
-##  Mean   : 9.231   Mean   :2.9491   Mean   :-0.01584   Mean   : 0.011054  
-##  3rd Qu.:11.645   3rd Qu.:3.5461   3rd Qu.: 0.03222   3rd Qu.: 0.153846  
-##  Max.   :32.255   Max.   :5.0324   Max.   : 0.79717   Max.   : 1.187500  
-##      churn        
-##  Min.   :0.00000  
-##  1st Qu.:0.00000  
-##  Median :0.00000  
-##  Mean   :0.03147  
-##  3rd Qu.:0.00000  
-##  Max.   :1.00000</code></pre>
+<pre><code>##        ID            tenure          expense            degree           tightness         entropy      
+##  Min.   :    1   Min.   : 163.0   Min.   : -3.378   Min.   : -0.4319   Min.   :-2.583   Min.   :0.4846  
+##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076   1st Qu.: 31.2269   1st Qu.: 5.397   1st Qu.:2.4177  
+##  Median :24281   Median : 990.1   Median :134.250   Median : 54.6392   Median : 7.964   Median :3.0005  
+##  Mean   :24224   Mean   :1256.1   Mean   :157.270   Mean   : 64.8805   Mean   : 9.231   Mean   :2.9491  
+##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157   3rd Qu.: 88.6146   3rd Qu.:11.645   3rd Qu.:3.5461  
+##  Max.   :48393   Max.   :4475.9   Max.   :437.791   Max.   :214.9449   Max.   :32.255   Max.   :5.0324  
+##    chgexpense         chgdegree             churn        
+##  Min.   :-0.79261   Min.   :-0.992063   Min.   :0.00000  
+##  1st Qu.:-0.07968   1st Qu.:-0.159091   1st Qu.:0.00000  
+##  Median : 0.00000   Median :-0.009615   Median :0.00000  
+##  Mean   :-0.01584   Mean   : 0.011054   Mean   :0.03147  
+##  3rd Qu.: 0.03222   3rd Qu.: 0.153846   3rd Qu.:0.00000  
+##  Max.   : 0.79717   Max.   : 1.187500   Max.   :1.00000</code></pre>
 </div>
 <div id="模型建立与解读" class="section level4 unnumbered">
 <h4>模型建立与解读</h4>
@@ -933,7 +916,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb529-2"><a href="ch7.html#cb529-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.roc</span>(testset<span class="sc">$</span>churn, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">print.auc=</span><span class="cn">TRUE</span>,</span>
 <span id="cb529-3"><a href="ch7.html#cb529-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">auc.polygon=</span><span class="cn">TRUE</span>, <span class="at">auc.polygon.col=</span><span class="st">&quot;#f6f6f6&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;特异度&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;敏感度&quot;</span>,</span>
 <span id="cb529-4"><a href="ch7.html#cb529-4" aria-hidden="true" tabindex="-1"></a>         fitted.results, <span class="at">main =</span> <span class="st">&quot;预测ROC曲线&quot;</span>)  </span></code></pre></div>
-<p><img src="_main_files/figure-html/ch7-plot6-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6lp77kpj311c0qoq4v.jpg" /></p>
 <p>绘制ROC曲线如上所示，计算得到AUC值为0.617，模型在测试集上的预测表现较好。</p>
 
