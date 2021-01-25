@@ -652,11 +652,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb510-17"><a href="ch7.html#cb510-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 找出10大热门学校</span></span>
 <span id="cb510-18"><a href="ch7.html#cb510-18" aria-hidden="true" tabindex="-1"></a>(top10_college_apply <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(descriptive<span class="sc">$</span>College_apply_new),</span>
 <span id="cb510-19"><a href="ch7.html#cb510-19" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">decreasing =</span> T)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)]))</span></code></pre></div>
-<pre><code>##  [1] &quot;University of California&quot;                   &quot;Carnegie Mellon University&quot;                
-##  [3] &quot;University of Southern California&quot;          &quot;Columbia University&quot;                       
-##  [5] &quot;University of Pennsylvania&quot;                 &quot;Northeastern University&quot;                   
-##  [7] &quot;University of Illinois at Urbana-Champaign&quot; &quot;University of Michigan&quot;                    
-##  [9] &quot;Cornell University&quot;                         &quot;Texas A&amp;M University&quot;</code></pre>
+<pre><code>##  [1] &quot;University of California&quot;                  
+##  [2] &quot;Carnegie Mellon University&quot;                
+##  [3] &quot;University of Southern California&quot;         
+##  [4] &quot;Columbia University&quot;                       
+##  [5] &quot;University of Pennsylvania&quot;                
+##  [6] &quot;Northeastern University&quot;                   
+##  [7] &quot;University of Illinois at Urbana-Champaign&quot;
+##  [8] &quot;University of Michigan&quot;                    
+##  [9] &quot;Cornell University&quot;                        
+## [10] &quot;Texas A&amp;M University&quot;</code></pre>
 </div>
 <div id="申请gpa对于结果的影响" class="section level3 unnumbered">
 <h3>申请GPA对于结果的影响</h3>
@@ -788,26 +793,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -2.2248  -1.3354   0.7399   0.8393   1.2347  
 ## 
 ## Coefficients:
-##                        Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)            1.207892   0.203841   5.926 3.11e-09 ***
-## seasonSpring           0.619128   0.171222   3.616 0.000299 ***
-## typeMS                -0.196544   0.198293  -0.991 0.321597    
-## typePhD               -0.377781   0.205523  -1.838 0.066041 .  
-## cross                 -0.193963   0.058243  -3.330 0.000868 ***
-## intern                -0.105629   0.061007  -1.731 0.083378 .  
-## research              -0.100875   0.068228  -1.478 0.139276    
-## paper                  0.147290   0.083804   1.758 0.078824 .  
-## sci                    0.187645   0.101877   1.842 0.065492 .  
-## exchange               0.766762   0.153847   4.984 6.23e-07 ***
-## CollegeRankTop50Top50 -0.610473   0.048657 -12.546  &lt; 2e-16 ***
-## gpa_dis3.4~3.55       -0.041040   0.058560  -0.701 0.483418    
-## gpa_dis3.55~3.7        0.169768   0.063009   2.694 0.007052 ** 
-## gpa_dis&gt;3.7            0.378747   0.069661   5.437 5.42e-08 ***
-## toefl_dis98~102       -0.012623   0.062835  -0.201 0.840780    
-## toefl_dis102~106      -0.009245   0.063397  -0.146 0.884056    
-## toefl_dis&gt;106          0.188313   0.070369   2.676 0.007449 ** 
+##                        Estimate Std. Error z value
+## (Intercept)            1.207892   0.203841   5.926
+## seasonSpring           0.619128   0.171222   3.616
+## typeMS                -0.196544   0.198293  -0.991
+## typePhD               -0.377781   0.205523  -1.838
+## cross                 -0.193963   0.058243  -3.330
+## intern                -0.105629   0.061007  -1.731
+## research              -0.100875   0.068228  -1.478
+## paper                  0.147290   0.083804   1.758
+## sci                    0.187645   0.101877   1.842
+## exchange               0.766762   0.153847   4.984
+## CollegeRankTop50Top50 -0.610473   0.048657 -12.546
+## gpa_dis3.4~3.55       -0.041040   0.058560  -0.701
+## gpa_dis3.55~3.7        0.169768   0.063009   2.694
+## gpa_dis&gt;3.7            0.378747   0.069661   5.437
+## toefl_dis98~102       -0.012623   0.062835  -0.201
+## toefl_dis102~106      -0.009245   0.063397  -0.146
+## toefl_dis&gt;106          0.188313   0.070369   2.676
+##                       Pr(&gt;|z|)    
+## (Intercept)           3.11e-09 ***
+## seasonSpring          0.000299 ***
+## typeMS                0.321597    
+## typePhD               0.066041 .  
+## cross                 0.000868 ***
+## intern                0.083378 .  
+## research              0.139276    
+## paper                 0.078824 .  
+## sci                   0.065492 .  
+## exchange              6.23e-07 ***
+## CollegeRankTop50Top50  &lt; 2e-16 ***
+## gpa_dis3.4~3.55       0.483418    
+## gpa_dis3.55~3.7       0.007052 ** 
+## gpa_dis&gt;3.7           5.42e-08 ***
+## toefl_dis98~102       0.840780    
+## toefl_dis102~106      0.884056    
+## toefl_dis&gt;106         0.007449 ** 
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -849,20 +873,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb524-2"><a href="ch7.html#cb524-2" aria-hidden="true" tabindex="-1"></a>testset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/preddata.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>, <span class="at">header =</span> T)</span>
 <span id="cb524-3"><a href="ch7.html#cb524-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb524-4"><a href="ch7.html#cb524-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(trainset)  <span class="do">## 数据概览</span></span></code></pre></div>
-<pre><code>##        ID            tenure          expense            degree           tightness         entropy      
-##  Min.   :    1   Min.   : 163.0   Min.   : -3.378   Min.   : -0.4319   Min.   :-2.583   Min.   :0.4846  
-##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076   1st Qu.: 31.2269   1st Qu.: 5.397   1st Qu.:2.4177  
-##  Median :24281   Median : 990.1   Median :134.250   Median : 54.6392   Median : 7.964   Median :3.0005  
-##  Mean   :24224   Mean   :1256.1   Mean   :157.270   Mean   : 64.8805   Mean   : 9.231   Mean   :2.9491  
-##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157   3rd Qu.: 88.6146   3rd Qu.:11.645   3rd Qu.:3.5461  
-##  Max.   :48393   Max.   :4475.9   Max.   :437.791   Max.   :214.9449   Max.   :32.255   Max.   :5.0324  
-##    chgexpense         chgdegree             churn        
-##  Min.   :-0.79261   Min.   :-0.992063   Min.   :0.00000  
-##  1st Qu.:-0.07968   1st Qu.:-0.159091   1st Qu.:0.00000  
-##  Median : 0.00000   Median :-0.009615   Median :0.00000  
-##  Mean   :-0.01584   Mean   : 0.011054   Mean   :0.03147  
-##  3rd Qu.: 0.03222   3rd Qu.: 0.153846   3rd Qu.:0.00000  
-##  Max.   : 0.79717   Max.   : 1.187500   Max.   :1.00000</code></pre>
+<pre><code>##        ID            tenure          expense       
+##  Min.   :    1   Min.   : 163.0   Min.   : -3.378  
+##  1st Qu.:12088   1st Qu.: 535.4   1st Qu.: 97.076  
+##  Median :24281   Median : 990.1   Median :134.250  
+##  Mean   :24224   Mean   :1256.1   Mean   :157.270  
+##  3rd Qu.:36348   3rd Qu.:1634.4   3rd Qu.:201.157  
+##  Max.   :48393   Max.   :4475.9   Max.   :437.791  
+##      degree           tightness     
+##  Min.   : -0.4319   Min.   :-2.583  
+##  1st Qu.: 31.2269   1st Qu.: 5.397  
+##  Median : 54.6392   Median : 7.964  
+##  Mean   : 64.8805   Mean   : 9.231  
+##  3rd Qu.: 88.6146   3rd Qu.:11.645  
+##  Max.   :214.9449   Max.   :32.255  
+##     entropy         chgexpense      
+##  Min.   :0.4846   Min.   :-0.79261  
+##  1st Qu.:2.4177   1st Qu.:-0.07968  
+##  Median :3.0005   Median : 0.00000  
+##  Mean   :2.9491   Mean   :-0.01584  
+##  3rd Qu.:3.5461   3rd Qu.: 0.03222  
+##  Max.   :5.0324   Max.   : 0.79717  
+##    chgdegree             churn        
+##  Min.   :-0.992063   Min.   :0.00000  
+##  1st Qu.:-0.159091   1st Qu.:0.00000  
+##  Median :-0.009615   Median :0.00000  
+##  Mean   : 0.011054   Mean   :0.03147  
+##  3rd Qu.: 0.153846   3rd Qu.:0.00000  
+##  Max.   : 1.187500   Max.   :1.00000</code></pre>
 </div>
 <div id="模型建立与解读" class="section level4 unnumbered">
 <h4>模型建立与解读</h4>
@@ -882,17 +920,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -0.5980  -0.2725  -0.2387  -0.2096   3.0885  
 ## 
 ## Coefficients:
-##               Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -1.958e+00  1.604e-01 -12.212  &lt; 2e-16 ***
-## tenure      -1.263e-04  3.350e-05  -3.770 0.000163 ***
-## expense     -8.968e-04  3.696e-04  -2.427 0.015235 *  
-## degree       7.288e-05  1.274e-03   0.057 0.954397    
-## tightness   -2.460e-02  5.377e-03  -4.575 4.76e-06 ***
-## entropy     -3.471e-01  6.306e-02  -5.504 3.71e-08 ***
-## chgdegree   -6.191e-01  9.919e-02  -6.241 4.34e-10 ***
-## chgexpense  -3.163e-01  1.399e-01  -2.261 0.023768 *  
+##               Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) -1.958e+00  1.604e-01 -12.212  &lt; 2e-16
+## tenure      -1.263e-04  3.350e-05  -3.770 0.000163
+## expense     -8.968e-04  3.696e-04  -2.427 0.015235
+## degree       7.288e-05  1.274e-03   0.057 0.954397
+## tightness   -2.460e-02  5.377e-03  -4.575 4.76e-06
+## entropy     -3.471e-01  6.306e-02  -5.504 3.71e-08
+## chgdegree   -6.191e-01  9.919e-02  -6.241 4.34e-10
+## chgexpense  -3.163e-01  1.399e-01  -2.261 0.023768
+##                
+## (Intercept) ***
+## tenure      ***
+## expense     *  
+## degree         
+## tightness   ***
+## entropy     ***
+## chgdegree   ***
+## chgexpense  *  
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
