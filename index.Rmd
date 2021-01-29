@@ -27,6 +27,8 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
+- [第6章：线性回归](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch6.pptx)
+
 - [第7章：逻辑回归](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch7.pptx)
 
 使用本教程必须安装的**软件包**：
