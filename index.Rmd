@@ -31,6 +31,8 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 - [第7章：逻辑回归](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch7.pptx)
 
+- [第8章：降维分析](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch8.pptx)
+
 使用本教程必须安装的**软件包**：
 
 - resahpe
