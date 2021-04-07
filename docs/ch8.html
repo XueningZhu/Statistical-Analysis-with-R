@@ -24,7 +24,7 @@
 <meta name="author" content="朱雪宁 &amp; 任怡萌" />
 
 
-<meta name="date" content="2021-01-31" />
+<meta name="date" content="2021-04-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="ch7.html"/>
 
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -687,18 +685,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## BIC =  11030.9
 ## Fit based upon off diagonal values = 1
 ## Measures of factor score adequacy             
-##                                                   ML1
-## Correlation of (regression) scores with factors     1
-## Multiple R square of scores with factors            1
-## Minimum correlation of possible factor scores       1
-##                                                    ML2
-## Correlation of (regression) scores with factors   1.00
-## Multiple R square of scores with factors          0.99
-## Minimum correlation of possible factor scores     0.99
-##                                                    ML3
-## Correlation of (regression) scores with factors   0.96
-## Multiple R square of scores with factors          0.91
-## Minimum correlation of possible factor scores     0.83</code></pre>
+##                                                   ML1  ML2  ML3
+## Correlation of (regression) scores with factors     1 1.00 0.96
+## Multiple R square of scores with factors            1 0.99 0.91
+## Minimum correlation of possible factor scores       1 0.99 0.83</code></pre>
 <p>得到结果后，如何解读公共因子的含义呢？解释公因子<span class="math inline">\(F_i\)</span>时，可以通过对载荷系数的绝对值较大的输入来解释，与主成分分析的R程序结果类似，这里同样需要注意，载荷系数的正负本身没有意义，但是不同载荷系数之间的正负对比是有意义的。以上面的结果为例，我们取公共因子的个数为3，3个公共因子反映的原始变量信息已占总信息的73%。查看输出的因子载荷矩阵A，以ML1对应的列（第一个公共因子的载荷向量）为例，除了投篮率、三分球技术指标、罚球率和盖帽次数外，其余各数值都接近或大于0.8，这表示其余的变量可以来解释公因子<span class="math inline">\(F_1\)</span>，或者说<span class="math inline">\(F_1\)</span>主要反应这些变量的信息。观察第二个公共因子，其载荷没有0.8左右较大的值，虽然也可以根据相对大小按照以上想法解释，但是容易使公共因子的意义含糊不清，因此我们将介绍因子旋转后的因子载荷矩阵，其实际含义将更加明显。</p>
 </div>
 <div id="正交旋转" class="section level3 unnumbered">
@@ -753,18 +743,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## BIC =  11030.9
 ## Fit based upon off diagonal values = 1
 ## Measures of factor score adequacy             
-##                                                    ML1
-## Correlation of (regression) scores with factors   0.99
-## Multiple R square of scores with factors          0.98
-## Minimum correlation of possible factor scores     0.96
-##                                                    ML3
-## Correlation of (regression) scores with factors   0.96
-## Multiple R square of scores with factors          0.93
-## Minimum correlation of possible factor scores     0.86
-##                                                    ML2
-## Correlation of (regression) scores with factors   1.00
-## Multiple R square of scores with factors          1.00
-## Minimum correlation of possible factor scores     0.99</code></pre>
+##                                                    ML1  ML3  ML2
+## Correlation of (regression) scores with factors   0.99 0.96 1.00
+## Multiple R square of scores with factors          0.98 0.93 1.00
+## Minimum correlation of possible factor scores     0.96 0.86 0.99</code></pre>
 <p>因子旋转后，第一个公共因子的因子载荷旋转后弱化了投篮率和三分投球率的意义，使得第一公因子主要解释了命中、出手次数和罚球的命中、出手次数，反映球员的比赛活跃与主动程度，可以称为<strong>场内活跃因子</strong>；第二个公共因子比旋转前加强了篮板数、盖帽次数、命中次数这几个变量的含义，因此可以更清晰地反映球员的<strong>技术水平因子</strong>；第三个公因子与旋转前相比，强化了三分命中次数和三分出手次数的解释，主要反映了三分球相关的信息，是球员对于整场球的<strong>胜算率加成因素</strong>。这和主成分分析得到的结论是类似的，由于因子分析结果进行了因子旋转，第二个和第三个公因子的共性方差相对大小发生了变化，因此公因子的顺序和旋转之前也略有区别。</p>
 </div>
 <div id="计算因子得分" class="section level3 unnumbered">
@@ -957,14 +939,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## BIC =  -12.77
 ## Fit based upon off diagonal values = 0.99
 ## Measures of factor score adequacy             
-##                                                    ML1
-## Correlation of (regression) scores with factors   0.98
-## Multiple R square of scores with factors          0.96
-## Minimum correlation of possible factor scores     0.91
-##                                                    ML2
-## Correlation of (regression) scores with factors   0.89
-## Multiple R square of scores with factors          0.80
-## Minimum correlation of possible factor scores     0.59</code></pre>
+##                                                    ML1  ML2
+## Correlation of (regression) scores with factors   0.98 0.89
+## Multiple R square of scores with factors          0.96 0.80
+## Minimum correlation of possible factor scores     0.91 0.59</code></pre>
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="ch8.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 因子旋转</span></span>
 <span id="cb568-2"><a href="ch8.html#cb568-2" aria-hidden="true" tabindex="-1"></a>farot_hw2 <span class="ot">&lt;-</span> <span class="fu">fa</span>(corr, <span class="at">n.obs =</span> ability.cov<span class="sc">$</span>n.obs, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span>
 <span id="cb568-3"><a href="ch8.html#cb568-3" aria-hidden="true" tabindex="-1"></a>farot_hw2</span></code></pre></div>
@@ -1004,14 +982,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## BIC =  -12.77
 ## Fit based upon off diagonal values = 0.99
 ## Measures of factor score adequacy             
-##                                                    ML1
-## Correlation of (regression) scores with factors   0.97
-## Multiple R square of scores with factors          0.94
-## Minimum correlation of possible factor scores     0.88
-##                                                    ML2
-## Correlation of (regression) scores with factors   0.90
-## Multiple R square of scores with factors          0.81
-## Minimum correlation of possible factor scores     0.63</code></pre>
+##                                                    ML1  ML2
+## Correlation of (regression) scores with factors   0.97 0.90
+## Multiple R square of scores with factors          0.94 0.81
+## Minimum correlation of possible factor scores     0.88 0.63</code></pre>
 
 </div>
 </div>

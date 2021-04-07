@@ -55,22 +55,22 @@ plot_theme_pie <- theme(panel.background = element_rect(fill = rgb(255, 255, 255
                      axis.text = element_text(color = rgb(236, 241, 249, maxColorValue = 255)),
                      panel.grid.major = element_line(color = rgb(236, 241, 249, maxColorValue = 255)),
                      panel.grid.minor = element_line(color = rgb(236, 241, 249, maxColorValue = 255)),
-                     plot.title = element_text(family = "Hei", face = "bold", size = 14),
-                     legend.title = element_text(family = "Hei", face = "bold",size = 12),
-                     legend.text = element_text(family = "Hei",size = 11))   # 饼图绘制主题
+                     plot.title = element_text(family = "STHeiti", face = "bold", size = 14),
+                     legend.title = element_text(family = "STHeiti", face = "bold",size = 12),
+                     legend.text = element_text(family = "STHeiti",size = 11))   # 饼图绘制主题
 ## 设置绘图主题
 plot_theme <- theme(panel.background = element_rect(fill = rgb(255, 255, 255, maxColorValue = 255)),
                     plot.background = element_rect(rgb(255, 255, 255, maxColorValue = 255)),
-                    axis.text = element_text(size = 12,family = "Hei"),
-                    axis.text.x = element_text(size = 12, family = "Hei", face = "bold") ,
-                    axis.text.y = element_text(size = 12, family = "Hei", face = "bold") ,
+                    axis.text = element_text(size = 12,family = "STHeiti"),
+                    axis.text.x = element_text(size = 12, family = "STHeiti", face = "bold") ,
+                    axis.text.y = element_text(size = 12, family = "STHeiti", face = "bold") ,
                     axis.ticks = element_line(color = rgb(236, 241, 249, maxColorValue = 255)),
-                    axis.title = element_text(size = 13, family = "Hei"),
+                    axis.title = element_text(size = 13, family = "STHeiti"),
                     panel.grid.major = element_line(size = 1),
                     panel.grid.minor = element_line(color = rgb(236, 241, 249, maxColorValue = 255)),
-                    plot.title = element_text(family = "Hei", face = "bold", size = 14),
-                    legend.title = element_text(family = "Hei", face = "bold",size = 12),
-                    legend.text = element_text(family = "Hei",size = 11))   # 其他图形绘制主题
+                    plot.title = element_text(family = "STHeiti", face = "bold", size = 14),
+                    legend.title = element_text(family = "STHeiti", face = "bold",size = 12),
+                    legend.text = element_text(family = "STHeiti",size = 11))   # 其他图形绘制主题
 ```
 
 ### 申请结果分布 {-}
@@ -238,9 +238,10 @@ extra_offertype <- melt(extra_offertype, id = "type")      # 短表变长表
 count <- subset(extra_offertype, extra_offertype$value == 1)  
 tab2 <- table(count$type, count$variable)                  # 申请硕博拥有某硬件条件的情况
 count_plot <- melt(rbind(tab2[1, ]/tab1[1], tab2[2, ]/tab1[2],  tab2[3, ]/tab1[3]))  # 学位×硬件条件
-count_plot$X1 <- factor(count_plot$Var1, levels = c(1, 2, 3),        # 调整变量因子水平
+colnames(count_plot)[1:2] <- c("X1", "X2")
+count_plot$X1 <- factor(count_plot$X1, levels = c(1, 2, 3),        # 调整变量因子水平
                        labels = c("混合", "MS", "PhD"))
-count_plot$X2 <- factor(count_plot$Var2, levels = c("research","paper","first",
+count_plot$X2 <- factor(count_plot$X2, levels = c("research","paper","first",
                                                   "sci","rl","intern","exchange"),
                            labels = c("科研", "论文", "一作", "SCI论文", "牛推", "实习", "交换"))
 ```
@@ -250,7 +251,7 @@ count_plot$X2 <- factor(count_plot$Var2, levels = c("research","paper","first",
 (matrix1 <- ggplot(count_plot, aes(x = X1, y = X2, label = value, fill = value)) + # 画图
     geom_tile(show.legend = F) +    
     geom_text(label = paste(round(count_plot$value, 3)*100, "%", sep = ''),
-              color = "black", family = "Hei", size = 4.5) +
+              color = "black", family = "STHeiti", size = 4.5) +
     scale_fill_gradient("count", low = "white", high = "lightCoral") +
     labs(x = "申请学位", y = "硬件条件", title = "") + plot_theme)
 ```
@@ -277,7 +278,7 @@ descriptive$offertype <- as.factor(ifelse(descriptive$offertype=="Admitted", T, 
 
 ```{r}
 ## 抽取训练集
-set.seed(123)    # 随机数种子
+set.seed(1234)    # 随机数种子
 nsample <- sample(x = dim(descriptive)[1], size = dim(descriptive)[1]/5, replace = F)
 
 ## 重新划分训练集和测试集

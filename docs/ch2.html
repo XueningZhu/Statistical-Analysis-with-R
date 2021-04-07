@@ -24,7 +24,7 @@
 <meta name="author" content="朱雪宁 &amp; 任怡萌" />
 
 
-<meta name="date" content="2021-01-31" />
+<meta name="date" content="2021-04-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="ch1.html"/>
 <link rel="next" href="ch3.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -827,13 +825,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb177-3"><a href="ch2.html#cb177-3" aria-hidden="true" tabindex="-1"></a>birthyear <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1952</span>,<span class="dv">1941</span>,<span class="dv">1964</span>,<span class="dv">1954</span>,<span class="dv">1952</span>,<span class="dv">1962</span>,<span class="dv">1954</span>,<span class="dv">1963</span>,<span class="dv">1950</span>,<span class="dv">1946</span>,<span class="dv">1963</span>,<span class="dv">1958</span>,<span class="dv">1962</span>)</span>
 <span id="cb177-4"><a href="ch2.html#cb177-4" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>)</span>
 <span id="cb177-5"><a href="ch2.html#cb177-5" aria-hidden="true" tabindex="-1"></a>directors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(director, birthyear, gender); <span class="fu">head</span>(directors)</span></code></pre></div>
-<pre><code>##        director birthyear gender
-## 1        陈凯歌      1952     男
-## 2        宫崎骏      1941     男
-## 3        李廷香      1964     女
+<pre><code>##         director birthyear gender
+## 1         陈凯歌      1952     男
+## 2         宫崎骏      1941     男
+## 3         李廷香      1964     女
 ## 4 詹姆斯·卡梅隆      1954     男
-## 5        刘镇伟      1952     男
-## 6        周星驰      1962     男</code></pre>
+## 5         刘镇伟      1952     男
+## 6         周星驰      1962     男</code></pre>
 <p>下面介绍数据框的变形——长宽表转换的操作方法：</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="ch2.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
 <span id="cb179-2"><a href="ch2.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="do">## (1) 宽表变长表 ##</span></span>
@@ -871,12 +869,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 6 x 3
 ##   type  mean_score max_score
 ##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-## 1 传记        7.97       9.1
-## 2 冒险        8.75       9.2
-## 3 剧情        8.19       9.6
+## 1 爱情        8.22       9.5
+## 2 传记        7.97       9.1
+## 3 动画        7.31       9.2
 ## 4 动作        8.01       9.4
-## 5 动画        7.31       9.2
-## 6 历史        7.35       9.4</code></pre>
+## 5 犯罪        7.43       9.6
+## 6 歌舞        8.95       9</code></pre>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="ch2.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co">#利用管道函数%&gt;%省去中间变量命名</span></span>
 <span id="cb187-2"><a href="ch2.html#cb187-2" aria-hidden="true" tabindex="-1"></a>popular_type2 <span class="ot">=</span> movie<span class="sc">%&gt;%</span><span class="fu">group_by</span>(type)<span class="sc">%&gt;%</span></span>
 <span id="cb187-3"><a href="ch2.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score=</span><span class="fu">mean</span>(score),<span class="co">#计算不同类型的平均评分</span></span>
@@ -885,12 +883,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 6 x 3
 ##   type  mean_score max_score
 ##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-## 1 传记        7.97       9.1
-## 2 冒险        8.75       9.2
-## 3 剧情        8.19       9.6
+## 1 爱情        8.22       9.5
+## 2 传记        7.97       9.1
+## 3 动画        7.31       9.2
 ## 4 动作        8.01       9.4
-## 5 动画        7.31       9.2
-## 6 历史        7.35       9.4</code></pre>
+## 5 犯罪        7.43       9.6
+## 6 歌舞        8.95       9</code></pre>
 </div>
 <div id="列表" class="section level3 unnumbered">
 <h3>2.2.5 列表</h3>
@@ -926,9 +924,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;
-## [13] &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot;
-## [25] &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -960,9 +956,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;
-## [13] &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot;
-## [25] &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -983,9 +977,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $second
 ## $second[[1]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;
-## [13] &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot;
-## [25] &quot;y&quot; &quot;z&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 ## 
 ## $second[[2]]
 ## $second[[2]][[1]]
@@ -1102,57 +1094,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="ch2.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 1. read.rable() </span><span class="al">###</span></span>
 <span id="cb224-2"><a href="ch2.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="co">#从txt中读入,分隔符为&quot;\t&quot;</span></span>
 <span id="cb224-3"><a href="ch2.html#cb224-3" aria-hidden="true" tabindex="-1"></a>tes <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/top250.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;GBK&quot;</span>); <span class="fu">head</span>(tes)</span></code></pre></div>
-<pre><code>##   rank           name   showtime duration
-## 1    1   肖申克的救赎  1994/9/10      142
-## 2    2       霸王别姬   1993/1/1      171
-## 3    3 这个杀手不太冷  1994/9/14      110
-## 4    4       阿甘正传  1994/6/23      142
-## 5    5       美丽人生 1997/12/20      116
-## 6    6       千与千寻  2001/7/20      125
-##          director type score nation
-## 1 弗兰克·德拉邦特 剧情   9.6   美国
-## 2          陈凯歌 爱情   9.5   中国
-## 3       吕克·贝松 动作   9.4   法国
-## 4          Robert 爱情   9.4   美国
-## 5   罗伯托·贝尼尼 喜剧   9.5 意大利
-## 6          宫崎骏 动画   9.2   日本</code></pre>
+<pre><code>##   rank           name   showtime duration         director type score nation
+## 1    1   肖申克的救赎  1994/9/10      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬   1993/1/1      171           陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷  1994/9/14      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传  1994/6/23      142           Robert 爱情   9.4   美国
+## 5    5       美丽人生 1997/12/20      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻  2001/7/20      125           宫崎骏 动画   9.2   日本</code></pre>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="ch2.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 2. read.csv() </span><span class="al">###</span></span>
 <span id="cb226-2"><a href="ch2.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="co">#专用函数read.csv</span></span>
 <span id="cb226-3"><a href="ch2.html#cb226-3" aria-hidden="true" tabindex="-1"></a>movie_csv <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/top250.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;GBK&quot;</span>); <span class="fu">head</span>(movie_csv)</span></code></pre></div>
-<pre><code>##   rank           name   showtime duration
-## 1    1   肖申克的救赎  1994/9/10      142
-## 2    2       霸王别姬   1993/1/1      171
-## 3    3 这个杀手不太冷  1994/9/14      110
-## 4    4       阿甘正传  1994/6/23      142
-## 5    5       美丽人生 1997/12/20      116
-## 6    6       千与千寻  2001/7/20      125
-##          director type score nation
-## 1 弗兰克·德拉邦特 剧情   9.6   美国
-## 2          陈凯歌 爱情   9.5   中国
-## 3       吕克·贝松 动作   9.4   法国
-## 4          Robert 爱情   9.4   美国
-## 5   罗伯托·贝尼尼 喜剧   9.5 意大利
-## 6          宫崎骏 动画   9.2   日本</code></pre>
+<pre><code>##   rank           name   showtime duration         director type score nation
+## 1    1   肖申克的救赎  1994/9/10      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬   1993/1/1      171           陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷  1994/9/14      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传  1994/6/23      142           Robert 爱情   9.4   美国
+## 5    5       美丽人生 1997/12/20      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻  2001/7/20      125           宫崎骏 动画   9.2   日本</code></pre>
 </div>
 <div id="导入excel数据" class="section level3 unnumbered">
 <h3>2.3.3 导入Excel数据</h3>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ch2.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>) <span class="co"># 加载包</span></span>
 <span id="cb228-2"><a href="ch2.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 其中col_names参数仍然是为了设定是否把第一行当做变量名</span></span>
 <span id="cb228-3"><a href="ch2.html#cb228-3" aria-hidden="true" tabindex="-1"></a>movie_excel <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">read_excel</span>(<span class="st">&quot;./data/top250.xlsx&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>));<span class="fu">head</span>(movie_excel)</span></code></pre></div>
-<pre><code>##   rank           name showtime duration
-## 1    1   肖申克的救赎    34587      142
-## 2    2       霸王别姬    33970      171
-## 3    3 这个杀手不太冷    34591      110
-## 4    4       阿甘正传    34508      142
-## 5    5       美丽人生    35784      116
-## 6    6       千与千寻    37092      125
-##          director type score nation
-## 1 弗兰克·德拉邦特 剧情   9.6   美国
-## 2          陈凯歌 爱情   9.5   中国
-## 3       吕克·贝松 动作   9.4   法国
-## 4          Robert 爱情   9.4   美国
-## 5   罗伯托·贝尼尼 喜剧   9.5 意大利
-## 6          宫崎骏 动画   9.2   日本</code></pre>
+<pre><code>##   rank           name showtime duration         director type score nation
+## 1    1   肖申克的救赎    34587      142 弗兰克·德拉邦特 剧情   9.6   美国
+## 2    2       霸王别姬    33970      171           陈凯歌 爱情   9.5   中国
+## 3    3 这个杀手不太冷    34591      110       吕克·贝松 动作   9.4   法国
+## 4    4       阿甘正传    34508      142           Robert 爱情   9.4   美国
+## 5    5       美丽人生    35784      116   罗伯托·贝尼尼 喜剧   9.5 意大利
+## 6    6       千与千寻    37092      125           宫崎骏 动画   9.2   日本</code></pre>
 </div>
 <div id="逐行读入数据" class="section level3 unnumbered">
 <h3>2.3.4 逐行读入数据</h3>
@@ -1164,13 +1135,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb230-5"><a href="ch2.html#cb230-5" aria-hidden="true" tabindex="-1"></a><span class="co">#读取前10行数据</span></span>
 <span id="cb230-6"><a href="ch2.html#cb230-6" aria-hidden="true" tabindex="-1"></a>line_10<span class="ot">&lt;-</span><span class="fu">readLines</span>(con,<span class="at">n=</span><span class="dv">10</span>)</span>
 <span id="cb230-7"><a href="ch2.html#cb230-7" aria-hidden="true" tabindex="-1"></a>line_10</span></code></pre></div>
-<pre><code>##  [1] &quot;rank,name,showtime,duration,director,type,score,nation&quot;       
+<pre><code>##  [1] &quot;rank,name,showtime,duration,director,type,score,nation&quot;        
 ##  [2] &quot;1,肖申克的救赎,1994/9/10,142,弗兰克·德拉邦特,剧情,9.6,美国&quot;   
-##  [3] &quot;2,霸王别姬,1993/1/1,171,陈凯歌,爱情,9.5,中国&quot;                 
+##  [3] &quot;2,霸王别姬,1993/1/1,171,陈凯歌,爱情,9.5,中国&quot;                  
 ##  [4] &quot;3,这个杀手不太冷,1994/9/14,110,吕克·贝松,动作,9.4,法国&quot;       
-##  [5] &quot;4,阿甘正传,1994/6/23,142,Robert,爱情,9.4,美国&quot;                
+##  [5] &quot;4,阿甘正传,1994/6/23,142,Robert,爱情,9.4,美国&quot;                 
 ##  [6] &quot;5,美丽人生,1997/12/20,116,罗伯托·贝尼尼,喜剧,9.5,意大利&quot;      
-##  [7] &quot;6,千与千寻,2001/7/20,125,宫崎骏,动画,9.2,日本&quot;                
+##  [7] &quot;6,千与千寻,2001/7/20,125,宫崎骏,动画,9.2,日本&quot;                 
 ##  [8] &quot;7,泰坦尼克号,1998/4/3,194,詹姆斯·卡梅隆,爱情,9.2,美国&quot;        
 ##  [9] &quot;8,辛德勒的名单,1993/11/30,195,史蒂文·斯皮尔伯格,历史,9.4,美国&quot;
 ## [10] &quot;9,盗梦空间,2010/9/1,148,克里斯托弗·诺兰,科幻,9.3,美国&quot;</code></pre>
@@ -1178,18 +1149,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb232-2"><a href="ch2.html#cb232-2" aria-hidden="true" tabindex="-1"></a>split_line<span class="ot">=</span><span class="fu">strsplit</span>(line_all,<span class="st">&quot;,&quot;</span>)<span class="co">#分隔符为”,”</span></span>
 <span id="cb232-3"><a href="ch2.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_line,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot;rank&quot;     &quot;name&quot;     &quot;showtime&quot; &quot;duration&quot;
-## [5] &quot;director&quot; &quot;type&quot;     &quot;score&quot;    &quot;nation&quot;  
+## [1] &quot;rank&quot;     &quot;name&quot;     &quot;showtime&quot; &quot;duration&quot; &quot;director&quot; &quot;type&quot;     &quot;score&quot;    &quot;nation&quot;  
 ## 
 ## [[2]]
-## [1] &quot;1&quot;               &quot;肖申克的救赎&quot;   
-## [3] &quot;1994/9/10&quot;       &quot;142&quot;            
-## [5] &quot;弗兰克·德拉邦特&quot; &quot;剧情&quot;           
-## [7] &quot;9.6&quot;             &quot;美国&quot;           
+## [1] &quot;1&quot;                &quot;肖申克的救赎&quot;     &quot;1994/9/10&quot;        &quot;142&quot;              &quot;弗兰克·德拉邦特&quot;
+## [6] &quot;剧情&quot;             &quot;9.6&quot;              &quot;美国&quot;            
 ## 
 ## [[3]]
-## [1] &quot;2&quot;        &quot;霸王别姬&quot; &quot;1993/1/1&quot; &quot;171&quot;     
-## [5] &quot;陈凯歌&quot;   &quot;爱情&quot;     &quot;9.5&quot;      &quot;中国&quot;</code></pre>
+## [1] &quot;2&quot;        &quot;霸王别姬&quot; &quot;1993/1/1&quot; &quot;171&quot;      &quot;陈凯歌&quot;   &quot;爱情&quot;     &quot;9.5&quot;      &quot;中国&quot;</code></pre>
 </div>
 </div>
 <div id="数据集管理及预处理" class="section level2 unnumbered">
@@ -1210,30 +1177,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ score   : num  9.6 9.5 9.4 9.4 9.5 9.2 9.2 9.4 9.3 9.3 ...
 ##  $ nation  : chr  &quot;美国&quot; &quot;中国&quot; &quot;法国&quot; &quot;美国&quot; ...</code></pre>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ch2.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(movie)</span></code></pre></div>
-<pre><code>##       rank           name          
-##  Min.   :  1.0   Length:250        
-##  1st Qu.: 60.5   Class :character  
-##  Median :126.5   Mode  :character  
-##  Mean   :125.9                     
-##  3rd Qu.:190.0                     
-##  Max.   :250.0                     
-##                                    
-##    showtime            duration    
-##  Length:250         Min.   : 45.0  
-##  Class :character   1st Qu.:103.0  
-##  Mode  :character   Median :118.0  
-##                     Mean   :122.2  
-##                     3rd Qu.:136.0  
-##                     Max.   :238.0  
-##                     NA&#39;s   :12     
-##    director             type          
-##  Length:250         Length:250        
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##                                       
+<pre><code>##       rank           name             showtime            duration       director             type          
+##  Min.   :  1.0   Length:250         Length:250         Min.   : 45.0   Length:250         Length:250        
+##  1st Qu.: 60.5   Class :character   Class :character   1st Qu.:103.0   Class :character   Class :character  
+##  Median :126.5   Mode  :character   Mode  :character   Median :118.0   Mode  :character   Mode  :character  
+##  Mean   :125.9                                         Mean   :122.2                                        
+##  3rd Qu.:190.0                                         3rd Qu.:136.0                                        
+##  Max.   :250.0                                         Max.   :238.0                                        
+##                                                        NA&#39;s   :12                                           
 ##      score           nation         
 ##  Min.   :-1.000   Length:250        
 ##  1st Qu.: 8.500   Class :character  
@@ -1271,14 +1222,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="ch2.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="do">###(1)将字符转换成Date日期格式###</span></span>
 <span id="cb247-2"><a href="ch2.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 函数head用来查看数据前6个元素，函数class用来查看对象数据类型</span></span>
 <span id="cb247-3"><a href="ch2.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
-<pre><code>## [1] &quot;1994/9/10&quot;  &quot;1993/1/1&quot;   &quot;1994/9/14&quot; 
-## [4] &quot;1994/6/23&quot;  &quot;1997/12/20&quot; &quot;2001/7/20&quot;</code></pre>
+<pre><code>## [1] &quot;1994/9/10&quot;  &quot;1993/1/1&quot;   &quot;1994/9/14&quot;  &quot;1994/6/23&quot;  &quot;1997/12/20&quot; &quot;2001/7/20&quot;</code></pre>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="ch2.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="ch2.html#cb251-1" aria-hidden="true" tabindex="-1"></a>movie<span class="sc">$</span>showtime <span class="ot">=</span> <span class="fu">as.Date</span>(movie<span class="sc">$</span>showtime)</span>
 <span id="cb251-2"><a href="ch2.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
-<pre><code>## [1] &quot;1994-09-10&quot; &quot;1993-01-01&quot; &quot;1994-09-14&quot;
-## [4] &quot;1994-06-23&quot; &quot;1997-12-20&quot; &quot;2001-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;1994-09-10&quot; &quot;1993-01-01&quot; &quot;1994-09-14&quot; &quot;1994-06-23&quot; &quot;1997-12-20&quot; &quot;2001-07-20&quot;</code></pre>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="ch2.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(movie<span class="sc">$</span>showtime)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="ch2.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&#39;1/15/2020&#39;</span>, <span class="at">format =</span> <span class="st">&#39;%m/%d/%Y&#39;</span>) <span class="co">#对日/月/年类型字符进行日期转换</span></span></code></pre></div>
@@ -1327,8 +1276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>3.排序</h4>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ch2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 单独对时间进行排序</span></span>
 <span id="cb279-2"><a href="ch2.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(movie<span class="sc">$</span>showtime))</span></code></pre></div>
-<pre><code>## [1] &quot;1931-01-30&quot; &quot;1936-02-25&quot; &quot;1939-12-15&quot;
-## [4] &quot;1940-05-17&quot; &quot;1950-08-26&quot; &quot;1952-04-11&quot;</code></pre>
+<pre><code>## [1] &quot;1931-01-30&quot; &quot;1936-02-25&quot; &quot;1939-12-15&quot; &quot;1940-05-17&quot; &quot;1950-08-26&quot; &quot;1952-04-11&quot;</code></pre>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="ch2.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 对数据表格中的数据按照时间顺序排列,这里只选取前6行，对电影名称、上映日期做展示</span></span>
 <span id="cb281-2"><a href="ch2.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(movie[<span class="fu">order</span>(movie<span class="sc">$</span>showtime), <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;showtime&quot;</span>)])</span></code></pre></div>
 <pre><code>##         name   showtime
@@ -1349,14 +1297,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb283-4"><a href="ch2.html#cb283-4" aria-hidden="true" tabindex="-1"></a>directors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(director, birthyear, gender); </span>
 <span id="cb283-5"><a href="ch2.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="co"># merge实现的效果是：将movie和directors按照列director匹配并合并起来</span></span>
 <span id="cb283-6"><a href="ch2.html#cb283-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">movie.star =</span> <span class="fu">merge</span>(movie[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], directors,<span class="at">by =</span> <span class="st">&quot;director&quot;</span>)) </span></code></pre></div>
-<pre><code>##        director rank       name   showtime duration
-## 1        宫崎骏    6   千与千寻 2001-07-20      125
-## 2 詹姆斯·卡梅隆    7 泰坦尼克号 1998-04-03      194
-## 3        陈凯歌    2   霸王别姬 1993-01-01      171
-##   type score nation birthyear gender
-## 1 动画   9.2   日本      1941     男
-## 2 爱情   9.2   美国      1954     男
-## 3 爱情   9.5   中国      1952     男</code></pre>
+<pre><code>##         director rank       name   showtime duration type score nation birthyear gender
+## 1         陈凯歌    2   霸王别姬 1993-01-01      171 爱情   9.5   中国      1952     男
+## 2         宫崎骏    6   千与千寻 2001-07-20      125 动画   9.2   日本      1941     男
+## 3 詹姆斯·卡梅隆    7 泰坦尼克号 1998-04-03      194 爱情   9.2   美国      1954     男</code></pre>
 </div>
 <div id="数据缺失异常" class="section level3 unnumbered">
 <h3>2.4.5 数据缺失、异常</h3>
@@ -1425,27 +1369,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="ch2.html#cb294-1" aria-hidden="true" tabindex="-1"></a>tv<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/电视剧播量.csv&quot;</span>,<span class="at">fileEncoding=</span><span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
 <span id="cb294-2"><a href="ch2.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tv)<span class="co">#查看数据前几行</span></span></code></pre></div>
-<pre><code>##           剧名
-## 1   花千骨2015
-## 2 还珠格格2015
-## 3         天局
-## 4     明若晓溪
-## 5     多情江山
-## 6   我是机器人
-##                                      类型 播放量
-## 1            言情剧\n/\n穿越剧\n/\n网络剧 3.07亿
-## 2          古装剧\n\n/\n喜剧\n\n/\n网络剧 73.3万
-## 3 武侠剧\n/\n古装剧\n/\n悬疑剧\n/\n网络剧 3454万
-## 4            青春剧\n/\n言情剧\n/\n偶像剧 1.57亿
-## 5            言情剧\n/\n古装剧\n/\n宫廷剧 1126万
-## 6                       偶像剧\n\n/\n喜剧 1660万
-##      点赞    差评 得分           采集日期
-## 1 992,342 357,808  7.3 2015-9-23 23:48:48
-## 2   2,352   7,240  2.5 2015-9-23 23:48:48
-## 3  38,746   3,593  9.2 2015-9-23 23:48:52
-## 4 518,660  72,508  8.8 2015-9-23 23:48:51
-## 5  22,553   6,955  7.6 2015-9-23 23:48:52
-## 6  37,905   3,605  9.1 2015-9-23 23:48:51</code></pre>
+<pre><code>##           剧名                                    类型 播放量    点赞    差评 得分           采集日期
+## 1   花千骨2015            言情剧\n/\n穿越剧\n/\n网络剧 3.07亿 992,342 357,808  7.3 2015-9-23 23:48:48
+## 2 还珠格格2015          古装剧\n\n/\n喜剧\n\n/\n网络剧 73.3万   2,352   7,240  2.5 2015-9-23 23:48:48
+## 3         天局 武侠剧\n/\n古装剧\n/\n悬疑剧\n/\n网络剧 3454万  38,746   3,593  9.2 2015-9-23 23:48:52
+## 4     明若晓溪            青春剧\n/\n言情剧\n/\n偶像剧 1.57亿 518,660  72,508  8.8 2015-9-23 23:48:51
+## 5     多情江山            言情剧\n/\n古装剧\n/\n宫廷剧 1126万  22,553   6,955  7.6 2015-9-23 23:48:52
+## 6   我是机器人                       偶像剧\n\n/\n喜剧 1660万  37,905   3,605  9.1 2015-9-23 23:48:51</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>删除数据集中剧名缺失的值。</li>
 </ol>
@@ -1470,54 +1400,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="ch2.html#cb299-1" aria-hidden="true" tabindex="-1"></a>game<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./data/安卓手机游戏.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;gbk&quot;</span>,<span class="at">stringsAsFactors =</span> F)<span class="co">#读取数据</span></span>
 <span id="cb299-2"><a href="ch2.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(game)<span class="co">#查看数据概况</span></span></code></pre></div>
-<pre><code>##    游戏名称              评分      
-##  Length:1141        Min.   :1.000  
-##  Class :character   1st Qu.:5.200  
-##  Mode  :character   Median :6.600  
-##                     Mean   :6.611  
-##                     3rd Qu.:7.900  
-##                     Max.   :9.600  
-##                     NA&#39;s   :203    
-##      类别               语言          
-##  Length:1141        Length:1141       
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##                                       
-##      热度           最后更新时间      
-##  Length:1141        Length:1141       
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##                                       
-##    游戏版本             资费          
-##  Length:1141        Length:1141       
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##                                       
-##     开发商            支持系统        
-##  Length:1141        Length:1141       
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##                                       
-##      评论数          喜欢数       
-##  Min.   :    0   Min.   :    0.0  
-##  1st Qu.:  446   1st Qu.:   67.0  
-##  Median :  859   Median :  233.0  
-##  Mean   : 2322   Mean   :  786.3  
-##  3rd Qu.: 2510   3rd Qu.:  854.8  
-##  Max.   :96354   Max.   :13323.0  
-##  NA&#39;s   :1       NA&#39;s   :1</code></pre>
+<pre><code>##    游戏名称              评分           类别               语言               热度           最后更新时间      
+##  Length:1141        Min.   :1.000   Length:1141        Length:1141        Length:1141        Length:1141       
+##  Class :character   1st Qu.:5.200   Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Median :6.600   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                     Mean   :6.611                                                                              
+##                     3rd Qu.:7.900                                                                              
+##                     Max.   :9.600                                                                              
+##                     NA&#39;s   :203                                                                                
+##    游戏版本             资费              开发商            支持系统             评论数          喜欢数       
+##  Length:1141        Length:1141        Length:1141        Length:1141        Min.   :    0   Min.   :    0.0  
+##  Class :character   Class :character   Class :character   Class :character   1st Qu.:  446   1st Qu.:   67.0  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :  859   Median :  233.0  
+##                                                                              Mean   : 2322   Mean   :  786.3  
+##                                                                              3rd Qu.: 2510   3rd Qu.:  854.8  
+##                                                                              Max.   :96354   Max.   :13323.0  
+##                                                                              NA&#39;s   :1       NA&#39;s   :1</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>提取热度中的数值部分，计算各游戏类型的热度均值，找出平均热度最高的游戏类型。</li>
 </ol>
