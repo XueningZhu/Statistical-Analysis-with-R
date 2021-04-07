@@ -309,9 +309,9 @@ plot.roc(descriptive_test$offertype, pred, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "FPR",ylab = "TPR", main = "预测ROC曲线")  
 ```
 
-![](https://tva1.sinaimg.cn/large/0081Kckwly1gky6lpb4pwj311c0qoabu.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gpb0rc7faoj30ih0bfglu.jpg)
 
-根据曲线的结果，AUC值（即ROC曲线下的面积）为0.754，说明该模型对数据的预测效果较好。
+根据曲线的结果，AUC值（即ROC曲线下的面积）为0.585，说明该模型对数据的预测效果适中。
 
 
 ## 习题答案 {-}
