@@ -1,0 +1,16 @@
+base
+reshape2
+dplyr
+readxl
+lubridate
+stringr
+e1071
+timeDate
+timeSeries
+fBasics
+plyr
+tidyr
+corrplot
+ggplot2
+zoo
+plotly

@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 **相关下载**：
 
-- [一些配套数据的打包文件](https://pan.baidu.com/s/151lkBFRPpUfnuoH6OQwxlw)，提取码：9pzl
+- [一些配套数据的打包文件](https://pan.baidu.com/s/11Ya1rBBFlhj1YO2uW_GToQ)，提取码：zi7w
 
 本书所使用的课件：
 
