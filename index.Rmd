@@ -27,11 +27,11 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
-- [第6章：线性回归](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch6.pptx)
+- [第6章：线性回归](https://pan.baidu.com/s/1lI_X8Wm4IReKtom-A5nTJQ)，提取码：iais
 
-- [第7章：逻辑回归](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch7.pptx)
+- [第7章：逻辑回归](https://pan.baidu.com/s/1vx_cLjEq7H_eYX4dTj1c3w)，提取码：4d67
 
-- [第8章：降维分析](https://github.com/XueningZhu/Statistical-Analysis-with-R/raw/main/slides/ch8.pptx)
+- [第8章：降维分析](https://pan.baidu.com/s/1TpuHwd6ByUnlqql1KG90Vg)，提取码：lvkp
 
 使用本教程必须安装的**软件包**：
 
