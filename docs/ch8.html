@@ -516,7 +516,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb531-5"><a href="ch8.html#cb531-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb531-6"><a href="ch8.html#cb531-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 变量间相关系数</span></span>
 <span id="cb531-7"><a href="ch8.html#cb531-7" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(predictor)</span></code></pre></div>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="ch8.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="ch8.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb532-2"><a href="ch8.html#cb532-2" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(M, <span class="at">tl.srt =</span> <span class="dv">60</span>,<span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot1-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s23aumj311c0qo48g.jpg" /></p>
@@ -526,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>选择主成分个数</h3>
 <p>使用<code>psych</code>包中的<code>scree()</code>函数，绘制崖底碎石土，选择合适的主成分个数。scree()函数中，通过指定参数factors和pc的取值，生成主成分分析或因子分析的崖底碎石图，hline参数取值为绘制水平直线的高度，默认值为1，设置为负数则不绘制水平线。scree()函数会返回根据特征值绘制的崖底碎石图，同时返回特征值向量，因此可以使用该返回值计算累计方差贡献率。</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="ch8.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
-<span id="cb533-2"><a href="ch8.html#cb533-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb533-2"><a href="ch8.html#cb533-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb533-3"><a href="ch8.html#cb533-3" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(predictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot2-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1vwelj311c0qotai.jpg" /></p>
@@ -629,7 +629,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb542-3"><a href="ch8.html#cb542-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 转换为相关系数矩阵（等价于标准化后数据的协方差矩阵）</span></span>
 <span id="cb542-4"><a href="ch8.html#cb542-4" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">cov2cor</span>(cov)</span></code></pre></div>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="ch8.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 选择因子数目</span></span>
-<span id="cb543-2"><a href="ch8.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb543-2"><a href="ch8.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb543-3"><a href="ch8.html#cb543-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(cor, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot3-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1r1hwj311c0qowg6.jpg" /></p>
@@ -808,7 +808,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="ch8.html#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb554-2"><a href="ch8.html#cb554-2" aria-hidden="true" tabindex="-1"></a>my_cov <span class="ot">&lt;-</span> Harman23.cor<span class="sc">$</span>cov</span></code></pre></div>
 <div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="ch8.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
-<span id="cb555-2"><a href="ch8.html#cb555-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb555-2"><a href="ch8.html#cb555-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb555-3"><a href="ch8.html#cb555-3" aria-hidden="true" tabindex="-1"></a>hw1 <span class="ot">&lt;-</span> <span class="fu">scree</span>(my_cov, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot4-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1mqfcj311c0qo0ul.jpg" /></p>
@@ -849,7 +849,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 请使用主成分分析的方法，用较少的变量总结从<code>INTG</code>到<code>RTEN</code>这11个变量，使得这些主成分可以尽可能保留原始变量的信息，对结果进行解读，并计算43个观测样本的主成分得分。</p>
 <div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="ch8.html#cb558-1" aria-hidden="true" tabindex="-1"></a>USpredictor <span class="ot">&lt;-</span> USJudgeRatings[, <span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="ch8.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 主成分分析选择因子数目</span></span>
-<span id="cb559-2"><a href="ch8.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb559-2"><a href="ch8.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb559-3"><a href="ch8.html#cb559-3" aria-hidden="true" tabindex="-1"></a>hw2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(USpredictor, <span class="at">factors =</span> F, <span class="at">pc =</span> T,  <span class="at">main =</span> <span class="st">&quot;主成分分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot5-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1j1qyj311c0qogne.jpg" /></p>
@@ -897,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="ch8.html#cb564-1" aria-hidden="true" tabindex="-1"></a>cov_hw3 <span class="ot">&lt;-</span> ability.cov<span class="sc">$</span>cov</span>
 <span id="cb564-2"><a href="ch8.html#cb564-2" aria-hidden="true" tabindex="-1"></a>corr <span class="ot">&lt;-</span> <span class="fu">cov2cor</span>(cov_hw3)</span></code></pre></div>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="ch8.html#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 选择因子数目</span></span>
-<span id="cb565-2"><a href="ch8.html#cb565-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STXihei&#39;</span>)</span>
+<span id="cb565-2"><a href="ch8.html#cb565-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family=</span><span class="st">&#39;STHeiti&#39;</span>)</span>
 <span id="cb565-3"><a href="ch8.html#cb565-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">scree</span>(corr, <span class="at">factors =</span> T, <span class="at">pc =</span> F, <span class="at">main=</span><span class="st">&quot;因子分析崖底碎石图&quot;</span>, <span class="at">hline =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/ch8-plot6-1.png" width="672" /></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gky6s1blt4j311c0qoq4s.jpg" /></p>

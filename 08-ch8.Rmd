@@ -56,7 +56,7 @@ M <- cor(predictor)
 ```
 
 ```{r ch8-plot1}
-par(family='STXihei')
+par(family='STHeiti')
 corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 ```
 
@@ -71,7 +71,7 @@ corrplot::corrplot(M, tl.srt = 60,tl.col = "black")
 
 ```{r ch8-plot2}
 ## 主成分分析选择因子数目
-par(family='STXihei')
+par(family='STHeiti')
 result1 <- scree(predictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
@@ -137,7 +137,7 @@ cor <- cov2cor(cov)
 
 ```{r ch8-plot3}
 ## 选择因子数目
-par(family='STXihei')
+par(family='STHeiti')
 result2 <- scree(cor, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
 ```
 
@@ -220,7 +220,7 @@ my_cov <- Harman23.cor$cov
 
 ```{r ch8-plot4}
 ## 主成分分析选择因子数目
-par(family='STXihei')
+par(family='STHeiti')
 hw1 <- scree(my_cov, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
@@ -246,7 +246,7 @@ USpredictor <- USJudgeRatings[, -1]
 
 ```{r ch8-plot5}
 ## 主成分分析选择因子数目
-par(family='STXihei')
+par(family='STHeiti')
 hw2 <- scree(USpredictor, factors = F, pc = T,  main = "主成分分析崖底碎石图", hline = -1)
 ```
 
@@ -272,7 +272,7 @@ corr <- cov2cor(cov_hw3)
 
 ```{r ch8-plot6}
 ## 选择因子数目
-par(family='STXihei')
+par(family='STHeiti')
 result2 <- scree(corr, factors = T, pc = F, main="因子分析崖底碎石图", hline = -1)
 ```
 

@@ -61,7 +61,7 @@ ggplot(aggr, aes(x = Group.2, y = x, fill = Group.1)) +
   scale_fill_manual("虚词", values = c("#eac697", "#ea8584")) +
   labs(x = "", y = "词频") +
   theme_bw() + 
-  theme(text = element_text(family = "STXihei"),
+  theme(text = element_text(family = "STHeiti"),
         legend.title = element_text())
 ```
 

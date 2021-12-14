@@ -304,7 +304,7 @@ pred <- predict(myglm, descriptive_test, type="response")
 ```
 
 ```{r ch7-plot5, eval = F}
-par(family='STXihei')
+par(family='STHeiti')
 # 绘制ROC曲线
 plot.roc(descriptive_test$offertype, pred, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "FPR",ylab = "TPR", main = "预测ROC曲线")  
@@ -363,7 +363,7 @@ testset$churn <- as.factor(testset$churn)
 ```
 
 ```{r ch7-plot6, eval = F}
-par(family='STXihei')
+par(family='STHeiti')
 plot.roc(testset$churn, col = "dodgerblue", print.auc=TRUE,
          auc.polygon=TRUE, auc.polygon.col="#f6f6f6", xlab = "特异度",ylab = "敏感度",
          fitted.results, main = "预测ROC曲线")  

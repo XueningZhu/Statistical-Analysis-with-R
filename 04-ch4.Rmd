@@ -84,9 +84,9 @@ a=table(novel$小说类型)
 # 对频数排序
 a=a[order(a,decreasing = T)]
 # 绘制柱状图
-par(family = "STXihei",las = 2)
-barplot(a[1:5],names.arg = names(a)[1:5],family="STXihei",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
-title("各类型小说频数分布柱状图",family="STXihei")
+par(family = "STHeiti",las = 2)
+barplot(a[1:5],names.arg = names(a)[1:5],family="STHeiti",ylab = "频数",xlab="",col = c("gold","grey","grey","grey","grey"))
+title("各类型小说频数分布柱状图",family="STHeiti")
 ```
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5mjdaslj311c0qo75z.jpg)
 
@@ -99,10 +99,10 @@ means<-novel%>%
   group_by(小说类型)%>%
   summarise(mean = mean(总点击数/10000))%>%
   arrange(desc(mean))
-par(family = "STXihei",las = 2)
+par(family = "STHeiti",las = 2)
 # 绘制均值柱状图
-barplot(means$mean[1:5], names.arg=means$小说类型[1:5],family="STXihei",ylab = "总点击数(万次)",xlab="",col = c("gold","grey","grey","grey","grey"))
-title("各类型小说平均总点击数",family="STXihei")
+barplot(means$mean[1:5], names.arg=means$小说类型[1:5],family="STHeiti",ylab = "总点击数(万次)",xlab="",col = c("gold","grey","grey","grey","grey"))
+title("各类型小说平均总点击数",family="STHeiti")
 
 options(scipen = 200)
 ```
@@ -127,7 +127,7 @@ colnames(d) = topics
 rownames(d) = artwork_type
 
 # 绘制分组柱状图(beside = T)
-par(mfrow=c(1,2), family = "STXihei",las=2)
+par(mfrow=c(1,2), family = "STHeiti",las=2)
 barplot(d, beside = T, col = c("gold","grey"), ylab = "频数", ylim = c(0,500))
 # 添加图例
 legend("topright", legend = rownames(d), fill =  c("gold","grey"), cex = 0.8)
@@ -157,7 +157,7 @@ label2 = paste0(round(ratio, 2), "%")
 
 ```{r ch4-plot4}
 # 绘制饼图
-par(family="STXihei") 
+par(family="STHeiti") 
 pie(ratio, col = heat.colors(5, alpha = 0.4), labels = paste(label1, label2, sep = "\n"), font = 1)
 ```
 
@@ -182,7 +182,7 @@ chara = sort(novel$总字数/10000)[1:1500]
 
 ```{r ch4-plot6, warning=FALSE}
 # 绘制直方图
-par(mfrow=c(1,2),family = "STXihei",las=2)
+par(mfrow=c(1,2),family = "STHeiti",las=2)
 hist(chara, breaks = 10, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
 # 调整直方图组距
 hist(chara, breaks = 100, xlab = "总字数(万字)", ylab = "频数", main = "", col = "gold",border = NA)
@@ -217,7 +217,7 @@ novel_ = novel %>%
 
 ```{r ch4-plot8}
 # 将画板分成1行2列
-par(mfrow=c(1,2),family = "STXihei")  
+par(mfrow=c(1,2),family = "STHeiti")  
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总点击数对数")
 boxplot(log(总点击数) ~ 小说性质, data = novel_, col = c('gold','grey'), ylab = "总评论数对数")
 ```
@@ -236,7 +236,7 @@ y = test$评论数
 ```
 
 ```{r ch4-plot9}
-par(family = "STXihei")  
+par(family = "STHeiti")  
 plot(x, y, pch = 1, cex = 0.6, xlab = "总点击数", ylab = "评论数")
 ```
 
@@ -252,7 +252,7 @@ y = novel[,5:8]
 # 计算相关系数矩阵
 r = cor(y,use="na.or.complete")
 # 绘制相关系数图 
-par(family = "STXihei")  
+par(family = "STHeiti")  
 corrplot(r, tl.col = "black")
 ```
 
@@ -276,7 +276,7 @@ novel_count = novel%>%group_by(小说类型)%>%summarise(count = n())%>%arrange(
 p = ggplot(novel_count[1:10,], mapping = aes(x = reorder(小说类型,desc(count)), y = count))
 # 绘制柱状图
 p + geom_bar(stat = 'identity')+
-  theme_gray(base_family = 'STXihei')+
+  theme_gray(base_family = 'STHeiti')+
   labs(x = "小说类型", y = "频数")
 ```
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zht3cej311c0qoabb.jpg)
@@ -297,7 +297,7 @@ pos = (cumsum(df1$V1) - df1$V1/2)
 # 构建坐标轴图层p
 p = ggplot(df1, aes(x = "", y = V1, fill = factor(小说类别,levels = c('武侠类小说','都市类小说','幻想类小说','其他')))) 
 # 绘制柱状图
-p = p + geom_bar(width = 1,stat = "identity")+theme_gray(base_family = 'STXihei') + scale_fill_brewer('',palette = "Blues")
+p = p + geom_bar(width = 1,stat = "identity")+theme_gray(base_family = 'STHeiti') + scale_fill_brewer('',palette = "Blues")
 ```
 
 ```{r ch4-plot11}
@@ -309,7 +309,7 @@ p + geom_text(aes(y = pos, label = paste(round(V1 / sum(V1) * 100, 2), "%", ""))
 theme(axis.title = element_blank(), 
       axis.text = element_blank(), 
       axis.ticks = element_blank(),
-      text = element_text(family='STXihei')) 
+      text = element_text(family='STHeiti')) 
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhk710j311c0qoju3.jpg)
@@ -322,7 +322,7 @@ theme(axis.title = element_blank(),
 # 构建坐标轴图层p
 p = ggplot(novel, mapping = aes(x = log(总点击数)))
 # 绘制直方图
-p + geom_histogram(bins = 30) + theme_gray(base_family = 'STXihei') + xlab('对数总点击数') + ylab('频数')
+p + geom_histogram(bins = 30) + theme_gray(base_family = 'STHeiti') + xlab('对数总点击数') + ylab('频数')
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zhfubij311c0qo0tq.jpg)
@@ -349,7 +349,7 @@ p + geom_line()
 # 构建坐标轴图层p
 p = ggplot(novel_, mapping = aes(x = 小说性质, y = log(总点击数)))
 # 绘制分组箱线图
-p+ geom_boxplot(fill = c('gold','grey')) + theme_gray(base_family = 'STXihei') + xlab('小说性质') + ylab('对数总点击数')
+p+ geom_boxplot(fill = c('gold','grey')) + theme_gray(base_family = 'STHeiti') + xlab('小说性质') + ylab('对数总点击数')
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh7o6oj311c0qodh1.jpg)
@@ -366,7 +366,7 @@ data = novel[novel$评论数 < 8000 & novel$总点击数 < 200000, ]
 ```{r ch4-plot15}
 p = ggplot(data , mapping = aes(x = 总点击数, y = 评论数))
 # 绘制散点图
-p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
+p + geom_point() + theme_gray(base_family = 'STHeiti') + xlab('总点击数') + ylab('评论数')
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zh26s9j311c0qoacz.jpg)
@@ -377,7 +377,7 @@ p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + 
 # 构建坐标轴图层p
 p = ggplot(na.omit(data) , mapping = aes(x = 总点击数, y = 评论数 , col = 小说性质))
 # 绘制散点图
-p + geom_point() + theme_gray(base_family = 'STXihei') + xlab('总点击数') + ylab('评论数')
+p + geom_point() + theme_gray(base_family = 'STHeiti') + xlab('总点击数') + ylab('评论数')
 ```
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwly1gky5zgvlsqj311c0qotcd.jpg)
@@ -474,7 +474,7 @@ ggplot(travel_dat)+
   geom_histogram(aes(x = Price),fill = "gold",bins = 30) +
   xlab("产品价格（对数变换）") +
   ylab("频数") +
-  theme_bw(base_family = "STXihei")+                         #设置背景颜色和字体
+  theme_bw(base_family = "STHeiti")+                         #设置背景颜色和字体
   scale_x_log10(breaks = c(1000, 10000), labels = c("1千","1万"))+#对数变换
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(),
@@ -515,7 +515,7 @@ travel_dat$Star2 = factor(travel_dat$Star2,                    # 按照均价重
 
 ```{r ch4-plot18, warning=FALSE}
 ggplot(travel_dat, aes_string(x="Star2", y="Price")) +          # 箱线图
-  theme_bw(base_family = "STXihei")+
+  theme_bw(base_family = "STHeiti")+
   geom_boxplot(varwidth=T, color = adjustcolor("#8CE52E"), fill = adjustcolor("#8CE52E", alpha.f = 0.4)) +
   scale_y_log10(breaks=c(2e3,1e4,8e4),                          # 对价格取对数
     labels=c("2千", "1万", "8万")) +
@@ -551,7 +551,7 @@ rtb_data$atype = factor(rtb_data$atype,levels = list)
 ```
 
 ```{r ch4-plot19}
-par(las = 2,mai = c(1,1,0.5,1),family = "STXihei")
+par(las = 2,mai = c(1,1,0.5,1),family = "STHeiti")
 spineplot(dc~atype,rtb_data,col = c('gold','grey'),xlab = '',yaxlabels = c('点击','不点击'),ylab = '')
 ```
 
@@ -570,7 +570,7 @@ ggplot(bidf_plot)+
   labs(fill = "是否点击广告")+
   scale_y_log10()+#对纵坐标轴做对数变化
   scale_fill_manual(values = c("gold", "grey"))+
-  theme_bw(base_family = "STXihei")+
+  theme_bw(base_family = "STHeiti")+
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(), 
@@ -610,7 +610,7 @@ ggplot(fin_data)+
   geom_histogram(aes(x = wage),fill = "gold",bins = 25) +
   xlab("薪资水平（元／月）") +
   ylab("频数") +
-  theme_bw(base_family = "STXihei")+                         #设置背景颜色和字体
+  theme_bw(base_family = "STHeiti")+                         #设置背景颜色和字体
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
@@ -644,7 +644,7 @@ ggplot(fin_data_city)+
                            labels = c("传统金融","金融科技"))),
            #is_tech对应传统金融和金融科技
            stat = "identity",position = "dodge")+#position = "dodge"设置为并列柱状图
-  theme_bw(base_family = "STXihei")+#背景设置为白色，字体为宋体
+  theme_bw(base_family = "STHeiti")+#背景设置为白色，字体为宋体
   labs(fill = "岗位类别")+#设置图例
   scale_fill_manual(values = c("DimGrey","gold"))+#填充颜色
   xlab("城市")+#设置横轴名称
@@ -689,7 +689,7 @@ ggplot(fin_data)+
   scale_fill_manual(values = c("DimGrey","gold"))+#填充颜色
   xlab("岗位类别")+#设置横轴名称
   ylab("岗位工资（万元）")+#设置纵轴名称
-  theme_bw(base_family = "STXihei")+#背景设置为白色，字体为宋体
+  theme_bw(base_family = "STHeiti")+#背景设置为白色，字体为宋体
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),

@@ -49,7 +49,7 @@ ggplot(data = jobinfo,aes(x=aveSalary)) +
     labs(y="频数",x = "岗位薪资") +
     theme_bw() + 
     theme(panel.border=element_blank(),
-          text = element_text(family = "STXihei"),
+          text = element_text(family = "STHeiti"),
           axis.title = element_text(size = 12),
           axis.text = element_text(size = 11))
 ```
@@ -76,7 +76,7 @@ ggplot(jobinfo,aes(学历要求,对数薪资)) +
         labs(x="学历要求", y = "对数薪资")+
     theme_bw() + 
     theme(panel.border=element_blank(),
-          text = element_text(family = "STXihei"),
+          text = element_text(family = "STHeiti"),
         axis.title = element_text(size = 13),
           axis.text = element_text(size = 12))
 ```
@@ -95,7 +95,7 @@ ggplot(jobinfo,aes(as.factor(Python),对数薪资)) +
         labs(x="是否要求会使用Python", y = "对数薪资") +
             theme_bw() + 
 theme(panel.border=element_blank(),
-      text = element_text(family = "STXihei"),
+      text = element_text(family = "STHeiti"),
                       axis.title = element_text(size = 15),
           axis.text = element_text(size = 14))
 ```
@@ -108,7 +108,7 @@ ggplot(jobinfo,aes(as.factor(SPSS),对数薪资)) +
         labs(x="是否要求会使用SPSS", y = "对数薪资") +
             theme_bw() + 
 theme(panel.border=element_blank(),
-      text = element_text(family = "STXihei"),
+      text = element_text(family = "STHeiti"),
                       axis.title = element_text(size = 15),
           axis.text = element_text(size = 14))
 ```
