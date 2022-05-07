@@ -27,6 +27,8 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
+- [第5章：参数估计与假设检验](https://pan.baidu.com/s/1ty69tzyUtINJDmmpYaNY9Q)，提取码：0smb
+
 - [第6章：线性回归](https://pan.baidu.com/s/1lI_X8Wm4IReKtom-A5nTJQ)，提取码：iais
 
 - [第7章：逻辑回归](https://pan.baidu.com/s/1vx_cLjEq7H_eYX4dTj1c3w)，提取码：4d67
