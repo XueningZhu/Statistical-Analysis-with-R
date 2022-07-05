@@ -27,6 +27,8 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
+- [第3章：基本统计分析](https://pan.baidu.com/s/1XawadIdh1NosM--HkpIYyw)，提取码：4670
+
 - [第4章：数据描述与可视化](https://pan.baidu.com/s/1Mg4cNmuii_9RtMa2CW0WtA)，提取码：3h4g
 
 - [第5章：参数估计与假设检验](https://pan.baidu.com/s/1ty69tzyUtINJDmmpYaNY9Q)，提取码：0smb
