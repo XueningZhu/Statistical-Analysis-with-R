@@ -27,6 +27,10 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
+- [第1章：统计分析与R语言](https://pan.baidu.com/s/1vObwg4RcGIXFqYkT6iCGQg)，提取码: rgrg
+
+- [第2章：R语言中的数据管理及预处理](https://pan.baidu.com/s/1coOid_644S5nu43wbPMg7g)，提取码: bgl3
+
 - [第3章：基本统计分析](https://pan.baidu.com/s/1XawadIdh1NosM--HkpIYyw)，提取码：4670
 
 - [第4章：数据描述与可视化](https://pan.baidu.com/s/1Mg4cNmuii_9RtMa2CW0WtA)，提取码：3h4g
