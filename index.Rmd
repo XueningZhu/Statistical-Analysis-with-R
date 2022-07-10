@@ -27,21 +27,23 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, cache = T)
 
 本书所使用的课件：
 
-- [第1章：统计分析与R语言](https://pan.baidu.com/s/1vObwg4RcGIXFqYkT6iCGQg)，提取码: rgrg
+- [第1--8章书稿课件](https://pan.baidu.com/s/1T27v-iVb3W-J-635OZ7mLQ)，提取码：h7hi
 
-- [第2章：R语言中的数据管理及预处理](https://pan.baidu.com/s/1coOid_644S5nu43wbPMg7g)，提取码: bgl3
+<!-- - [第1章：统计分析与R语言](https://pan.baidu.com/s/1vObwg4RcGIXFqYkT6iCGQg)，提取码: rgrg -->
 
-- [第3章：基本统计分析](https://pan.baidu.com/s/1XawadIdh1NosM--HkpIYyw)，提取码：4670
+<!-- - [第2章：R语言中的数据管理及预处理](https://pan.baidu.com/s/1coOid_644S5nu43wbPMg7g)，提取码: bgl3 -->
 
-- [第4章：数据描述与可视化](https://pan.baidu.com/s/1Mg4cNmuii_9RtMa2CW0WtA)，提取码：3h4g
+<!-- - [第3章：基本统计分析](https://pan.baidu.com/s/1XawadIdh1NosM--HkpIYyw)，提取码：4670 -->
 
-- [第5章：参数估计与假设检验](https://pan.baidu.com/s/1ty69tzyUtINJDmmpYaNY9Q)，提取码：0smb
+<!-- - [第4章：数据描述与可视化](https://pan.baidu.com/s/1Mg4cNmuii_9RtMa2CW0WtA)，提取码：3h4g -->
 
-- [第6章：线性回归](https://pan.baidu.com/s/1lI_X8Wm4IReKtom-A5nTJQ)，提取码：iais
+<!-- - [第5章：参数估计与假设检验](https://pan.baidu.com/s/1ty69tzyUtINJDmmpYaNY9Q)，提取码：0smb -->
 
-- [第7章：逻辑回归](https://pan.baidu.com/s/1vx_cLjEq7H_eYX4dTj1c3w)，提取码：4d67
+<!-- - [第6章：线性回归](https://pan.baidu.com/s/1lI_X8Wm4IReKtom-A5nTJQ)，提取码：iais -->
 
-- [第8章：降维分析](https://pan.baidu.com/s/1TpuHwd6ByUnlqql1KG90Vg)，提取码：lvkp
+<!-- - [第7章：逻辑回归](https://pan.baidu.com/s/1vx_cLjEq7H_eYX4dTj1c3w)，提取码：4d67 -->
+
+<!-- - [第8章：降维分析](https://pan.baidu.com/s/1TpuHwd6ByUnlqql1KG90Vg)，提取码：lvkp -->
 
 使用本教程必须安装的**软件包**：
 
